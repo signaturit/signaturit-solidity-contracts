@@ -164,27 +164,3 @@ The reset flag is optional and it will replace existing contracts if already dep
 # Smart Contracts relations
 
 ![Image of work](img/smartcontracts.png)
-
-## How add the submodule in project
-
-Adding the submodule
-
-```
-git submodule add git@github.com:signaturit/signaturit-smart-contracts.git contracts
-```
-
-Init the submodule
-
-```
-git submodule init
-```
-
-Pull changes
-```
-git submodule update
-```
-
-Delete submodule
-```
-git submodule rm contracts
-```
