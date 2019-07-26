@@ -24,6 +24,8 @@ contract('User', async (accounts) => {
 
     const certifiedEmailId = v4();
 
+    const certificateUserKey = 'key'
+
     const fileSignatureType = 'signature';
     const fileCertifiedEmailType = 'certified_email';
 
@@ -41,6 +43,40 @@ contract('User', async (accounts) => {
 
     it('Check if it deploy correctly', async () => {
         assert.ok(userContract.address);
+    });
+
+    it('Call setCertificatePublicKey from Signaturit account', async () => {
+        const transaction = await userContract.setCertificatePublicKey(
+            certificateUserKey,
+            {
+                from: signaturitAddress
+            }
+        );
+
+        assert.ok(transaction.receipt.status);
+
+        const readKey = await userContract.certificatePublicKey();
+
+        assert.equal(certificateUserKey, readKey);
+    });
+
+    it('Call setCertificatePublicKey from not Signaturit account', async () => {
+        try {
+            const transaction = await userContract.setCertificatePublicKey(
+                certificateUserKey,
+                {
+                    from: invalidAddress
+                }
+            );
+
+            assert.fail('Unexpected behaviour, it should have thrown');
+        } catch (error) {
+            assert.include(
+                error.message,
+                "Only Signaturit account can perform this action."
+            )
+        }
+
     });
 
     it('Call addSignature from Signaturit account', async () => {
