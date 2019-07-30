@@ -95,41 +95,41 @@
       "type": "constructor"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.0+commit.1d4f565a\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"evenType\",\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"id\",\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"userAgent\",\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"createdAt\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"eventType\",\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"name\":\"eventId\",\"type\":\"string\"},{\"name\":\"initType\",\"type\":\"string\"},{\"name\":\"eventUserAgent\",\"type\":\"string\"},{\"name\":\"eventCreatedAt\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/home/administrator/workspace/bc-smart-contracts/contracts/Event.sol\":\"Event\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":10},\"remappings\":[]},\"sources\":{\"/home/administrator/workspace/bc-smart-contracts/contracts/Event.sol\":{\"keccak256\":\"0x8c91f82eb2632d19e61bcc63d741113e721a6d2902e7e0a36f0f93e9d20c1217\",\"urls\":[\"bzzr://84c42200b3e806b4ec02f183b03b38b7c7d89d0521d597c46879d469f6dc9a21\"]},\"/home/administrator/workspace/bc-smart-contracts/contracts/interfaces/EventInterface.sol\":{\"keccak256\":\"0x701aeae3fbb88832ac82c47672941fe23e6677a73515e4401094ccda24bfe91d\",\"urls\":[\"bzzr://1e581ee0b86a3118a6af9c6b0f0fa717bb24e78004c3bdbcb28c7a41305b5f92\"]}},\"version\":1}",
-  "bytecode": "0x608060405234801561001057600080fd5b506040516105203803806105208339810180604052608081101561003357600080fd5b81019080805164010000000081111561004b57600080fd5b8201602081018481111561005e57600080fd5b815164010000000081118282018710171561007857600080fd5b5050929190602001805164010000000081111561009457600080fd5b820160208101848111156100a757600080fd5b81516401000000008111828201871017156100c157600080fd5b505092919060200180516401000000008111156100dd57600080fd5b820160208101848111156100f057600080fd5b815164010000000081118282018710171561010a57600080fd5b505060209182015186519194509250610129916004919087019061015e565b50825161013d90600190602086019061015e565b50815161015190600690602085019061015e565b50600755506101f9915050565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061019f57805160ff19168380011785556101cc565b828001600101855582156101cc579182015b828111156101cc5782518255916020019190600101906101b1565b506101d89291506101dc565b5090565b6101f691905b808211156101d857600081556001016101e2565b90565b610318806102086000396000f3fe6080604052600436106100535763ffffffff60e060020a6000350416630b305f308114610058578063af640d0f146100e2578063bdf1c4a1146100f7578063cf09e0d01461010c578063d44b930014610133575b600080fd5b34801561006457600080fd5b5061006d610148565b6040805160208082528351818301528351919283929083019185019080838360005b838110156100a757818101518382015260200161008f565b50505050905090810190601f1680156100d45780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b3480156100ee57600080fd5b5061006d6101d6565b34801561010357600080fd5b5061006d610231565b34801561011857600080fd5b5061012161028c565b60408051918252519081900360200190f35b34801561013f57600080fd5b5061006d610292565b6005805460408051602060026001851615610100026000190190941693909304601f810184900484028201840190925281815292918301828280156101ce5780601f106101a3576101008083540402835291602001916101ce565b820191906000526020600020905b8154815290600101906020018083116101b157829003601f168201915b505050505081565b6004805460408051602060026001851615610100026000190190941693909304601f810184900484028201840190925281815292918301828280156101ce5780601f106101a3576101008083540402835291602001916101ce565b6006805460408051602060026001851615610100026000190190941693909304601f810184900484028201840190925281815292918301828280156101ce5780601f106101a3576101008083540402835291602001916101ce565b60075481565b60018054604080516020600284861615610100026000190190941693909304601f810184900484028201840190925281815292918301828280156101ce5780601f106101a3576101008083540402835291602001916101ce56fea165627a7a723058202833fd30b0839f98d397a64594ce2396f2e48742814db690be40760e62d42cca0029",
-  "deployedBytecode": "0x6080604052600436106100535763ffffffff60e060020a6000350416630b305f308114610058578063af640d0f146100e2578063bdf1c4a1146100f7578063cf09e0d01461010c578063d44b930014610133575b600080fd5b34801561006457600080fd5b5061006d610148565b6040805160208082528351818301528351919283929083019185019080838360005b838110156100a757818101518382015260200161008f565b50505050905090810190601f1680156100d45780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b3480156100ee57600080fd5b5061006d6101d6565b34801561010357600080fd5b5061006d610231565b34801561011857600080fd5b5061012161028c565b60408051918252519081900360200190f35b34801561013f57600080fd5b5061006d610292565b6005805460408051602060026001851615610100026000190190941693909304601f810184900484028201840190925281815292918301828280156101ce5780601f106101a3576101008083540402835291602001916101ce565b820191906000526020600020905b8154815290600101906020018083116101b157829003601f168201915b505050505081565b6004805460408051602060026001851615610100026000190190941693909304601f810184900484028201840190925281815292918301828280156101ce5780601f106101a3576101008083540402835291602001916101ce565b6006805460408051602060026001851615610100026000190190941693909304601f810184900484028201840190925281815292918301828280156101ce5780601f106101a3576101008083540402835291602001916101ce565b60075481565b60018054604080516020600284861615610100026000190190941693909304601f810184900484028201840190925281815292918301828280156101ce5780601f106101a3576101008083540402835291602001916101ce56fea165627a7a723058202833fd30b0839f98d397a64594ce2396f2e48742814db690be40760e62d42cca0029",
-  "sourceMap": "96:447:5:-;;;243:298;8:9:-1;5:2;;;30:1;27;20:12;5:2;243:298:5;;;;;;;;;;;;;;;13:3:-1;8;5:12;2:2;;;30:1;27;20:12;2:2;243:298:5;;;;;;19:11:-1;14:3;11:20;8:2;;;44:1;41;34:12;8:2;62:21;;123:4;114:14;;138:31;;;135:2;;;182:1;179;172:12;135:2;213:10;;261:11;244:29;;285:43;;;282:58;-1:-1;233:115;230:2;;;361:1;358;351:12;230:2;0:372;;243:298:5;;;;;;;19:11:-1;14:3;11:20;8:2;;;44:1;41;34:12;8:2;62:21;;123:4;114:14;;138:31;;;135:2;;;182:1;179;172:12;135:2;213:10;;261:11;244:29;;285:43;;;282:58;-1:-1;233:115;230:2;;;361:1;358;351:12;230:2;0:372;;243:298:5;;;;;;;19:11:-1;14:3;11:20;8:2;;;44:1;41;34:12;8:2;62:21;;123:4;114:14;;138:31;;;135:2;;;182:1;179;172:12;135:2;213:10;;261:11;244:29;;285:43;;;282:58;-1:-1;233:115;230:2;;;361:1;358;351:12;230:2;-1:-1;;243:298:5;;;;;420:12;;243:298;;-1:-1:-1;243:298:5;-1:-1:-1;420:12:5;;:2;;:12;;;;;:::i;:::-;-1:-1:-1;442:20:5;;;;:9;;:20;;;;;:::i;:::-;-1:-1:-1;472:26:5;;;;:9;;:26;;;;;:::i;:::-;-1:-1:-1;508:9:5;:26;-1:-1:-1;96:447:5;;-1:-1:-1;;96:447:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;96:447:5;;;-1:-1:-1;96:447:5;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;:::o;:::-;;;;;;;",
-  "deployedSourceMap": "96:447:5:-;;;;;;;;;-1:-1:-1;;;96:447:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;157:22;;8:9:-1;5:2;;;30:1;27;20:12;5:2;157:22:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8:100:-1;33:3;30:1;27:10;8:100;;;90:11;;;84:18;71:11;;;64:39;52:2;45:10;8:100;;;12:14;157:22:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;135:16;;8:9:-1;5:2;;;30:1;27;20:12;5:2;135:16:5;;;;185:23;;8:9:-1;5:2;;;30:1;27;20:12;5:2;185:23:5;;;;215:21;;8:9:-1;5:2;;;30:1;27;20:12;5:2;215:21:5;;;;;;;;;;;;;;;;;;;;77:23:16;;8:9:-1;5:2;;;30:1;27;20:12;5:2;77:23:16;;;;157:22:5;;;;;;;;;;;;;;;-1:-1:-1;;157:22:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;135:16::-;;;;;;;;;;;;;;;-1:-1:-1;;135:16:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;185:23;;;;;;;;;;;;;;;-1:-1:-1;;185:23:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;215:21;;;;:::o;77:23:16:-;;;;;;;;;;;;;;;-1:-1:-1;;77:23:16;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.0+commit.1d4f565a\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"evenType\",\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"id\",\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"userAgent\",\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"createdAt\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"eventType\",\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"name\":\"eventId\",\"type\":\"string\"},{\"name\":\"initType\",\"type\":\"string\"},{\"name\":\"eventUserAgent\",\"type\":\"string\"},{\"name\":\"eventCreatedAt\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/home/administrator/workspace/signaturit-solidity-contracts/contracts/Event.sol\":\"Event\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":10},\"remappings\":[]},\"sources\":{\"/home/administrator/workspace/signaturit-solidity-contracts/contracts/Event.sol\":{\"keccak256\":\"0x8c91f82eb2632d19e61bcc63d741113e721a6d2902e7e0a36f0f93e9d20c1217\",\"urls\":[\"bzzr://84c42200b3e806b4ec02f183b03b38b7c7d89d0521d597c46879d469f6dc9a21\"]},\"/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/EventInterface.sol\":{\"keccak256\":\"0x701aeae3fbb88832ac82c47672941fe23e6677a73515e4401094ccda24bfe91d\",\"urls\":[\"bzzr://1e581ee0b86a3118a6af9c6b0f0fa717bb24e78004c3bdbcb28c7a41305b5f92\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b506040516105203803806105208339810180604052608081101561003357600080fd5b81019080805164010000000081111561004b57600080fd5b8201602081018481111561005e57600080fd5b815164010000000081118282018710171561007857600080fd5b5050929190602001805164010000000081111561009457600080fd5b820160208101848111156100a757600080fd5b81516401000000008111828201871017156100c157600080fd5b505092919060200180516401000000008111156100dd57600080fd5b820160208101848111156100f057600080fd5b815164010000000081118282018710171561010a57600080fd5b505060209182015186519194509250610129916004919087019061015e565b50825161013d90600190602086019061015e565b50815161015190600690602085019061015e565b50600755506101f9915050565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061019f57805160ff19168380011785556101cc565b828001600101855582156101cc579182015b828111156101cc5782518255916020019190600101906101b1565b506101d89291506101dc565b5090565b6101f691905b808211156101d857600081556001016101e2565b90565b610318806102086000396000f3fe6080604052600436106100535763ffffffff60e060020a6000350416630b305f308114610058578063af640d0f146100e2578063bdf1c4a1146100f7578063cf09e0d01461010c578063d44b930014610133575b600080fd5b34801561006457600080fd5b5061006d610148565b6040805160208082528351818301528351919283929083019185019080838360005b838110156100a757818101518382015260200161008f565b50505050905090810190601f1680156100d45780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b3480156100ee57600080fd5b5061006d6101d6565b34801561010357600080fd5b5061006d610231565b34801561011857600080fd5b5061012161028c565b60408051918252519081900360200190f35b34801561013f57600080fd5b5061006d610292565b6005805460408051602060026001851615610100026000190190941693909304601f810184900484028201840190925281815292918301828280156101ce5780601f106101a3576101008083540402835291602001916101ce565b820191906000526020600020905b8154815290600101906020018083116101b157829003601f168201915b505050505081565b6004805460408051602060026001851615610100026000190190941693909304601f810184900484028201840190925281815292918301828280156101ce5780601f106101a3576101008083540402835291602001916101ce565b6006805460408051602060026001851615610100026000190190941693909304601f810184900484028201840190925281815292918301828280156101ce5780601f106101a3576101008083540402835291602001916101ce565b60075481565b60018054604080516020600284861615610100026000190190941693909304601f810184900484028201840190925281815292918301828280156101ce5780601f106101a3576101008083540402835291602001916101ce56fea165627a7a72305820ad8aa2f6ee641dea6d011af6c965e156f6e55519cae0c9669bdfb24cc54162a20029",
+  "deployedBytecode": "0x6080604052600436106100535763ffffffff60e060020a6000350416630b305f308114610058578063af640d0f146100e2578063bdf1c4a1146100f7578063cf09e0d01461010c578063d44b930014610133575b600080fd5b34801561006457600080fd5b5061006d610148565b6040805160208082528351818301528351919283929083019185019080838360005b838110156100a757818101518382015260200161008f565b50505050905090810190601f1680156100d45780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b3480156100ee57600080fd5b5061006d6101d6565b34801561010357600080fd5b5061006d610231565b34801561011857600080fd5b5061012161028c565b60408051918252519081900360200190f35b34801561013f57600080fd5b5061006d610292565b6005805460408051602060026001851615610100026000190190941693909304601f810184900484028201840190925281815292918301828280156101ce5780601f106101a3576101008083540402835291602001916101ce565b820191906000526020600020905b8154815290600101906020018083116101b157829003601f168201915b505050505081565b6004805460408051602060026001851615610100026000190190941693909304601f810184900484028201840190925281815292918301828280156101ce5780601f106101a3576101008083540402835291602001916101ce565b6006805460408051602060026001851615610100026000190190941693909304601f810184900484028201840190925281815292918301828280156101ce5780601f106101a3576101008083540402835291602001916101ce565b60075481565b60018054604080516020600284861615610100026000190190941693909304601f810184900484028201840190925281815292918301828280156101ce5780601f106101a3576101008083540402835291602001916101ce56fea165627a7a72305820ad8aa2f6ee641dea6d011af6c965e156f6e55519cae0c9669bdfb24cc54162a20029",
+  "sourceMap": "96:447:25:-;;;243:298;8:9:-1;5:2;;;30:1;27;20:12;5:2;243:298:25;;;;;;;;;;;;;;;13:3:-1;8;5:12;2:2;;;30:1;27;20:12;2:2;243:298:25;;;;;;19:11:-1;14:3;11:20;8:2;;;44:1;41;34:12;8:2;62:21;;123:4;114:14;;138:31;;;135:2;;;182:1;179;172:12;135:2;213:10;;261:11;244:29;;285:43;;;282:58;-1:-1;233:115;230:2;;;361:1;358;351:12;230:2;0:372;;243:298:25;;;;;;;19:11:-1;14:3;11:20;8:2;;;44:1;41;34:12;8:2;62:21;;123:4;114:14;;138:31;;;135:2;;;182:1;179;172:12;135:2;213:10;;261:11;244:29;;285:43;;;282:58;-1:-1;233:115;230:2;;;361:1;358;351:12;230:2;0:372;;243:298:25;;;;;;;19:11:-1;14:3;11:20;8:2;;;44:1;41;34:12;8:2;62:21;;123:4;114:14;;138:31;;;135:2;;;182:1;179;172:12;135:2;213:10;;261:11;244:29;;285:43;;;282:58;-1:-1;233:115;230:2;;;361:1;358;351:12;230:2;-1:-1;;243:298:25;;;;;420:12;;243:298;;-1:-1:-1;243:298:25;-1:-1:-1;420:12:25;;:2;;:12;;;;;:::i;:::-;-1:-1:-1;442:20:25;;;;:9;;:20;;;;;:::i;:::-;-1:-1:-1;472:26:25;;;;:9;;:26;;;;;:::i;:::-;-1:-1:-1;508:9:25;:26;-1:-1:-1;96:447:25;;-1:-1:-1;;96:447:25;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;96:447:25;;;-1:-1:-1;96:447:25;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;:::o;:::-;;;;;;;",
+  "deployedSourceMap": "96:447:25:-;;;;;;;;;-1:-1:-1;;;96:447:25;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;157:22;;8:9:-1;5:2;;;30:1;27;20:12;5:2;157:22:25;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8:100:-1;33:3;30:1;27:10;8:100;;;90:11;;;84:18;71:11;;;64:39;52:2;45:10;8:100;;;12:14;157:22:25;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;135:16;;8:9:-1;5:2;;;30:1;27;20:12;5:2;135:16:25;;;;185:23;;8:9:-1;5:2;;;30:1;27;20:12;5:2;185:23:25;;;;215:21;;8:9:-1;5:2;;;30:1;27;20:12;5:2;215:21:25;;;;;;;;;;;;;;;;;;;;77:23:36;;8:9:-1;5:2;;;30:1;27;20:12;5:2;77:23:36;;;;157:22:25;;;;;;;;;;;;;;;-1:-1:-1;;157:22:25;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;135:16::-;;;;;;;;;;;;;;;-1:-1:-1;;135:16:25;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;185:23;;;;;;;;;;;;;;;-1:-1:-1;;185:23:25;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;215:21;;;;:::o;77:23:36:-;;;;;;;;;;;;;;;-1:-1:-1;;77:23:36;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",
   "source": "pragma solidity 0.5.0;\n\n/*Gas to deploy: 661.223*/\n\nimport \"./interfaces/EventInterface.sol\";\n\n\ncontract Event is EventInterface {\n    string public id;\n    string public evenType;\n    string public userAgent;\n\n    uint public createdAt;\n\n    constructor(\n        string memory eventId,\n        string memory initType,\n        string memory eventUserAgent,\n        uint eventCreatedAt\n    )\n        public\n    {\n        id = eventId;\n        eventType = initType;\n        userAgent = eventUserAgent;\n        createdAt = eventCreatedAt;\n    }\n}\n",
-  "sourcePath": "/home/administrator/workspace/bc-smart-contracts/contracts/Event.sol",
+  "sourcePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/Event.sol",
   "ast": {
-    "absolutePath": "/home/administrator/workspace/bc-smart-contracts/contracts/Event.sol",
+    "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/Event.sol",
     "exportedSymbols": {
       "Event": [
-        1213
+        4754
       ]
     },
-    "id": 1214,
+    "id": 4755,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1173,
+        "id": 4714,
         "literals": [
           "solidity",
           "0.5",
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:22:5"
+        "src": "0:22:25"
       },
       {
-        "absolutePath": "/home/administrator/workspace/bc-smart-contracts/contracts/interfaces/EventInterface.sol",
+        "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/EventInterface.sol",
         "file": "./interfaces/EventInterface.sol",
-        "id": 1174,
+        "id": 4715,
         "nodeType": "ImportDirective",
-        "scope": 1214,
-        "sourceUnit": 3874,
-        "src": "52:41:5",
+        "scope": 4755,
+        "sourceUnit": 7437,
+        "src": "52:41:25",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -139,42 +139,42 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 1175,
+              "id": 4716,
               "name": "EventInterface",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 3873,
-              "src": "114:14:5",
+              "referencedDeclaration": 7436,
+              "src": "114:14:25",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_EventInterface_$3873",
+                "typeIdentifier": "t_contract$_EventInterface_$7436",
                 "typeString": "contract EventInterface"
               }
             },
-            "id": 1176,
+            "id": 4717,
             "nodeType": "InheritanceSpecifier",
-            "src": "114:14:5"
+            "src": "114:14:25"
           }
         ],
         "contractDependencies": [
-          3873
+          7436
         ],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 1213,
+        "id": 4754,
         "linearizedBaseContracts": [
-          1213,
-          3873
+          4754,
+          7436
         ],
         "name": "Event",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 1178,
+            "id": 4719,
             "name": "id",
             "nodeType": "VariableDeclaration",
-            "scope": 1213,
-            "src": "135:16:5",
+            "scope": 4754,
+            "src": "135:16:25",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -182,10 +182,10 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 1177,
+              "id": 4718,
               "name": "string",
               "nodeType": "ElementaryTypeName",
-              "src": "135:6:5",
+              "src": "135:6:25",
               "typeDescriptions": {
                 "typeIdentifier": "t_string_storage_ptr",
                 "typeString": "string"
@@ -196,11 +196,11 @@
           },
           {
             "constant": false,
-            "id": 1180,
+            "id": 4721,
             "name": "evenType",
             "nodeType": "VariableDeclaration",
-            "scope": 1213,
-            "src": "157:22:5",
+            "scope": 4754,
+            "src": "157:22:25",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -208,10 +208,10 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 1179,
+              "id": 4720,
               "name": "string",
               "nodeType": "ElementaryTypeName",
-              "src": "157:6:5",
+              "src": "157:6:25",
               "typeDescriptions": {
                 "typeIdentifier": "t_string_storage_ptr",
                 "typeString": "string"
@@ -222,11 +222,11 @@
           },
           {
             "constant": false,
-            "id": 1182,
+            "id": 4723,
             "name": "userAgent",
             "nodeType": "VariableDeclaration",
-            "scope": 1213,
-            "src": "185:23:5",
+            "scope": 4754,
+            "src": "185:23:25",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -234,10 +234,10 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 1181,
+              "id": 4722,
               "name": "string",
               "nodeType": "ElementaryTypeName",
-              "src": "185:6:5",
+              "src": "185:6:25",
               "typeDescriptions": {
                 "typeIdentifier": "t_string_storage_ptr",
                 "typeString": "string"
@@ -248,11 +248,11 @@
           },
           {
             "constant": false,
-            "id": 1184,
+            "id": 4725,
             "name": "createdAt",
             "nodeType": "VariableDeclaration",
-            "scope": 1213,
-            "src": "215:21:5",
+            "scope": 4754,
+            "src": "215:21:25",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -260,10 +260,10 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 1183,
+              "id": 4724,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
-              "src": "215:4:5",
+              "src": "215:4:25",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint256",
                 "typeString": "uint256"
@@ -274,26 +274,26 @@
           },
           {
             "body": {
-              "id": 1211,
+              "id": 4752,
               "nodeType": "Block",
-              "src": "410:131:5",
+              "src": "410:131:25",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1197,
+                    "id": 4738,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 1195,
+                      "id": 4736,
                       "name": "id",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1178,
-                      "src": "420:2:5",
+                      "referencedDeclaration": 4719,
+                      "src": "420:2:25",
                       "typeDescriptions": {
                         "typeIdentifier": "t_string_storage",
                         "typeString": "string storage ref"
@@ -303,43 +303,43 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 1196,
+                      "id": 4737,
                       "name": "eventId",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1186,
-                      "src": "425:7:5",
+                      "referencedDeclaration": 4727,
+                      "src": "425:7:25",
                       "typeDescriptions": {
                         "typeIdentifier": "t_string_memory_ptr",
                         "typeString": "string memory"
                       }
                     },
-                    "src": "420:12:5",
+                    "src": "420:12:25",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage",
                       "typeString": "string storage ref"
                     }
                   },
-                  "id": 1198,
+                  "id": 4739,
                   "nodeType": "ExpressionStatement",
-                  "src": "420:12:5"
+                  "src": "420:12:25"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1201,
+                    "id": 4742,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 1199,
+                      "id": 4740,
                       "name": "eventType",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 3868,
-                      "src": "442:9:5",
+                      "referencedDeclaration": 7431,
+                      "src": "442:9:25",
                       "typeDescriptions": {
                         "typeIdentifier": "t_string_storage",
                         "typeString": "string storage ref"
@@ -349,43 +349,43 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 1200,
+                      "id": 4741,
                       "name": "initType",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1188,
-                      "src": "454:8:5",
+                      "referencedDeclaration": 4729,
+                      "src": "454:8:25",
                       "typeDescriptions": {
                         "typeIdentifier": "t_string_memory_ptr",
                         "typeString": "string memory"
                       }
                     },
-                    "src": "442:20:5",
+                    "src": "442:20:25",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage",
                       "typeString": "string storage ref"
                     }
                   },
-                  "id": 1202,
+                  "id": 4743,
                   "nodeType": "ExpressionStatement",
-                  "src": "442:20:5"
+                  "src": "442:20:25"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1205,
+                    "id": 4746,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 1203,
+                      "id": 4744,
                       "name": "userAgent",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1182,
-                      "src": "472:9:5",
+                      "referencedDeclaration": 4723,
+                      "src": "472:9:25",
                       "typeDescriptions": {
                         "typeIdentifier": "t_string_storage",
                         "typeString": "string storage ref"
@@ -395,43 +395,43 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 1204,
+                      "id": 4745,
                       "name": "eventUserAgent",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1190,
-                      "src": "484:14:5",
+                      "referencedDeclaration": 4731,
+                      "src": "484:14:25",
                       "typeDescriptions": {
                         "typeIdentifier": "t_string_memory_ptr",
                         "typeString": "string memory"
                       }
                     },
-                    "src": "472:26:5",
+                    "src": "472:26:25",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage",
                       "typeString": "string storage ref"
                     }
                   },
-                  "id": 1206,
+                  "id": 4747,
                   "nodeType": "ExpressionStatement",
-                  "src": "472:26:5"
+                  "src": "472:26:25"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1209,
+                    "id": 4750,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 1207,
+                      "id": 4748,
                       "name": "createdAt",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1184,
-                      "src": "508:9:5",
+                      "referencedDeclaration": 4725,
+                      "src": "508:9:25",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -441,47 +441,47 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 1208,
+                      "id": 4749,
                       "name": "eventCreatedAt",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1192,
-                      "src": "520:14:5",
+                      "referencedDeclaration": 4733,
+                      "src": "520:14:25",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "src": "508:26:5",
+                    "src": "508:26:25",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "id": 1210,
+                  "id": 4751,
                   "nodeType": "ExpressionStatement",
-                  "src": "508:26:5"
+                  "src": "508:26:25"
                 }
               ]
             },
             "documentation": null,
-            "id": 1212,
+            "id": 4753,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1193,
+              "id": 4734,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1186,
+                  "id": 4727,
                   "name": "eventId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1212,
-                  "src": "264:21:5",
+                  "scope": 4753,
+                  "src": "264:21:25",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -489,10 +489,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 1185,
+                    "id": 4726,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "264:6:5",
+                    "src": "264:6:25",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -503,11 +503,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 1188,
+                  "id": 4729,
                   "name": "initType",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1212,
-                  "src": "295:22:5",
+                  "scope": 4753,
+                  "src": "295:22:25",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -515,10 +515,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 1187,
+                    "id": 4728,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "295:6:5",
+                    "src": "295:6:25",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -529,11 +529,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 1190,
+                  "id": 4731,
                   "name": "eventUserAgent",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1212,
-                  "src": "327:28:5",
+                  "scope": 4753,
+                  "src": "327:28:25",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -541,10 +541,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 1189,
+                    "id": 4730,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "327:6:5",
+                    "src": "327:6:25",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -555,11 +555,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 1192,
+                  "id": 4733,
                   "name": "eventCreatedAt",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1212,
-                  "src": "365:19:5",
+                  "scope": 4753,
+                  "src": "365:19:25",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -567,10 +567,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1191,
+                    "id": 4732,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "365:4:5",
+                    "src": "365:4:25",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -580,55 +580,55 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "254:136:5"
+              "src": "254:136:25"
             },
             "returnParameters": {
-              "id": 1194,
+              "id": 4735,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "410:0:5"
+              "src": "410:0:25"
             },
-            "scope": 1213,
-            "src": "243:298:5",
+            "scope": 4754,
+            "src": "243:298:25",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 1214,
-        "src": "96:447:5"
+        "scope": 4755,
+        "src": "96:447:25"
       }
     ],
-    "src": "0:544:5"
+    "src": "0:544:25"
   },
   "legacyAST": {
-    "absolutePath": "/home/administrator/workspace/bc-smart-contracts/contracts/Event.sol",
+    "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/Event.sol",
     "exportedSymbols": {
       "Event": [
-        1213
+        4754
       ]
     },
-    "id": 1214,
+    "id": 4755,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1173,
+        "id": 4714,
         "literals": [
           "solidity",
           "0.5",
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:22:5"
+        "src": "0:22:25"
       },
       {
-        "absolutePath": "/home/administrator/workspace/bc-smart-contracts/contracts/interfaces/EventInterface.sol",
+        "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/EventInterface.sol",
         "file": "./interfaces/EventInterface.sol",
-        "id": 1174,
+        "id": 4715,
         "nodeType": "ImportDirective",
-        "scope": 1214,
-        "sourceUnit": 3874,
-        "src": "52:41:5",
+        "scope": 4755,
+        "sourceUnit": 7437,
+        "src": "52:41:25",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -638,42 +638,42 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 1175,
+              "id": 4716,
               "name": "EventInterface",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 3873,
-              "src": "114:14:5",
+              "referencedDeclaration": 7436,
+              "src": "114:14:25",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_EventInterface_$3873",
+                "typeIdentifier": "t_contract$_EventInterface_$7436",
                 "typeString": "contract EventInterface"
               }
             },
-            "id": 1176,
+            "id": 4717,
             "nodeType": "InheritanceSpecifier",
-            "src": "114:14:5"
+            "src": "114:14:25"
           }
         ],
         "contractDependencies": [
-          3873
+          7436
         ],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 1213,
+        "id": 4754,
         "linearizedBaseContracts": [
-          1213,
-          3873
+          4754,
+          7436
         ],
         "name": "Event",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 1178,
+            "id": 4719,
             "name": "id",
             "nodeType": "VariableDeclaration",
-            "scope": 1213,
-            "src": "135:16:5",
+            "scope": 4754,
+            "src": "135:16:25",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -681,10 +681,10 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 1177,
+              "id": 4718,
               "name": "string",
               "nodeType": "ElementaryTypeName",
-              "src": "135:6:5",
+              "src": "135:6:25",
               "typeDescriptions": {
                 "typeIdentifier": "t_string_storage_ptr",
                 "typeString": "string"
@@ -695,11 +695,11 @@
           },
           {
             "constant": false,
-            "id": 1180,
+            "id": 4721,
             "name": "evenType",
             "nodeType": "VariableDeclaration",
-            "scope": 1213,
-            "src": "157:22:5",
+            "scope": 4754,
+            "src": "157:22:25",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -707,10 +707,10 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 1179,
+              "id": 4720,
               "name": "string",
               "nodeType": "ElementaryTypeName",
-              "src": "157:6:5",
+              "src": "157:6:25",
               "typeDescriptions": {
                 "typeIdentifier": "t_string_storage_ptr",
                 "typeString": "string"
@@ -721,11 +721,11 @@
           },
           {
             "constant": false,
-            "id": 1182,
+            "id": 4723,
             "name": "userAgent",
             "nodeType": "VariableDeclaration",
-            "scope": 1213,
-            "src": "185:23:5",
+            "scope": 4754,
+            "src": "185:23:25",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -733,10 +733,10 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 1181,
+              "id": 4722,
               "name": "string",
               "nodeType": "ElementaryTypeName",
-              "src": "185:6:5",
+              "src": "185:6:25",
               "typeDescriptions": {
                 "typeIdentifier": "t_string_storage_ptr",
                 "typeString": "string"
@@ -747,11 +747,11 @@
           },
           {
             "constant": false,
-            "id": 1184,
+            "id": 4725,
             "name": "createdAt",
             "nodeType": "VariableDeclaration",
-            "scope": 1213,
-            "src": "215:21:5",
+            "scope": 4754,
+            "src": "215:21:25",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -759,10 +759,10 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 1183,
+              "id": 4724,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
-              "src": "215:4:5",
+              "src": "215:4:25",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint256",
                 "typeString": "uint256"
@@ -773,26 +773,26 @@
           },
           {
             "body": {
-              "id": 1211,
+              "id": 4752,
               "nodeType": "Block",
-              "src": "410:131:5",
+              "src": "410:131:25",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1197,
+                    "id": 4738,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 1195,
+                      "id": 4736,
                       "name": "id",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1178,
-                      "src": "420:2:5",
+                      "referencedDeclaration": 4719,
+                      "src": "420:2:25",
                       "typeDescriptions": {
                         "typeIdentifier": "t_string_storage",
                         "typeString": "string storage ref"
@@ -802,43 +802,43 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 1196,
+                      "id": 4737,
                       "name": "eventId",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1186,
-                      "src": "425:7:5",
+                      "referencedDeclaration": 4727,
+                      "src": "425:7:25",
                       "typeDescriptions": {
                         "typeIdentifier": "t_string_memory_ptr",
                         "typeString": "string memory"
                       }
                     },
-                    "src": "420:12:5",
+                    "src": "420:12:25",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage",
                       "typeString": "string storage ref"
                     }
                   },
-                  "id": 1198,
+                  "id": 4739,
                   "nodeType": "ExpressionStatement",
-                  "src": "420:12:5"
+                  "src": "420:12:25"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1201,
+                    "id": 4742,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 1199,
+                      "id": 4740,
                       "name": "eventType",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 3868,
-                      "src": "442:9:5",
+                      "referencedDeclaration": 7431,
+                      "src": "442:9:25",
                       "typeDescriptions": {
                         "typeIdentifier": "t_string_storage",
                         "typeString": "string storage ref"
@@ -848,43 +848,43 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 1200,
+                      "id": 4741,
                       "name": "initType",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1188,
-                      "src": "454:8:5",
+                      "referencedDeclaration": 4729,
+                      "src": "454:8:25",
                       "typeDescriptions": {
                         "typeIdentifier": "t_string_memory_ptr",
                         "typeString": "string memory"
                       }
                     },
-                    "src": "442:20:5",
+                    "src": "442:20:25",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage",
                       "typeString": "string storage ref"
                     }
                   },
-                  "id": 1202,
+                  "id": 4743,
                   "nodeType": "ExpressionStatement",
-                  "src": "442:20:5"
+                  "src": "442:20:25"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1205,
+                    "id": 4746,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 1203,
+                      "id": 4744,
                       "name": "userAgent",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1182,
-                      "src": "472:9:5",
+                      "referencedDeclaration": 4723,
+                      "src": "472:9:25",
                       "typeDescriptions": {
                         "typeIdentifier": "t_string_storage",
                         "typeString": "string storage ref"
@@ -894,43 +894,43 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 1204,
+                      "id": 4745,
                       "name": "eventUserAgent",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1190,
-                      "src": "484:14:5",
+                      "referencedDeclaration": 4731,
+                      "src": "484:14:25",
                       "typeDescriptions": {
                         "typeIdentifier": "t_string_memory_ptr",
                         "typeString": "string memory"
                       }
                     },
-                    "src": "472:26:5",
+                    "src": "472:26:25",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage",
                       "typeString": "string storage ref"
                     }
                   },
-                  "id": 1206,
+                  "id": 4747,
                   "nodeType": "ExpressionStatement",
-                  "src": "472:26:5"
+                  "src": "472:26:25"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1209,
+                    "id": 4750,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 1207,
+                      "id": 4748,
                       "name": "createdAt",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1184,
-                      "src": "508:9:5",
+                      "referencedDeclaration": 4725,
+                      "src": "508:9:25",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -940,47 +940,47 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 1208,
+                      "id": 4749,
                       "name": "eventCreatedAt",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1192,
-                      "src": "520:14:5",
+                      "referencedDeclaration": 4733,
+                      "src": "520:14:25",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "src": "508:26:5",
+                    "src": "508:26:25",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "id": 1210,
+                  "id": 4751,
                   "nodeType": "ExpressionStatement",
-                  "src": "508:26:5"
+                  "src": "508:26:25"
                 }
               ]
             },
             "documentation": null,
-            "id": 1212,
+            "id": 4753,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1193,
+              "id": 4734,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1186,
+                  "id": 4727,
                   "name": "eventId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1212,
-                  "src": "264:21:5",
+                  "scope": 4753,
+                  "src": "264:21:25",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -988,10 +988,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 1185,
+                    "id": 4726,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "264:6:5",
+                    "src": "264:6:25",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -1002,11 +1002,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 1188,
+                  "id": 4729,
                   "name": "initType",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1212,
-                  "src": "295:22:5",
+                  "scope": 4753,
+                  "src": "295:22:25",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -1014,10 +1014,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 1187,
+                    "id": 4728,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "295:6:5",
+                    "src": "295:6:25",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -1028,11 +1028,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 1190,
+                  "id": 4731,
                   "name": "eventUserAgent",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1212,
-                  "src": "327:28:5",
+                  "scope": 4753,
+                  "src": "327:28:25",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -1040,10 +1040,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 1189,
+                    "id": 4730,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "327:6:5",
+                    "src": "327:6:25",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -1054,11 +1054,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 1192,
+                  "id": 4733,
                   "name": "eventCreatedAt",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1212,
-                  "src": "365:19:5",
+                  "scope": 4753,
+                  "src": "365:19:25",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1066,10 +1066,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1191,
+                    "id": 4732,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "365:4:5",
+                    "src": "365:4:25",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1079,26 +1079,26 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "254:136:5"
+              "src": "254:136:25"
             },
             "returnParameters": {
-              "id": 1194,
+              "id": 4735,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "410:0:5"
+              "src": "410:0:25"
             },
-            "scope": 1213,
-            "src": "243:298:5",
+            "scope": 4754,
+            "src": "243:298:25",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 1214,
-        "src": "96:447:5"
+        "scope": 4755,
+        "src": "96:447:25"
       }
     ],
-    "src": "0:544:5"
+    "src": "0:544:25"
   },
   "compiler": {
     "name": "solc",
@@ -1106,7 +1106,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.11",
-  "updatedAt": "2019-07-05T13:37:35.280Z",
+  "updatedAt": "2019-07-26T12:08:22.043Z",
   "devdoc": {
     "methods": {}
   },

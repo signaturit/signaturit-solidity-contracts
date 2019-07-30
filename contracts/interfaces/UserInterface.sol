@@ -2,6 +2,8 @@ pragma solidity 0.5.0;
 
 
 contract UserInterface {
+    string public certificatePublicKey;
+
     address public signaturitAddress;
     address public userAddress;
 
@@ -9,6 +11,7 @@ contract UserInterface {
     event DocumentAdded(address adr);
     event FileAdded(address adr, string source);
     event EventAdded(address adr, string source);
+    event CertificatePublickeySet(string key);
     event CertifiedEmailAdded(address adr);
     event CertificateAdded(address adr);
     event CertifiedFileAdded(address adr);
@@ -21,6 +24,11 @@ contract UserInterface {
         uint receivedAt,
         uint checkedAt
     );
+
+    function setCertificatePublicKey(
+        string memory key
+    )
+        public;
 
     function addSignature(
         address signatureAddress,

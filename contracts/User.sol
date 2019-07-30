@@ -6,6 +6,7 @@ import "./interfaces/UserInterface.sol";
 
 
 contract User is UserInterface {
+    string public certificatePublicKey;
 
     address public signaturitAddress;
     address public userAddress;
@@ -29,6 +30,7 @@ contract User is UserInterface {
     event FileAdded(address adr, string source);
     event EventAdded(address adr, string source);
     event CertifiedEmailAdded(address adr);
+    event CertificatePublickeySet(string key);
     event CertificateAdded(address adr);
     event CertifiedFileAdded(address adr);
     event PaymentCheck(
@@ -53,6 +55,16 @@ contract User is UserInterface {
         );
 
         _;
+    }
+
+    function setCertificatePublicKey(
+        string memory key
+    )
+        public
+        signaturitOnly
+    {
+        certificatePublicKey = key;
+        emit CertificatePublickeySet(certificatePublicKey);
     }
 
     function addSignature(
