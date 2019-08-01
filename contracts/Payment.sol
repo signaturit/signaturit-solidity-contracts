@@ -3,7 +3,7 @@ pragma solidity 0.5.0;
 /*
 Gas to deploy: 4.323.950 units
 
-Statements status legend:
+PaymentCheck status legend:
 
 UNPROCESSED    = 0;
 PROCESSING     = 1
@@ -18,10 +18,10 @@ import "./interfaces/UserInterface.sol";
 
 contract Payment {
 
-    struct Statement {
+    struct PaymentCheck {
         string id;
         uint status;
-        uint receivedAt;
+        uint checkedAt;
         uint createdAt;
     }
 
@@ -29,7 +29,7 @@ contract Payment {
         string id;
         string value;
         uint price;
-        string[] statements;
+        string[] checks;
     }
 
     struct Receiver {
@@ -51,7 +51,7 @@ contract Payment {
 
     mapping(string => Receiver) private receivers;
     mapping(string => Reference) private references;
-    mapping(string => Statement) private statements;
+    mapping(string => PaymentCheck) private paymentChecks;
 
     UserInterface public userSmartContract;
     SignatureInterface public signatureSmartContract;
@@ -129,13 +129,13 @@ contract Payment {
         newReference.price = referencePrice;
     }
 
-    function addStatement(
+    function addPaymentCheck(
         string memory receiverId,
         string memory referenceId,
-        string memory statementId,
+        string memory paymentCheckId,
         uint status,
-        uint receivedAt,
-        uint checkedAt
+        uint checkedAt,
+        uint createdAt
     )
         public
         signaturitOnly
@@ -145,51 +145,51 @@ contract Payment {
             referenceId
         );
 
-        statements[statementId] = Statement(
-            statementId,
+        paymentChecks[paymentCheckId] = PaymentCheck(
+            paymentCheckId,
             status,
-            receivedAt,
-            checkedAt
+            checkedAt,
+            createdAt
         );
 
-        newReference.statements.push(statementId);
+        newReference.checks.push(paymentCheckId);
 
         userSmartContract.notifyPaymentCheck(
             address(this),
             referenceId,
             receiverId,
-            statementId,
+            paymentCheckId,
             status,
-            receivedAt,
-            checkedAt
+            checkedAt,
+            createdAt
         );
     }
 
-    // Get statement if you got the id
-    function getStatementById(
-        string memory statementId
+    // Get paymentCheck if you got the id
+    function getPaymentCheckById(
+        string memory paymentCheckId
     )
         public
         view
         returns (
             string memory id,
             uint status,
-            uint receivedAt,
+            uint checkedAt,
             uint createdAt
         )
     {
-        _checkStatementExistence(statementId);
+        _checkPaymentCheckExistence(paymentCheckId);
 
         return (
-            statements[statementId].id,
-            statements[statementId].status,
-            statements[statementId].receivedAt,
-            statements[statementId].createdAt
+            paymentChecks[paymentCheckId].id,
+            paymentChecks[paymentCheckId].status,
+            paymentChecks[paymentCheckId].checkedAt,
+            paymentChecks[paymentCheckId].createdAt
         );
     }
 
-    // Get statmentID if you want the last one given a referenceId
-    function getLastStatementFromReference(
+    // Get paymentCheckID if you want the last one given a referenceId
+    function getLastPaymentCheckFromReference(
         string memory referenceId
     )
         public
@@ -197,31 +197,31 @@ contract Payment {
         returns (
             string memory id,
             uint status,
-            uint receivedAt,
+            uint checkedAt,
             uint createdAt
         )
     {
-        _checkStatementFromReferenceExistence(
+        _checkPaymentCheckFromReferenceExistence(
             referenceId,
-            references[referenceId].statements.length - 1
+            references[referenceId].checks.length - 1
         );
 
-        return getStatementById(
-            statements[
+        return getPaymentCheckById(
+            paymentChecks[
                 references[
                     referenceId
-                ].statements[
+                ].checks[
                     references[
                         referenceId
-                    ].statements.length - 1
+                    ].checks.length - 1
                 ]
             ].id
         );
     }
 
-    // Get statementID if you want to iterate through all
-    // the statements of a reference
-    function getStatementFromReference(
+    // Get paymentCheckID if you want to iterate through all
+    // the paymentChecks of a reference
+    function getPaymentCheckFromReference(
         string memory referenceId,
         uint index
     )
@@ -230,7 +230,7 @@ contract Payment {
         returns (
             string memory id,
             uint status,
-            uint receivedAt,
+            uint checkedAt,
             uint createdAt,
             bool more
         )
@@ -238,35 +238,35 @@ contract Payment {
         _checkReferenceExistence(referenceId);
 
         require(
-            index < references[referenceId].statements.length,
+            index < references[referenceId].checks.length,
             "Overflowed index"
         );
 
         bool thereIsMore = false;
 
-        if (references[referenceId].statements.length > index + 1)
+        if (references[referenceId].checks.length > index + 1)
             thereIsMore = true;
 
         (
-            string memory statementId,
-            uint statmentStatus,
-            uint statementReceivedAt,
-            uint statementCreatedAt
-        ) = getStatementById(
-            references[referenceId].statements[index]
+            string memory paymentCheckId,
+            uint paymentCheckStatus,
+            uint paymentCheckCheckedAt,
+            uint paymentCheckCreatedAt
+        ) = getPaymentCheckById(
+            references[referenceId].checks[index]
         );
 
         return(
-            statementId,
-            statmentStatus,
-            statementReceivedAt,
-            statementCreatedAt,
+            paymentCheckId,
+            paymentCheckStatus,
+            paymentCheckCheckedAt,
+            paymentCheckCreatedAt,
             thereIsMore
         );
     }
 
-    // Get how many statements there are for a reference
-    function getStatementSizeFromReference(
+    // Get how many paymentChecks there are for a reference
+    function getPaymentCheckSizeFromReference(
         string memory referenceId
     )
         public
@@ -275,7 +275,7 @@ contract Payment {
     {
         _checkReferenceExistence(referenceId);
 
-        return references[referenceId].statements.length;
+        return references[referenceId].checks.length;
     }
 
     // Get reference if you got the id
@@ -411,13 +411,13 @@ contract Payment {
 
         if (bytes(references[referenceId].id).length == 0) {
 
-            string[] memory tmpStatements;
+            string[] memory tmpPaymentChecks;
 
             references[referenceId] = Reference(
                 referenceId,
                 "",
                 0,
-                tmpStatements
+                tmpPaymentChecks
             );
 
             receivers[receiverId].references.push(referenceId);
@@ -450,7 +450,7 @@ contract Payment {
         );
     }
 
-    function _checkStatementFromReferenceExistence(
+    function _checkPaymentCheckFromReferenceExistence(
         string memory referenceId,
         uint index
     )
@@ -460,20 +460,20 @@ contract Payment {
         _checkReferenceExistence(referenceId);
 
         require(
-            bytes(references[referenceId].statements[index]).length != 0,
-            "This statement doesn't exist"
+            bytes(references[referenceId].checks[index]).length != 0,
+            "This payment check doesn't exist"
         );
     }
 
-    function _checkStatementExistence(
+    function _checkPaymentCheckExistence(
         string memory id
     )
         private
         view
     {
         require(
-            bytes(statements[id].id).length != 0,
-            "This statement doesn't exist"
+            bytes(paymentChecks[id].id).length != 0,
+            "This payment check doesn't exist"
         );
     }
 }

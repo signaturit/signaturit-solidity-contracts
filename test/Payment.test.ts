@@ -29,11 +29,11 @@ contract('Payment', async (accounts) => {
     const referenceValue = 'rent';
     const referencePrice = 100;
 
-    const statementId = v4();
-    const secondStatementId = v4();
-    const statementStatus = 2;
-    const statementCheckedAt = Date.now();
-    const statementReceivedAt = Date.now();
+    const paymentCheckId = v4();
+    const secondPaymentCheckId = v4();
+    const paymentCheckStatus = 2;
+    const paymentCheckCheckedAt = Date.now();
+    const paymentCheckCreatedAt = Date.now();
 
     beforeEach(async () => {
         signatureDeployerContract = await ArtifactSignatureDeployer.new();
@@ -222,14 +222,14 @@ contract('Payment', async (accounts) => {
         assert.equal(readFirstReferenceFromReceiver.price.toNumber(), readSecondReferenceFromReceiver.price.toNumber());
     });
 
-    it('Call addStatement without reference and receiver, expect both to be created and check correctness', async () => {
-        await paymentContract.addStatement(
+    it('Call addPaymentCheck without reference and receiver, expect both to be created and check correctness', async () => {
+        await paymentContract.addPaymentCheck(
             receiverId,
             referenceId,
-            statementId,
-            statementStatus,
-            statementReceivedAt,
-            statementCheckedAt,
+            paymentCheckId,
+            paymentCheckStatus,
+            paymentCheckCheckedAt,
+            paymentCheckCreatedAt,
             {
                 from: signaturitAddress
             }
@@ -239,50 +239,50 @@ contract('Payment', async (accounts) => {
 
         const readReference = await paymentContract.getReferenceById(referenceId);
 
-        const readStatement = await paymentContract.getStatementById(statementId);
+        const readPaymentCheck = await paymentContract.getPaymentCheckById(paymentCheckId);
 
-        const readLastStatementFromReference = await paymentContract.getLastStatementFromReference(referenceId);
+        const readLastPaymentCheckFromReference = await paymentContract.getLastPaymentCheckFromReference(referenceId);
 
-        const readStatementSizeFromReference = await paymentContract.getStatementSizeFromReference(referenceId)
+        const readPaymentCheckSizeFromReference = await paymentContract.getPaymentCheckSizeFromReference(referenceId)
 
-        assert.equal(readStatementSizeFromReference, 1);
+        assert.equal(readPaymentCheckSizeFromReference, 1);
 
         assert.equal(receiverId, readReceiver.id);
         assert.equal(referenceId, readReference.id);
 
-        assert.equal(statementId, readStatement.id);
-        assert.equal(readStatement.id, readLastStatementFromReference.id);
+        assert.equal(paymentCheckId, readPaymentCheck.id);
+        assert.equal(readPaymentCheck.id, readLastPaymentCheckFromReference.id);
 
-        assert.equal(statementStatus, readStatement.status);
-        assert.equal(readStatement.status.toNumber(), readLastStatementFromReference.status.toNumber());
+        assert.equal(paymentCheckStatus, readPaymentCheck.status);
+        assert.equal(readPaymentCheck.status.toNumber(), readLastPaymentCheckFromReference.status.toNumber());
 
-        assert.equal(statementReceivedAt, readStatement.receivedAt.toNumber());
-        assert.equal(readStatement.receivedAt.toNumber(), readLastStatementFromReference.receivedAt.toNumber());
+        assert.equal(paymentCheckCreatedAt, readPaymentCheck.createdAt.toNumber());
+        assert.equal(readPaymentCheck.checkedAt.toNumber(), readLastPaymentCheckFromReference.checkedAt.toNumber());
 
-        assert.equal(statementCheckedAt, readStatement.createdAt.toNumber());
-        assert.equal(readStatement.createdAt.toNumber(), readLastStatementFromReference.createdAt.toNumber());
+        assert.equal(paymentCheckCheckedAt, readPaymentCheck.checkedAt.toNumber());
+        assert.equal(readPaymentCheck.createdAt.toNumber(), readLastPaymentCheckFromReference.createdAt.toNumber());
     });
 
-    it('Call addStatement twice, and check correctness', async () => {
-        await paymentContract.addStatement(
+    it('Call addPaymentCheck twice, and check correctness', async () => {
+        await paymentContract.addPaymentCheck(
             receiverId,
             referenceId,
-            statementId,
-            statementStatus,
-            statementReceivedAt,
-            statementCheckedAt,
+            paymentCheckId,
+            paymentCheckStatus,
+            paymentCheckCheckedAt,
+            paymentCheckCreatedAt,
             {
                 from: signaturitAddress
             }
         );
 
-        await paymentContract.addStatement(
+        await paymentContract.addPaymentCheck(
             receiverId,
             referenceId,
-            secondStatementId,
-            statementStatus,
-            statementReceivedAt,
-            statementCheckedAt,
+            secondPaymentCheckId,
+            paymentCheckStatus,
+            paymentCheckCheckedAt,
+            paymentCheckCreatedAt,
             {
                 from: signaturitAddress
             }
@@ -292,17 +292,17 @@ contract('Payment', async (accounts) => {
 
         const readReference = await paymentContract.getReferenceById(referenceId);
 
-        const readStatement = await paymentContract.getStatementById(statementId);
+        const readPaymentCheck = await paymentContract.getPaymentCheckById(paymentCheckId);
 
-        const readFirstStatementFromReference = await paymentContract.getStatementFromReference(referenceId, 0);
-        const readSecondStatementFromReference = await paymentContract.getStatementFromReference(referenceId, 1);
+        const readFirstPaymentCheckFromReference = await paymentContract.getPaymentCheckFromReference(referenceId, 0);
+        const readSecondPaymentCheckFromReference = await paymentContract.getPaymentCheckFromReference(referenceId, 1);
 
-        assert.equal(readFirstStatementFromReference.status.toNumber(), readSecondStatementFromReference.status.toNumber());
-        assert.equal(readFirstStatementFromReference.receivedAt.toNumber(), readSecondStatementFromReference.receivedAt.toNumber());
-        assert.equal(readFirstStatementFromReference.createdAt.toNumber(), readSecondStatementFromReference.createdAt.toNumber());
+        assert.equal(readFirstPaymentCheckFromReference.status.toNumber(), readSecondPaymentCheckFromReference.status.toNumber());
+        assert.equal(readFirstPaymentCheckFromReference.checkedAt.toNumber(), readSecondPaymentCheckFromReference.checkedAt.toNumber());
+        assert.equal(readFirstPaymentCheckFromReference.createdAt.toNumber(), readSecondPaymentCheckFromReference.createdAt.toNumber());
 
-        assert.ok(readFirstStatementFromReference.more);
-        assert.notOk(readSecondStatementFromReference.more);
+        assert.ok(readFirstPaymentCheckFromReference.more);
+        assert.notOk(readSecondPaymentCheckFromReference.more);
     });
 
 })

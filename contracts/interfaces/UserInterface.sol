@@ -19,10 +19,10 @@ contract UserInterface {
         address paymentContract,
         string referenceId,
         string receiverId,
-        string statementId,
+        string paymentCheckId,
         string status,
-        uint receivedAt,
-        uint checkedAt
+        uint checkedAt,
+        uint createdAt
     );
 
     function setCertificatePublicKey(
@@ -203,10 +203,10 @@ contract UserInterface {
         address paymentContract,
         string memory referenceId,
         string memory receiverId,
-        string memory statementId,
+        string memory paymentCheckId,
         uint status,
-        uint receivedAt,
-        uint checkedAt
+        uint checkedAt,
+        uint createdAt
     )
         public;
 }

@@ -37,10 +37,10 @@ contract User is UserInterface {
         address paymentContract,
         string referenceId,
         string receiverId,
-        string statementId,
+        string paymentCheckId,
         uint status,
-        uint receivedAt,
-        uint checkedAt
+        uint checkedAt,
+        uint createdAt
     );
 
     constructor (address _userAddress) public {
@@ -188,10 +188,10 @@ contract User is UserInterface {
         address paymentContract,
         string memory referenceId,
         string memory receiverId,
-        string memory statementId,
+        string memory paymentCheckId,
         uint status,
-        uint receivedAt,
-        uint checkedAt
+        uint checkedAt,
+        uint createdAt
     )
         public
         signaturitOnly
@@ -200,10 +200,10 @@ contract User is UserInterface {
             paymentContract,
             referenceId,
             receiverId,
-            statementId,
+            paymentCheckId,
             status,
-            receivedAt,
-            checkedAt
+            checkedAt,
+            createdAt
         );
     }
 
