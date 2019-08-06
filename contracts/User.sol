@@ -1,6 +1,8 @@
 pragma solidity 0.5.0;
 
-/*Gas to deploy: 3.623.029 */
+/*
+Gas to deploy: 2.779.989
+*/
 
 import "./interfaces/UserInterface.sol";
 
@@ -33,14 +35,11 @@ contract User is UserInterface {
     event CertificatePublickeySet(string key);
     event CertificateAdded(address adr);
     event CertifiedFileAdded(address adr);
-    event PaymentCheck(
-        address paymentContract,
-        string referenceId,
-        string receiverId,
-        string paymentCheckId,
-        uint status,
-        uint checkedAt,
-        uint createdAt
+    event ClauseNotification(
+        address clauseContract,
+        string clauseType,
+        string notificationType,
+        string id
     );
 
     constructor (address _userAddress) public {
@@ -52,6 +51,15 @@ contract User is UserInterface {
         require(
             tx.origin == signaturitAddress,
             "Only Signaturit account can perform this action"
+        );
+
+        _;
+    }
+
+    modifier onlyAllowed() {
+        require(
+            tx.origin == userAddress || tx.origin == signaturitAddress,
+            "Only an allowed account can perform this action"
         );
 
         _;
@@ -184,26 +192,20 @@ contract User is UserInterface {
         emit CertifiedFileAdded(certifiedFileAddress);
     }
 
-    function notifyPaymentCheck(
-        address paymentContract,
-        string memory referenceId,
-        string memory receiverId,
-        string memory paymentCheckId,
-        uint status,
-        uint checkedAt,
-        uint createdAt
+    function clauseNotification(
+        address clauseContract,
+        string memory clauseType,
+        string memory notificationType,
+        string memory id
     )
         public
-        signaturitOnly
+        onlyAllowed
     {
-        emit PaymentCheck(
-            paymentContract,
-            referenceId,
-            receiverId,
-            paymentCheckId,
-            status,
-            checkedAt,
-            createdAt
+        emit ClauseNotification(
+            clauseContract,
+            clauseType,
+            notificationType,
+            id
         );
     }
 

@@ -17,6 +17,9 @@ contract('User', async (accounts) => {
     const anotherCertifiedFileAddress = accounts[9];
     const eventAddress = certifiedFileAddress;
 
+    const clauseType = "clauseType";
+    const notificationType = "notificationType";
+
     const signatureId = v4();
 
     const certifiedFileId = v4();
@@ -419,5 +422,41 @@ contract('User', async (accounts) => {
                 "Returned error: VM Exception while processing transaction: revert",
             )
         }
+    });
+
+    it('Call clauseNotification from Signaturit account', async () => {
+        const transaction = await userContract.clauseNotification(
+            signatureAddress,
+            clauseType,
+            notificationType,
+            signatureId,
+            {
+                from: signaturitAddress
+            }
+        );
+
+        assert.ok(transaction.receipt.status);
+    });
+
+    it('Call clauseNotification from not Signaturit account', async () => {
+        try {
+            const transaction = await userContract.clauseNotification(
+                signatureAddress,
+                clauseType,
+                notificationType,
+                signatureId,
+                {
+                    from: invalidAddress
+                }
+            );
+
+            assert.fail('Unexpected behaviour, it should have thrown');
+        } catch (error) {
+            assert.include(
+                error.message,
+                "Only an allowed account can perform this action",
+            );
+        }
+
     });
 })

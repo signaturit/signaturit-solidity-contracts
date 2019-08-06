@@ -1,22 +1,23 @@
 pragma solidity 0.5.0;
 
 /*
-Gas to deploy: 4.323.950 units
+Gas to deploy: 3.471.409
 
 PaymentCheck status legend:
 
 UNPROCESSED    = 0;
-PROCESSING     = 1
+PROCESSING     = 1;
 PAID           = 2;
 OVER_PAID      = 3;
 PARTIALLY_PAID = 4;
 */
 
 import "./interfaces/SignatureInterface.sol";
-import "./interfaces/UserInterface.sol";
+import "./Clause.sol";
 
 
-contract Payment {
+contract Payment is Clause("payment"){
+    string constant public NOTIFICATION_EVENT = "payment_check.added";
 
     struct PaymentCheck {
         string id;
@@ -53,12 +54,11 @@ contract Payment {
     mapping(string => Reference) private references;
     mapping(string => PaymentCheck) private paymentChecks;
 
-    UserInterface public userSmartContract;
     SignatureInterface public signatureSmartContract;
 
     constructor(
-        address userContract,
-        address signatureContract,
+        address userContractAddress,
+        address signatureContractAddress,
         string memory id
     )
         public
@@ -66,8 +66,8 @@ contract Payment {
         contractId = id;
         signaturit = msg.sender;
 
-        userSmartContract = UserInterface(userContract);
-        signatureSmartContract = SignatureInterface(signatureContract);
+        userContract = UserInterface(userContractAddress);
+        signatureContract = SignatureInterface(signatureContractAddress);
     }
 
     modifier signaturitOnly() {
@@ -95,10 +95,7 @@ contract Payment {
         period = paymentPeriod;
         signatureId = signature;
 
-        signatureSmartContract.setClause(
-            "payment",
-            address(this)
-        );
+        setClauseOnSignature();
     }
 
     function setReceiver(
@@ -154,14 +151,9 @@ contract Payment {
 
         newReference.checks.push(paymentCheckId);
 
-        userSmartContract.notifyPaymentCheck(
-            address(this),
-            referenceId,
-            receiverId,
-            paymentCheckId,
-            status,
-            checkedAt,
-            createdAt
+        publishNotification(
+            NOTIFICATION_EVENT,
+            paymentCheckId
         );
     }
 

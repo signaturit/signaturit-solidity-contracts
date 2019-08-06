@@ -1,4 +1,4 @@
-contract('Document: inputs validation', async (accounts) => {
+contract('Document', async (accounts) => {
     const ArtifactFile      = artifacts.require('File');
     const ArtifactEvent     = artifacts.require('Event');
     const ArtifactDocuments = artifacts.require('Document');

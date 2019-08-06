@@ -1,6 +1,8 @@
 pragma solidity 0.5.0;
 
-/*Gas to deploy: 3.939.784*/
+/*
+Gas to deploy: 2.730.566
+*/
 
 import "./File.sol";
 import "./Certificate.sol";
