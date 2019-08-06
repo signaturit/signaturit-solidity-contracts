@@ -15,14 +15,10 @@ contract UserInterface {
     event CertifiedEmailAdded(address adr);
     event CertificateAdded(address adr);
     event CertifiedFileAdded(address adr);
-    event PaymentCheck(
-        address paymentContract,
-        string referenceId,
-        string receiverId,
-        string paymentCheckId,
-        string status,
-        uint checkedAt,
-        uint createdAt
+    event ClauseNotification(
+        address clauseContract,
+        string notificationType,
+        string id
     );
 
     function setCertificatePublicKey(
@@ -199,14 +195,10 @@ contract UserInterface {
         view
         returns(address);
 
-    function notifyPaymentCheck(
-        address paymentContract,
-        string memory referenceId,
-        string memory receiverId,
-        string memory paymentCheckId,
-        uint status,
-        uint checkedAt,
-        uint createdAt
+    function clauseNotification(
+        address clauseContract,
+        string memory notificationType,
+        string memory id
     )
         public;
 }

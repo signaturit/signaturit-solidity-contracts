@@ -33,14 +33,10 @@ contract User is UserInterface {
     event CertificatePublickeySet(string key);
     event CertificateAdded(address adr);
     event CertifiedFileAdded(address adr);
-    event PaymentCheck(
-        address paymentContract,
-        string referenceId,
-        string receiverId,
-        string paymentCheckId,
-        uint status,
-        uint checkedAt,
-        uint createdAt
+    event ClauseNotification(
+        address clauseContract,
+        string notificationType,
+        string id
     );
 
     constructor (address _userAddress) public {
@@ -184,26 +180,18 @@ contract User is UserInterface {
         emit CertifiedFileAdded(certifiedFileAddress);
     }
 
-    function notifyPaymentCheck(
-        address paymentContract,
-        string memory referenceId,
-        string memory receiverId,
-        string memory paymentCheckId,
-        uint status,
-        uint checkedAt,
-        uint createdAt
+    function clauseNotification(
+        address clauseContract,
+        string memory notificationType,
+        string memory id
     )
         public
         signaturitOnly
     {
-        emit PaymentCheck(
-            paymentContract,
-            referenceId,
-            receiverId,
-            paymentCheckId,
-            status,
-            checkedAt,
-            createdAt
+        emit ClauseNotification(
+            clauseContract,
+            notificationType,
+            id
         );
     }
 

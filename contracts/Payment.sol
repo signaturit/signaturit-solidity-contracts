@@ -6,17 +6,17 @@ Gas to deploy: 4.323.950 units
 PaymentCheck status legend:
 
 UNPROCESSED    = 0;
-PROCESSING     = 1
+PROCESSING     = 1;
 PAID           = 2;
 OVER_PAID      = 3;
 PARTIALLY_PAID = 4;
 */
 
 import "./interfaces/SignatureInterface.sol";
-import "./interfaces/UserInterface.sol";
+import "./Clause.sol";
 
 
-contract Payment {
+contract Payment is Clause('payment'){
 
     struct PaymentCheck {
         string id;
@@ -53,11 +53,10 @@ contract Payment {
     mapping(string => Reference) private references;
     mapping(string => PaymentCheck) private paymentChecks;
 
-    UserInterface public userSmartContract;
     SignatureInterface public signatureSmartContract;
 
     constructor(
-        address userContract,
+        address userContractAddress,
         address signatureContract,
         string memory id
     )
@@ -66,7 +65,7 @@ contract Payment {
         contractId = id;
         signaturit = msg.sender;
 
-        userSmartContract = UserInterface(userContract);
+        userContract = UserInterface(userContractAddress);
         signatureSmartContract = SignatureInterface(signatureContract);
     }
 
@@ -154,14 +153,10 @@ contract Payment {
 
         newReference.checks.push(paymentCheckId);
 
-        userSmartContract.notifyPaymentCheck(
+        publishNotification(
             address(this),
-            referenceId,
-            receiverId,
-            paymentCheckId,
-            status,
-            checkedAt,
-            createdAt
+            "payment_clause.payment_check.added",
+            paymentCheckId
         );
     }
 
