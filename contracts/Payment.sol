@@ -16,7 +16,7 @@ import "./interfaces/SignatureInterface.sol";
 import "./Clause.sol";
 
 
-contract Payment is Clause('payment'){
+contract Payment is Clause("payment"){
 
     struct PaymentCheck {
         string id;
@@ -155,7 +155,8 @@ contract Payment is Clause('payment'){
 
         publishNotification(
             address(this),
-            "payment_clause.payment_check.added",
+            "payment",
+            "payment_check.added",
             paymentCheckId
         );
     }

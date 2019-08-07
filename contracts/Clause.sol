@@ -13,11 +13,12 @@ contract Clause {
 
     function publishNotification(
         address clauseContract,
+        string memory clauseType,
         string memory notificationType,
         string memory id
     )
         internal
     {
-        userContract.clauseNotification(clauseContract, notificationType, id);
+        userContract.clauseNotification(clauseContract, clauseType, notificationType, id);
     }
 }

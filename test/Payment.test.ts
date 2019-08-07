@@ -1,3 +1,6 @@
+var truffleAssert = require('truffle-assertions');
+var truffleEvent  = require('truffle-events');
+
 contract('Payment', async (accounts) => {
     const ArtifactUser      = artifacts.require('User');
     const ArtifactPayment   = artifacts.require('Payment');
@@ -13,6 +16,8 @@ contract('Payment', async (accounts) => {
     let paymentContract;
     let signatureContract;
     let signatureDeployerContract;
+
+    const clauseType = "payment";
 
     const contractId = v4();
     const documentId = v4();
@@ -64,6 +69,9 @@ contract('Payment', async (accounts) => {
 
         const readContractId = await paymentContract.contractId();
 
+        const readClauseType = await paymentContract.clause();
+
+        assert.equal(readClauseType, clauseType);
         assert.equal(readContractId, contractId);
     });
 
@@ -153,7 +161,6 @@ contract('Payment', async (accounts) => {
                 from: signaturitAddress
             }
         );
-
 
         const readReference = await paymentContract.getReferenceById(referenceId);
         const readReferenceFromReceiver = await paymentContract.getReferenceFromReceiver(receiverId,0);

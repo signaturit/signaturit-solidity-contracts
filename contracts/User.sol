@@ -35,6 +35,7 @@ contract User is UserInterface {
     event CertifiedFileAdded(address adr);
     event ClauseNotification(
         address clauseContract,
+        string clauseType,
         string notificationType,
         string id
     );
@@ -182,6 +183,7 @@ contract User is UserInterface {
 
     function clauseNotification(
         address clauseContract,
+        string memory clauseType,
         string memory notificationType,
         string memory id
     )
@@ -190,6 +192,7 @@ contract User is UserInterface {
     {
         emit ClauseNotification(
             clauseContract,
+            clauseType,
             notificationType,
             id
         );
