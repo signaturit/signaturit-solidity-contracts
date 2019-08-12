@@ -1,15 +1,18 @@
 const v4 = require('uuid');
+
 var File = artifacts.require("./File.sol");
-var Signature = artifacts.require("./Signature.sol");
-var Document = artifacts.require("./Document.sol");
+var User = artifacts.require("./User.sol");
 var Event = artifacts.require("./Event.sol");
 var Payment = artifacts.require("./Payment.sol");
-var CertifiedFile = artifacts.require("./CertifiedFile.sol");
+var Document = artifacts.require("./Document.sol");
+var Signature = artifacts.require("./Signature.sol");
+var TimeLogger = artifacts.require("./TimeLogger.sol");
 var Certificate = artifacts.require("./Certificate.sol");
+var CertifiedFile = artifacts.require("./CertifiedFile.sol");
+var CertifiedEmail = artifacts.require("./CertifiedEmail.sol");
 var SignatureDeployer = artifacts.require("./SignatureDeployer.sol");
 var CertifiedEmailDeployer = artifacts.require("./CertifiedEmailDeployer.sol");
-var CertifiedEmail = artifacts.require("./CertifiedEmail.sol");
-var User = artifacts.require("./User.sol");
+
 var signatureDeployerAddress;
 var certifiedEmailDeployerAddress;
 
@@ -118,6 +121,16 @@ deployer.then(async () => {
 
     tx = await web3.eth.getTransactionReceipt(paymentInstance.transactionHash);
     console.log("GAS USED FOR PAYMENT: " + tx.cumulativeGasUsed);
+
+    const timeLoggerInstance = await deployer.deploy(
+        TimeLogger,
+        userInstance.address,
+        signatureInstance.address,
+        'contractId'
+    );
+
+    tx = await web3.eth.getTransactionReceipt(timeLoggerInstance.transactionHash);
+    console.log("GAS USED FOR TIMELOGGER: " + tx.cumulativeGasUsed);
 })
 
 };

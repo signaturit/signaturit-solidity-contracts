@@ -274,6 +274,8 @@ contract TimeLogger is Clause("timelogger") {
     {
         timeLog[day[thisDay].timelogs[day[thisDay].timelogs.length - 1]].timeEnd = endTime;
 
+        timeLog[day[thisDay].timelogs[day[thisDay].timelogs.length - 1]].valid = false;
+
         day[thisDay].total += endTime - timeLog[day[thisDay].timelogs[day[thisDay].timelogs.length - 1]].timeStart;
     }
 
