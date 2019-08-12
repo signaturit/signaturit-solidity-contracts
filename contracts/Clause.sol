@@ -13,7 +13,7 @@ contract Clause {
     string public signatureId;
 
     UserInterface public userContract;
-    SignatureInterface public signatureSmartContract;
+    SignatureInterface public signatureContract;
 
     constructor(
         string memory clauseType
@@ -24,16 +24,14 @@ contract Clause {
     }
 
     function publishNotification(
-        address clauseContract,
-        string memory clauseType,
         string memory notificationType,
         string memory id
     )
         internal
     {
         userContract.clauseNotification(
-            clauseContract,
-            clauseType,
+            address(this),
+            clause,
             notificationType,
             id
         );

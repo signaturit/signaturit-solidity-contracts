@@ -54,6 +54,15 @@ contract User is UserInterface {
         _;
     }
 
+    modifier onlyOwner() {
+        require(
+            tx.origin == userAddress,
+            "Only Owner account can perform this action"
+        );
+
+        _;
+    }
+
     function setCertificatePublicKey(
         string memory key
     )
@@ -188,7 +197,7 @@ contract User is UserInterface {
         string memory id
     )
         public
-        signaturitOnly
+        onlyOwner
     {
         emit ClauseNotification(
             clauseContract,

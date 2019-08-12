@@ -48,7 +48,7 @@ contract('TimeLogger', async (accounts) => {
             }
         );
 
-        userContract = await ArtifactUser.new(signaturitAddress);
+        userContract = await ArtifactUser.new(userAddress);
 
         timeLoggerContract = await ArtifactTimeLogger.new(
             userContract.address,
@@ -127,14 +127,15 @@ contract('TimeLogger', async (accounts) => {
     it("Call externalSourceLog as Owner account, expect to pass", async() => {
         await timeLoggerContract.externalSourceLog(
             timeNow,
-            {from: signaturitAddress}
+            {from: userAddress}
         );
 
-        const readArrayElement = await timeLoggerContract.daysArray(0);
+        const daysSinceUnixEpoch = Math.floor(timeNow / secondsInDay);
+
         const readTimeLog = await timeLoggerContract.timeLog(0);
 
-        const readTotal = await timeLoggerContract.getDayTime(readArrayElement);
-        const readTimeLogGetter = await timeLoggerContract.getTimeLog(readArrayElement, 0);
+        const readTotal = await timeLoggerContract.getDayTime(daysSinceUnixEpoch);
+        const readTimeLogGetter = await timeLoggerContract.getTimeLog(daysSinceUnixEpoch, 0);
 
         assert.equal(readTotal.toNumber(), 0);
         assert.equal(readTimeLog.valid, true);
@@ -161,7 +162,7 @@ contract('TimeLogger', async (accounts) => {
     });
 
     it("Call externalSourceLog when expired, expect exception", async() =>  {
-        await timeLoggerContract.toggleExpiration(
+        await timeLoggerContract.setExpiration(
             true,
             {from: signaturitAddress}
         )
@@ -169,7 +170,7 @@ contract('TimeLogger', async (accounts) => {
         try {
             await timeLoggerContract.externalSourceLog(
                 timeNow,
-                {from: signaturitAddress}
+                {from: userAddress}
             )
 
             assert.fail("Something went wrong, it should have thrown");
@@ -183,14 +184,14 @@ contract('TimeLogger', async (accounts) => {
 
     it("Call soliditySourceLog as Owner account, expect to pass", async() => {
         await timeLoggerContract.soliditySourceLog(
-            {from: signaturitAddress}
+            {from: userAddress}
         );
 
-        const readArrayElement = await timeLoggerContract.daysArray(0);
+        const daysSinceUnixEpoch = Math.floor(timeNow / secondsInDay);
         const readTimeLog = await timeLoggerContract.timeLog(0);
 
-        const readTotal = await timeLoggerContract.getDayTime(readArrayElement);
-        const readTimeLogGetter = await timeLoggerContract.getTimeLog(readArrayElement, 0);
+        const readTotal = await timeLoggerContract.getDayTime(daysSinceUnixEpoch);
+        const readTimeLogGetter = await timeLoggerContract.getTimeLog(daysSinceUnixEpoch, 0);
 
         assert.equal(readTotal.toNumber(), 0);
         assert.equal(readTimeLog.valid, true);
@@ -216,14 +217,14 @@ contract('TimeLogger', async (accounts) => {
     });
 
     it("Call soliditySourceLog when expired, expect exception", async() =>  {
-        await timeLoggerContract.toggleExpiration(
+        await timeLoggerContract.setExpiration(
             true,
             {from: signaturitAddress}
         )
 
         try {
             await timeLoggerContract.soliditySourceLog(
-                {from: signaturitAddress}
+                {from: userAddress}
             )
 
             assert.fail("Something went wrong, it should have thrown");
@@ -235,17 +236,87 @@ contract('TimeLogger', async (accounts) => {
         }
     });
 
-    it("Call correctTimeLog as not Signaturit account, expect exception", async() => {
-        await timeLoggerContract.externalSourceLog(
+    it("Call createTimeLog as Signaturit account, expect to pass", async() => {
+        const daysSinceUnixEpoch = Math.floor(timeNow / secondsInDay);
+
+        await timeLoggerContract.createTimeLog(
+            daysSinceUnixEpoch,
             timeNow,
+            timeNow + 100,
+            true,
             {from: signaturitAddress}
         );
 
-        const readArrayElement = await timeLoggerContract.daysArray(0);
+        const readTimeLog = await timeLoggerContract.getTimeLog(daysSinceUnixEpoch,0);
+        const readTotal = await timeLoggerContract.getDayTime(daysSinceUnixEpoch);
+
+        assert.equal(readTimeLog.start.toNumber(), timeNow);
+        assert.equal(readTimeLog.end.toNumber(), timeNow + 100);
+        assert.equal(readTotal.toNumber(), 100);
+    });
+
+    it("Call createTimeLog as not Signaturit account, expect exception", async() => {
+        const daysSinceUnixEpoch = Math.floor(timeNow / secondsInDay);
+
+        try {
+            await timeLoggerContract.createTimeLog(
+                daysSinceUnixEpoch,
+                timeNow,
+                timeNow + 100,
+                true,
+                {from: invalidAddress}
+            );
+
+            assert.fail("Something went wrong, it should have thrown");
+        } catch(error) {
+            assert.include(
+                error.message,
+                'Only Signaturit account can perform this action.'
+            );
+        }
+    });
+
+    it("Call correctTimeLog as Signaturit account, expect to pass", async() => {
+        await timeLoggerContract.externalSourceLog(
+            timeNow,
+            {from: userAddress}
+        );
+
+        const daysSinceUnixEpoch = Math.floor(timeNow / secondsInDay);
+
+        const logBeforeModification = await timeLoggerContract.getTimeLog(daysSinceUnixEpoch, 0);
+        const totalBeforeModification = await timeLoggerContract.getDayTime(daysSinceUnixEpoch);
+
+        await timeLoggerContract.correctTimeLog(
+            daysSinceUnixEpoch,
+            0,
+            timeNow,
+            timeNow + 50,
+            true,
+            {from: signaturitAddress}
+        );
+
+        const logAfterModification = await timeLoggerContract.getTimeLog(daysSinceUnixEpoch, 0);
+        const totalAfterModification = await timeLoggerContract.getDayTime(daysSinceUnixEpoch);
+
+        assert.equal(logBeforeModification.start.toNumber(), logAfterModification.start.toNumber());
+        assert.equal(logBeforeModification.end.toNumber(), 0);
+        assert.equal(logAfterModification.end.toNumber(), timeNow + 50);
+        assert.equal(totalBeforeModification.toNumber(), 0);
+        assert.equal(totalAfterModification.toNumber(), 50);
+    });
+
+    it("Call correctTimeLog as not Signaturit account, expect exception", async() => {
+        await timeLoggerContract.externalSourceLog(
+            timeNow,
+            {from: userAddress}
+        );
+
+        const daysSinceUnixEpoch = Math.floor(timeNow / secondsInDay);
 
         try {
             await timeLoggerContract.correctTimeLog(
-                readArrayElement,
+                daysSinceUnixEpoch,
                 0,
                 timeNow,
                 timeNow + 50,
@@ -262,9 +333,20 @@ contract('TimeLogger', async (accounts) => {
         }
     });
 
-    it("Call toggleExpiration as not Signaturit account, expect exception", async() => {
+    it("Call setExpiration as Signaturit account, expect to pass", async() => {
+        await timeLoggerContract.setExpiration(
+            true,
+            {from: signaturitAddress}
+        )
+
+        const readExpirationState = await timeLoggerContract.expired();
+
+        assert.equal(readExpirationState, true);
+    });
+
+    it("Call setExpiration as not Signaturit account, expect exception", async() => {
         try {
-            await timeLoggerContract.toggleExpiration(
+            await timeLoggerContract.setExpiration(
                 true,
                 {from: invalidAddress}
             )
@@ -278,23 +360,73 @@ contract('TimeLogger', async (accounts) => {
         }
     });
 
+    it("Log time three times into two different days", async() => {
+        await timeLoggerContract.externalSourceLog(
+            timeTwoDaysAgo,
+            {from: userAddress}
+        );
+
+        await timeLoggerContract.externalSourceLog(
+            timeTwoDaysAgo + 100,
+            {from: userAddress}
+        );
+
+        await timeLoggerContract.externalSourceLog(
+            timeNow,
+            {from: userAddress}
+        );
+
+        const daysOneSinceUnixEpoch = Math.floor(timeTwoDaysAgo / secondsInDay);
+        const daysTwoSinceUnixEpoch = daysOneSinceUnixEpoch + 1;
+        const daysThreeSinceUnixEpoch = Math.floor(timeNow / secondsInDay);
+
+        const readFirstTimeLog = await timeLoggerContract.getTimeLog(daysOneSinceUnixEpoch,0);
+        try {
+            const readSecondTimeLog = await timeLoggerContract.getTimeLog(daysTwoSinceUnixEpoch,0);
+        }catch(error) {
+            assert.include(
+                error.message,
+                "There is no log for this day"
+            );
+        }
+        const readThirdTimeLog = await timeLoggerContract.getTimeLog(daysThreeSinceUnixEpoch,0);
+
+        const readFirstDayTotal = await timeLoggerContract.getDayTime(daysOneSinceUnixEpoch);
+        const readSecondDayTotal = await timeLoggerContract.getDayTime(daysThreeSinceUnixEpoch);
+
+        //midnight of today
+        const todayMidnight = Math.floor(timeNow / secondsInDay) * secondsInDay;
+
+        //check the total if correct
+        assert.equal(readFirstDayTotal.toNumber(), 100);
+        assert.equal(readSecondDayTotal.toNumber(), 0);
+
+        //check validity if true
+        assert.equal(readFirstTimeLog.valid, true);
+        assert.equal(readThirdTimeLog.valid, true);
+
+        // check logs are all closed
+        assert.ok(readFirstTimeLog.end.toNumber() > 0);
+        assert.ok(readThirdTimeLog.end.toNumber() == 0);
+    });
+
     it("Log time twice, expect a timelog to be opened and closed and the total of the day updated", async() => {
         await timeLoggerContract.externalSourceLog(
             timeNow,
-            {from: signaturitAddress}
+            {from: userAddress}
         );
 
         await timeLoggerContract.externalSourceLog(
             timeNow + 100,
-            {from: signaturitAddress}
+            {from: userAddress}
         );
 
 
-        const readArrayElement = await timeLoggerContract.daysArray(0);
+        const daysSinceUnixEpoch = Math.floor(timeNow / secondsInDay);
         const readTimeLog = await timeLoggerContract.timeLog(0);
 
-        const readTotal = await timeLoggerContract.getDayTime(readArrayElement);
-        const readTimeLogGetter = await timeLoggerContract.getTimeLog(readArrayElement, 0);
+        const readTotal = await timeLoggerContract.getDayTime(daysSinceUnixEpoch);
+        const readTimeLogGetter = await timeLoggerContract.getTimeLog(daysSinceUnixEpoch, 0);
 
         assert.equal(readTotal.toNumber(), 100);
         assert.equal(readTimeLog.valid, true);
@@ -308,18 +440,18 @@ contract('TimeLogger', async (accounts) => {
     it("Log time twice, and modify a concrete timelog, expect total to be recalculated", async() => {
         await timeLoggerContract.externalSourceLog(
             timeNow,
-            {from: signaturitAddress}
+            {from: userAddress}
         );
 
         await timeLoggerContract.externalSourceLog(
             timeNow + 100,
-            {from: signaturitAddress}
+            {from: userAddress}
         );
 
-        const readArrayElement = await timeLoggerContract.daysArray(0);
+        const daysSinceUnixEpoch = Math.floor(timeNow / secondsInDay);
 
         await timeLoggerContract.correctTimeLog(
-            readArrayElement,
+            daysSinceUnixEpoch,
             0,
             timeNow,
             timeNow + 50,
@@ -329,8 +461,8 @@ contract('TimeLogger', async (accounts) => {
 
         const readTimeLog = await timeLoggerContract.timeLog(0);
 
-        const readTotal = await timeLoggerContract.getDayTime(readArrayElement);
-        const readTimeLogGetter = await timeLoggerContract.getTimeLog(readArrayElement, 0);
+        const readTotal = await timeLoggerContract.getDayTime(daysSinceUnixEpoch);
+        const readTimeLogGetter = await timeLoggerContract.getTimeLog(daysSinceUnixEpoch, 0);
 
         assert.equal(readTotal.toNumber(), 50);
         assert.equal(readTimeLog.valid, true);
@@ -344,25 +476,25 @@ contract('TimeLogger', async (accounts) => {
     it("Leave a day open and log time two days after, expect gap to be filled and old day closed", async() => {
         await timeLoggerContract.externalSourceLog(
             timeTwoDaysAgo,
-            {from: signaturitAddress}
+            {from: userAddress}
         );
 
         await timeLoggerContract.externalSourceLog(
             timeNow,
-            {from: signaturitAddress}
+            {from: userAddress}
         );
 
-        const readFirstDay = await timeLoggerContract.daysArray(0);
-        const readSecondDay = await timeLoggerContract.daysArray(1);
-        const readThirdDay = await timeLoggerContract.daysArray(2);
+        const daysOneSinceUnixEpoch = Math.floor(timeTwoDaysAgo / secondsInDay);
+        const daysTwoSinceUnixEpoch = daysOneSinceUnixEpoch + 1;
+        const daysThreeSinceUnixEpoch = Math.floor(timeNow / secondsInDay);
 
-        const readFirstTimeLog = await timeLoggerContract.timeLog(0);
-        const readSecondTimeLog = await timeLoggerContract.timeLog(1);
-        const readThirdTimeLog = await timeLoggerContract.timeLog(2);
+        const readFirstTimeLog = await timeLoggerContract.getTimeLog(daysOneSinceUnixEpoch,0);
+        const readSecondTimeLog = await timeLoggerContract.getTimeLog(daysTwoSinceUnixEpoch,0);
+        const readThirdTimeLog = await timeLoggerContract.getTimeLog(daysThreeSinceUnixEpoch,0);
 
-        const readFirstDayTotal = await timeLoggerContract.getDayTime(readFirstDay);
-        const readSecondDayTotal = await timeLoggerContract.getDayTime(readSecondDay);
-        const readThirdDayTotal = await timeLoggerContract.getDayTime(readThirdDay);
+        const readFirstDayTotal = await timeLoggerContract.getDayTime(daysOneSinceUnixEpoch);
+        const readSecondDayTotal = await timeLoggerContract.getDayTime(daysTwoSinceUnixEpoch);
+        const readThirdDayTotal = await timeLoggerContract.getDayTime(daysThreeSinceUnixEpoch);
 
         //midnight of today
         const todayMidnight = Math.floor(timeNow / secondsInDay) * secondsInDay;
@@ -377,12 +509,12 @@ contract('TimeLogger', async (accounts) => {
         assert.equal(readSecondTimeLog.valid, false);
         assert.equal(readThirdTimeLog.valid, false);
 
-        //check logs are all closed
-        assert.ok(readFirstTimeLog.timeEnd.toNumber() > 0);
-        assert.ok(readThirdTimeLog.timeEnd.toNumber() > 0);
+        // check logs are all closed
+        assert.ok(readFirstTimeLog.end.toNumber() > 0);
+        assert.ok(readThirdTimeLog.end.toNumber() > 0);
         assert.ok(
-            readSecondTimeLog.timeEnd.toNumber() == 0 &&
-            readSecondTimeLog.timeStart.toNumber() == 0
+            readSecondTimeLog.end.toNumber() == 0 &&
+            readSecondTimeLog.start.toNumber() == 0
         );
     });
 })

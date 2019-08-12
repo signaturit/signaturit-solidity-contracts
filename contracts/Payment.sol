@@ -17,6 +17,7 @@ import "./Clause.sol";
 
 
 contract Payment is Clause("payment"){
+    string constant public NOTIFICATION_EVENT = "payment_check.added";
 
     struct PaymentCheck {
         string id;
@@ -57,7 +58,7 @@ contract Payment is Clause("payment"){
 
     constructor(
         address userContractAddress,
-        address signatureContract,
+        address signatureContractAddress,
         string memory id
     )
         public
@@ -66,7 +67,7 @@ contract Payment is Clause("payment"){
         signaturit = msg.sender;
 
         userContract = UserInterface(userContractAddress);
-        signatureSmartContract = SignatureInterface(signatureContract);
+        signatureContract = SignatureInterface(signatureContractAddress);
     }
 
     modifier signaturitOnly() {
@@ -94,8 +95,8 @@ contract Payment is Clause("payment"){
         period = paymentPeriod;
         signatureId = signature;
 
-        signatureSmartContract.setClause(
-            "payment",
+        signatureContract.setClause(
+            clause,
             address(this)
         );
     }
@@ -154,9 +155,7 @@ contract Payment is Clause("payment"){
         newReference.checks.push(paymentCheckId);
 
         publishNotification(
-            address(this),
-            "payment",
-            "payment_check.added",
+            NOTIFICATION_EVENT,
             paymentCheckId
         );
     }
