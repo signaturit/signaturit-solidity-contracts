@@ -1,7 +1,7 @@
 pragma solidity 0.5.0;
 
 /*
-Gas to deploy: 3.208.976 units of gas
+Gas to deploy: 2.372.256
 */
 
 import "./Clause.sol";
@@ -35,11 +35,11 @@ contract TimeLogger is Clause("timelogger") {
 
     int public duration;
 
-    uint lastOpenDay = 0;
+    uint private lastOpenDay = 0;
 
     TimeLog[] public timeLog;
 
-    mapping(uint => Day) public day;
+    mapping(uint => Day) private day;
 
     constructor(
         address userContractAddress,
@@ -104,10 +104,7 @@ contract TimeLogger is Clause("timelogger") {
         signatureId = signature;
         duration = contractDuration;
 
-        signatureContract.setClause(
-            clause,
-            address(this)
-        );
+        setClauseOnSignature();
     }
 
     //Externals
@@ -142,18 +139,13 @@ contract TimeLogger is Clause("timelogger") {
     function createTimeLog(
         uint thisDay,
         uint start,
-        uint end,
-        bool validity
+        uint end
     ) external signaturitOnly {
-        require(end >= start, "Invalid time frame");
-
         _setDay(thisDay);
 
-        timeLog.push(TimeLog(start, end, EXTERNAL_SOURCE, validity));
+        _createLog(thisDay, start, EXTERNAL_SOURCE);
 
-        day[thisDay].timelogs.push(timeLog.length - 1);
-
-        day[thisDay].total += (end - start);
+        _closeLog(thisDay, end, EXTERNAL_SOURCE);
     }
 
     function correctTimeLog(
@@ -166,6 +158,8 @@ contract TimeLogger is Clause("timelogger") {
         external
         signaturitOnly
     {
+        require(end >= start, "Invalid time frame");
+
         uint index = day[thisDay].timelogs[logIndex];
 
         timeLog[index].timeStart = start;
@@ -197,12 +191,12 @@ contract TimeLogger is Clause("timelogger") {
         view
         returns(uint total)
     {
-        require(startDay >= endDay, "Invalid time frame");
+        require(endDay >= startDay, "Invalid time frame");
 
         uint totalAmount;
 
         for (uint i = startDay; i <= endDay; i++) {
-            total += day[i].total;
+            totalAmount += day[i].total;
         }
 
         return totalAmount;
@@ -254,7 +248,7 @@ contract TimeLogger is Clause("timelogger") {
             if (today > lastOpenDay) {
                 _completePendingDays(today, time, source);
             } else {
-                _completeLastLogOfDay(today, time, source);
+                _closeLog(today, time, source);
             }
 
             lastOpenDay = 0;
@@ -283,15 +277,23 @@ contract TimeLogger is Clause("timelogger") {
 
     function _closeLog(
         uint thisDay,
-        uint endTime
+        uint endTime,
+        string memory source
     )
         internal
     {
         uint index = day[thisDay].timelogs[day[thisDay].timelogs.length - 1];
 
-        timeLog[index].timeEnd = endTime;
+        require(endTime >= timeLog[index].timeStart, "Invalid time value");
 
-        timeLog[index].valid = false;
+        //Assumption: if source coming from input doesnt equal the one saved, prefer the last one
+        if (
+            keccak256(abi.encodePacked((timeLog[index].source))) != keccak256(abi.encodePacked((source)))
+        )
+
+            timeLog[index].source = source;
+
+        timeLog[index].timeEnd = endTime;
 
         day[thisDay].total += endTime - timeLog[index].timeStart;
     }
@@ -303,9 +305,9 @@ contract TimeLogger is Clause("timelogger") {
     )
         internal
     {
-        require(nowInSeconds >= timeLog[day[lastOpenDay].timelogs.length - 1].timeStart, "Invalid time value");
+        uint lastMidnight = (lastOpenDay*SECONDS_PER_DAY)+SECONDS_PER_DAY;
 
-        _completeLastOpenDay(lastOpenDay);
+        _closeLog(lastOpenDay, lastMidnight, source);
 
         _completeDaysInTheGap(today, lastOpenDay);
 
@@ -313,9 +315,7 @@ contract TimeLogger is Clause("timelogger") {
 
         _createLog(today, todayMidnight, source);
 
-        _closeLog(today, nowInSeconds);
-
-        _publish();
+        _closeLog(today, nowInSeconds, source);
     }
 
     function _completeDaysInTheGap(
@@ -324,60 +324,17 @@ contract TimeLogger is Clause("timelogger") {
     )
         internal
     {
-        //fulfill the days in the gap with 24h invalid single log
+        //fulfill the days in the gap with 24h single log
         for (uint i = lastDay + 1; i < today; i++) {
-            uint[] memory tmpArray;
+            _setDay(i);
 
-            timeLog.push(TimeLog(0, 0, SOLIDITY_SOURCE, false));
+            uint startOfTheDay = i*SECONDS_PER_DAY;
+            uint endOfTheDay = startOfTheDay + SECONDS_PER_DAY;
 
-            day[i] = Day(tmpArray, SECONDS_PER_DAY);
+            _createLog(i, startOfTheDay, SOLIDITY_SOURCE);
 
-            day[i].timelogs.push(timeLog.length - 1);
-
+            _closeLog(i, endOfTheDay, SOLIDITY_SOURCE);
         }
-    }
-
-    function _completeLastOpenDay(
-        uint lastDay
-    )
-        internal
-    {
-        uint lastMidnight = (lastDay*SECONDS_PER_DAY)+SECONDS_PER_DAY;
-
-        uint index = day[lastDay].timelogs.length - 1;
-
-        timeLog[index].timeEnd = lastMidnight;
-        timeLog[index].valid = false;
-
-        //Assumption: to update the total amount of the day with invalid timelogs
-        day[lastDay].total += lastMidnight - timeLog[index].timeStart;
-    }
-
-    function _completeLastLogOfDay(
-        uint thisDay,
-        uint timeInSeconds,
-        string memory source
-    )
-        internal
-    {
-        uint index = day[thisDay].timelogs[day[thisDay].timelogs.length - 1];
-
-        require(timeInSeconds >= timeLog[index].timeStart, "Invalid time value");
-
-        //Assumption: if source coming from input doesnt equal the one saved, prefer the last one
-        if (
-            keccak256(abi.encodePacked((timeLog[index].source))) != keccak256(abi.encodePacked((source)))
-        )
-
-            timeLog[index].source = source;
-
-        timeLog[index].timeEnd = timeInSeconds;
-
-        day[thisDay].total += (
-            timeInSeconds - timeLog[index].timeStart
-        );
-
-        _publish();
     }
 
     function _recalculateTotal(
@@ -400,15 +357,12 @@ contract TimeLogger is Clause("timelogger") {
         uint today
     )
         internal
-        returns(Day storage)
     {
         if (day[today].timelogs.length == 0) {
             uint[] memory tmpArray;
 
             day[today] = Day(tmpArray, 0);
         }
-
-        return day[today];
     }
 
     function _publish()

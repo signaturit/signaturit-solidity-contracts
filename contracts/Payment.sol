@@ -1,7 +1,7 @@
 pragma solidity 0.5.0;
 
 /*
-Gas to deploy: 4.323.950 units
+Gas to deploy: 3.471.409
 
 PaymentCheck status legend:
 
@@ -95,10 +95,7 @@ contract Payment is Clause("payment"){
         period = paymentPeriod;
         signatureId = signature;
 
-        signatureContract.setClause(
-            clause,
-            address(this)
-        );
+        setClauseOnSignature();
     }
 
     function setReceiver(

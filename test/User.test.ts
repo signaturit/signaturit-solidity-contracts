@@ -454,7 +454,7 @@ contract('User', async (accounts) => {
         } catch (error) {
             assert.include(
                 error.message,
-                "Only Signaturit account can perform this action.",
+                "Only an allowed account can perform this action",
             );
         }
 

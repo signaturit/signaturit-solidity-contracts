@@ -1,6 +1,8 @@
 pragma solidity 0.5.0;
 
-/*Gas to deploy: 3.623.029 */
+/*
+Gas to deploy: 2.779.989
+*/
 
 import "./interfaces/UserInterface.sol";
 
@@ -54,10 +56,10 @@ contract User is UserInterface {
         _;
     }
 
-    modifier onlyOwner() {
+    modifier onlyAllowed() {
         require(
-            tx.origin == userAddress,
-            "Only Owner account can perform this action"
+            tx.origin == userAddress || tx.origin == signaturitAddress,
+            "Only an allowed account can perform this action"
         );
 
         _;
@@ -197,7 +199,7 @@ contract User is UserInterface {
         string memory id
     )
         public
-        onlyOwner
+        onlyAllowed
     {
         emit ClauseNotification(
             clauseContract,

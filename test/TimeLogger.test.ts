@@ -243,7 +243,6 @@ contract('TimeLogger', async (accounts) => {
             daysSinceUnixEpoch,
             timeNow,
             timeNow + 100,
-            true,
             {from: signaturitAddress}
         );
 
@@ -263,7 +262,6 @@ contract('TimeLogger', async (accounts) => {
                 daysSinceUnixEpoch,
                 timeNow,
                 timeNow + 100,
-                true,
                 {from: invalidAddress}
             );
 
@@ -505,16 +503,18 @@ contract('TimeLogger', async (accounts) => {
         assert.equal(readThirdDayTotal.toNumber(), timeNow - todayMidnight);
 
         //check validity if false
-        assert.equal(readFirstTimeLog.valid, false);
-        assert.equal(readSecondTimeLog.valid, false);
-        assert.equal(readThirdTimeLog.valid, false);
+        assert.equal(readFirstTimeLog.valid, true);
+        assert.equal(readSecondTimeLog.valid, true);
+        assert.equal(readThirdTimeLog.valid, true);
+
+        const startOfSecondDay = timeTwoDaysAgo + secondsInDay - 1;
 
         // check logs are all closed
         assert.ok(readFirstTimeLog.end.toNumber() > 0);
         assert.ok(readThirdTimeLog.end.toNumber() > 0);
         assert.ok(
-            readSecondTimeLog.end.toNumber() == 0 &&
-            readSecondTimeLog.start.toNumber() == 0
+            readSecondTimeLog.end.toNumber() ==  todayMidnight &&
+            readSecondTimeLog.start.toNumber() == startOfSecondDay
         );
     });
 })

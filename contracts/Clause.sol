@@ -36,4 +36,13 @@ contract Clause {
             id
         );
     }
+
+    function setClauseOnSignature()
+        internal
+    {
+        signatureContract.setClause(
+            clause,
+            address(this)
+        );
+    }
 }
