@@ -1,6 +1,8 @@
 pragma solidity 0.5.0;
 
-/*Gas to deploy: 861.760*/
+/*
+Gas to deploy: 658.778
+*/
 
 import "./interfaces/CertifiedFileInterface.sol";
 import "./interfaces/UserInterface.sol";

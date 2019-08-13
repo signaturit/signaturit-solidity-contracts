@@ -1,6 +1,8 @@
 pragma solidity 0.5.0;
 
-/*Gas to deploy: 3.754.238*/
+/*
+Gas to deploy: 3.055.316
+*/
 
 import "./interfaces/SignatureInterface.sol";
 import "./interfaces/DocumentInterface.sol";
