@@ -7,7 +7,7 @@ Gas to deploy: 2.372.256
 import "./Clause.sol";
 
 
-contract TimeLogger is Clause("timelogger") {
+contract TimeLoggerTest is Clause("timelogger") {
     uint constant public SECONDS_PER_DAY = 86400;
     string constant public SOLIDITY_SOURCE = "solidity";
     string constant public EXTERNAL_SOURCE = "external";
@@ -23,6 +23,7 @@ contract TimeLogger is Clause("timelogger") {
     struct Day {
         uint[] timelogs;
         uint total;
+        bool existence;
     }
 
     string public workerId;
@@ -179,7 +180,7 @@ contract TimeLogger is Clause("timelogger") {
         view
         returns(uint total)
     {
-        require(day[thisDay].timelogs.length > 0, "There are no logs on this day");
+        if (day[thisDay].existence) return 0;
         return day[thisDay].total;
     }
 
@@ -191,7 +192,7 @@ contract TimeLogger is Clause("timelogger") {
         view
         returns(uint total)
     {
-        require(endDay >= startDay, "Invalid time frame");
+        if (endDay >= startDay) return 0;
 
         uint totalAmount;
 
@@ -216,8 +217,12 @@ contract TimeLogger is Clause("timelogger") {
             bool more
         )
     {
-        require(day[thisDay].timelogs.length > 0, "There is no log for this day");
-        require(index < day[thisDay].timelogs.length, "There are less log than this index");
+        if (
+            !day[thisDay].existence ||
+            day[thisDay].timelogs.length <= index
+        ) {
+            return (0, 0, "", false, false);
+        }
 
         bool thereIsMore = false;
 
@@ -361,7 +366,7 @@ contract TimeLogger is Clause("timelogger") {
         if (day[today].timelogs.length == 0) {
             uint[] memory tmpArray;
 
-            day[today] = Day(tmpArray, 0);
+            day[today] = Day(tmpArray, 0, true);
         }
     }
 
