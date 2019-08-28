@@ -7,7 +7,7 @@ Gas to deploy: 2.372.256
 import "./Clause.sol";
 
 
-contract TimeLoggerTest is Clause("timelogger") {
+contract TimeLogger is Clause("timelogger") {
     uint constant public SECONDS_PER_DAY = 86400;
     string constant public SOLIDITY_SOURCE = "solidity";
     string constant public EXTERNAL_SOURCE = "external";
