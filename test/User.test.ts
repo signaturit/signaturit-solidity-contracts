@@ -17,6 +17,9 @@ contract('User', async (accounts) => {
     const anotherCertifiedFileAddress = accounts[9];
     const eventAddress = certifiedFileAddress;
 
+    const emptyAddress = "0x0000000000000000000000000000000000000000";
+    const invalidId = "invalid id";
+
     const clauseType = "clauseType";
     const notificationType = "notificationType";
 
@@ -122,6 +125,14 @@ contract('User', async (accounts) => {
 
     });
 
+    it('Try to recover not existing signature, expect null value to be returned', async () => {
+        const readFirstAttemptAddress = await userContract.getSignatureById(invalidId);
+        const readSecondAttemptAddress = await userContract.getSignature(0);
+
+        assert.equal(readFirstAttemptAddress, emptyAddress);
+        assert.equal(readSecondAttemptAddress.adr, emptyAddress);
+    });
+
     it('Call addDocument from Signaturit account', async () => {
         const transaction = await userContract.addDocument(
             documentAddress,
@@ -156,6 +167,12 @@ contract('User', async (accounts) => {
             )
         }
 
+    });
+
+    it('Try to recover not existing document, expect null value to be returned', async () => {
+        const readAddress = await userContract.getDocument(0);
+
+        assert.equal(readAddress.adr, emptyAddress);
     });
 
     it('Call addFile from Signaturit account', async () => {
@@ -210,6 +227,15 @@ contract('User', async (accounts) => {
 
     });
 
+    it('Try to recover not existing file, expect null value to be returned', async () => {
+        const readSignatureFileAddress = await userContract.getSignatureFile(0);
+        const readCertifiedEmailFileAddress = await userContract.getCertifiedEmailFile(0);
+
+
+        assert.equal(readSignatureFileAddress.adr, emptyAddress);
+        assert.equal(readCertifiedEmailFileAddress.adr, emptyAddress);
+    });
+
     it('Call addEvent from Signaturit account', async () => {
         const firstTransaction = await userContract.addEvent(
             eventSignatureSource,
@@ -262,6 +288,15 @@ contract('User', async (accounts) => {
 
     });
 
+    it('Try to recover not existing event, expect null value to be returned', async () => {
+        const readSignatureEventAddress = await userContract.getSignatureEvent(0);
+        const readCertifiedEmailEventAddress = await userContract.getCertifiedEmailEvent(0);
+
+        assert.equal(readSignatureEventAddress.adr, emptyAddress);
+        assert.equal(readCertifiedEmailEventAddress.adr, emptyAddress);
+
+    });
+
     it('Call addCertifiedEmail from Signaturit account', async () => {
         const transaction = await userContract.addCertifiedEmail(
             certifiedEmailAddress,
@@ -302,6 +337,14 @@ contract('User', async (accounts) => {
 
     });
 
+    it('Try to recover not existing certified email, expect null value to be returned', async () => {
+        const readFirstAttemptAddress = await userContract.getCertifiedEmailById(invalidId);
+        const readSecondAttemptAddress = await userContract.getCertifiedEmail(0);
+
+        assert.equal(readFirstAttemptAddress, emptyAddress);
+        assert.equal(readSecondAttemptAddress.adr, emptyAddress);
+    });
+
     it('Call addCertificate from Signaturit account', async () => {
         const transaction = await userContract.addCertificate(
             certificateAddress,
@@ -336,6 +379,12 @@ contract('User', async (accounts) => {
             )
         }
 
+    });
+
+    it('Try to recover not existing certificate, expect null value to be returned', async () => {
+        const readAddress = await userContract.getCertificate(0);
+
+        assert.equal(readAddress.adr, emptyAddress);
     });
 
     it('Call addCertifiedFile from Signaturit account', async () => {
@@ -410,18 +459,13 @@ contract('User', async (accounts) => {
         assert.equal(readArraySize.toNumber(), 2);
     });
 
-    it('try to recover not existing certified file', async () => {
+    it('Try to recover not existing certified file, expect null value to be returned', async () => {
 
-        try{
-            await userContract.getCertifiedFile(0);
+        const readFirstAttemptAddress = await userContract.getCertifiedFile(0);
+        const readSecondAttemptAddress = await userContract.getCertifiedFileById(invalidId);
 
-            assert.fail('Unexpected behaviour, it should have thrown');
-        } catch (error) {
-            assert.include(
-                error.message,
-                "Returned error: VM Exception while processing transaction: revert",
-            )
-        }
+        assert.equal(readFirstAttemptAddress.adr, emptyAddress);
+        assert.equal(readSecondAttemptAddress, emptyAddress);
     });
 
     it('Call clauseNotification from Signaturit account', async () => {
@@ -432,6 +476,20 @@ contract('User', async (accounts) => {
             signatureId,
             {
                 from: signaturitAddress
+            }
+        );
+
+        assert.ok(transaction.receipt.status);
+    });
+
+    it('Call clauseNotification from User account', async () => {
+        const transaction = await userContract.clauseNotification(
+            signatureAddress,
+            clauseType,
+            notificationType,
+            signatureId,
+            {
+                from: userAddress
             }
         );
 

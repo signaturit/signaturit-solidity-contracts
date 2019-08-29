@@ -216,10 +216,7 @@ contract User is UserInterface {
         view
         returns (address)
     {
-        require(
-            signaturesIndexes[id] != address(0),
-            "This id doesnt correspond to any saved signature"
-        );
+        if (signaturesIndexes[id] == address(0)) return address(0);
 
         return signaturesIndexes[id];
     }
@@ -231,7 +228,7 @@ contract User is UserInterface {
         view
         returns (address adr, bool more)
     {
-        _checkValidity(signatures.length, index);
+        if (!_checkValidity(signatures.length, index)) return (address(0), false);
 
         return (
             signatures[index],
@@ -246,7 +243,7 @@ contract User is UserInterface {
         view
         returns (address adr, bool more)
     {
-        _checkValidity(documents.length, index);
+        if (!_checkValidity(documents.length, index)) return (address(0), false);
 
         return (
             documents[index],
@@ -261,7 +258,7 @@ contract User is UserInterface {
         view
         returns (address adr, bool more)
     {
-        _checkValidity(signatureFiles.length, index);
+        if (!_checkValidity(signatureFiles.length, index)) return (address(0), false);
 
         return (
             signatureFiles[index],
@@ -276,7 +273,7 @@ contract User is UserInterface {
         view
         returns (address adr, bool more)
     {
-        _checkValidity(signatureEvents.length, index);
+        if (!_checkValidity(signatureEvents.length, index)) return (address(0), false);
 
         return (
             signatureEvents[index],
@@ -291,10 +288,7 @@ contract User is UserInterface {
         view
         returns (address)
     {
-        require(
-            certifiedEmailsIndexes[id] != address(0),
-            "This id doesnt correspond to any saved certified email"
-        );
+        if (certifiedEmailsIndexes[id] == address(0)) return address(0);
 
         return certifiedEmailsIndexes[id];
     }
@@ -306,7 +300,7 @@ contract User is UserInterface {
         view
         returns (address adr, bool more)
     {
-        _checkValidity(certifiedEmails.length, index);
+        if (!_checkValidity(certifiedEmails.length, index)) return (address(0), false);
 
         return(
             certifiedEmails[index],
@@ -321,7 +315,7 @@ contract User is UserInterface {
         view
         returns (address adr, bool more)
     {
-        _checkValidity(certificates.length, index);
+        if (!_checkValidity(certificates.length, index)) return (address(0), false);
 
         return(
             certificates[index],
@@ -336,7 +330,7 @@ contract User is UserInterface {
         view
         returns (address adr, bool more)
     {
-        _checkValidity(certifiedEmailFiles.length, index);
+        if (!_checkValidity(certifiedEmailFiles.length, index)) return (address(0), false);
 
         return (
             certifiedEmailFiles[index],
@@ -351,7 +345,7 @@ contract User is UserInterface {
         view
         returns (address adr, bool more)
     {
-        _checkValidity(certifiedEmailEvents.length, index);
+        if (!_checkValidity(certifiedEmailEvents.length, index)) return (address(0), false);
 
         return (
             certifiedEmailEvents[index],
@@ -366,10 +360,7 @@ contract User is UserInterface {
         view
         returns (address)
     {
-        require(
-            certifiedFilesIndexes[id] != address(0),
-            "This id doesnt correspond to any saved signature"
-        );
+        if (certifiedFilesIndexes[id] == address(0)) return address(0);
 
         return certifiedFilesIndexes[id];
     }
@@ -381,7 +372,7 @@ contract User is UserInterface {
         view
         returns (address adr, bool more)
     {
-        _checkValidity(certifiedFiles.length, index);
+        if (!_checkValidity(certifiedFiles.length, index)) return (address(0), false);
 
         return (
             certifiedFiles[index],
@@ -467,11 +458,11 @@ contract User is UserInterface {
     )
         internal
         pure
+        returns(bool)
     {
-        require(
-            index < length,
-            "This element doesn't exist"
-        );
+        if (index >= length) return false;
+
+        return true;
     }
 
     function _moreIsFound(
