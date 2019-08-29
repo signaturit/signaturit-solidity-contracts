@@ -7,6 +7,7 @@
       "name": "name",
       "outputs": [
         {
+          "internalType": "string",
           "name": "",
           "type": "string"
         }
@@ -21,6 +22,7 @@
       "name": "parent",
       "outputs": [
         {
+          "internalType": "address",
           "name": "",
           "type": "address"
         }
@@ -35,6 +37,7 @@
       "name": "size",
       "outputs": [
         {
+          "internalType": "uint256",
           "name": "",
           "type": "uint256"
         }
@@ -49,6 +52,7 @@
       "name": "id",
       "outputs": [
         {
+          "internalType": "string",
           "name": "",
           "type": "string"
         }
@@ -63,6 +67,7 @@
       "name": "originalFileHash",
       "outputs": [
         {
+          "internalType": "string",
           "name": "",
           "type": "string"
         }
@@ -77,6 +82,7 @@
       "name": "createdAt",
       "outputs": [
         {
+          "internalType": "uint256",
           "name": "",
           "type": "uint256"
         }
@@ -89,18 +95,22 @@
       "constant": false,
       "inputs": [
         {
+          "internalType": "string",
           "name": "fileName",
           "type": "string"
         },
         {
+          "internalType": "string",
           "name": "fileHash",
           "type": "string"
         },
         {
+          "internalType": "uint256",
           "name": "fileDate",
           "type": "uint256"
         },
         {
+          "internalType": "uint256",
           "name": "fileSize",
           "type": "uint256"
         }
@@ -112,32 +122,33 @@
       "type": "function"
     }
   ],
-  "metadata": "",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.11+commit.c082d0b4\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"name\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"parent\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"string\",\"name\":\"fileName\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"fileHash\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"fileDate\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"fileSize\",\"type\":\"uint256\"}],\"name\":\"init\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"size\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"id\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"originalFileHash\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"createdAt\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/FileInterface.sol\":\"FileInterface\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":10},\"remappings\":[]},\"sources\":{\"/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/FileInterface.sol\":{\"keccak256\":\"0x5f7881b9245b677e479e6786208a9e4e7e65953a04afda633998373499a306f6\",\"urls\":[\"bzz-raw://9d4d64addcc65449c9db6fb0108a622a17ed77d0299cdba1da4b229232ff0905\",\"dweb:/ipfs/QmbwcjSztXD8Q8x4zZfrP9Qq5iCdPmGV6AYwVKFL4GRQhe\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity 0.5.0;\n\n\ncontract FileInterface {\n    address public parent;\n\n    string public id;\n    string public name;\n    string public originalFileHash;\n\n    uint public createdAt;\n    uint public size;\n\n    function init(\n        string memory fileName,\n        string memory fileHash,\n        uint fileDate,\n        uint fileSize\n    )\n        public;\n}\n",
+  "source": "pragma solidity <0.6.0;\n\n\ncontract FileInterface {\n    address public parent;\n\n    string public id;\n    string public name;\n    string public originalFileHash;\n\n    uint public createdAt;\n    uint public size;\n\n    function init(\n        string memory fileName,\n        string memory fileHash,\n        uint fileDate,\n        uint fileSize\n    )\n        public;\n}\n",
   "sourcePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/FileInterface.sol",
   "ast": {
     "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/FileInterface.sol",
     "exportedSymbols": {
       "FileInterface": [
-        4809
+        4816
       ]
     },
-    "id": 4810,
+    "id": 4817,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 4785,
+        "id": 4792,
         "literals": [
           "solidity",
-          "0.5",
+          "<",
+          "0.6",
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:22:19"
+        "src": "0:23:19"
       },
       {
         "baseContracts": [],
@@ -145,20 +156,20 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 4809,
+        "id": 4816,
         "linearizedBaseContracts": [
-          4809
+          4816
         ],
         "name": "FileInterface",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 4787,
+            "id": 4794,
             "name": "parent",
             "nodeType": "VariableDeclaration",
-            "scope": 4809,
-            "src": "54:21:19",
+            "scope": 4816,
+            "src": "55:21:19",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -166,10 +177,10 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 4786,
+              "id": 4793,
               "name": "address",
               "nodeType": "ElementaryTypeName",
-              "src": "54:7:19",
+              "src": "55:7:19",
               "stateMutability": "nonpayable",
               "typeDescriptions": {
                 "typeIdentifier": "t_address",
@@ -181,11 +192,11 @@
           },
           {
             "constant": false,
-            "id": 4789,
+            "id": 4796,
             "name": "id",
             "nodeType": "VariableDeclaration",
-            "scope": 4809,
-            "src": "82:16:19",
+            "scope": 4816,
+            "src": "83:16:19",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -193,10 +204,10 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 4788,
+              "id": 4795,
               "name": "string",
               "nodeType": "ElementaryTypeName",
-              "src": "82:6:19",
+              "src": "83:6:19",
               "typeDescriptions": {
                 "typeIdentifier": "t_string_storage_ptr",
                 "typeString": "string"
@@ -207,11 +218,11 @@
           },
           {
             "constant": false,
-            "id": 4791,
+            "id": 4798,
             "name": "name",
             "nodeType": "VariableDeclaration",
-            "scope": 4809,
-            "src": "104:18:19",
+            "scope": 4816,
+            "src": "105:18:19",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -219,10 +230,10 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 4790,
+              "id": 4797,
               "name": "string",
               "nodeType": "ElementaryTypeName",
-              "src": "104:6:19",
+              "src": "105:6:19",
               "typeDescriptions": {
                 "typeIdentifier": "t_string_storage_ptr",
                 "typeString": "string"
@@ -233,11 +244,11 @@
           },
           {
             "constant": false,
-            "id": 4793,
+            "id": 4800,
             "name": "originalFileHash",
             "nodeType": "VariableDeclaration",
-            "scope": 4809,
-            "src": "128:30:19",
+            "scope": 4816,
+            "src": "129:30:19",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -245,10 +256,10 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 4792,
+              "id": 4799,
               "name": "string",
               "nodeType": "ElementaryTypeName",
-              "src": "128:6:19",
+              "src": "129:6:19",
               "typeDescriptions": {
                 "typeIdentifier": "t_string_storage_ptr",
                 "typeString": "string"
@@ -259,11 +270,11 @@
           },
           {
             "constant": false,
-            "id": 4795,
+            "id": 4802,
             "name": "createdAt",
             "nodeType": "VariableDeclaration",
-            "scope": 4809,
-            "src": "165:21:19",
+            "scope": 4816,
+            "src": "166:21:19",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -271,10 +282,10 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 4794,
+              "id": 4801,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
-              "src": "165:4:19",
+              "src": "166:4:19",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint256",
                 "typeString": "uint256"
@@ -285,11 +296,11 @@
           },
           {
             "constant": false,
-            "id": 4797,
+            "id": 4804,
             "name": "size",
             "nodeType": "VariableDeclaration",
-            "scope": 4809,
-            "src": "192:16:19",
+            "scope": 4816,
+            "src": "193:16:19",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -297,10 +308,10 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 4796,
+              "id": 4803,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
-              "src": "192:4:19",
+              "src": "193:4:19",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint256",
                 "typeString": "uint256"
@@ -312,23 +323,23 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4808,
+            "id": 4815,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "init",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4806,
+              "id": 4813,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4799,
+                  "id": 4806,
                   "name": "fileName",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4808,
-                  "src": "238:22:19",
+                  "scope": 4815,
+                  "src": "239:22:19",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -336,10 +347,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4798,
+                    "id": 4805,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "238:6:19",
+                    "src": "239:6:19",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -350,11 +361,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 4801,
+                  "id": 4808,
                   "name": "fileHash",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4808,
-                  "src": "270:22:19",
+                  "scope": 4815,
+                  "src": "271:22:19",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -362,10 +373,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4800,
+                    "id": 4807,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "270:6:19",
+                    "src": "271:6:19",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -376,11 +387,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 4803,
+                  "id": 4810,
                   "name": "fileDate",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4808,
-                  "src": "302:13:19",
+                  "scope": 4815,
+                  "src": "303:13:19",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -388,10 +399,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 4802,
+                    "id": 4809,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "302:4:19",
+                    "src": "303:4:19",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -402,11 +413,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 4805,
+                  "id": 4812,
                   "name": "fileSize",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4808,
-                  "src": "325:13:19",
+                  "scope": 4815,
+                  "src": "326:13:19",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -414,10 +425,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 4804,
+                    "id": 4811,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "325:4:19",
+                    "src": "326:4:19",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -427,46 +438,47 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "228:116:19"
+              "src": "229:116:19"
             },
             "returnParameters": {
-              "id": 4807,
+              "id": 4814,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "359:0:19"
+              "src": "360:0:19"
             },
-            "scope": 4809,
-            "src": "215:145:19",
+            "scope": 4816,
+            "src": "216:145:19",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 4810,
-        "src": "25:337:19"
+        "scope": 4817,
+        "src": "26:337:19"
       }
     ],
-    "src": "0:363:19"
+    "src": "0:364:19"
   },
   "legacyAST": {
     "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/FileInterface.sol",
     "exportedSymbols": {
       "FileInterface": [
-        4809
+        4816
       ]
     },
-    "id": 4810,
+    "id": 4817,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 4785,
+        "id": 4792,
         "literals": [
           "solidity",
-          "0.5",
+          "<",
+          "0.6",
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:22:19"
+        "src": "0:23:19"
       },
       {
         "baseContracts": [],
@@ -474,20 +486,20 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 4809,
+        "id": 4816,
         "linearizedBaseContracts": [
-          4809
+          4816
         ],
         "name": "FileInterface",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 4787,
+            "id": 4794,
             "name": "parent",
             "nodeType": "VariableDeclaration",
-            "scope": 4809,
-            "src": "54:21:19",
+            "scope": 4816,
+            "src": "55:21:19",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -495,10 +507,10 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 4786,
+              "id": 4793,
               "name": "address",
               "nodeType": "ElementaryTypeName",
-              "src": "54:7:19",
+              "src": "55:7:19",
               "stateMutability": "nonpayable",
               "typeDescriptions": {
                 "typeIdentifier": "t_address",
@@ -510,11 +522,11 @@
           },
           {
             "constant": false,
-            "id": 4789,
+            "id": 4796,
             "name": "id",
             "nodeType": "VariableDeclaration",
-            "scope": 4809,
-            "src": "82:16:19",
+            "scope": 4816,
+            "src": "83:16:19",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -522,10 +534,10 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 4788,
+              "id": 4795,
               "name": "string",
               "nodeType": "ElementaryTypeName",
-              "src": "82:6:19",
+              "src": "83:6:19",
               "typeDescriptions": {
                 "typeIdentifier": "t_string_storage_ptr",
                 "typeString": "string"
@@ -536,11 +548,11 @@
           },
           {
             "constant": false,
-            "id": 4791,
+            "id": 4798,
             "name": "name",
             "nodeType": "VariableDeclaration",
-            "scope": 4809,
-            "src": "104:18:19",
+            "scope": 4816,
+            "src": "105:18:19",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -548,10 +560,10 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 4790,
+              "id": 4797,
               "name": "string",
               "nodeType": "ElementaryTypeName",
-              "src": "104:6:19",
+              "src": "105:6:19",
               "typeDescriptions": {
                 "typeIdentifier": "t_string_storage_ptr",
                 "typeString": "string"
@@ -562,11 +574,11 @@
           },
           {
             "constant": false,
-            "id": 4793,
+            "id": 4800,
             "name": "originalFileHash",
             "nodeType": "VariableDeclaration",
-            "scope": 4809,
-            "src": "128:30:19",
+            "scope": 4816,
+            "src": "129:30:19",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -574,10 +586,10 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 4792,
+              "id": 4799,
               "name": "string",
               "nodeType": "ElementaryTypeName",
-              "src": "128:6:19",
+              "src": "129:6:19",
               "typeDescriptions": {
                 "typeIdentifier": "t_string_storage_ptr",
                 "typeString": "string"
@@ -588,11 +600,11 @@
           },
           {
             "constant": false,
-            "id": 4795,
+            "id": 4802,
             "name": "createdAt",
             "nodeType": "VariableDeclaration",
-            "scope": 4809,
-            "src": "165:21:19",
+            "scope": 4816,
+            "src": "166:21:19",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -600,10 +612,10 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 4794,
+              "id": 4801,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
-              "src": "165:4:19",
+              "src": "166:4:19",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint256",
                 "typeString": "uint256"
@@ -614,11 +626,11 @@
           },
           {
             "constant": false,
-            "id": 4797,
+            "id": 4804,
             "name": "size",
             "nodeType": "VariableDeclaration",
-            "scope": 4809,
-            "src": "192:16:19",
+            "scope": 4816,
+            "src": "193:16:19",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -626,10 +638,10 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 4796,
+              "id": 4803,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
-              "src": "192:4:19",
+              "src": "193:4:19",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint256",
                 "typeString": "uint256"
@@ -641,23 +653,23 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4808,
+            "id": 4815,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "init",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4806,
+              "id": 4813,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4799,
+                  "id": 4806,
                   "name": "fileName",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4808,
-                  "src": "238:22:19",
+                  "scope": 4815,
+                  "src": "239:22:19",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -665,10 +677,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4798,
+                    "id": 4805,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "238:6:19",
+                    "src": "239:6:19",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -679,11 +691,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 4801,
+                  "id": 4808,
                   "name": "fileHash",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4808,
-                  "src": "270:22:19",
+                  "scope": 4815,
+                  "src": "271:22:19",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -691,10 +703,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4800,
+                    "id": 4807,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "270:6:19",
+                    "src": "271:6:19",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -705,11 +717,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 4803,
+                  "id": 4810,
                   "name": "fileDate",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4808,
-                  "src": "302:13:19",
+                  "scope": 4815,
+                  "src": "303:13:19",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -717,10 +729,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 4802,
+                    "id": 4809,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "302:4:19",
+                    "src": "303:4:19",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -731,11 +743,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 4805,
+                  "id": 4812,
                   "name": "fileSize",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4808,
-                  "src": "325:13:19",
+                  "scope": 4815,
+                  "src": "326:13:19",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -743,10 +755,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 4804,
+                    "id": 4811,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "325:4:19",
+                    "src": "326:4:19",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -756,34 +768,34 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "228:116:19"
+              "src": "229:116:19"
             },
             "returnParameters": {
-              "id": 4807,
+              "id": 4814,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "359:0:19"
+              "src": "360:0:19"
             },
-            "scope": 4809,
-            "src": "215:145:19",
+            "scope": 4816,
+            "src": "216:145:19",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 4810,
-        "src": "25:337:19"
+        "scope": 4817,
+        "src": "26:337:19"
       }
     ],
-    "src": "0:363:19"
+    "src": "0:364:19"
   },
   "compiler": {
     "name": "solc",
-    "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
+    "version": "0.5.11+commit.c082d0b4.Emscripten.clang"
   },
   "networks": {},
   "schemaVersion": "3.0.11",
-  "updatedAt": "2019-08-28T15:14:20.538Z",
+  "updatedAt": "2019-08-29T14:12:02.075Z",
   "devdoc": {
     "methods": {}
   },

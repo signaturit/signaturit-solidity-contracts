@@ -1,4 +1,4 @@
-pragma solidity 0.5.0;
+pragma solidity <0.6.0;
 
 /*
 Gas to deploy: 3.055.316

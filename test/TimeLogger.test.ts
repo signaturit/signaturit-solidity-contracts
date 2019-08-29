@@ -17,6 +17,8 @@ contract('TimeLogger', async (accounts) => {
     const userAddress = accounts[3];
 
     const clauseType = "timelogger";
+    const externalSource = "external";
+    const soliditySource = "solidity";
 
     const workerId = v4();
     const contractId = v4();
@@ -236,6 +238,25 @@ contract('TimeLogger', async (accounts) => {
         }
     });
 
+    it("Call soliditySourceLog and then externalSourceLog, expect final source to be external", async() => {
+        await timeLoggerContract.soliditySourceLog(
+            {from: userAddress}
+        );
+
+        await timeLoggerContract.externalSourceLog(
+            timeNow + 1000,
+            {from: userAddress}
+        );
+
+        const daysSinceUnixEpoch = Math.floor(timeNow / secondsInDay);
+        const readTimeLog = await timeLoggerContract.timeLog(0);
+
+        const readTotal = await timeLoggerContract.getDayTime(daysSinceUnixEpoch);
+        const readTimeLogGetter = await timeLoggerContract.getTimeLog(daysSinceUnixEpoch, 0);
+
+        assert.equal(readTimeLog.source, externalSource);
+    });
+
     it("Call createTimeLog as Signaturit account, expect to pass", async() => {
         const daysSinceUnixEpoch = Math.floor(timeNow / secondsInDay);
 
@@ -270,6 +291,26 @@ contract('TimeLogger', async (accounts) => {
             assert.include(
                 error.message,
                 'Only Signaturit account can perform this action.'
+            );
+        }
+    });
+
+    it("Call createTimeLog with a close date before the opening one, expect exception", async() => {
+        const daysSinceUnixEpoch = Math.floor(timeNow / secondsInDay);
+
+        try {
+            await timeLoggerContract.createTimeLog(
+                daysSinceUnixEpoch,
+                timeNow + 100,
+                timeNow,
+                {from: signaturitAddress}
+            );
+
+            assert.fail("Something went wrong, it should have thrown");
+        } catch(error) {
+            assert.include(
+                error.message,
+                'Invalid time frame'
             );
         }
     });
@@ -327,6 +368,33 @@ contract('TimeLogger', async (accounts) => {
             assert.include(
                 error.message,
                 'Only Signaturit account can perform this action.'
+            );
+        }
+    });
+
+    it("Call correctTimeLog with invalid dates (end > start), expect exception", async() => {
+        await timeLoggerContract.externalSourceLog(
+            timeNow,
+            {from: userAddress}
+        );
+
+        const daysSinceUnixEpoch = Math.floor(timeNow / secondsInDay);
+
+        try {
+            await timeLoggerContract.correctTimeLog(
+                daysSinceUnixEpoch,
+                0,
+                timeNow + 50,
+                timeNow,
+                true,
+                {from: signaturitAddress}
+            )
+
+            assert.fail("Something went wrong, it should have thrown");
+        } catch(error) {
+            assert.include(
+                error.message,
+                'Invalid time frame.'
             );
         }
     });
@@ -516,5 +584,138 @@ contract('TimeLogger', async (accounts) => {
             readSecondTimeLog.end.toNumber() ==  todayMidnight &&
             readSecondTimeLog.start.toNumber() == startOfSecondDay
         );
+    });
+
+    it("Call getTotalLoggedTime after having logged, expect to receive the total", async() => {
+        await timeLoggerContract.externalSourceLog(
+            timeNow,
+            {from: userAddress}
+        );
+
+        await timeLoggerContract.externalSourceLog(
+            timeNow + 50,
+            {from: userAddress}
+        );
+
+        await timeLoggerContract.externalSourceLog(
+            timeNow + secondsInDay,
+            {from: userAddress}
+        );
+
+        await timeLoggerContract.externalSourceLog(
+            timeNow + secondsInDay + 50,
+            {from: userAddress}
+        );
+
+        const daysSinceUnixEpoch = Math.floor(timeNow / secondsInDay);
+
+        const readTotal = await timeLoggerContract.getTotalLoggedTime(daysSinceUnixEpoch, daysSinceUnixEpoch + 1);
+
+        assert.equal(readTotal.toNumber(), 100);
+    });
+
+    it("Call getTotalLoggedTime after having logged with incorrect dates, expect receive null value", async() => {
+        await timeLoggerContract.externalSourceLog(
+            timeNow,
+            {from: userAddress}
+        );
+
+        await timeLoggerContract.externalSourceLog(
+            timeNow + 50,
+            {from: userAddress}
+        );
+
+        await timeLoggerContract.externalSourceLog(
+            timeNow + secondsInDay,
+            {from: userAddress}
+        );
+
+        await timeLoggerContract.externalSourceLog(
+            timeNow + secondsInDay + 50,
+            {from: userAddress}
+        );
+
+        const daysSinceUnixEpoch = Math.floor(timeNow / secondsInDay);
+
+        const readTotal = await timeLoggerContract.getTotalLoggedTime(daysSinceUnixEpoch + 1, daysSinceUnixEpoch);
+
+        assert.equal(readTotal.toNumber(), 0);
+    });
+
+    it("Call getTotalLoggedTime after not having logged, expect receive null value", async() => {
+        const daysSinceUnixEpoch = Math.floor(timeNow / secondsInDay);
+
+        const readTotal = await timeLoggerContract.getTotalLoggedTime(daysSinceUnixEpoch, daysSinceUnixEpoch + 1);
+
+        assert.equal(readTotal.toNumber(), 0);
+    });
+
+    it("Call getTotalLoggedTime of an extremely big timeframe, expect to run out of gas", async() => {
+        const daysSinceUnixEpoch = Math.floor(timeNow / secondsInDay);
+
+        try {
+            await timeLoggerContract.getTotalLoggedTime(daysSinceUnixEpoch, daysSinceUnixEpoch + 1);
+        } catch(error) {
+            assert.include(
+                error.message,
+                'out of gas'
+            );
+        }
+    });
+
+    it("Call getTimeLog after having logged, expect timelog to be returned", async() => {
+        await timeLoggerContract.externalSourceLog(
+            timeNow,
+            {from: userAddress}
+        );
+
+        await timeLoggerContract.externalSourceLog(
+            timeNow + 50,
+            {from: userAddress}
+        );
+
+        const index = 0;
+        const daysSinceUnixEpoch = Math.floor(timeNow / secondsInDay);
+
+        const readTimeLog = await timeLoggerContract.getTimeLog(daysSinceUnixEpoch, index);
+
+        assert.equal(readTimeLog.start.toNumber(), timeNow);
+        assert.equal(readTimeLog.end.toNumber(), timeNow + 50);
+        assert.equal(readTimeLog.source, externalSource);
+        assert.equal(readTimeLog.more, false);
+    });
+
+    it("Call getTimeLog of not existing day, expect null value returned", async() => {
+        const index = 0;
+        const daysSinceUnixEpoch = Math.floor(timeNow / secondsInDay);
+
+        const readTimeLog = await timeLoggerContract.getTimeLog(daysSinceUnixEpoch, index);
+
+        assert.equal(readTimeLog.start.toNumber(), 0);
+        assert.equal(readTimeLog.end.toNumber(), 0);
+        assert.equal(readTimeLog.source, "");
+        assert.equal(readTimeLog.more, false);
+    });
+
+    it("Call getTimeLog after having logged but with a too big index, expect null values to be returned", async() => {
+        await timeLoggerContract.externalSourceLog(
+            timeNow,
+            {from: userAddress}
+        );
+
+        await timeLoggerContract.externalSourceLog(
+            timeNow + 50,
+            {from: userAddress}
+        );
+
+        const index = 1;
+        const daysSinceUnixEpoch = Math.floor(timeNow / secondsInDay);
+
+        const readTimeLog = await timeLoggerContract.getTimeLog(daysSinceUnixEpoch, index);
+
+        assert.equal(readTimeLog.start.toNumber(), 0);
+        assert.equal(readTimeLog.end.toNumber(), 0);
+        assert.equal(readTimeLog.source, "");
+        assert.equal(readTimeLog.more, false);
     });
 })
