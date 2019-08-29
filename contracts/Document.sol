@@ -1,7 +1,7 @@
 pragma solidity <0.6.0;
 
 /*
-Gas to deploy: 2.094.931
+Gas to deploy: 1.949.100
 */
 
 import "./interfaces/DocumentInterface.sol";
