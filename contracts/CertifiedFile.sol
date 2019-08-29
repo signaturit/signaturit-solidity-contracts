@@ -1,7 +1,7 @@
-pragma solidity 0.5.0;
+pragma solidity <0.6.0;
 
 /*
-Gas to deploy: 658.778
+Gas to deploy: 655.214
 */
 
 import "./interfaces/CertifiedFileInterface.sol";

@@ -9,6 +9,7 @@ var Signature = artifacts.require("./Signature.sol");
 var TimeLogger = artifacts.require("./TimeLogger.sol");
 var Certificate = artifacts.require("./Certificate.sol");
 var CertifiedFile = artifacts.require("./CertifiedFile.sol");
+var CertifiedFileChecker = artifacts.require("./CertifiedFileChecker.sol");
 var CertifiedEmail = artifacts.require("./CertifiedEmail.sol");
 var SignatureDeployer = artifacts.require("./SignatureDeployer.sol");
 var CertifiedEmailDeployer = artifacts.require("./CertifiedEmailDeployer.sol");
@@ -91,6 +92,13 @@ deployer.then(async () => {
 
     tx = await web3.eth.getTransactionReceipt(certifiedFileInstance.transactionHash);
     console.log("GAS USED FOR CERTIFIED FILE: " + tx.cumulativeGasUsed);
+
+    const certifiedFileChecker = await deployer.deploy(
+        CertifiedFileChecker
+    );
+
+    tx = await web3.eth.getTransactionReceipt(certifiedFileChecker.transactionHash);
+    console.log("GAS USED FOR CERTIFIED FILE CHECKER: " + tx.cumulativeGasUsed);
 
     const certificateInstance = await deployer.deploy(
         Certificate,

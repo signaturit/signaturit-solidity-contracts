@@ -1,7 +1,7 @@
-pragma solidity 0.5.0;
+pragma solidity <0.6.0;
 
 /*
-Gas to deploy: 2.372.256
+Gas to deploy: 2.168.027
 */
 
 import "./Clause.sol";
@@ -180,7 +180,7 @@ contract TimeLogger is Clause("timelogger") {
         view
         returns(uint total)
     {
-        if (day[thisDay].existence) return 0;
+        if (!day[thisDay].existence) return 0;
         return day[thisDay].total;
     }
 
@@ -192,12 +192,12 @@ contract TimeLogger is Clause("timelogger") {
         view
         returns(uint total)
     {
-        if (endDay >= startDay) return 0;
+        if (startDay > endDay) return 0;
 
-        uint totalAmount;
+        uint totalAmount = 0;
 
         for (uint i = startDay; i <= endDay; i++) {
-            totalAmount += day[i].total;
+            if (day[i].existence) totalAmount += day[i].total;
         }
 
         return totalAmount;
@@ -289,7 +289,7 @@ contract TimeLogger is Clause("timelogger") {
     {
         uint index = day[thisDay].timelogs[day[thisDay].timelogs.length - 1];
 
-        require(endTime >= timeLog[index].timeStart, "Invalid time value");
+        require(endTime >= timeLog[index].timeStart, "Invalid time frame");
 
         //Assumption: if source coming from input doesnt equal the one saved, prefer the last one
         if (
