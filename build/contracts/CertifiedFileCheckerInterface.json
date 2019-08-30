@@ -5,7 +5,6 @@
       "constant": false,
       "inputs": [
         {
-          "internalType": "address",
           "name": "certifiedFileAddree",
           "type": "address"
         }
@@ -20,12 +19,10 @@
       "constant": true,
       "inputs": [
         {
-          "internalType": "string",
           "name": "fileHash",
           "type": "string"
         },
         {
-          "internalType": "uint256",
           "name": "index",
           "type": "uint256"
         }
@@ -33,37 +30,30 @@
       "name": "getFile",
       "outputs": [
         {
-          "internalType": "string",
           "name": "id",
           "type": "string"
         },
         {
-          "internalType": "string",
           "name": "name",
           "type": "string"
         },
         {
-          "internalType": "string",
           "name": "hash",
           "type": "string"
         },
         {
-          "internalType": "uint256",
           "name": "size",
           "type": "uint256"
         },
         {
-          "internalType": "uint256",
           "name": "createdAt",
           "type": "uint256"
         },
         {
-          "internalType": "address",
           "name": "owner",
           "type": "address"
         },
         {
-          "internalType": "bool",
           "name": "more",
           "type": "bool"
         }
@@ -73,15 +63,15 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.11+commit.c082d0b4\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"certifiedFileAddree\",\"type\":\"address\"}],\"name\":\"addFile\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"string\",\"name\":\"fileHash\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"index\",\"type\":\"uint256\"}],\"name\":\"getFile\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"id\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"hash\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"size\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"createdAt\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"more\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/CertifiedFileCheckerInterface.sol\":\"CertifiedFileCheckerInterface\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":10},\"remappings\":[]},\"sources\":{\"/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/CertifiedFileCheckerInterface.sol\":{\"keccak256\":\"0x8222330f652623b3cbe90e906f811f2fd634789fa74bb41df2376bd1b946804a\",\"urls\":[\"bzz-raw://476a91b0d591e2eef3d6237d693caa8c38b1cdc5a254a2e665b3548ba7454d7d\",\"dweb:/ipfs/QmNxqWTKTxxWmRN3gj2VteSWThc8PW6FqECczYtw6Jm4VG\"]}},\"version\":1}",
+  "metadata": "",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity <0.6.0;\n\ncontract CertifiedFileCheckerInterface {\n    function addFile(\n        address certifiedFileAddree\n    ) public;\n\n    function getFile(\n        string memory fileHash,\n        uint index\n    )  public view returns(\n        string memory id,\n        string memory name,\n        string memory hash,\n        uint size,\n        uint createdAt,\n        address  owner,\n        bool more\n    );\n}",
-  "sourcePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/CertifiedFileCheckerInterface.sol",
+  "sourcePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/CertifiedFileCheckerInterface.sol",
   "ast": {
-    "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/CertifiedFileCheckerInterface.sol",
+    "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/CertifiedFileCheckerInterface.sol",
     "exportedSymbols": {
       "CertifiedFileCheckerInterface": [
         4958
@@ -441,7 +431,7 @@
     "src": "0:415:17"
   },
   "legacyAST": {
-    "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/CertifiedFileCheckerInterface.sol",
+    "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/CertifiedFileCheckerInterface.sol",
     "exportedSymbols": {
       "CertifiedFileCheckerInterface": [
         4958
@@ -802,11 +792,11 @@
   },
   "compiler": {
     "name": "solc",
-    "version": "0.5.11+commit.c082d0b4.Emscripten.clang"
+    "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.0.11",
-  "updatedAt": "2019-08-29T15:39:27.407Z",
+  "schemaVersion": "3.0.13",
+  "updatedAt": "2019-08-30T15:18:25.825Z",
   "devdoc": {
     "methods": {}
   },
