@@ -1,9 +1,11 @@
 pragma solidity <0.6.0;
 
 import "./UserInterface.sol";
-
+import "./CertifiedFileCheckerInterface.sol";
 
 contract CertifiedFileInterface {
+    CertifiedFileCheckerInterface public certifiedFileChecker;
+
     address public signaturit;
     address public owner;
 
@@ -15,4 +17,9 @@ contract CertifiedFileInterface {
     uint public size;
 
     UserInterface public userSmartContract;
+
+    function notify(
+        address certifiedFileCheckerAddress
+    ) 
+        public;
 }

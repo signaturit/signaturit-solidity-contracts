@@ -1,6 +1,7 @@
 contract('CertifiedFile', async (accounts) => {
     const ArtifactUser = artifacts.require('User');
     const ArtifactCertifiedFile = artifacts.require('CertifiedFile');
+    const ArtifactCertifiedFileChecker = artifacts.require('CertifiedFileChecker');
 
     const v4 = require("uuid").v4;
 
@@ -10,6 +11,7 @@ contract('CertifiedFile', async (accounts) => {
     let contractAddress     = accounts[3]
 
     let fileContract;
+    let certifiedFileCheckerContract;
     let userContract;
 
     const fileId   = v4();
@@ -34,7 +36,10 @@ contract('CertifiedFile', async (accounts) => {
             fileHash,
             fileDate,
             fileSize,
-            {from: signaturitAddress});
+            {
+                from: signaturitAddress
+            }
+        );
 
         assert.ok(fileContract.address);
     });
@@ -48,7 +53,9 @@ contract('CertifiedFile', async (accounts) => {
             fileHash,
             fileDate,
             fileSize,
-            {from: signaturitAddress}
+            {
+                from: signaturitAddress
+            }
         );
 
         const readFileSize = await fileContract.size();
@@ -66,5 +73,66 @@ contract('CertifiedFile', async (accounts) => {
         assert.equal(readFileDate, fileDate);
         assert.equal(readFileOwner, ownerAddress);
         assert.equal(readSignaturitAddress, signaturitAddress);
+    });
+
+    it('Try to call notify function as Signaturit account', async () => {
+        certifiedFileCheckerContract = await ArtifactCertifiedFileChecker.new(
+            {
+                from: signaturitAddress
+            }
+        );
+
+        const transaction = await fileContract.notify(
+            certifiedFileCheckerContract.address,
+            {
+                from: signaturitAddress
+            }
+        );
+
+        assert.ok(transaction.receipt.status);
+    });
+
+    it('Try to call notify function as invalid account', async () => {
+        certifiedFileCheckerContract = await ArtifactCertifiedFileChecker.new(
+            {
+                from: signaturitAddress
+            }
+        );
+
+        try {
+            await fileContract.notify(
+                certifiedFileCheckerContract.address,
+                {
+                    from: noOwnerAddress
+                }
+            );
+        } catch(error) {
+            assert.include(
+                error.message,
+                'Only Signaturit account can perform this action'
+            );
+        }
+    });
+
+    it('Try to call notify function with invalid certifiedFileChecker address', async () => {
+        certifiedFileCheckerContract = await ArtifactCertifiedFileChecker.new(
+            {
+                from: signaturitAddress
+            }
+        );
+
+        try {
+            await fileContract.notify(
+                noOwnerAddress,
+                {
+                    from: signaturitAddress
+                }
+            );
+        } catch(error) {
+            assert.include(
+                error.message,
+                'revert'
+            );
+        }
     });
 })

@@ -9,7 +9,7 @@ import "./interfaces/CertifiedFileCheckerInterface.sol";
 
 contract CertifiedFileChecker is CertifiedFileCheckerInterface {
 
-    address signaturit;
+    address public signaturit;
 
     struct CertifiedFilesWithHash {
         bool exist;
@@ -19,7 +19,11 @@ contract CertifiedFileChecker is CertifiedFileCheckerInterface {
     mapping(bytes32 => CertifiedFilesWithHash) private certifiedFiles;
 
     modifier signaturitOnly() {
-        require(tx.origin == signaturit, 'Unauthorized action');
+        require(
+            tx.origin == signaturit, 
+            "Only Signaturit account can perform this action"
+        );
+        
         _;
     }
 
@@ -74,9 +78,9 @@ contract CertifiedFileChecker is CertifiedFileCheckerInterface {
         }
 
         return (
-            '',
-            '',
-            '',
+            "",
+            "",
+            "",
             0,
             0,
             address(0),
