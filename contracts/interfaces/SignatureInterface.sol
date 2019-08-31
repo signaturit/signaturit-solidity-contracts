@@ -91,14 +91,14 @@ contract SignatureInterface {
     )
         public
         view
-        returns (FileInterface);
+        returns (address);
 
     function getDocument(
         string memory documentId
     )
         public
         view
-        returns (DocumentInterface);
+        returns (address);
 
     function getDocumentsSize()
         public
@@ -111,7 +111,7 @@ contract SignatureInterface {
     )
         public
         view
-        returns (EventInterface);
+        returns (address);
 
     function _getDocument(
         string memory documentId

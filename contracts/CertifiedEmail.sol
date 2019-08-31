@@ -106,7 +106,7 @@ contract CertifiedEmail is CertifiedEmailInterface {
             eventCreatedAt
         );
 
-        EventInterface certifiedEmailEvent = certificate.getEvent(eventId);
+        EventInterface certifiedEmailEvent = EventInterface(certificate.getEvent(eventId));
 
         require(
             address(certifiedEmailEvent) != address(0),
@@ -162,7 +162,7 @@ contract CertifiedEmail is CertifiedEmailInterface {
     {
         require(
             _certificateExist(certificateId),
-            "This certificate doesn't exist"
+            "The certificate with this id doesn't exist"
         );
 
         return address(certificates[certificateId]);
@@ -181,9 +181,9 @@ contract CertifiedEmail is CertifiedEmailInterface {
             "The certificate with this id doesn't exist"
         );
 
-        EventInterface certifiedEmailEvent = certificates[certificateId].getEvent(
+        EventInterface certifiedEmailEvent = EventInterface(certificates[certificateId].getEvent(
             eventId
-        );
+        ));
 
         require(
             address(certifiedEmailEvent) != address(0),

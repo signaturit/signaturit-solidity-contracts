@@ -6,9 +6,11 @@ contract('Certificate', async (accounts) => {
 
     const v4 = require("uuid").v4;
 
-    const signaturitAddress = accounts[0];
+    const certifiedEmailAddress = accounts[0];
     const ownerAddress      = accounts[1];
     const invalidAddress    = accounts[2];
+
+    const nullAddress = '0x0000000000000000000000000000000000000000';
 
     let certificateContract;
     let certifiedEmailDeployer;
@@ -32,7 +34,7 @@ contract('Certificate', async (accounts) => {
             certificateId,
             certifiedEmailDeployer.address,
             {
-                from: signaturitAddress
+                from: certifiedEmailAddress
             }
         )
     });
@@ -41,10 +43,13 @@ contract('Certificate', async (accounts) => {
         assert.ok(certificateContract.address);
     });
 
-    it('Init the contracts', async () => {
+    it('Init the contracts as CertifiedEmail account, expect to pass', async () => {
         await certificateContract.init(
             ownerAddress,
-            createdAt
+            createdAt,
+            {
+                from: certifiedEmailAddress
+            }
         );
 
         const readCreatedAt = await certificateContract.createdAt();
@@ -56,6 +61,24 @@ contract('Certificate', async (accounts) => {
         assert.equal(certificateId, readCertificateId);
     });
 
+    it('Init the contracts as not CertifiedEmail account, expect to exception', async () => {
+        
+        try {
+            await certificateContract.init(
+                ownerAddress,
+                createdAt,
+                {
+                    from: invalidAddress
+                }
+            );    
+        } catch(error) {
+            assert.include(
+                error.message,
+                "Only CertifiedEmail account can perform this action"
+            )
+        }
+    });
+
     it('Create an instance of file', async() => {
         await certificateContract.createFile(
             fileHash,
@@ -64,7 +87,7 @@ contract('Certificate', async (accounts) => {
             createdAt,
             fileSize,
             {
-                from: signaturitAddress
+                from: certifiedEmailAddress
             }
         );
 
@@ -80,7 +103,7 @@ contract('Certificate', async (accounts) => {
         assert.equal(fileSize, readFileSize);
     });
 
-    it('Create an instance of file from other account than the certifiecate contract', async() => {
+    it('Create an instance of file from other account than the CertifiedEmail contract', async() => {
         try {
             await certificateContract.createFile(
                 fileHash,
@@ -109,11 +132,31 @@ contract('Certificate', async (accounts) => {
             userAgent,
             createdAt,
             {
-                from: signaturitAddress
+                from: certifiedEmailAddress
             }
         );
 
         assert.ok('Event created successfully');
+    });
+
+    it('Add new event  as not CertifiedEmail account, expect to exception', async () => {
+        
+        try {
+            await certificateContract.createEvent(
+                eventId,
+                eventType,
+                userAgent,
+                createdAt,
+                {
+                    from: invalidAddress
+                }
+            );    
+        } catch(error) {
+            assert.include(
+                error.message,
+                "Only CertifiedEmail account can perform this action"
+            )
+        }
     });
 
     it('Create duplicated event', async() => {
@@ -124,7 +167,7 @@ contract('Certificate', async (accounts) => {
                 userAgent,
                 createdAt,
                 {
-                    from: signaturitAddress
+                    from: certifiedEmailAddress
                 }
             );
 
@@ -134,15 +177,15 @@ contract('Certificate', async (accounts) => {
                 userAgent,
                 createdAt,
                 {
-                    from: signaturitAddress
+                    from: certifiedEmailAddress
                 }
             );
 
-            assert.fail("You can't create duplicated event");
+            assert.fail("It should have thrown");
         } catch (error){
             assert.include(
                 error.message,
-                'The current event already exists.'
+                "The current event already exists."
             )
         }
 
@@ -151,16 +194,9 @@ contract('Certificate', async (accounts) => {
     it('Retrieve no storerd event', async() => {
         const eventId = v4();
 
-        try {
-            await certificateContract.getEvent(eventId);
+        const readAddress = await certificateContract.getEvent(eventId);
 
-            assert.fail("Can't retrieve event");
-        } catch (error) {
-            assert.include(
-                error.message,
-                "Returned error: VM Exception while processing transaction: revert"
-            )
-        }
+        assert.equal(readAddress, nullAddress);
     });
 
     it('Retrieve event data', async() => {
@@ -170,7 +206,7 @@ contract('Certificate', async (accounts) => {
             userAgent,
             createdAt,
             {
-                from: signaturitAddress
+                from: certifiedEmailAddress
             }
         );
 
