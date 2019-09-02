@@ -7,7 +7,6 @@
       "name": "owner",
       "outputs": [
         {
-          "internalType": "address",
           "name": "",
           "type": "address"
         }
@@ -22,7 +21,6 @@
       "name": "deliveryType",
       "outputs": [
         {
-          "internalType": "string",
           "name": "",
           "type": "string"
         }
@@ -37,7 +35,6 @@
       "name": "id",
       "outputs": [
         {
-          "internalType": "string",
           "name": "",
           "type": "string"
         }
@@ -52,7 +49,6 @@
       "name": "userSmartContract",
       "outputs": [
         {
-          "internalType": "contract UserInterface",
           "name": "",
           "type": "address"
         }
@@ -67,7 +63,6 @@
       "name": "subjectHash",
       "outputs": [
         {
-          "internalType": "string",
           "name": "",
           "type": "string"
         }
@@ -82,7 +77,6 @@
       "name": "bodyHash",
       "outputs": [
         {
-          "internalType": "string",
           "name": "",
           "type": "string"
         }
@@ -97,7 +91,6 @@
       "name": "createdAt",
       "outputs": [
         {
-          "internalType": "uint256",
           "name": "",
           "type": "uint256"
         }
@@ -110,7 +103,6 @@
       "constant": true,
       "inputs": [
         {
-          "internalType": "uint256",
           "name": "",
           "type": "uint256"
         }
@@ -118,7 +110,6 @@
       "name": "certificatesId",
       "outputs": [
         {
-          "internalType": "string",
           "name": "",
           "type": "string"
         }
@@ -133,7 +124,6 @@
       "name": "deployer",
       "outputs": [
         {
-          "internalType": "address",
           "name": "",
           "type": "address"
         }
@@ -148,7 +138,6 @@
       "name": "signaturit",
       "outputs": [
         {
-          "internalType": "address",
           "name": "",
           "type": "address"
         }
@@ -161,12 +150,10 @@
       "constant": false,
       "inputs": [
         {
-          "internalType": "address",
           "name": "certifiedEmailOwner",
           "type": "address"
         },
         {
-          "internalType": "address",
           "name": "userSmartContractAddress",
           "type": "address"
         }
@@ -181,17 +168,14 @@
       "constant": false,
       "inputs": [
         {
-          "internalType": "string",
           "name": "certificateId",
           "type": "string"
         },
         {
-          "internalType": "uint256",
           "name": "certificateCreatedAt",
           "type": "uint256"
         },
         {
-          "internalType": "address",
           "name": "certificateOwner",
           "type": "address"
         }
@@ -206,27 +190,22 @@
       "constant": false,
       "inputs": [
         {
-          "internalType": "string",
           "name": "certificateId",
           "type": "string"
         },
         {
-          "internalType": "string",
           "name": "eventId",
           "type": "string"
         },
         {
-          "internalType": "string",
           "name": "eventType",
           "type": "string"
         },
         {
-          "internalType": "string",
           "name": "eventUserAgent",
           "type": "string"
         },
         {
-          "internalType": "uint256",
           "name": "eventCreatedAt",
           "type": "uint256"
         }
@@ -241,32 +220,26 @@
       "constant": false,
       "inputs": [
         {
-          "internalType": "string",
           "name": "certificateId",
           "type": "string"
         },
         {
-          "internalType": "string",
           "name": "fileHash",
           "type": "string"
         },
         {
-          "internalType": "string",
           "name": "fileId",
           "type": "string"
         },
         {
-          "internalType": "string",
           "name": "fileName",
           "type": "string"
         },
         {
-          "internalType": "uint256",
           "name": "fileCreatedAt",
           "type": "uint256"
         },
         {
-          "internalType": "uint256",
           "name": "fileSize",
           "type": "uint256"
         }
@@ -281,7 +254,6 @@
       "constant": true,
       "inputs": [
         {
-          "internalType": "string",
           "name": "certificateId",
           "type": "string"
         }
@@ -289,7 +261,6 @@
       "name": "getCertificate",
       "outputs": [
         {
-          "internalType": "address",
           "name": "",
           "type": "address"
         }
@@ -302,12 +273,10 @@
       "constant": true,
       "inputs": [
         {
-          "internalType": "string",
           "name": "certificateId",
           "type": "string"
         },
         {
-          "internalType": "string",
           "name": "eventId",
           "type": "string"
         }
@@ -315,7 +284,6 @@
       "name": "getEvent",
       "outputs": [
         {
-          "internalType": "contract EventInterface",
           "name": "",
           "type": "address"
         }
@@ -328,7 +296,6 @@
       "constant": true,
       "inputs": [
         {
-          "internalType": "string",
           "name": "certificateId",
           "type": "string"
         }
@@ -336,7 +303,6 @@
       "name": "getFile",
       "outputs": [
         {
-          "internalType": "contract FileInterface",
           "name": "",
           "type": "address"
         }
@@ -351,7 +317,6 @@
       "name": "getCertificatesSize",
       "outputs": [
         {
-          "internalType": "uint256",
           "name": "",
           "type": "uint256"
         }
@@ -361,25 +326,25 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.11+commit.c082d0b4\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"certifiedEmailOwner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"userSmartContractAddress\",\"type\":\"address\"}],\"name\":\"setCertifiedEmailOwner\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"string\",\"name\":\"certificateId\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"fileHash\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"fileId\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"fileName\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"fileCreatedAt\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"fileSize\",\"type\":\"uint256\"}],\"name\":\"createFile\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getCertificatesSize\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"deliveryType\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"id\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"string\",\"name\":\"certificateId\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"certificateCreatedAt\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"certificateOwner\",\"type\":\"address\"}],\"name\":\"createCertificate\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"string\",\"name\":\"certificateId\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"eventId\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"eventType\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"eventUserAgent\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"eventCreatedAt\",\"type\":\"uint256\"}],\"name\":\"createEvent\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"userSmartContract\",\"outputs\":[{\"internalType\":\"contract UserInterface\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"subjectHash\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"string\",\"name\":\"certificateId\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"eventId\",\"type\":\"string\"}],\"name\":\"getEvent\",\"outputs\":[{\"internalType\":\"contract EventInterface\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"bodyHash\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"createdAt\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"certificatesId\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"deployer\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"string\",\"name\":\"certificateId\",\"type\":\"string\"}],\"name\":\"getFile\",\"outputs\":[{\"internalType\":\"contract FileInterface\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"string\",\"name\":\"certificateId\",\"type\":\"string\"}],\"name\":\"getCertificate\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"signaturit\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/CertifiedEmailInterface.sol\":\"CertifiedEmailInterface\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":10},\"remappings\":[]},\"sources\":{\"/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/CertificateInterface.sol\":{\"keccak256\":\"0xcadad4d5f7397ab9204e5eec4c2217ad2f788d66b40f0b149c687cd378931fd7\",\"urls\":[\"bzz-raw://66364735387d212ad950f5b2914c107dfe16b9d3855c81218810a2c8e399a34c\",\"dweb:/ipfs/QmPVzvgrZhrZL5Etj1P4VQfxDWEGhK83Y6nGHXLhgmjtqx\"]},\"/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/CertifiedEmailInterface.sol\":{\"keccak256\":\"0x38d300df8fd330c06af7e434ba4a2243565995b36ba52cc836b382207497f7cc\",\"urls\":[\"bzz-raw://770c5534d31bbfb7ebd1c9ced092acdabe6b6fd7f1a85087e4539e32b43ebd9d\",\"dweb:/ipfs/QmWoi1g6TSJooHd6T53Xd7oyTW9HVA7cXBNPoMYTfbQxpa\"]},\"/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/EventInterface.sol\":{\"keccak256\":\"0xa421a914b0085c7c902355600c7a476a98468346b2139ab2e6c7f36e040d0cee\",\"urls\":[\"bzz-raw://7c12987d4fadf9d34c7b9b7455f98e1f763f6d052077f6666f7f7b90771a232f\",\"dweb:/ipfs/QmYNBfSj1i2Ji9YvnHooCpFgQSabBwcHbjVTo7ByUyVTY7\"]},\"/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/FileInterface.sol\":{\"keccak256\":\"0x5f7881b9245b677e479e6786208a9e4e7e65953a04afda633998373499a306f6\",\"urls\":[\"bzz-raw://9d4d64addcc65449c9db6fb0108a622a17ed77d0299cdba1da4b229232ff0905\",\"dweb:/ipfs/QmbwcjSztXD8Q8x4zZfrP9Qq5iCdPmGV6AYwVKFL4GRQhe\"]},\"/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/UserInterface.sol\":{\"keccak256\":\"0x83f549a46d6ac37c2552686a5d01c5b81f149a23fef93a2006d4ff682e6199e2\",\"urls\":[\"bzz-raw://0fb6de203c49c8919334af338073e7fd0184a2ebe3f6fff04260bf2e8f31afef\",\"dweb:/ipfs/QmZc5XapBmTf9DiCYG5YY9PQMAKi7uye8UJqoqP5aczFZx\"]}},\"version\":1}",
+  "metadata": "",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity <0.6.0;\n\nimport \"./UserInterface.sol\";\nimport \"./CertificateInterface.sol\";\nimport \"./EventInterface.sol\";\n\n\ncontract CertifiedEmailInterface {\n    address public signaturit;\n    address public deployer;\n    address public owner;\n\n    string public id;\n    string public subjectHash;\n    string public bodyHash;\n    string public deliveryType;\n\n    string[] public certificatesId;\n\n    uint public createdAt;\n\n    UserInterface public userSmartContract;\n\n    mapping(string => CertificateInterface) private certificates;\n\n    function setCertifiedEmailOwner(\n        address certifiedEmailOwner,\n        address userSmartContractAddress\n    )\n        public;\n\n    function createCertificate(\n        string memory certificateId,\n        uint certificateCreatedAt,\n        address certificateOwner\n    )\n        public;\n\n    function createEvent(\n        string memory certificateId,\n        string memory eventId,\n        string memory eventType,\n        string memory eventUserAgent,\n        uint eventCreatedAt\n    )\n        public;\n\n    function createFile(\n        string memory certificateId,\n        string memory fileHash,\n        string memory fileId,\n        string memory fileName,\n        uint fileCreatedAt,\n        uint fileSize\n    )\n        public;\n\n    function getCertificate(\n        string memory certificateId\n    )\n        public\n        view\n        returns (address);\n\n    function getEvent(\n        string memory certificateId,\n        string memory eventId\n        )\n        public\n        view\n        returns (EventInterface);\n\n    function getFile(\n        string memory certificateId\n    )\n        public\n        view\n        returns (FileInterface);\n\n    function getCertificatesSize()\n        public\n        view\n        returns (uint);\n\n    function _certificateExist(\n        string memory certificateId\n    )\n        private\n        view\n        returns (bool);\n\n    function _getCertificate(\n        string memory certificateId\n    )\n        private\n        returns (CertificateInterface);\n}\n",
-  "sourcePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/CertifiedEmailInterface.sol",
+  "sourcePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/CertifiedEmailInterface.sol",
   "ast": {
-    "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/CertifiedEmailInterface.sol",
+    "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/CertifiedEmailInterface.sol",
     "exportedSymbols": {
       "CertifiedEmailInterface": [
-        4973
+        4976
       ]
     },
-    "id": 4974,
+    "id": 4977,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 4858,
+        "id": 4861,
         "literals": [
           "solidity",
           "<",
@@ -390,34 +355,34 @@
         "src": "0:23:16"
       },
       {
-        "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/UserInterface.sol",
+        "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/UserInterface.sol",
         "file": "./UserInterface.sol",
-        "id": 4859,
+        "id": 4862,
         "nodeType": "ImportDirective",
-        "scope": 4974,
-        "sourceUnit": 5592,
+        "scope": 4977,
+        "sourceUnit": 5595,
         "src": "25:29:16",
         "symbolAliases": [],
         "unitAlias": ""
       },
       {
-        "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/CertificateInterface.sol",
+        "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/CertificateInterface.sol",
         "file": "./CertificateInterface.sol",
-        "id": 4860,
+        "id": 4863,
         "nodeType": "ImportDirective",
-        "scope": 4974,
-        "sourceUnit": 4857,
+        "scope": 4977,
+        "sourceUnit": 4860,
         "src": "55:36:16",
         "symbolAliases": [],
         "unitAlias": ""
       },
       {
-        "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/EventInterface.sol",
+        "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/EventInterface.sol",
         "file": "./EventInterface.sol",
-        "id": 4861,
+        "id": 4864,
         "nodeType": "ImportDirective",
-        "scope": 4974,
-        "sourceUnit": 5152,
+        "scope": 4977,
+        "sourceUnit": 5155,
         "src": "92:30:16",
         "symbolAliases": [],
         "unitAlias": ""
@@ -428,19 +393,19 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 4973,
+        "id": 4976,
         "linearizedBaseContracts": [
-          4973
+          4976
         ],
         "name": "CertifiedEmailInterface",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 4863,
+            "id": 4866,
             "name": "signaturit",
             "nodeType": "VariableDeclaration",
-            "scope": 4973,
+            "scope": 4976,
             "src": "164:25:16",
             "stateVariable": true,
             "storageLocation": "default",
@@ -449,7 +414,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 4862,
+              "id": 4865,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "164:7:16",
@@ -464,10 +429,10 @@
           },
           {
             "constant": false,
-            "id": 4865,
+            "id": 4868,
             "name": "deployer",
             "nodeType": "VariableDeclaration",
-            "scope": 4973,
+            "scope": 4976,
             "src": "195:23:16",
             "stateVariable": true,
             "storageLocation": "default",
@@ -476,7 +441,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 4864,
+              "id": 4867,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "195:7:16",
@@ -491,10 +456,10 @@
           },
           {
             "constant": false,
-            "id": 4867,
+            "id": 4870,
             "name": "owner",
             "nodeType": "VariableDeclaration",
-            "scope": 4973,
+            "scope": 4976,
             "src": "224:20:16",
             "stateVariable": true,
             "storageLocation": "default",
@@ -503,7 +468,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 4866,
+              "id": 4869,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "224:7:16",
@@ -518,10 +483,10 @@
           },
           {
             "constant": false,
-            "id": 4869,
+            "id": 4872,
             "name": "id",
             "nodeType": "VariableDeclaration",
-            "scope": 4973,
+            "scope": 4976,
             "src": "251:16:16",
             "stateVariable": true,
             "storageLocation": "default",
@@ -530,7 +495,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 4868,
+              "id": 4871,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "251:6:16",
@@ -544,10 +509,10 @@
           },
           {
             "constant": false,
-            "id": 4871,
+            "id": 4874,
             "name": "subjectHash",
             "nodeType": "VariableDeclaration",
-            "scope": 4973,
+            "scope": 4976,
             "src": "273:25:16",
             "stateVariable": true,
             "storageLocation": "default",
@@ -556,7 +521,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 4870,
+              "id": 4873,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "273:6:16",
@@ -570,10 +535,10 @@
           },
           {
             "constant": false,
-            "id": 4873,
+            "id": 4876,
             "name": "bodyHash",
             "nodeType": "VariableDeclaration",
-            "scope": 4973,
+            "scope": 4976,
             "src": "304:22:16",
             "stateVariable": true,
             "storageLocation": "default",
@@ -582,7 +547,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 4872,
+              "id": 4875,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "304:6:16",
@@ -596,10 +561,10 @@
           },
           {
             "constant": false,
-            "id": 4875,
+            "id": 4878,
             "name": "deliveryType",
             "nodeType": "VariableDeclaration",
-            "scope": 4973,
+            "scope": 4976,
             "src": "332:26:16",
             "stateVariable": true,
             "storageLocation": "default",
@@ -608,7 +573,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 4874,
+              "id": 4877,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "332:6:16",
@@ -622,10 +587,10 @@
           },
           {
             "constant": false,
-            "id": 4878,
+            "id": 4881,
             "name": "certificatesId",
             "nodeType": "VariableDeclaration",
-            "scope": 4973,
+            "scope": 4976,
             "src": "365:30:16",
             "stateVariable": true,
             "storageLocation": "default",
@@ -635,7 +600,7 @@
             },
             "typeName": {
               "baseType": {
-                "id": 4876,
+                "id": 4879,
                 "name": "string",
                 "nodeType": "ElementaryTypeName",
                 "src": "365:6:16",
@@ -644,7 +609,7 @@
                   "typeString": "string"
                 }
               },
-              "id": 4877,
+              "id": 4880,
               "length": null,
               "nodeType": "ArrayTypeName",
               "src": "365:8:16",
@@ -658,10 +623,10 @@
           },
           {
             "constant": false,
-            "id": 4880,
+            "id": 4883,
             "name": "createdAt",
             "nodeType": "VariableDeclaration",
-            "scope": 4973,
+            "scope": 4976,
             "src": "402:21:16",
             "stateVariable": true,
             "storageLocation": "default",
@@ -670,7 +635,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 4879,
+              "id": 4882,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
               "src": "402:4:16",
@@ -684,26 +649,26 @@
           },
           {
             "constant": false,
-            "id": 4882,
+            "id": 4885,
             "name": "userSmartContract",
             "nodeType": "VariableDeclaration",
-            "scope": 4973,
+            "scope": 4976,
             "src": "430:38:16",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_UserInterface_$5591",
+              "typeIdentifier": "t_contract$_UserInterface_$5594",
               "typeString": "contract UserInterface"
             },
             "typeName": {
               "contractScope": null,
-              "id": 4881,
+              "id": 4884,
               "name": "UserInterface",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 5591,
+              "referencedDeclaration": 5594,
               "src": "430:13:16",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_UserInterface_$5591",
+                "typeIdentifier": "t_contract$_UserInterface_$5594",
                 "typeString": "contract UserInterface"
               }
             },
@@ -712,21 +677,21 @@
           },
           {
             "constant": false,
-            "id": 4886,
+            "id": 4889,
             "name": "certificates",
             "nodeType": "VariableDeclaration",
-            "scope": 4973,
+            "scope": 4976,
             "src": "475:60:16",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_string_memory_$_t_contract$_CertificateInterface_$4856_$",
+              "typeIdentifier": "t_mapping$_t_string_memory_$_t_contract$_CertificateInterface_$4859_$",
               "typeString": "mapping(string => contract CertificateInterface)"
             },
             "typeName": {
-              "id": 4885,
+              "id": 4888,
               "keyType": {
-                "id": 4883,
+                "id": 4886,
                 "name": "string",
                 "nodeType": "ElementaryTypeName",
                 "src": "483:6:16",
@@ -738,18 +703,18 @@
               "nodeType": "Mapping",
               "src": "475:39:16",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_string_memory_$_t_contract$_CertificateInterface_$4856_$",
+                "typeIdentifier": "t_mapping$_t_string_memory_$_t_contract$_CertificateInterface_$4859_$",
                 "typeString": "mapping(string => contract CertificateInterface)"
               },
               "valueType": {
                 "contractScope": null,
-                "id": 4884,
+                "id": 4887,
                 "name": "CertificateInterface",
                 "nodeType": "UserDefinedTypeName",
-                "referencedDeclaration": 4856,
+                "referencedDeclaration": 4859,
                 "src": "493:20:16",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_contract$_CertificateInterface_$4856",
+                  "typeIdentifier": "t_contract$_CertificateInterface_$4859",
                   "typeString": "contract CertificateInterface"
                 }
               }
@@ -760,22 +725,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4893,
+            "id": 4896,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "setCertifiedEmailOwner",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4891,
+              "id": 4894,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4888,
+                  "id": 4891,
                   "name": "certifiedEmailOwner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4893,
+                  "scope": 4896,
                   "src": "583:27:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -784,7 +749,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 4887,
+                    "id": 4890,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "583:7:16",
@@ -799,10 +764,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4890,
+                  "id": 4893,
                   "name": "userSmartContractAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4893,
+                  "scope": 4896,
                   "src": "620:32:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -811,7 +776,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 4889,
+                    "id": 4892,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "620:7:16",
@@ -828,12 +793,12 @@
               "src": "573:85:16"
             },
             "returnParameters": {
-              "id": 4892,
+              "id": 4895,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "673:0:16"
             },
-            "scope": 4973,
+            "scope": 4976,
             "src": "542:132:16",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -842,22 +807,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4902,
+            "id": 4905,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "createCertificate",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4900,
+              "id": 4903,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4895,
+                  "id": 4898,
                   "name": "certificateId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4902,
+                  "scope": 4905,
                   "src": "716:27:16",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -866,7 +831,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4894,
+                    "id": 4897,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "716:6:16",
@@ -880,10 +845,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4897,
+                  "id": 4900,
                   "name": "certificateCreatedAt",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4902,
+                  "scope": 4905,
                   "src": "753:25:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -892,7 +857,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 4896,
+                    "id": 4899,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "753:4:16",
@@ -906,10 +871,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4899,
+                  "id": 4902,
                   "name": "certificateOwner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4902,
+                  "scope": 4905,
                   "src": "788:24:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -918,7 +883,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 4898,
+                    "id": 4901,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "788:7:16",
@@ -935,12 +900,12 @@
               "src": "706:112:16"
             },
             "returnParameters": {
-              "id": 4901,
+              "id": 4904,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "833:0:16"
             },
-            "scope": 4973,
+            "scope": 4976,
             "src": "680:154:16",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -949,22 +914,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4915,
+            "id": 4918,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "createEvent",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4913,
+              "id": 4916,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4904,
+                  "id": 4907,
                   "name": "certificateId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4915,
+                  "scope": 4918,
                   "src": "870:27:16",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -973,7 +938,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4903,
+                    "id": 4906,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "870:6:16",
@@ -987,10 +952,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4906,
+                  "id": 4909,
                   "name": "eventId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4915,
+                  "scope": 4918,
                   "src": "907:21:16",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -999,7 +964,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4905,
+                    "id": 4908,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "907:6:16",
@@ -1013,10 +978,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4908,
+                  "id": 4911,
                   "name": "eventType",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4915,
+                  "scope": 4918,
                   "src": "938:23:16",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1025,7 +990,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4907,
+                    "id": 4910,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "938:6:16",
@@ -1039,10 +1004,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4910,
+                  "id": 4913,
                   "name": "eventUserAgent",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4915,
+                  "scope": 4918,
                   "src": "971:28:16",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1051,7 +1016,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4909,
+                    "id": 4912,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "971:6:16",
@@ -1065,10 +1030,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4912,
+                  "id": 4915,
                   "name": "eventCreatedAt",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4915,
+                  "scope": 4918,
                   "src": "1009:19:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1077,7 +1042,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 4911,
+                    "id": 4914,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "1009:4:16",
@@ -1093,12 +1058,12 @@
               "src": "860:174:16"
             },
             "returnParameters": {
-              "id": 4914,
+              "id": 4917,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1049:0:16"
             },
-            "scope": 4973,
+            "scope": 4976,
             "src": "840:210:16",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1107,22 +1072,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4930,
+            "id": 4933,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "createFile",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4928,
+              "id": 4931,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4917,
+                  "id": 4920,
                   "name": "certificateId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4930,
+                  "scope": 4933,
                   "src": "1085:27:16",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1131,7 +1096,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4916,
+                    "id": 4919,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1085:6:16",
@@ -1145,10 +1110,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4919,
+                  "id": 4922,
                   "name": "fileHash",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4930,
+                  "scope": 4933,
                   "src": "1122:22:16",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1157,7 +1122,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4918,
+                    "id": 4921,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1122:6:16",
@@ -1171,10 +1136,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4921,
+                  "id": 4924,
                   "name": "fileId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4930,
+                  "scope": 4933,
                   "src": "1154:20:16",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1183,7 +1148,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4920,
+                    "id": 4923,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1154:6:16",
@@ -1197,10 +1162,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4923,
+                  "id": 4926,
                   "name": "fileName",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4930,
+                  "scope": 4933,
                   "src": "1184:22:16",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1209,7 +1174,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4922,
+                    "id": 4925,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1184:6:16",
@@ -1223,10 +1188,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4925,
+                  "id": 4928,
                   "name": "fileCreatedAt",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4930,
+                  "scope": 4933,
                   "src": "1216:18:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1235,7 +1200,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 4924,
+                    "id": 4927,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "1216:4:16",
@@ -1249,10 +1214,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4927,
+                  "id": 4930,
                   "name": "fileSize",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4930,
+                  "scope": 4933,
                   "src": "1244:13:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1261,7 +1226,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 4926,
+                    "id": 4929,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "1244:4:16",
@@ -1277,12 +1242,12 @@
               "src": "1075:188:16"
             },
             "returnParameters": {
-              "id": 4929,
+              "id": 4932,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1278:0:16"
             },
-            "scope": 4973,
+            "scope": 4976,
             "src": "1056:223:16",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1291,22 +1256,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4937,
+            "id": 4940,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getCertificate",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4933,
+              "id": 4936,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4932,
+                  "id": 4935,
                   "name": "certificateId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4937,
+                  "scope": 4940,
                   "src": "1318:27:16",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1315,7 +1280,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4931,
+                    "id": 4934,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1318:6:16",
@@ -1331,15 +1296,15 @@
               "src": "1308:43:16"
             },
             "returnParameters": {
-              "id": 4936,
+              "id": 4939,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4935,
+                  "id": 4938,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4937,
+                  "scope": 4940,
                   "src": "1397:7:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1348,7 +1313,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 4934,
+                    "id": 4937,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1397:7:16",
@@ -1364,7 +1329,7 @@
               ],
               "src": "1396:9:16"
             },
-            "scope": 4973,
+            "scope": 4976,
             "src": "1285:121:16",
             "stateMutability": "view",
             "superFunction": null,
@@ -1373,22 +1338,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4946,
+            "id": 4949,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getEvent",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4942,
+              "id": 4945,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4939,
+                  "id": 4942,
                   "name": "certificateId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4946,
+                  "scope": 4949,
                   "src": "1439:27:16",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1397,7 +1362,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4938,
+                    "id": 4941,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1439:6:16",
@@ -1411,10 +1376,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4941,
+                  "id": 4944,
                   "name": "eventId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4946,
+                  "scope": 4949,
                   "src": "1476:21:16",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1423,7 +1388,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4940,
+                    "id": 4943,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1476:6:16",
@@ -1439,31 +1404,31 @@
               "src": "1429:78:16"
             },
             "returnParameters": {
-              "id": 4945,
+              "id": 4948,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4944,
+                  "id": 4947,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4946,
+                  "scope": 4949,
                   "src": "1553:14:16",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_EventInterface_$5151",
+                    "typeIdentifier": "t_contract$_EventInterface_$5154",
                     "typeString": "contract EventInterface"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 4943,
+                    "id": 4946,
                     "name": "EventInterface",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 5151,
+                    "referencedDeclaration": 5154,
                     "src": "1553:14:16",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_EventInterface_$5151",
+                      "typeIdentifier": "t_contract$_EventInterface_$5154",
                       "typeString": "contract EventInterface"
                     }
                   },
@@ -1473,7 +1438,7 @@
               ],
               "src": "1552:16:16"
             },
-            "scope": 4973,
+            "scope": 4976,
             "src": "1412:157:16",
             "stateMutability": "view",
             "superFunction": null,
@@ -1482,22 +1447,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4953,
+            "id": 4956,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getFile",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4949,
+              "id": 4952,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4948,
+                  "id": 4951,
                   "name": "certificateId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4953,
+                  "scope": 4956,
                   "src": "1601:27:16",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1506,7 +1471,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4947,
+                    "id": 4950,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1601:6:16",
@@ -1522,31 +1487,31 @@
               "src": "1591:43:16"
             },
             "returnParameters": {
-              "id": 4952,
+              "id": 4955,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4951,
+                  "id": 4954,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4953,
+                  "scope": 4956,
                   "src": "1680:13:16",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_FileInterface_$5177",
+                    "typeIdentifier": "t_contract$_FileInterface_$5180",
                     "typeString": "contract FileInterface"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 4950,
+                    "id": 4953,
                     "name": "FileInterface",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 5177,
+                    "referencedDeclaration": 5180,
                     "src": "1680:13:16",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_FileInterface_$5177",
+                      "typeIdentifier": "t_contract$_FileInterface_$5180",
                       "typeString": "contract FileInterface"
                     }
                   },
@@ -1556,7 +1521,7 @@
               ],
               "src": "1679:15:16"
             },
-            "scope": 4973,
+            "scope": 4976,
             "src": "1575:120:16",
             "stateMutability": "view",
             "superFunction": null,
@@ -1565,28 +1530,28 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4958,
+            "id": 4961,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getCertificatesSize",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4954,
+              "id": 4957,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1729:2:16"
             },
             "returnParameters": {
-              "id": 4957,
+              "id": 4960,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4956,
+                  "id": 4959,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4958,
+                  "scope": 4961,
                   "src": "1777:4:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1595,7 +1560,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 4955,
+                    "id": 4958,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "1777:4:16",
@@ -1610,7 +1575,7 @@
               ],
               "src": "1776:6:16"
             },
-            "scope": 4973,
+            "scope": 4976,
             "src": "1701:82:16",
             "stateMutability": "view",
             "superFunction": null,
@@ -1619,22 +1584,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4965,
+            "id": 4968,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "_certificateExist",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4961,
+              "id": 4964,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4960,
+                  "id": 4963,
                   "name": "certificateId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4965,
+                  "scope": 4968,
                   "src": "1825:27:16",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1643,7 +1608,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4959,
+                    "id": 4962,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1825:6:16",
@@ -1659,15 +1624,15 @@
               "src": "1815:43:16"
             },
             "returnParameters": {
-              "id": 4964,
+              "id": 4967,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4963,
+                  "id": 4966,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4965,
+                  "scope": 4968,
                   "src": "1905:4:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1676,7 +1641,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 4962,
+                    "id": 4965,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "1905:4:16",
@@ -1691,7 +1656,7 @@
               ],
               "src": "1904:6:16"
             },
-            "scope": 4973,
+            "scope": 4976,
             "src": "1789:122:16",
             "stateMutability": "view",
             "superFunction": null,
@@ -1700,22 +1665,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4972,
+            "id": 4975,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "_getCertificate",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4968,
+              "id": 4971,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4967,
+                  "id": 4970,
                   "name": "certificateId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4972,
+                  "scope": 4975,
                   "src": "1951:27:16",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1724,7 +1689,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4966,
+                    "id": 4969,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1951:6:16",
@@ -1740,31 +1705,31 @@
               "src": "1941:43:16"
             },
             "returnParameters": {
-              "id": 4971,
+              "id": 4974,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4970,
+                  "id": 4973,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4972,
+                  "scope": 4975,
                   "src": "2018:20:16",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_CertificateInterface_$4856",
+                    "typeIdentifier": "t_contract$_CertificateInterface_$4859",
                     "typeString": "contract CertificateInterface"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 4969,
+                    "id": 4972,
                     "name": "CertificateInterface",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 4856,
+                    "referencedDeclaration": 4859,
                     "src": "2018:20:16",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_CertificateInterface_$4856",
+                      "typeIdentifier": "t_contract$_CertificateInterface_$4859",
                       "typeString": "contract CertificateInterface"
                     }
                   },
@@ -1774,31 +1739,31 @@
               ],
               "src": "2017:22:16"
             },
-            "scope": 4973,
+            "scope": 4976,
             "src": "1917:123:16",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "private"
           }
         ],
-        "scope": 4974,
+        "scope": 4977,
         "src": "125:1917:16"
       }
     ],
     "src": "0:2043:16"
   },
   "legacyAST": {
-    "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/CertifiedEmailInterface.sol",
+    "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/CertifiedEmailInterface.sol",
     "exportedSymbols": {
       "CertifiedEmailInterface": [
-        4973
+        4976
       ]
     },
-    "id": 4974,
+    "id": 4977,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 4858,
+        "id": 4861,
         "literals": [
           "solidity",
           "<",
@@ -1809,34 +1774,34 @@
         "src": "0:23:16"
       },
       {
-        "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/UserInterface.sol",
+        "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/UserInterface.sol",
         "file": "./UserInterface.sol",
-        "id": 4859,
+        "id": 4862,
         "nodeType": "ImportDirective",
-        "scope": 4974,
-        "sourceUnit": 5592,
+        "scope": 4977,
+        "sourceUnit": 5595,
         "src": "25:29:16",
         "symbolAliases": [],
         "unitAlias": ""
       },
       {
-        "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/CertificateInterface.sol",
+        "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/CertificateInterface.sol",
         "file": "./CertificateInterface.sol",
-        "id": 4860,
+        "id": 4863,
         "nodeType": "ImportDirective",
-        "scope": 4974,
-        "sourceUnit": 4857,
+        "scope": 4977,
+        "sourceUnit": 4860,
         "src": "55:36:16",
         "symbolAliases": [],
         "unitAlias": ""
       },
       {
-        "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/EventInterface.sol",
+        "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/EventInterface.sol",
         "file": "./EventInterface.sol",
-        "id": 4861,
+        "id": 4864,
         "nodeType": "ImportDirective",
-        "scope": 4974,
-        "sourceUnit": 5152,
+        "scope": 4977,
+        "sourceUnit": 5155,
         "src": "92:30:16",
         "symbolAliases": [],
         "unitAlias": ""
@@ -1847,19 +1812,19 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 4973,
+        "id": 4976,
         "linearizedBaseContracts": [
-          4973
+          4976
         ],
         "name": "CertifiedEmailInterface",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 4863,
+            "id": 4866,
             "name": "signaturit",
             "nodeType": "VariableDeclaration",
-            "scope": 4973,
+            "scope": 4976,
             "src": "164:25:16",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1868,7 +1833,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 4862,
+              "id": 4865,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "164:7:16",
@@ -1883,10 +1848,10 @@
           },
           {
             "constant": false,
-            "id": 4865,
+            "id": 4868,
             "name": "deployer",
             "nodeType": "VariableDeclaration",
-            "scope": 4973,
+            "scope": 4976,
             "src": "195:23:16",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1895,7 +1860,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 4864,
+              "id": 4867,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "195:7:16",
@@ -1910,10 +1875,10 @@
           },
           {
             "constant": false,
-            "id": 4867,
+            "id": 4870,
             "name": "owner",
             "nodeType": "VariableDeclaration",
-            "scope": 4973,
+            "scope": 4976,
             "src": "224:20:16",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1922,7 +1887,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 4866,
+              "id": 4869,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "224:7:16",
@@ -1937,10 +1902,10 @@
           },
           {
             "constant": false,
-            "id": 4869,
+            "id": 4872,
             "name": "id",
             "nodeType": "VariableDeclaration",
-            "scope": 4973,
+            "scope": 4976,
             "src": "251:16:16",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1949,7 +1914,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 4868,
+              "id": 4871,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "251:6:16",
@@ -1963,10 +1928,10 @@
           },
           {
             "constant": false,
-            "id": 4871,
+            "id": 4874,
             "name": "subjectHash",
             "nodeType": "VariableDeclaration",
-            "scope": 4973,
+            "scope": 4976,
             "src": "273:25:16",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1975,7 +1940,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 4870,
+              "id": 4873,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "273:6:16",
@@ -1989,10 +1954,10 @@
           },
           {
             "constant": false,
-            "id": 4873,
+            "id": 4876,
             "name": "bodyHash",
             "nodeType": "VariableDeclaration",
-            "scope": 4973,
+            "scope": 4976,
             "src": "304:22:16",
             "stateVariable": true,
             "storageLocation": "default",
@@ -2001,7 +1966,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 4872,
+              "id": 4875,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "304:6:16",
@@ -2015,10 +1980,10 @@
           },
           {
             "constant": false,
-            "id": 4875,
+            "id": 4878,
             "name": "deliveryType",
             "nodeType": "VariableDeclaration",
-            "scope": 4973,
+            "scope": 4976,
             "src": "332:26:16",
             "stateVariable": true,
             "storageLocation": "default",
@@ -2027,7 +1992,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 4874,
+              "id": 4877,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "332:6:16",
@@ -2041,10 +2006,10 @@
           },
           {
             "constant": false,
-            "id": 4878,
+            "id": 4881,
             "name": "certificatesId",
             "nodeType": "VariableDeclaration",
-            "scope": 4973,
+            "scope": 4976,
             "src": "365:30:16",
             "stateVariable": true,
             "storageLocation": "default",
@@ -2054,7 +2019,7 @@
             },
             "typeName": {
               "baseType": {
-                "id": 4876,
+                "id": 4879,
                 "name": "string",
                 "nodeType": "ElementaryTypeName",
                 "src": "365:6:16",
@@ -2063,7 +2028,7 @@
                   "typeString": "string"
                 }
               },
-              "id": 4877,
+              "id": 4880,
               "length": null,
               "nodeType": "ArrayTypeName",
               "src": "365:8:16",
@@ -2077,10 +2042,10 @@
           },
           {
             "constant": false,
-            "id": 4880,
+            "id": 4883,
             "name": "createdAt",
             "nodeType": "VariableDeclaration",
-            "scope": 4973,
+            "scope": 4976,
             "src": "402:21:16",
             "stateVariable": true,
             "storageLocation": "default",
@@ -2089,7 +2054,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 4879,
+              "id": 4882,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
               "src": "402:4:16",
@@ -2103,26 +2068,26 @@
           },
           {
             "constant": false,
-            "id": 4882,
+            "id": 4885,
             "name": "userSmartContract",
             "nodeType": "VariableDeclaration",
-            "scope": 4973,
+            "scope": 4976,
             "src": "430:38:16",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_UserInterface_$5591",
+              "typeIdentifier": "t_contract$_UserInterface_$5594",
               "typeString": "contract UserInterface"
             },
             "typeName": {
               "contractScope": null,
-              "id": 4881,
+              "id": 4884,
               "name": "UserInterface",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 5591,
+              "referencedDeclaration": 5594,
               "src": "430:13:16",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_UserInterface_$5591",
+                "typeIdentifier": "t_contract$_UserInterface_$5594",
                 "typeString": "contract UserInterface"
               }
             },
@@ -2131,21 +2096,21 @@
           },
           {
             "constant": false,
-            "id": 4886,
+            "id": 4889,
             "name": "certificates",
             "nodeType": "VariableDeclaration",
-            "scope": 4973,
+            "scope": 4976,
             "src": "475:60:16",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_string_memory_$_t_contract$_CertificateInterface_$4856_$",
+              "typeIdentifier": "t_mapping$_t_string_memory_$_t_contract$_CertificateInterface_$4859_$",
               "typeString": "mapping(string => contract CertificateInterface)"
             },
             "typeName": {
-              "id": 4885,
+              "id": 4888,
               "keyType": {
-                "id": 4883,
+                "id": 4886,
                 "name": "string",
                 "nodeType": "ElementaryTypeName",
                 "src": "483:6:16",
@@ -2157,18 +2122,18 @@
               "nodeType": "Mapping",
               "src": "475:39:16",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_string_memory_$_t_contract$_CertificateInterface_$4856_$",
+                "typeIdentifier": "t_mapping$_t_string_memory_$_t_contract$_CertificateInterface_$4859_$",
                 "typeString": "mapping(string => contract CertificateInterface)"
               },
               "valueType": {
                 "contractScope": null,
-                "id": 4884,
+                "id": 4887,
                 "name": "CertificateInterface",
                 "nodeType": "UserDefinedTypeName",
-                "referencedDeclaration": 4856,
+                "referencedDeclaration": 4859,
                 "src": "493:20:16",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_contract$_CertificateInterface_$4856",
+                  "typeIdentifier": "t_contract$_CertificateInterface_$4859",
                   "typeString": "contract CertificateInterface"
                 }
               }
@@ -2179,22 +2144,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4893,
+            "id": 4896,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "setCertifiedEmailOwner",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4891,
+              "id": 4894,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4888,
+                  "id": 4891,
                   "name": "certifiedEmailOwner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4893,
+                  "scope": 4896,
                   "src": "583:27:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2203,7 +2168,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 4887,
+                    "id": 4890,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "583:7:16",
@@ -2218,10 +2183,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4890,
+                  "id": 4893,
                   "name": "userSmartContractAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4893,
+                  "scope": 4896,
                   "src": "620:32:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2230,7 +2195,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 4889,
+                    "id": 4892,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "620:7:16",
@@ -2247,12 +2212,12 @@
               "src": "573:85:16"
             },
             "returnParameters": {
-              "id": 4892,
+              "id": 4895,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "673:0:16"
             },
-            "scope": 4973,
+            "scope": 4976,
             "src": "542:132:16",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -2261,22 +2226,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4902,
+            "id": 4905,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "createCertificate",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4900,
+              "id": 4903,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4895,
+                  "id": 4898,
                   "name": "certificateId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4902,
+                  "scope": 4905,
                   "src": "716:27:16",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -2285,7 +2250,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4894,
+                    "id": 4897,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "716:6:16",
@@ -2299,10 +2264,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4897,
+                  "id": 4900,
                   "name": "certificateCreatedAt",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4902,
+                  "scope": 4905,
                   "src": "753:25:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2311,7 +2276,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 4896,
+                    "id": 4899,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "753:4:16",
@@ -2325,10 +2290,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4899,
+                  "id": 4902,
                   "name": "certificateOwner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4902,
+                  "scope": 4905,
                   "src": "788:24:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2337,7 +2302,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 4898,
+                    "id": 4901,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "788:7:16",
@@ -2354,12 +2319,12 @@
               "src": "706:112:16"
             },
             "returnParameters": {
-              "id": 4901,
+              "id": 4904,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "833:0:16"
             },
-            "scope": 4973,
+            "scope": 4976,
             "src": "680:154:16",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -2368,22 +2333,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4915,
+            "id": 4918,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "createEvent",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4913,
+              "id": 4916,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4904,
+                  "id": 4907,
                   "name": "certificateId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4915,
+                  "scope": 4918,
                   "src": "870:27:16",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -2392,7 +2357,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4903,
+                    "id": 4906,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "870:6:16",
@@ -2406,10 +2371,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4906,
+                  "id": 4909,
                   "name": "eventId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4915,
+                  "scope": 4918,
                   "src": "907:21:16",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -2418,7 +2383,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4905,
+                    "id": 4908,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "907:6:16",
@@ -2432,10 +2397,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4908,
+                  "id": 4911,
                   "name": "eventType",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4915,
+                  "scope": 4918,
                   "src": "938:23:16",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -2444,7 +2409,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4907,
+                    "id": 4910,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "938:6:16",
@@ -2458,10 +2423,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4910,
+                  "id": 4913,
                   "name": "eventUserAgent",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4915,
+                  "scope": 4918,
                   "src": "971:28:16",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -2470,7 +2435,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4909,
+                    "id": 4912,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "971:6:16",
@@ -2484,10 +2449,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4912,
+                  "id": 4915,
                   "name": "eventCreatedAt",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4915,
+                  "scope": 4918,
                   "src": "1009:19:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2496,7 +2461,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 4911,
+                    "id": 4914,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "1009:4:16",
@@ -2512,12 +2477,12 @@
               "src": "860:174:16"
             },
             "returnParameters": {
-              "id": 4914,
+              "id": 4917,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1049:0:16"
             },
-            "scope": 4973,
+            "scope": 4976,
             "src": "840:210:16",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -2526,22 +2491,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4930,
+            "id": 4933,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "createFile",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4928,
+              "id": 4931,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4917,
+                  "id": 4920,
                   "name": "certificateId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4930,
+                  "scope": 4933,
                   "src": "1085:27:16",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -2550,7 +2515,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4916,
+                    "id": 4919,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1085:6:16",
@@ -2564,10 +2529,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4919,
+                  "id": 4922,
                   "name": "fileHash",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4930,
+                  "scope": 4933,
                   "src": "1122:22:16",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -2576,7 +2541,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4918,
+                    "id": 4921,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1122:6:16",
@@ -2590,10 +2555,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4921,
+                  "id": 4924,
                   "name": "fileId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4930,
+                  "scope": 4933,
                   "src": "1154:20:16",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -2602,7 +2567,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4920,
+                    "id": 4923,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1154:6:16",
@@ -2616,10 +2581,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4923,
+                  "id": 4926,
                   "name": "fileName",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4930,
+                  "scope": 4933,
                   "src": "1184:22:16",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -2628,7 +2593,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4922,
+                    "id": 4925,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1184:6:16",
@@ -2642,10 +2607,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4925,
+                  "id": 4928,
                   "name": "fileCreatedAt",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4930,
+                  "scope": 4933,
                   "src": "1216:18:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2654,7 +2619,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 4924,
+                    "id": 4927,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "1216:4:16",
@@ -2668,10 +2633,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4927,
+                  "id": 4930,
                   "name": "fileSize",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4930,
+                  "scope": 4933,
                   "src": "1244:13:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2680,7 +2645,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 4926,
+                    "id": 4929,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "1244:4:16",
@@ -2696,12 +2661,12 @@
               "src": "1075:188:16"
             },
             "returnParameters": {
-              "id": 4929,
+              "id": 4932,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1278:0:16"
             },
-            "scope": 4973,
+            "scope": 4976,
             "src": "1056:223:16",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -2710,22 +2675,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4937,
+            "id": 4940,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getCertificate",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4933,
+              "id": 4936,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4932,
+                  "id": 4935,
                   "name": "certificateId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4937,
+                  "scope": 4940,
                   "src": "1318:27:16",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -2734,7 +2699,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4931,
+                    "id": 4934,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1318:6:16",
@@ -2750,15 +2715,15 @@
               "src": "1308:43:16"
             },
             "returnParameters": {
-              "id": 4936,
+              "id": 4939,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4935,
+                  "id": 4938,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4937,
+                  "scope": 4940,
                   "src": "1397:7:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2767,7 +2732,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 4934,
+                    "id": 4937,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1397:7:16",
@@ -2783,7 +2748,7 @@
               ],
               "src": "1396:9:16"
             },
-            "scope": 4973,
+            "scope": 4976,
             "src": "1285:121:16",
             "stateMutability": "view",
             "superFunction": null,
@@ -2792,22 +2757,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4946,
+            "id": 4949,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getEvent",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4942,
+              "id": 4945,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4939,
+                  "id": 4942,
                   "name": "certificateId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4946,
+                  "scope": 4949,
                   "src": "1439:27:16",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -2816,7 +2781,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4938,
+                    "id": 4941,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1439:6:16",
@@ -2830,10 +2795,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4941,
+                  "id": 4944,
                   "name": "eventId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4946,
+                  "scope": 4949,
                   "src": "1476:21:16",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -2842,7 +2807,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4940,
+                    "id": 4943,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1476:6:16",
@@ -2858,31 +2823,31 @@
               "src": "1429:78:16"
             },
             "returnParameters": {
-              "id": 4945,
+              "id": 4948,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4944,
+                  "id": 4947,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4946,
+                  "scope": 4949,
                   "src": "1553:14:16",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_EventInterface_$5151",
+                    "typeIdentifier": "t_contract$_EventInterface_$5154",
                     "typeString": "contract EventInterface"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 4943,
+                    "id": 4946,
                     "name": "EventInterface",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 5151,
+                    "referencedDeclaration": 5154,
                     "src": "1553:14:16",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_EventInterface_$5151",
+                      "typeIdentifier": "t_contract$_EventInterface_$5154",
                       "typeString": "contract EventInterface"
                     }
                   },
@@ -2892,7 +2857,7 @@
               ],
               "src": "1552:16:16"
             },
-            "scope": 4973,
+            "scope": 4976,
             "src": "1412:157:16",
             "stateMutability": "view",
             "superFunction": null,
@@ -2901,22 +2866,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4953,
+            "id": 4956,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getFile",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4949,
+              "id": 4952,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4948,
+                  "id": 4951,
                   "name": "certificateId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4953,
+                  "scope": 4956,
                   "src": "1601:27:16",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -2925,7 +2890,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4947,
+                    "id": 4950,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1601:6:16",
@@ -2941,31 +2906,31 @@
               "src": "1591:43:16"
             },
             "returnParameters": {
-              "id": 4952,
+              "id": 4955,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4951,
+                  "id": 4954,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4953,
+                  "scope": 4956,
                   "src": "1680:13:16",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_FileInterface_$5177",
+                    "typeIdentifier": "t_contract$_FileInterface_$5180",
                     "typeString": "contract FileInterface"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 4950,
+                    "id": 4953,
                     "name": "FileInterface",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 5177,
+                    "referencedDeclaration": 5180,
                     "src": "1680:13:16",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_FileInterface_$5177",
+                      "typeIdentifier": "t_contract$_FileInterface_$5180",
                       "typeString": "contract FileInterface"
                     }
                   },
@@ -2975,7 +2940,7 @@
               ],
               "src": "1679:15:16"
             },
-            "scope": 4973,
+            "scope": 4976,
             "src": "1575:120:16",
             "stateMutability": "view",
             "superFunction": null,
@@ -2984,28 +2949,28 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4958,
+            "id": 4961,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getCertificatesSize",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4954,
+              "id": 4957,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1729:2:16"
             },
             "returnParameters": {
-              "id": 4957,
+              "id": 4960,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4956,
+                  "id": 4959,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4958,
+                  "scope": 4961,
                   "src": "1777:4:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3014,7 +2979,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 4955,
+                    "id": 4958,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "1777:4:16",
@@ -3029,7 +2994,7 @@
               ],
               "src": "1776:6:16"
             },
-            "scope": 4973,
+            "scope": 4976,
             "src": "1701:82:16",
             "stateMutability": "view",
             "superFunction": null,
@@ -3038,22 +3003,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4965,
+            "id": 4968,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "_certificateExist",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4961,
+              "id": 4964,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4960,
+                  "id": 4963,
                   "name": "certificateId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4965,
+                  "scope": 4968,
                   "src": "1825:27:16",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -3062,7 +3027,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4959,
+                    "id": 4962,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1825:6:16",
@@ -3078,15 +3043,15 @@
               "src": "1815:43:16"
             },
             "returnParameters": {
-              "id": 4964,
+              "id": 4967,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4963,
+                  "id": 4966,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4965,
+                  "scope": 4968,
                   "src": "1905:4:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3095,7 +3060,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 4962,
+                    "id": 4965,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "1905:4:16",
@@ -3110,7 +3075,7 @@
               ],
               "src": "1904:6:16"
             },
-            "scope": 4973,
+            "scope": 4976,
             "src": "1789:122:16",
             "stateMutability": "view",
             "superFunction": null,
@@ -3119,22 +3084,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4972,
+            "id": 4975,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "_getCertificate",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4968,
+              "id": 4971,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4967,
+                  "id": 4970,
                   "name": "certificateId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4972,
+                  "scope": 4975,
                   "src": "1951:27:16",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -3143,7 +3108,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4966,
+                    "id": 4969,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1951:6:16",
@@ -3159,31 +3124,31 @@
               "src": "1941:43:16"
             },
             "returnParameters": {
-              "id": 4971,
+              "id": 4974,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4970,
+                  "id": 4973,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4972,
+                  "scope": 4975,
                   "src": "2018:20:16",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_CertificateInterface_$4856",
+                    "typeIdentifier": "t_contract$_CertificateInterface_$4859",
                     "typeString": "contract CertificateInterface"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 4969,
+                    "id": 4972,
                     "name": "CertificateInterface",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 4856,
+                    "referencedDeclaration": 4859,
                     "src": "2018:20:16",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_CertificateInterface_$4856",
+                      "typeIdentifier": "t_contract$_CertificateInterface_$4859",
                       "typeString": "contract CertificateInterface"
                     }
                   },
@@ -3193,14 +3158,14 @@
               ],
               "src": "2017:22:16"
             },
-            "scope": 4973,
+            "scope": 4976,
             "src": "1917:123:16",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "private"
           }
         ],
-        "scope": 4974,
+        "scope": 4977,
         "src": "125:1917:16"
       }
     ],
@@ -3208,11 +3173,11 @@
   },
   "compiler": {
     "name": "solc",
-    "version": "0.5.11+commit.c082d0b4.Emscripten.clang"
+    "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.0.11",
-  "updatedAt": "2019-08-30T12:59:40.779Z",
+  "schemaVersion": "3.0.13",
+  "updatedAt": "2019-09-02T13:03:09.920Z",
   "devdoc": {
     "methods": {}
   },

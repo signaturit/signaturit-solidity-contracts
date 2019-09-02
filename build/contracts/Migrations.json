@@ -7,7 +7,6 @@
       "name": "owner",
       "outputs": [
         {
-          "internalType": "address",
           "name": "",
           "type": "address"
         }
@@ -22,7 +21,6 @@
       "name": "lastCompletedMigration",
       "outputs": [
         {
-          "internalType": "uint256",
           "name": "",
           "type": "uint256"
         }
@@ -41,7 +39,6 @@
       "constant": false,
       "inputs": [
         {
-          "internalType": "uint256",
           "name": "completed",
           "type": "uint256"
         }
@@ -56,7 +53,6 @@
       "constant": false,
       "inputs": [
         {
-          "internalType": "address",
           "name": "new_address",
           "type": "address"
         }
@@ -68,15 +64,15 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.11+commit.c082d0b4\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"new_address\",\"type\":\"address\"}],\"name\":\"upgrade\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"lastCompletedMigration\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"completed\",\"type\":\"uint256\"}],\"name\":\"setCompleted\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/home/administrator/workspace/signaturit-solidity-contracts/contracts/Migrations.sol\":\"Migrations\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":10},\"remappings\":[]},\"sources\":{\"/home/administrator/workspace/signaturit-solidity-contracts/contracts/Migrations.sol\":{\"keccak256\":\"0x85fb7d90a700546f739959e45a586c18fb565571aebd763719b09e8af527bb23\",\"urls\":[\"bzz-raw://e40998e3210b11e3bf3bac45a4d6468498c98e18e1ae320075d8286811ba5d03\",\"dweb:/ipfs/QmTght1TMtKCkj4cUD8UDw2xpwCuD4QGWobkVPYZxpYJ1h\"]}},\"version\":1}",
-  "bytecode": "0x608060405234801561001057600080fd5b50600080546001600160a01b031916331790556101b3806100326000396000f3fe608060405234801561001057600080fd5b506004361061004c5760003560e01c80630900f010146100515780638da5cb5b14610079578063fbdbad3c1461009d578063fdacd576146100b7575b600080fd5b6100776004803603602081101561006757600080fd5b50356001600160a01b03166100d4565b005b610081610151565b604080516001600160a01b039092168252519081900360200190f35b6100a5610160565b60408051918252519081900360200190f35b610077600480360360208110156100cd57600080fd5b5035610166565b6000546001600160a01b031633141561014e576000819050806001600160a01b031663fdacd5766001546040518263ffffffff1660e01b815260040180828152602001915050600060405180830381600087803b15801561013457600080fd5b505af1158015610148573d6000803e3d6000fd5b50505050505b50565b6000546001600160a01b031681565b60015481565b6000546001600160a01b031633141561014e5760015556fea265627a7a723158209bcb14dcd824982820e2a35e3d9386899563ff637a99ba05f2af85b9e9b86f7864736f6c634300050b0032",
-  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061004c5760003560e01c80630900f010146100515780638da5cb5b14610079578063fbdbad3c1461009d578063fdacd576146100b7575b600080fd5b6100776004803603602081101561006757600080fd5b50356001600160a01b03166100d4565b005b610081610151565b604080516001600160a01b039092168252519081900360200190f35b6100a5610160565b60408051918252519081900360200190f35b610077600480360360208110156100cd57600080fd5b5035610166565b6000546001600160a01b031633141561014e576000819050806001600160a01b031663fdacd5766001546040518263ffffffff1660e01b815260040180828152602001915050600060405180830381600087803b15801561013457600080fd5b505af1158015610148573d6000803e3d6000fd5b50505050505b50565b6000546001600160a01b031681565b60015481565b6000546001600160a01b031633141561014e5760015556fea265627a7a723158209bcb14dcd824982820e2a35e3d9386899563ff637a99ba05f2af85b9e9b86f7864736f6c634300050b0032",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.0+commit.1d4f565a\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"name\":\"new_address\",\"type\":\"address\"}],\"name\":\"upgrade\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"lastCompletedMigration\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"completed\",\"type\":\"uint256\"}],\"name\":\"setCompleted\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/alex/workspace/signaturit-solidity-contracts/contracts/Migrations.sol\":\"Migrations\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":10},\"remappings\":[]},\"sources\":{\"/Users/alex/workspace/signaturit-solidity-contracts/contracts/Migrations.sol\":{\"keccak256\":\"0x85fb7d90a700546f739959e45a586c18fb565571aebd763719b09e8af527bb23\",\"urls\":[\"bzzr://795f00a6f359a20f83026b04cf77dd3b1d02fde416c92fbb385349560d484fdd\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b5060008054600160a060020a031916331790556101dd806100326000396000f3fe6080604052600436106100485763ffffffff60e060020a6000350416630900f010811461004d5780638da5cb5b14610082578063fbdbad3c146100b3578063fdacd576146100da575b600080fd5b34801561005957600080fd5b506100806004803603602081101561007057600080fd5b5035600160a060020a0316610104565b005b34801561008e57600080fd5b50610097610184565b60408051600160a060020a039092168252519081900360200190f35b3480156100bf57600080fd5b506100c8610193565b60408051918252519081900360200190f35b3480156100e657600080fd5b50610080600480360360208110156100fd57600080fd5b5035610199565b600054600160a060020a031633141561018157600081905080600160a060020a031663fdacd5766001546040518263ffffffff1660e060020a02815260040180828152602001915050600060405180830381600087803b15801561016757600080fd5b505af115801561017b573d6000803e3d6000fd5b50505050505b50565b600054600160a060020a031681565b60015481565b600054600160a060020a03163314156101815760015556fea165627a7a723058200d62c57cebd196615a7e9e9bb61b84a312085b31dd2bd32dff1f7624b8d092d30029",
+  "deployedBytecode": "0x6080604052600436106100485763ffffffff60e060020a6000350416630900f010811461004d5780638da5cb5b14610082578063fbdbad3c146100b3578063fdacd576146100da575b600080fd5b34801561005957600080fd5b506100806004803603602081101561007057600080fd5b5035600160a060020a0316610104565b005b34801561008e57600080fd5b50610097610184565b60408051600160a060020a039092168252519081900360200190f35b3480156100bf57600080fd5b506100c8610193565b60408051918252519081900360200190f35b3480156100e657600080fd5b50610080600480360360208110156100fd57600080fd5b5035610199565b600054600160a060020a031633141561018157600081905080600160a060020a031663fdacd5766001546040518263ffffffff1660e060020a02815260040180828152602001915050600060405180830381600087803b15801561016757600080fd5b505af115801561017b573d6000803e3d6000fd5b50505050505b50565b600054600160a060020a031681565b60015481565b600054600160a060020a03163314156101815760015556fea165627a7a723058200d62c57cebd196615a7e9e9bb61b84a312085b31dd2bd32dff1f7624b8d092d30029",
   "sourceMap": "26:595:9:-;;;119:56;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;150:5:9;:18;;-1:-1:-1;;;;;;150:18:9;158:10;150:18;;;26:595;;;;;;",
-  "deployedSourceMap": "26:595:9:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;26:595:9;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;412:207;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;412:207:9;-1:-1:-1;;;;;412:207:9;;:::i;:::-;;52:20;;;:::i;:::-;;;;-1:-1:-1;;;;;52:20:9;;;;;;;;;;;;;;78:34;;;:::i;:::-;;;;;;;;;;;;;;;;265:141;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;265:141:9;;:::i;412:207::-;231:5;;-1:-1:-1;;;;;231:5:9;217:10;:19;213:39;;;512:19;545:11;512:45;;567:8;-1:-1:-1;;;;;567:21:9;;589:22;;567:45;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;567:45:9;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;567:45:9;;;;251:1;213:39;412:207;:::o;52:20::-;;;-1:-1:-1;;;;;52:20:9;;:::o;78:34::-;;;;:::o;265:141::-;231:5;;-1:-1:-1;;;;;231:5:9;217:10;:19;213:39;;;365:22;:34;265:141::o",
+  "deployedSourceMap": "26:595:9:-;;;;;;;;;-1:-1:-1;;;26:595:9;;;;;;;;;;;;;;;;;;;;;;;;;;;;412:207;;8:9:-1;5:2;;;30:1;27;20:12;5:2;412:207:9;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;412:207:9;-1:-1:-1;;;;;412:207:9;;;;;52:20;;8:9:-1;5:2;;;30:1;27;20:12;5:2;52:20:9;;;;;;;;-1:-1:-1;;;;;52:20:9;;;;;;;;;;;;;;78:34;;8:9:-1;5:2;;;30:1;27;20:12;5:2;78:34:9;;;;;;;;;;;;;;;;;;;;265:141;;8:9:-1;5:2;;;30:1;27;20:12;5:2;265:141:9;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;265:141:9;;;412:207;231:5;;-1:-1:-1;;;;;231:5:9;217:10;:19;213:39;;;512:19;545:11;512:45;;567:8;-1:-1:-1;;;;;567:21:9;;589:22;;567:45;;;;;-1:-1:-1;;;567:45:9;;;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;567:45:9;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;567:45:9;;;;251:1;213:39;412:207;:::o;52:20::-;;;-1:-1:-1;;;;;52:20:9;;:::o;78:34::-;;;;:::o;265:141::-;231:5;;-1:-1:-1;;;;;231:5:9;217:10;:19;213:39;;;365:22;:34;265:141::o",
   "source": "pragma solidity <0.6.0;\n\n\ncontract Migrations {\n    address public owner;\n    uint public lastCompletedMigration;\n\n    constructor() public {\n        owner = msg.sender;\n    }\n\n    modifier restricted() {\n        if (msg.sender == owner)\n\n            _;\n    }\n\n    function setCompleted(\n        uint completed\n    )\n        public\n        restricted\n    {\n        lastCompletedMigration = completed;\n    }\n\n    function upgrade(\n        address new_address\n    )\n        public\n        restricted\n    {\n        Migrations upgraded = Migrations(new_address);\n        upgraded.setCompleted(lastCompletedMigration);\n    }\n}\n",
-  "sourcePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/Migrations.sol",
+  "sourcePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/Migrations.sol",
   "ast": {
-    "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/Migrations.sol",
+    "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/Migrations.sol",
     "exportedSymbols": {
       "Migrations": [
         1673
@@ -199,7 +195,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 5629,
+                        "referencedDeclaration": 5632,
                         "src": "158:3:9",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -283,7 +279,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 5629,
+                        "referencedDeclaration": 5632,
                         "src": "217:3:9",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -722,7 +718,7 @@
     "src": "0:622:9"
   },
   "legacyAST": {
-    "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/Migrations.sol",
+    "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/Migrations.sol",
     "exportedSymbols": {
       "Migrations": [
         1673
@@ -845,7 +841,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 5629,
+                        "referencedDeclaration": 5632,
                         "src": "158:3:9",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -929,7 +925,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 5629,
+                        "referencedDeclaration": 5632,
                         "src": "217:3:9",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -1369,11 +1365,11 @@
   },
   "compiler": {
     "name": "solc",
-    "version": "0.5.11+commit.c082d0b4.Emscripten.clang"
+    "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.0.11",
-  "updatedAt": "2019-08-30T12:59:40.740Z",
+  "schemaVersion": "3.0.13",
+  "updatedAt": "2019-09-02T13:03:09.861Z",
   "devdoc": {
     "methods": {}
   },
