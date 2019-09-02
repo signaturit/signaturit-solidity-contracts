@@ -17,6 +17,9 @@ contract('Signature', async (accounts) => {
     const documentOwnerAddress = accounts[2];
     const invalidAddress = accounts[3];
     const userAddress = accounts[4];
+    const clauseAddress = accounts[5];
+
+    const nullAddress = "0x0000000000000000000000000000000000000000";
 
     const fileId = v4();
     const fileName = 'File name';
@@ -26,6 +29,7 @@ contract('Signature', async (accounts) => {
     const eventId = v4();
 
     const documentId = v4();
+    const clauseType = "timelogger";
     const documentSignatureType = 'advanced';
     const notExistingDocumentId = v4();
     const signedFileHash = 'Signed file hash';
@@ -140,6 +144,26 @@ contract('Signature', async (accounts) => {
         assert.equal(readDocumentsSize, 1);
     });
 
+    it('Create a new document as not Signaturit account, expect exception', async() => {
+        try {
+            await signatureContract.createDocument(
+                documentId,
+                signatureType,
+                createdAt,
+                {
+                    from: invalidAddress
+                }
+            );
+
+            assert.fail("This account can't add the owner");
+        } catch (error) {
+            assert.include(
+                error.message,
+                'Only Signaturit account can perform this action.',
+            );
+        }
+    });
+
     it('Create new document and cancel it', async () => {
         const transaction = await signatureContract.createDocument(
             documentId,
@@ -168,18 +192,37 @@ contract('Signature', async (accounts) => {
         assert.ok(readCancelStatus);
     });
 
+    it('Create a new document and cancel it as not owner account, expect exception', async() => {
+        const transaction = await signatureContract.createDocument(
+            documentId,
+            signatureType,
+            createdAt,
+            {
+                from: signaturitAddress
+            }
+        );
 
-    it('Access to unexisting document', async () => {
         try {
-            await signatureContract.getDocument(notExistingDocumentId);
-
-            assert.fail("The document don't exist");
+            await signatureContract.cancelDocument(
+                documentId,
+                cancelReason,
+                {
+                    from: invalidAddress
+                }
+            )
+            assert.fail("This account can't add the owner");
         } catch (error) {
             assert.include(
                 error.message,
-                "Returned error: VM Exception while processing transaction: revert",
+                'Only the owner account can perform this action.',
             );
         }
+    });
+
+    it('Access to unexisting document', async () => {
+        const readAddress = await signatureContract.getDocument(notExistingDocumentId);
+
+        assert.equal(readAddress, nullAddress);
     });
 
     it('Add owner to existing document', async () => {
@@ -197,6 +240,25 @@ contract('Signature', async (accounts) => {
             documentId,
             documentOwnerAddress
         );
+    });
+
+    it("Add owner to document as not Signaturit account, expect exception", async() => {
+        try {
+            await signatureContract.setDocumentOwner(
+                documentId,
+                documentOwnerAddress,
+                {
+                    from: invalidAddress
+                }
+            );
+
+            assert.fail("This account can't add the owner");
+        } catch (error) {
+            assert.include(
+                error.message,
+                'Only Signaturit account can perform this action.',
+            );
+        }
     });
 
     it('Sign document with from the owner address', async () => {
@@ -363,6 +425,30 @@ contract('Signature', async (accounts) => {
         assert.equal(documentId, readDocumentId);
     });
 
+    it('Add file as nog Signaturit account, expect exception', async() => {
+        try {
+            await signatureContract.createFile(
+                documentId,
+                fileId,
+                fileName,
+                fileHash,
+                createdAt,
+                fileSize,
+                {
+                    from: invalidAddress
+                }
+            );
+
+            assert.fail("This account can't create a file");
+        } catch (error) {
+            assert.include(
+                error.message,
+                'Only Signaturit account can perform this action.',
+            );
+        }
+    });
+
+
     it('Add event to uncreated document', async () => {
         await signatureContract.createEvent(
             documentId,
@@ -390,6 +476,28 @@ contract('Signature', async (accounts) => {
         assert.equal(readEvent.adr, readEventAddress);
         assert.equal(eventId,readEventId);
         assert.equal(eventType, readEventType);
+    });
+
+    it('Add event as not signaturit account, expect exception', async() => {
+        try {
+            await signatureContract.createEvent(
+                documentId,
+                eventId,
+                eventType,
+                eventUserAgent,
+                createdAt,
+                {
+                    from: invalidAddress
+                }
+            );
+
+            assert.fail("This account can't create an event");
+        } catch (error) {
+            assert.include(
+                error.message,
+                'Only Signaturit account can perform this action.',
+            );
+        }
     });
 
     it('Set signed file hash as not signaturit role, expect exception', async () => {
@@ -421,5 +529,38 @@ contract('Signature', async (accounts) => {
         );
 
         assert.ok(transaction.receipt.status);
+    });
+
+    it('Set clause as Signaturit account, expect to pass', async() => {
+        await signatureContract.setClause(
+            clauseType,
+            clauseAddress,
+            {
+                from: signaturitAddress
+            }
+        )
+
+        const readClause = await signatureContract.getClause(clauseType);
+
+        assert.equal(readClause, clauseAddress);
+    });
+
+    it('Set clause as not Signaturit account, expect exception', async() => {
+        try {
+            await signatureContract.setClause(
+                clauseType,
+                clauseAddress,
+                {
+                    from: invalidAddress
+                }
+            )
+
+            assert.fail("It should have thrown");
+        } catch(error) {
+            assert.include(
+                error.message,
+                'Only Signaturit account can perform this action.'
+            )
+        }
     });
 });

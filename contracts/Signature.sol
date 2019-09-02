@@ -205,11 +205,6 @@ contract Signature is SignatureInterface {
         view
         returns (address clauseAddress)
     {
-        require(
-            clauses[clauseType] != address(0),
-            "This clause is not set"
-        );
-
         return clauses[clauseType];
     }
 
@@ -218,14 +213,11 @@ contract Signature is SignatureInterface {
     )
         public
         view
-        returns (DocumentInterface)
+        returns (address)
     {
-        require(
-            _documentExist(documentId),
-            "The document with this id doesn't exist"
-        );
+        if (!_documentExist(documentId)) return address(0);
 
-        return documents[documentId];
+        return address(documents[documentId]);
     }
 
     function getDocumentsSize()
@@ -241,21 +233,15 @@ contract Signature is SignatureInterface {
     )
         public
         view
-        returns (FileInterface)
+        returns (address)
     {
-        require(
-            _documentExist(documentId),
-            "The document with this id doesn't exist"
-        );
+        if (!_documentExist(documentId)) return address(0);
 
         FileInterface signatureFile = documents[documentId].file();
 
-        require(
-            address(signatureFile) != address(0),
-            "Error while retrieving file from document"
-        );
+        if (address(signatureFile) == address(0)) return address(0);
 
-        return signatureFile;
+        return address(signatureFile);
     }
 
     function getEvent(
@@ -264,23 +250,17 @@ contract Signature is SignatureInterface {
     )
         public
         view
-        returns (EventInterface)
+        returns (address)
     {
-        require(
-            _documentExist(documentId),
-            "The document doesn't exist"
-        );
+        if (!_documentExist(documentId)) return address(0);
 
         EventInterface signatureEvent = documents[documentId].getEvent(
             eventId
         );
 
-        require(
-            address(signatureEvent) != address(0),
-            "Error while retrieving event from document"
-        );
+        if (address(signatureEvent) == address(0)) return address(0);
 
-        return signatureEvent;
+        return address(signatureEvent);
     }
 
     function _getDocument(

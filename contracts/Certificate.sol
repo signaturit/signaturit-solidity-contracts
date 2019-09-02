@@ -125,14 +125,11 @@ contract Certificate is CertificateInterface {
     )
         public
         view
-        returns (EventInterface)
+        returns (address)
     {
-        require(
-            address(events[eventId]) != address(0),
-            "This event doesn't exist"
-        );
+        if (address(events[eventId]) == address(0)) return address(0);
 
-        return events[eventId];
+        return address(events[eventId]);
     }
 
     function getEventsSize() public view returns(uint) {

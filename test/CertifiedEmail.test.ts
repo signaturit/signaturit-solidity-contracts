@@ -19,6 +19,8 @@ contract('Certified Email', async (accounts) => {
     const ownerAddress      = accounts[1];
     const invalidAddress    = accounts[2];
 
+    const invalidId = 'Invalid id';
+
     const certifiedEmailId = v4();
     const bodyHash = 'Body hash';
     const subjectHash = 'Subject hash';
@@ -64,6 +66,23 @@ contract('Certified Email', async (accounts) => {
         );
 
         await certifiedEmailContract.setCertifiedEmailOwner(ownerAddress, userContract.address);
+    });
+
+    it('Set certifiedEmailOwner as not signaturit account, expect exception', async () => {
+        try {
+            await certifiedEmailContract.setCertifiedEmailOwner(
+                ownerAddress, 
+                userContract.address,
+                {
+                    from: invalidAddress
+                }
+            );
+        } catch(error) {
+            assert.include(
+                error.message,
+                "Only Signaturit account can perform this action"
+            );
+        }
     });
 
     it('Check if it deploy correctly', async () => {
@@ -182,11 +201,45 @@ contract('Certified Email', async (accounts) => {
         assert.equal(ownerAddress,readCertificateOwner);
     });
 
+    it('Retrieve uncreated certificate from certificateId', async() => {
+        try {
+            await certifiedEmailContract.getCertificate(invalidId);
+        } catch(error) {
+            assert.include(
+                error.message,
+                "The certificate with this id doesn't exist"
+            );
+        }
+    });
+
+    it('Get event of uncreated certificate, expect exception', async() => {
+        try {
+            await certifiedEmailContract.getEvent(invalidId, eventId);
+        } catch(error) {
+            assert.include(
+                error.message,
+                "The certificate with this id doesn't exist"
+            );
+        }
+    });
+
+    it('Get file of uncreated certificate, expect exception', async() => {
+        try {
+            await certifiedEmailContract.getFile(invalidId);
+        } catch(error) {
+            assert.include(
+                error.message,
+                "The certificate with this id doesn't exist"
+            );
+        }
+    });
+
     it('Create event on created certificate and check parameters correctness', async () => {
         await certifiedEmailContract.createCertificate(
             certificateId,
             createdAt,
-            ownerAddress, {
+            ownerAddress, 
+            {
                 from: signaturitAddress
             }
         );
@@ -238,6 +291,26 @@ contract('Certified Email', async (accounts) => {
         assert.equal(eventUserAgent, readUserAgent);
         assert.equal(readSavedEventAddress.adr, readEventAddress);
         assert.equal(createdAt, readEventCreatedAt.toNumber());
+    });
+
+    it('Create event as not Signaturit account, expect exception', async() => {
+        try {
+            await certifiedEmailContract.createEvent(
+                certificateId,
+                eventId,
+                eventType,
+                eventUserAgent,
+                createdAt,
+                {
+                    from: invalidAddress
+                }
+            );
+        } catch(error) {
+            assert.include(
+                error.message,
+                "Only Signaturit account can perform this action"
+            );
+        }
     });
 
     it('Add file to uncreated certificate, expect it to be created', async () => {

@@ -217,20 +217,20 @@
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity <0.6.0;\n\nimport \"./EventInterface.sol\";\nimport \"./FileInterface.sol\";\n\n\ncontract CertificateInterface {\n    address public certifiedEmail;\n    address public owner;\n    address public deployer;\n\n    string public id;\n\n    string[] public eventsId;\n\n    uint public createdAt;\n\n    FileInterface public file;\n\n    mapping(string => EventInterface) private events;\n\n    function init(\n        address certificateOwner,\n        uint certificateCreatedAt\n    )\n        public;\n\n    function createFile(\n        string memory fileHash,\n        string memory fileId,\n        string memory fileName,\n        uint fileCreatedAt,\n        uint fileSize\n    )\n        public;\n\n    function createEvent(\n        string memory eventId,\n        string memory eventType,\n        string memory eventUserAgent,\n        uint eventCreatedAt\n    )\n        public;\n\n    function getEvent(\n        string memory eventId\n    )\n        public\n        view\n        returns (EventInterface);\n\n    function getEventsSize()\n        public\n        view\n        returns (uint);\n}\n",
+  "source": "pragma solidity <0.6.0;\n\nimport \"./EventInterface.sol\";\nimport \"./FileInterface.sol\";\n\n\ncontract CertificateInterface {\n    address public certifiedEmail;\n    address public owner;\n    address public deployer;\n\n    string public id;\n\n    string[] public eventsId;\n\n    uint public createdAt;\n\n    FileInterface public file;\n\n    mapping(string => EventInterface) private events;\n\n    function init(\n        address certificateOwner,\n        uint certificateCreatedAt\n    )\n        public;\n\n    function createFile(\n        string memory fileHash,\n        string memory fileId,\n        string memory fileName,\n        uint fileCreatedAt,\n        uint fileSize\n    )\n        public;\n\n    function createEvent(\n        string memory eventId,\n        string memory eventType,\n        string memory eventUserAgent,\n        uint eventCreatedAt\n    )\n        public;\n\n    function getEvent(\n        string memory eventId\n    )\n        public\n        view\n        returns (address);\n\n    function getEventsSize()\n        public\n        view\n        returns (uint);\n}\n",
   "sourcePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/CertificateInterface.sol",
   "ast": {
     "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/CertificateInterface.sol",
     "exportedSymbols": {
       "CertificateInterface": [
-        4812
+        4859
       ]
     },
-    "id": 4813,
+    "id": 4860,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 4747,
+        "id": 4794,
         "literals": [
           "solidity",
           "<",
@@ -243,10 +243,10 @@
       {
         "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/EventInterface.sol",
         "file": "./EventInterface.sol",
-        "id": 4748,
+        "id": 4795,
         "nodeType": "ImportDirective",
-        "scope": 4813,
-        "sourceUnit": 5098,
+        "scope": 4860,
+        "sourceUnit": 5155,
         "src": "25:30:15",
         "symbolAliases": [],
         "unitAlias": ""
@@ -254,10 +254,10 @@
       {
         "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/FileInterface.sol",
         "file": "./FileInterface.sol",
-        "id": 4749,
+        "id": 4796,
         "nodeType": "ImportDirective",
-        "scope": 4813,
-        "sourceUnit": 5124,
+        "scope": 4860,
+        "sourceUnit": 5181,
         "src": "56:29:15",
         "symbolAliases": [],
         "unitAlias": ""
@@ -268,19 +268,19 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 4812,
+        "id": 4859,
         "linearizedBaseContracts": [
-          4812
+          4859
         ],
         "name": "CertificateInterface",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 4751,
+            "id": 4798,
             "name": "certifiedEmail",
             "nodeType": "VariableDeclaration",
-            "scope": 4812,
+            "scope": 4859,
             "src": "124:29:15",
             "stateVariable": true,
             "storageLocation": "default",
@@ -289,7 +289,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 4750,
+              "id": 4797,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "124:7:15",
@@ -304,10 +304,10 @@
           },
           {
             "constant": false,
-            "id": 4753,
+            "id": 4800,
             "name": "owner",
             "nodeType": "VariableDeclaration",
-            "scope": 4812,
+            "scope": 4859,
             "src": "159:20:15",
             "stateVariable": true,
             "storageLocation": "default",
@@ -316,7 +316,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 4752,
+              "id": 4799,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "159:7:15",
@@ -331,10 +331,10 @@
           },
           {
             "constant": false,
-            "id": 4755,
+            "id": 4802,
             "name": "deployer",
             "nodeType": "VariableDeclaration",
-            "scope": 4812,
+            "scope": 4859,
             "src": "185:23:15",
             "stateVariable": true,
             "storageLocation": "default",
@@ -343,7 +343,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 4754,
+              "id": 4801,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "185:7:15",
@@ -358,10 +358,10 @@
           },
           {
             "constant": false,
-            "id": 4757,
+            "id": 4804,
             "name": "id",
             "nodeType": "VariableDeclaration",
-            "scope": 4812,
+            "scope": 4859,
             "src": "215:16:15",
             "stateVariable": true,
             "storageLocation": "default",
@@ -370,7 +370,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 4756,
+              "id": 4803,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "215:6:15",
@@ -384,10 +384,10 @@
           },
           {
             "constant": false,
-            "id": 4760,
+            "id": 4807,
             "name": "eventsId",
             "nodeType": "VariableDeclaration",
-            "scope": 4812,
+            "scope": 4859,
             "src": "238:24:15",
             "stateVariable": true,
             "storageLocation": "default",
@@ -397,7 +397,7 @@
             },
             "typeName": {
               "baseType": {
-                "id": 4758,
+                "id": 4805,
                 "name": "string",
                 "nodeType": "ElementaryTypeName",
                 "src": "238:6:15",
@@ -406,7 +406,7 @@
                   "typeString": "string"
                 }
               },
-              "id": 4759,
+              "id": 4806,
               "length": null,
               "nodeType": "ArrayTypeName",
               "src": "238:8:15",
@@ -420,10 +420,10 @@
           },
           {
             "constant": false,
-            "id": 4762,
+            "id": 4809,
             "name": "createdAt",
             "nodeType": "VariableDeclaration",
-            "scope": 4812,
+            "scope": 4859,
             "src": "269:21:15",
             "stateVariable": true,
             "storageLocation": "default",
@@ -432,7 +432,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 4761,
+              "id": 4808,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
               "src": "269:4:15",
@@ -446,26 +446,26 @@
           },
           {
             "constant": false,
-            "id": 4764,
+            "id": 4811,
             "name": "file",
             "nodeType": "VariableDeclaration",
-            "scope": 4812,
+            "scope": 4859,
             "src": "297:25:15",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_FileInterface_$5123",
+              "typeIdentifier": "t_contract$_FileInterface_$5180",
               "typeString": "contract FileInterface"
             },
             "typeName": {
               "contractScope": null,
-              "id": 4763,
+              "id": 4810,
               "name": "FileInterface",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 5123,
+              "referencedDeclaration": 5180,
               "src": "297:13:15",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_FileInterface_$5123",
+                "typeIdentifier": "t_contract$_FileInterface_$5180",
                 "typeString": "contract FileInterface"
               }
             },
@@ -474,21 +474,21 @@
           },
           {
             "constant": false,
-            "id": 4768,
+            "id": 4815,
             "name": "events",
             "nodeType": "VariableDeclaration",
-            "scope": 4812,
+            "scope": 4859,
             "src": "329:48:15",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_string_memory_$_t_contract$_EventInterface_$5097_$",
+              "typeIdentifier": "t_mapping$_t_string_memory_$_t_contract$_EventInterface_$5154_$",
               "typeString": "mapping(string => contract EventInterface)"
             },
             "typeName": {
-              "id": 4767,
+              "id": 4814,
               "keyType": {
-                "id": 4765,
+                "id": 4812,
                 "name": "string",
                 "nodeType": "ElementaryTypeName",
                 "src": "337:6:15",
@@ -500,18 +500,18 @@
               "nodeType": "Mapping",
               "src": "329:33:15",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_string_memory_$_t_contract$_EventInterface_$5097_$",
+                "typeIdentifier": "t_mapping$_t_string_memory_$_t_contract$_EventInterface_$5154_$",
                 "typeString": "mapping(string => contract EventInterface)"
               },
               "valueType": {
                 "contractScope": null,
-                "id": 4766,
+                "id": 4813,
                 "name": "EventInterface",
                 "nodeType": "UserDefinedTypeName",
-                "referencedDeclaration": 5097,
+                "referencedDeclaration": 5154,
                 "src": "347:14:15",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_contract$_EventInterface_$5097",
+                  "typeIdentifier": "t_contract$_EventInterface_$5154",
                   "typeString": "contract EventInterface"
                 }
               }
@@ -522,22 +522,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4775,
+            "id": 4822,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "init",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4773,
+              "id": 4820,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4770,
+                  "id": 4817,
                   "name": "certificateOwner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4775,
+                  "scope": 4822,
                   "src": "407:24:15",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -546,7 +546,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 4769,
+                    "id": 4816,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "407:7:15",
@@ -561,10 +561,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4772,
+                  "id": 4819,
                   "name": "certificateCreatedAt",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4775,
+                  "scope": 4822,
                   "src": "441:25:15",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -573,7 +573,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 4771,
+                    "id": 4818,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "441:4:15",
@@ -589,12 +589,12 @@
               "src": "397:75:15"
             },
             "returnParameters": {
-              "id": 4774,
+              "id": 4821,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "487:0:15"
             },
-            "scope": 4812,
+            "scope": 4859,
             "src": "384:104:15",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -603,22 +603,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4788,
+            "id": 4835,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "createFile",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4786,
+              "id": 4833,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4777,
+                  "id": 4824,
                   "name": "fileHash",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4788,
+                  "scope": 4835,
                   "src": "523:22:15",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -627,7 +627,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4776,
+                    "id": 4823,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "523:6:15",
@@ -641,10 +641,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4779,
+                  "id": 4826,
                   "name": "fileId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4788,
+                  "scope": 4835,
                   "src": "555:20:15",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -653,7 +653,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4778,
+                    "id": 4825,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "555:6:15",
@@ -667,10 +667,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4781,
+                  "id": 4828,
                   "name": "fileName",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4788,
+                  "scope": 4835,
                   "src": "585:22:15",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -679,7 +679,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4780,
+                    "id": 4827,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "585:6:15",
@@ -693,10 +693,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4783,
+                  "id": 4830,
                   "name": "fileCreatedAt",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4788,
+                  "scope": 4835,
                   "src": "617:18:15",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -705,7 +705,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 4782,
+                    "id": 4829,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "617:4:15",
@@ -719,10 +719,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4785,
+                  "id": 4832,
                   "name": "fileSize",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4788,
+                  "scope": 4835,
                   "src": "645:13:15",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -731,7 +731,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 4784,
+                    "id": 4831,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "645:4:15",
@@ -747,12 +747,12 @@
               "src": "513:151:15"
             },
             "returnParameters": {
-              "id": 4787,
+              "id": 4834,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "679:0:15"
             },
-            "scope": 4812,
+            "scope": 4859,
             "src": "494:186:15",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -761,22 +761,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4799,
+            "id": 4846,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "createEvent",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4797,
+              "id": 4844,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4790,
+                  "id": 4837,
                   "name": "eventId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4799,
+                  "scope": 4846,
                   "src": "716:21:15",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -785,7 +785,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4789,
+                    "id": 4836,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "716:6:15",
@@ -799,10 +799,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4792,
+                  "id": 4839,
                   "name": "eventType",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4799,
+                  "scope": 4846,
                   "src": "747:23:15",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -811,7 +811,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4791,
+                    "id": 4838,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "747:6:15",
@@ -825,10 +825,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4794,
+                  "id": 4841,
                   "name": "eventUserAgent",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4799,
+                  "scope": 4846,
                   "src": "780:28:15",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -837,7 +837,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4793,
+                    "id": 4840,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "780:6:15",
@@ -851,10 +851,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4796,
+                  "id": 4843,
                   "name": "eventCreatedAt",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4799,
+                  "scope": 4846,
                   "src": "818:19:15",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -863,7 +863,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 4795,
+                    "id": 4842,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "818:4:15",
@@ -879,12 +879,12 @@
               "src": "706:137:15"
             },
             "returnParameters": {
-              "id": 4798,
+              "id": 4845,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "858:0:15"
             },
-            "scope": 4812,
+            "scope": 4859,
             "src": "686:173:15",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -893,22 +893,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4806,
+            "id": 4853,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getEvent",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4802,
+              "id": 4849,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4801,
+                  "id": 4848,
                   "name": "eventId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4806,
+                  "scope": 4853,
                   "src": "892:21:15",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -917,7 +917,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4800,
+                    "id": 4847,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "892:6:15",
@@ -933,42 +933,41 @@
               "src": "882:37:15"
             },
             "returnParameters": {
-              "id": 4805,
+              "id": 4852,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4804,
+                  "id": 4851,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4806,
-                  "src": "965:14:15",
+                  "scope": 4853,
+                  "src": "965:7:15",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_EventInterface_$5097",
-                    "typeString": "contract EventInterface"
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
                   },
                   "typeName": {
-                    "contractScope": null,
-                    "id": 4803,
-                    "name": "EventInterface",
-                    "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 5097,
-                    "src": "965:14:15",
+                    "id": 4850,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "965:7:15",
+                    "stateMutability": "nonpayable",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_EventInterface_$5097",
-                      "typeString": "contract EventInterface"
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
                     }
                   },
                   "value": null,
                   "visibility": "internal"
                 }
               ],
-              "src": "964:16:15"
+              "src": "964:9:15"
             },
-            "scope": 4812,
-            "src": "865:116:15",
+            "scope": 4859,
+            "src": "865:109:15",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
@@ -976,29 +975,29 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4811,
+            "id": 4858,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getEventsSize",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4807,
+              "id": 4854,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1009:2:15"
+              "src": "1002:2:15"
             },
             "returnParameters": {
-              "id": 4810,
+              "id": 4857,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4809,
+                  "id": 4856,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4811,
-                  "src": "1057:4:15",
+                  "scope": 4858,
+                  "src": "1050:4:15",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1006,10 +1005,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 4808,
+                    "id": 4855,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1057:4:15",
+                    "src": "1050:4:15",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1019,33 +1018,33 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1056:6:15"
+              "src": "1049:6:15"
             },
-            "scope": 4812,
-            "src": "987:76:15",
+            "scope": 4859,
+            "src": "980:76:15",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 4813,
-        "src": "88:977:15"
+        "scope": 4860,
+        "src": "88:970:15"
       }
     ],
-    "src": "0:1066:15"
+    "src": "0:1059:15"
   },
   "legacyAST": {
     "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/CertificateInterface.sol",
     "exportedSymbols": {
       "CertificateInterface": [
-        4812
+        4859
       ]
     },
-    "id": 4813,
+    "id": 4860,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 4747,
+        "id": 4794,
         "literals": [
           "solidity",
           "<",
@@ -1058,10 +1057,10 @@
       {
         "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/EventInterface.sol",
         "file": "./EventInterface.sol",
-        "id": 4748,
+        "id": 4795,
         "nodeType": "ImportDirective",
-        "scope": 4813,
-        "sourceUnit": 5098,
+        "scope": 4860,
+        "sourceUnit": 5155,
         "src": "25:30:15",
         "symbolAliases": [],
         "unitAlias": ""
@@ -1069,10 +1068,10 @@
       {
         "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/FileInterface.sol",
         "file": "./FileInterface.sol",
-        "id": 4749,
+        "id": 4796,
         "nodeType": "ImportDirective",
-        "scope": 4813,
-        "sourceUnit": 5124,
+        "scope": 4860,
+        "sourceUnit": 5181,
         "src": "56:29:15",
         "symbolAliases": [],
         "unitAlias": ""
@@ -1083,19 +1082,19 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 4812,
+        "id": 4859,
         "linearizedBaseContracts": [
-          4812
+          4859
         ],
         "name": "CertificateInterface",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 4751,
+            "id": 4798,
             "name": "certifiedEmail",
             "nodeType": "VariableDeclaration",
-            "scope": 4812,
+            "scope": 4859,
             "src": "124:29:15",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1104,7 +1103,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 4750,
+              "id": 4797,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "124:7:15",
@@ -1119,10 +1118,10 @@
           },
           {
             "constant": false,
-            "id": 4753,
+            "id": 4800,
             "name": "owner",
             "nodeType": "VariableDeclaration",
-            "scope": 4812,
+            "scope": 4859,
             "src": "159:20:15",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1131,7 +1130,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 4752,
+              "id": 4799,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "159:7:15",
@@ -1146,10 +1145,10 @@
           },
           {
             "constant": false,
-            "id": 4755,
+            "id": 4802,
             "name": "deployer",
             "nodeType": "VariableDeclaration",
-            "scope": 4812,
+            "scope": 4859,
             "src": "185:23:15",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1158,7 +1157,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 4754,
+              "id": 4801,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "185:7:15",
@@ -1173,10 +1172,10 @@
           },
           {
             "constant": false,
-            "id": 4757,
+            "id": 4804,
             "name": "id",
             "nodeType": "VariableDeclaration",
-            "scope": 4812,
+            "scope": 4859,
             "src": "215:16:15",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1185,7 +1184,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 4756,
+              "id": 4803,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "215:6:15",
@@ -1199,10 +1198,10 @@
           },
           {
             "constant": false,
-            "id": 4760,
+            "id": 4807,
             "name": "eventsId",
             "nodeType": "VariableDeclaration",
-            "scope": 4812,
+            "scope": 4859,
             "src": "238:24:15",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1212,7 +1211,7 @@
             },
             "typeName": {
               "baseType": {
-                "id": 4758,
+                "id": 4805,
                 "name": "string",
                 "nodeType": "ElementaryTypeName",
                 "src": "238:6:15",
@@ -1221,7 +1220,7 @@
                   "typeString": "string"
                 }
               },
-              "id": 4759,
+              "id": 4806,
               "length": null,
               "nodeType": "ArrayTypeName",
               "src": "238:8:15",
@@ -1235,10 +1234,10 @@
           },
           {
             "constant": false,
-            "id": 4762,
+            "id": 4809,
             "name": "createdAt",
             "nodeType": "VariableDeclaration",
-            "scope": 4812,
+            "scope": 4859,
             "src": "269:21:15",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1247,7 +1246,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 4761,
+              "id": 4808,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
               "src": "269:4:15",
@@ -1261,26 +1260,26 @@
           },
           {
             "constant": false,
-            "id": 4764,
+            "id": 4811,
             "name": "file",
             "nodeType": "VariableDeclaration",
-            "scope": 4812,
+            "scope": 4859,
             "src": "297:25:15",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_FileInterface_$5123",
+              "typeIdentifier": "t_contract$_FileInterface_$5180",
               "typeString": "contract FileInterface"
             },
             "typeName": {
               "contractScope": null,
-              "id": 4763,
+              "id": 4810,
               "name": "FileInterface",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 5123,
+              "referencedDeclaration": 5180,
               "src": "297:13:15",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_FileInterface_$5123",
+                "typeIdentifier": "t_contract$_FileInterface_$5180",
                 "typeString": "contract FileInterface"
               }
             },
@@ -1289,21 +1288,21 @@
           },
           {
             "constant": false,
-            "id": 4768,
+            "id": 4815,
             "name": "events",
             "nodeType": "VariableDeclaration",
-            "scope": 4812,
+            "scope": 4859,
             "src": "329:48:15",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_string_memory_$_t_contract$_EventInterface_$5097_$",
+              "typeIdentifier": "t_mapping$_t_string_memory_$_t_contract$_EventInterface_$5154_$",
               "typeString": "mapping(string => contract EventInterface)"
             },
             "typeName": {
-              "id": 4767,
+              "id": 4814,
               "keyType": {
-                "id": 4765,
+                "id": 4812,
                 "name": "string",
                 "nodeType": "ElementaryTypeName",
                 "src": "337:6:15",
@@ -1315,18 +1314,18 @@
               "nodeType": "Mapping",
               "src": "329:33:15",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_string_memory_$_t_contract$_EventInterface_$5097_$",
+                "typeIdentifier": "t_mapping$_t_string_memory_$_t_contract$_EventInterface_$5154_$",
                 "typeString": "mapping(string => contract EventInterface)"
               },
               "valueType": {
                 "contractScope": null,
-                "id": 4766,
+                "id": 4813,
                 "name": "EventInterface",
                 "nodeType": "UserDefinedTypeName",
-                "referencedDeclaration": 5097,
+                "referencedDeclaration": 5154,
                 "src": "347:14:15",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_contract$_EventInterface_$5097",
+                  "typeIdentifier": "t_contract$_EventInterface_$5154",
                   "typeString": "contract EventInterface"
                 }
               }
@@ -1337,22 +1336,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4775,
+            "id": 4822,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "init",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4773,
+              "id": 4820,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4770,
+                  "id": 4817,
                   "name": "certificateOwner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4775,
+                  "scope": 4822,
                   "src": "407:24:15",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1361,7 +1360,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 4769,
+                    "id": 4816,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "407:7:15",
@@ -1376,10 +1375,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4772,
+                  "id": 4819,
                   "name": "certificateCreatedAt",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4775,
+                  "scope": 4822,
                   "src": "441:25:15",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1388,7 +1387,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 4771,
+                    "id": 4818,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "441:4:15",
@@ -1404,12 +1403,12 @@
               "src": "397:75:15"
             },
             "returnParameters": {
-              "id": 4774,
+              "id": 4821,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "487:0:15"
             },
-            "scope": 4812,
+            "scope": 4859,
             "src": "384:104:15",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1418,22 +1417,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4788,
+            "id": 4835,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "createFile",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4786,
+              "id": 4833,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4777,
+                  "id": 4824,
                   "name": "fileHash",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4788,
+                  "scope": 4835,
                   "src": "523:22:15",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1442,7 +1441,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4776,
+                    "id": 4823,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "523:6:15",
@@ -1456,10 +1455,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4779,
+                  "id": 4826,
                   "name": "fileId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4788,
+                  "scope": 4835,
                   "src": "555:20:15",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1468,7 +1467,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4778,
+                    "id": 4825,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "555:6:15",
@@ -1482,10 +1481,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4781,
+                  "id": 4828,
                   "name": "fileName",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4788,
+                  "scope": 4835,
                   "src": "585:22:15",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1494,7 +1493,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4780,
+                    "id": 4827,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "585:6:15",
@@ -1508,10 +1507,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4783,
+                  "id": 4830,
                   "name": "fileCreatedAt",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4788,
+                  "scope": 4835,
                   "src": "617:18:15",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1520,7 +1519,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 4782,
+                    "id": 4829,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "617:4:15",
@@ -1534,10 +1533,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4785,
+                  "id": 4832,
                   "name": "fileSize",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4788,
+                  "scope": 4835,
                   "src": "645:13:15",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1546,7 +1545,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 4784,
+                    "id": 4831,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "645:4:15",
@@ -1562,12 +1561,12 @@
               "src": "513:151:15"
             },
             "returnParameters": {
-              "id": 4787,
+              "id": 4834,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "679:0:15"
             },
-            "scope": 4812,
+            "scope": 4859,
             "src": "494:186:15",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1576,22 +1575,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4799,
+            "id": 4846,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "createEvent",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4797,
+              "id": 4844,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4790,
+                  "id": 4837,
                   "name": "eventId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4799,
+                  "scope": 4846,
                   "src": "716:21:15",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1600,7 +1599,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4789,
+                    "id": 4836,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "716:6:15",
@@ -1614,10 +1613,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4792,
+                  "id": 4839,
                   "name": "eventType",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4799,
+                  "scope": 4846,
                   "src": "747:23:15",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1626,7 +1625,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4791,
+                    "id": 4838,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "747:6:15",
@@ -1640,10 +1639,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4794,
+                  "id": 4841,
                   "name": "eventUserAgent",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4799,
+                  "scope": 4846,
                   "src": "780:28:15",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1652,7 +1651,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4793,
+                    "id": 4840,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "780:6:15",
@@ -1666,10 +1665,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4796,
+                  "id": 4843,
                   "name": "eventCreatedAt",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4799,
+                  "scope": 4846,
                   "src": "818:19:15",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1678,7 +1677,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 4795,
+                    "id": 4842,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "818:4:15",
@@ -1694,12 +1693,12 @@
               "src": "706:137:15"
             },
             "returnParameters": {
-              "id": 4798,
+              "id": 4845,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "858:0:15"
             },
-            "scope": 4812,
+            "scope": 4859,
             "src": "686:173:15",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1708,22 +1707,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4806,
+            "id": 4853,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getEvent",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4802,
+              "id": 4849,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4801,
+                  "id": 4848,
                   "name": "eventId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4806,
+                  "scope": 4853,
                   "src": "892:21:15",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1732,7 +1731,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4800,
+                    "id": 4847,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "892:6:15",
@@ -1748,42 +1747,41 @@
               "src": "882:37:15"
             },
             "returnParameters": {
-              "id": 4805,
+              "id": 4852,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4804,
+                  "id": 4851,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4806,
-                  "src": "965:14:15",
+                  "scope": 4853,
+                  "src": "965:7:15",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_EventInterface_$5097",
-                    "typeString": "contract EventInterface"
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
                   },
                   "typeName": {
-                    "contractScope": null,
-                    "id": 4803,
-                    "name": "EventInterface",
-                    "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 5097,
-                    "src": "965:14:15",
+                    "id": 4850,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "965:7:15",
+                    "stateMutability": "nonpayable",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_EventInterface_$5097",
-                      "typeString": "contract EventInterface"
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
                     }
                   },
                   "value": null,
                   "visibility": "internal"
                 }
               ],
-              "src": "964:16:15"
+              "src": "964:9:15"
             },
-            "scope": 4812,
-            "src": "865:116:15",
+            "scope": 4859,
+            "src": "865:109:15",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
@@ -1791,29 +1789,29 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4811,
+            "id": 4858,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getEventsSize",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4807,
+              "id": 4854,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1009:2:15"
+              "src": "1002:2:15"
             },
             "returnParameters": {
-              "id": 4810,
+              "id": 4857,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4809,
+                  "id": 4856,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4811,
-                  "src": "1057:4:15",
+                  "scope": 4858,
+                  "src": "1050:4:15",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1821,10 +1819,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 4808,
+                    "id": 4855,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1057:4:15",
+                    "src": "1050:4:15",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1834,20 +1832,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1056:6:15"
+              "src": "1049:6:15"
             },
-            "scope": 4812,
-            "src": "987:76:15",
+            "scope": 4859,
+            "src": "980:76:15",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 4813,
-        "src": "88:977:15"
+        "scope": 4860,
+        "src": "88:970:15"
       }
     ],
-    "src": "0:1066:15"
+    "src": "0:1059:15"
   },
   "compiler": {
     "name": "solc",
@@ -1855,7 +1853,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.13",
-  "updatedAt": "2019-08-30T15:18:25.821Z",
+  "updatedAt": "2019-09-02T13:03:09.917Z",
   "devdoc": {
     "methods": {}
   },
