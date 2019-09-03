@@ -21,6 +21,7 @@ contract CertifiedFileCheckerInterface {
             uint size,
             uint createdAt,
             address  owner,
+            address contract_address,
             bool more
         );
 }

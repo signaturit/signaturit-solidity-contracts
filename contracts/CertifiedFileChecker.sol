@@ -55,6 +55,7 @@ contract CertifiedFileChecker is CertifiedFileCheckerInterface {
         uint size,
         uint createdAt,
         address  owner,
+        address contract_address,
         bool more
     ) {
         bytes32 hashConverted = keccak256(
@@ -66,13 +67,16 @@ contract CertifiedFileChecker is CertifiedFileCheckerInterface {
             certifiedFiles[hashConverted].files.length > index
         ) {
             bool foundMore = certifiedFiles[hashConverted].files.length > (index + 1) ? true : false;
+            CertifiedFileInterface certifiedFile = certifiedFiles[hashConverted].files[index];
+
             return (
-                certifiedFiles[hashConverted].files[index].id(),
-                certifiedFiles[hashConverted].files[index].name(),
-                certifiedFiles[hashConverted].files[index].hash(),
-                certifiedFiles[hashConverted].files[index].size(),
-                certifiedFiles[hashConverted].files[index].createdAt(),
-                certifiedFiles[hashConverted].files[index].owner(),
+                certifiedFile.id(),
+                certifiedFile.name(),
+                certifiedFile.hash(),
+                certifiedFile.size(),
+                certifiedFile.createdAt(),
+                certifiedFile.owner(),
+                address(certifiedFile),
                 foundMore
             );
         }
@@ -83,6 +87,7 @@ contract CertifiedFileChecker is CertifiedFileCheckerInterface {
             "",
             0,
             0,
+            address(0),
             address(0),
             false
         );
