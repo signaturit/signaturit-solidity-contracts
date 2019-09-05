@@ -147,6 +147,14 @@ contract('TimeLogger', async (accounts) => {
         assert.equal(readTimeLog.timeStart.toNumber(), readTimeLogGetter.start.toNumber());
     });
 
+    it("Get time log from unregistered day", async() => {
+        const daysSinceUnixEpoch = Math.floor(timeNow / secondsInDay);
+
+        const readTotal = await timeLoggerContract.getDayTime(daysSinceUnixEpoch);
+
+        assert.equal(readTotal.toNumber(), 0);
+    });
+
     it("Call externalSourceLog as not Owner account, expect exception", async() =>  {
         try {
             await timeLoggerContract.externalSourceLog(
