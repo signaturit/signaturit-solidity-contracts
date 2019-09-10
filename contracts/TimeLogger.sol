@@ -9,6 +9,7 @@ import "./Clause.sol";
 
 contract TimeLogger is Clause("timelogger") {
     uint constant public SECONDS_PER_DAY = 86400;
+
     string constant public SOLIDITY_SOURCE = "solidity";
     string constant public EXTERNAL_SOURCE = "external";
     string constant public NOTIFICATION_EVENT = "time_log.added";
@@ -25,41 +26,57 @@ contract TimeLogger is Clause("timelogger") {
         uint total;
         bool existence;
     }
+    
 
-    string public workerId;
+    UserInterface ownerContract;
 
     bool public expired;
 
     uint public endDate;
     uint public startDate;
     uint public weeklyHours;
+    uint private lastOpenDay = 0;
 
     int public duration;
-
-    uint private lastOpenDay = 0;
 
     TimeLog[] public timeLog;
 
     mapping(uint => Day) private day;
 
-    constructor(
-        address userContractAddress,
+    constructor (
+        address managerContractAddress,
+        address ownerContractAddress,
         address signatureContractAddress,
-        string memory id
+        string memory id,
+        string memory document,
+        uint start,
+        uint end,
+        uint weekHours,
+        int contractDuration
     )
         public
     {
         contractId = id;
-        signaturit = msg.sender;
+        documentId = document;
+        
+        startDate = start;
+        endDate = end;
+        weeklyHours = weekHours;
+        duration = contractDuration;
 
-        userContract = UserInterface(userContractAddress);
+        expired = false;
+        
+        userContract = UserInterface(managerContractAddress);
+        ownerContract = UserInterface(ownerContractAddress);
         signatureContract = SignatureInterface(signatureContractAddress);
-    }
 
-    modifier signaturitOnly() {
+        setClauseOnSignature();
+    }
+    
+    modifier onlyManager() {
         require(
-            msg.sender == signaturit,
-            "Only Signaturit account can perform this action"
+            msg.sender == address(userContract.userAddress()),
+            "Only the manager account can perform this action"
         );
 
         _;
@@ -67,7 +84,7 @@ contract TimeLogger is Clause("timelogger") {
 
     modifier onlyOwner() {
         require(
-            msg.sender == address(userContract.userAddress()),
+            msg.sender == address(ownerContract.userAddress()),
             "Only the owner account can perform this action"
         );
 
@@ -83,38 +100,12 @@ contract TimeLogger is Clause("timelogger") {
         _;
     }
 
-    function init(
-        string memory signature,
-        string memory document,
-        string memory worker,
-        uint start,
-        uint end,
-        uint weekHours,
-        int contractDuration
-    )
-        public
-        signaturitOnly
-    {
-        expired = false;
-
-        endDate = end;
-        startDate = start;
-        workerId = worker;
-        documentId = document;
-        weeklyHours = weekHours;
-        signatureId = signature;
-        duration = contractDuration;
-
-        setClauseOnSignature();
-    }
-
     //Externals
-
     function externalSourceLog(
         uint time
     )
         external
-        onlyOwner
+        onlyManager
         notExpired
     {
         _logTime(time, EXTERNAL_SOURCE);
@@ -128,20 +119,21 @@ contract TimeLogger is Clause("timelogger") {
         _logTime(block.timestamp, SOLIDITY_SOURCE);
     }
 
-    function setExpiration(
-        bool status
-    )
+    function expireContract()
         external
-        signaturitOnly
+        onlyManager
     {
-        expired = status;
+        expired = true;
     }
 
     function createTimeLog(
         uint thisDay,
         uint start,
         uint end
-    ) external signaturitOnly {
+    ) 
+        external
+        onlyManager
+    {
         _setDay(thisDay);
 
         _createLog(thisDay, start, EXTERNAL_SOURCE);
@@ -149,7 +141,7 @@ contract TimeLogger is Clause("timelogger") {
         _closeLog(thisDay, end, EXTERNAL_SOURCE);
     }
 
-    function correctTimeLog(
+    function editTimeLog(
         uint thisDay,
         uint logIndex,
         uint start,
@@ -157,7 +149,7 @@ contract TimeLogger is Clause("timelogger") {
         bool validity
     )
         external
-        signaturitOnly
+        onlyManager
     {
         require(end >= start, "Invalid time frame");
 
@@ -181,6 +173,7 @@ contract TimeLogger is Clause("timelogger") {
         returns(uint total)
     {
         if (!day[thisDay].existence) return 0;
+
         return day[thisDay].total;
     }
 
@@ -276,8 +269,6 @@ contract TimeLogger is Clause("timelogger") {
         timeLog.push(TimeLog(startTime, 0, source, true));
 
         day[thisDay].timelogs.push(timeLog.length - 1);
-
-        _publish();
     }
 
     function _closeLog(
