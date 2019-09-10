@@ -133,8 +133,14 @@ deployer.then(async () => {
     const timeLoggerInstance = await deployer.deploy(
         TimeLogger,
         userInstance.address,
+        userInstance.address,
         signatureInstance.address,
-        'contractId'
+        v4(),
+        v4(),
+        Date.now(),
+        Date.now(),
+        20,
+        -1
     );
 
     tx = await web3.eth.getTransactionReceipt(timeLoggerInstance.transactionHash);
