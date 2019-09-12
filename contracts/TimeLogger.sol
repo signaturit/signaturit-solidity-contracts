@@ -70,6 +70,8 @@ contract TimeLogger is Clause("timelogger") {
         ownerContract = UserInterface(ownerContractAddress);
         signatureContract = SignatureInterface(signatureContractAddress);
 
+        signatureId = signatureContract.id();
+
         setClauseOnSignature();
     }
     
