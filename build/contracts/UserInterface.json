@@ -731,9 +731,9 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity <0.6.0;\n\n\ncontract UserInterface {\n    string public certificatePublicKey;\n\n    address public signaturitAddress;\n    address public userAddress;\n\n    event SignatureAdded(address adr);\n    event DocumentAdded(address adr);\n    event FileAdded(address adr, string source);\n    event EventAdded(address adr, string source);\n    event CertificatePublickeySet(string key);\n    event CertifiedEmailAdded(address adr);\n    event CertificateAdded(address adr);\n    event CertifiedFileAdded(address adr);\n    event ClauseNotification(\n        address clauseContract,\n        string clauseType,\n        string notificationType,\n        string id\n    );\n\n    function setCertificatePublicKey(\n        string memory key\n    )\n        public;\n\n    function addSignature(\n        address signatureAddress,\n        string memory id\n    )\n        public;\n\n    function addDocument(\n        address documentAddress\n    )\n        public;\n\n    function addFile(\n        string memory fileType,\n        address fileAddress\n    )\n        public;\n\n    function addEvent(\n        string memory eventSource,\n        address eventAddress\n    )\n        public;\n\n    function addCertifiedEmail(\n        address certifiedEmailAddress,\n        string memory id\n    )\n        public;\n\n    function addCertificate(\n        address certificate\n    )\n        public;\n\n    function addCertifiedFile(\n        address certifiedFileAddress,\n        string memory id\n    )\n        public;\n\n    function getSignatureById(\n        string memory id\n    )\n        public\n        view\n        returns (address);\n\n    function getSignature(\n        uint index\n    )\n        public\n        view\n        returns (address adr, bool more);\n\n    function getDocument(\n        uint index\n    )\n        public\n        view\n        returns (address adr, bool more);\n\n    function getSignatureFile(\n        uint index\n    )\n        public\n        view\n        returns (address adr, bool more);\n\n    function getSignatureEvent(\n        uint index\n    )\n        public\n        view\n        returns (address adr, bool more);\n\n    function getCertifiedEmailById(\n        string memory id\n    )\n        public\n        view\n        returns (address);\n\n    function getCertifiedEmail(\n        uint index\n    )\n        public\n        view\n        returns (address adr, bool more);\n\n    function getCertificate(\n        uint index\n    )\n        public\n        view\n        returns (address adr, bool more);\n\n    function getCertifiedEmailFile(\n        uint index\n    )\n        public\n        view\n        returns (address adr, bool more);\n\n    function getCertifiedEmailEvent(\n        uint index\n    )\n        public\n        view\n        returns (address adr, bool more);\n\n    function getSignaturesCount()\n        public\n        view\n        returns (uint256 count);\n\n    function getDocumentsCount()\n        public\n        view\n        returns (uint256 count);\n\n    function getSignatureFilesCount()\n        public\n        view\n        returns (uint256 count);\n\n    function getSignatureEventsCount()\n        public\n        view\n        returns (uint256 count);\n\n    function getCertifiedEmailsCount()\n        public\n        view\n        returns (uint256 count);\n\n    function getCertificatesCount()\n        public\n        view\n        returns(uint256 count);\n\n    function getCertifiedEmailFilesCount()\n        public\n        view\n        returns(uint256 count);\n\n    function getCertifiedEmailEventsCount()\n        public\n        view\n        returns(uint256 count);\n\n    function getCertifiedFilesCount()\n        public\n        view\n        returns(uint256 count);\n\n    function getCertifiedFile(\n        uint index\n    )\n        public\n        view\n        returns(address adr, bool more);\n\n    function getCertifiedFileById(\n        string memory id\n    )\n        public\n        view\n        returns(address);\n\n    function clauseNotification(\n        address clauseContract,\n        string memory clauseType,\n        string memory notificationType,\n        string memory id\n    )\n        public;\n}\n",
-  "sourcePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/UserInterface.sol",
+  "sourcePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/UserInterface.sol",
   "ast": {
-    "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/UserInterface.sol",
+    "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/UserInterface.sol",
     "exportedSymbols": {
       "UserInterface": [
         5573
@@ -3781,7 +3781,7 @@
     "src": "0:4062:23"
   },
   "legacyAST": {
-    "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/UserInterface.sol",
+    "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/UserInterface.sol",
     "exportedSymbols": {
       "UserInterface": [
         5573
@@ -6833,8 +6833,8 @@
     "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.0.11",
-  "updatedAt": "2019-09-12T08:38:37.833Z",
+  "schemaVersion": "3.0.13",
+  "updatedAt": "2019-09-20T13:40:26.128Z",
   "devdoc": {
     "methods": {}
   },

@@ -35,7 +35,7 @@ contract TimeLogger is Clause("timelogger") {
     uint public endDate;
     uint public startDate;
     uint public weeklyHours;
-    uint private lastOpenDay = 0;
+    uint public lastOpenDay = 0;
 
     int public duration;
 

@@ -381,9 +381,9 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity <0.6.0;\n\nimport \"./DocumentInterface.sol\";\nimport \"./UserInterface.sol\";\nimport \"./FileInterface.sol\";\nimport \"./EventInterface.sol\";\n\n\ncontract SignatureInterface {\n    address public signaturit;\n    address public deployer;\n    address public owner;\n\n    string public id;\n\n    string[] public documentsId;\n\n    int public createdAt;\n\n    mapping(string => DocumentInterface) private documents;\n\n    mapping(string => address) private clauses;\n\n    UserInterface public userSmartContract;\n\n    function setSignatureOwner(\n        address signatureOwner,\n        address userSmartContractAddress\n    )\n        public;\n\n    function createDocument(\n        string memory documentId,\n        string memory signatureType,\n        uint documentCreatedAt\n    )\n        public;\n\n    function setDocumentOwner(\n        string memory documentId,\n        address documentOwner\n    )\n        public;\n\n    function setSignedFileHash(\n        string memory documentId,\n        string memory signedFileHash\n    )\n        public;\n\n    function cancelDocument(\n        string memory documentId,\n        string memory cancelReason\n    )\n        public;\n\n    function createFile(\n        string memory documentId,\n        string memory fileId,\n        string memory fileName,\n        string memory fileHash,\n        uint fileCreatedAt,\n        uint fileSize\n    )\n        public;\n\n    function createEvent(\n        string memory documentId,\n        string memory eventId,\n        string memory eventType,\n        string memory eventUserAgent,\n        uint eventCreatedAt\n    )\n        public;\n\n    function setClause(\n        string memory clauseType,\n        address clauseAddress\n    )\n        public;\n\n    function getClause(\n        string memory clauseType\n    )\n        public\n        view\n        returns (address clauseAddress);\n\n    function getFile(\n        string memory documentId\n    )\n        public\n        view\n        returns (address);\n\n    function getDocument(\n        string memory documentId\n    )\n        public\n        view\n        returns (address);\n\n    function getDocumentsSize()\n        public\n        view\n        returns (uint);\n\n    function getEvent(\n        string memory documentId,\n        string memory eventId\n    )\n        public\n        view\n        returns (address);\n\n    function _getDocument(\n        string memory documentId\n    )\n        private\n        returns (DocumentInterface);\n\n    function _documentExist(\n        string memory documentId\n    )\n        private\n        view\n        returns (bool);\n}\n",
-  "sourcePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/SignatureInterface.sol",
+  "sourcePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/SignatureInterface.sol",
   "ast": {
-    "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/SignatureInterface.sol",
+    "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/SignatureInterface.sol",
     "exportedSymbols": {
       "SignatureInterface": [
         5310
@@ -404,7 +404,7 @@
         "src": "0:23:22"
       },
       {
-        "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/DocumentInterface.sol",
+        "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/DocumentInterface.sol",
         "file": "./DocumentInterface.sol",
         "id": 5162,
         "nodeType": "ImportDirective",
@@ -415,7 +415,7 @@
         "unitAlias": ""
       },
       {
-        "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/UserInterface.sol",
+        "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/UserInterface.sol",
         "file": "./UserInterface.sol",
         "id": 5163,
         "nodeType": "ImportDirective",
@@ -426,7 +426,7 @@
         "unitAlias": ""
       },
       {
-        "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/FileInterface.sol",
+        "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/FileInterface.sol",
         "file": "./FileInterface.sol",
         "id": 5164,
         "nodeType": "ImportDirective",
@@ -437,7 +437,7 @@
         "unitAlias": ""
       },
       {
-        "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/EventInterface.sol",
+        "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/EventInterface.sol",
         "file": "./EventInterface.sol",
         "id": 5165,
         "nodeType": "ImportDirective",
@@ -2182,7 +2182,7 @@
     "src": "0:2553:22"
   },
   "legacyAST": {
-    "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/SignatureInterface.sol",
+    "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/SignatureInterface.sol",
     "exportedSymbols": {
       "SignatureInterface": [
         5310
@@ -2203,7 +2203,7 @@
         "src": "0:23:22"
       },
       {
-        "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/DocumentInterface.sol",
+        "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/DocumentInterface.sol",
         "file": "./DocumentInterface.sol",
         "id": 5162,
         "nodeType": "ImportDirective",
@@ -2214,7 +2214,7 @@
         "unitAlias": ""
       },
       {
-        "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/UserInterface.sol",
+        "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/UserInterface.sol",
         "file": "./UserInterface.sol",
         "id": 5163,
         "nodeType": "ImportDirective",
@@ -2225,7 +2225,7 @@
         "unitAlias": ""
       },
       {
-        "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/FileInterface.sol",
+        "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/FileInterface.sol",
         "file": "./FileInterface.sol",
         "id": 5164,
         "nodeType": "ImportDirective",
@@ -2236,7 +2236,7 @@
         "unitAlias": ""
       },
       {
-        "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/EventInterface.sol",
+        "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/EventInterface.sol",
         "file": "./EventInterface.sol",
         "id": 5165,
         "nodeType": "ImportDirective",
@@ -3985,8 +3985,8 @@
     "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.0.11",
-  "updatedAt": "2019-09-12T08:38:37.831Z",
+  "schemaVersion": "3.0.13",
+  "updatedAt": "2019-09-20T13:40:26.125Z",
   "devdoc": {
     "methods": {}
   },
