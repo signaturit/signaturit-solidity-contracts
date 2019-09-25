@@ -49,7 +49,7 @@ contract('SignaturitUser', async (accounts) => {
             key,
             stringValue,
             {
-                from: ownerAddress
+                from: rootAddress
             }
         );
 
@@ -81,7 +81,7 @@ contract('SignaturitUser', async (accounts) => {
             key,
             stringValue,
             {
-                from: ownerAddress
+                from: rootAddress
             }
         );
 
@@ -89,7 +89,7 @@ contract('SignaturitUser', async (accounts) => {
             key,
             newStringValue,
             {
-                from: ownerAddress
+                from: rootAddress
             }
         );
 
@@ -105,7 +105,7 @@ contract('SignaturitUser', async (accounts) => {
             key,
             firstStringValue,
             {
-                from: ownerAddress
+                from: rootAddress
             }
         );
 
@@ -113,7 +113,7 @@ contract('SignaturitUser', async (accounts) => {
             key,
             secondStringValue,
             {
-                from: ownerAddress
+                from: rootAddress
             }
         );
 
@@ -143,7 +143,7 @@ contract('SignaturitUser', async (accounts) => {
             key,
             numberValue,
             {
-                from: ownerAddress
+                from: rootAddress
             }
         );
 
@@ -175,7 +175,7 @@ contract('SignaturitUser', async (accounts) => {
             key,
             numberValue,
             {
-                from: ownerAddress
+                from: rootAddress
             }
         );
 
@@ -183,7 +183,7 @@ contract('SignaturitUser', async (accounts) => {
             key,
             newNumberValue,
             {
-                from: ownerAddress
+                from: rootAddress
             }
         );
 
@@ -199,7 +199,7 @@ contract('SignaturitUser', async (accounts) => {
             key,
             firstStringValue,
             {
-                from: ownerAddress
+                from: rootAddress
             }
         );
 
@@ -207,7 +207,7 @@ contract('SignaturitUser', async (accounts) => {
             key,
             secondStringValue,
             {
-                from: ownerAddress
+                from: rootAddress
             }
         );
 
@@ -237,7 +237,7 @@ contract('SignaturitUser', async (accounts) => {
             key,
             addressValue,
             {
-                from: ownerAddress
+                from: rootAddress
             }
         );
 
@@ -269,7 +269,7 @@ contract('SignaturitUser', async (accounts) => {
             key,
             addressValue,
             {
-                from: ownerAddress
+                from: rootAddress
             }
         );
 
@@ -277,7 +277,7 @@ contract('SignaturitUser', async (accounts) => {
             key,
             newAddressValue,
             {
-                from: ownerAddress
+                from: rootAddress
             }
         );
 
@@ -290,7 +290,7 @@ contract('SignaturitUser', async (accounts) => {
             key,
             addressValue,
             {
-                from: ownerAddress
+                from: rootAddress
             }
         );
 
@@ -298,7 +298,7 @@ contract('SignaturitUser', async (accounts) => {
             key,
             newAddressValue,
             {
-                from: ownerAddress
+                from: rootAddress
             }
         );
 
@@ -328,7 +328,7 @@ contract('SignaturitUser', async (accounts) => {
             key,
             boolValue,
             {
-                from: ownerAddress
+                from: rootAddress
             }
         );
 
@@ -360,7 +360,7 @@ contract('SignaturitUser', async (accounts) => {
             key,
             boolValue,
             {
-                from: ownerAddress
+                from: rootAddress
             }
         );
 
@@ -368,7 +368,7 @@ contract('SignaturitUser', async (accounts) => {
             key,
             newBoolValue,
             {
-                from: ownerAddress
+                from: rootAddress
             }
         );
 
@@ -384,7 +384,7 @@ contract('SignaturitUser', async (accounts) => {
             key,
             firstBooleanValue,
             {
-                from: ownerAddress
+                from: rootAddress
             }
         );
 
@@ -392,7 +392,7 @@ contract('SignaturitUser', async (accounts) => {
             key,
             secondBooleanValue,
             {
-                from: ownerAddress
+                from: rootAddress
             }
         );
 

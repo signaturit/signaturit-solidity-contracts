@@ -7,12 +7,12 @@ contract SignaturitUser {
 
     mapping (bytes32 => string) public stringAttr;
     mapping (bytes32 => string[]) private stringArrayAttr;
-    mapping (bytes32 => int) public numberAttr; 
-    mapping (bytes32 => int[]) public numberArrayAttr; 
+    mapping (bytes32 => int) public numberAttr;
+    mapping (bytes32 => int[]) public numberArrayAttr;
     mapping (bytes32 => address) public addressAttr;
-    mapping (bytes32 => address[]) public addressArrayAttr; 
+    mapping (bytes32 => address[]) public addressArrayAttr;
     mapping (bytes32 => bool) public boolAttr;
-    mapping (bytes32 => bool[]) public boolArrayAttr; 
+    mapping (bytes32 => bool[]) public boolArrayAttr;
 
 
     constructor (
@@ -22,10 +22,10 @@ contract SignaturitUser {
         ownerAddress = _ownerAddress;
     }
 
-    modifier onlyOwner() {
+    modifier protected() {
         require(
-            tx.origin == ownerAddress,
-            "Only the owner can perform this action"    
+            tx.origin == rootAddress,
+            "Only the owner can perform this action"
         );
 
         _;
@@ -36,7 +36,7 @@ contract SignaturitUser {
         string memory value
     )
         public
-        onlyOwner
+        protected
     {
         bytes32 bytes32key = _keccak256(key);
 
@@ -58,9 +58,9 @@ contract SignaturitUser {
     function setStringArrayAttribute (
         string memory key,
         string memory value
-    ) 
+    )
         public
-        onlyOwner
+        protected
     {
         bytes32 bytes32key = _keccak256(key);
         stringArrayAttr[bytes32key].push(value);
@@ -88,7 +88,7 @@ contract SignaturitUser {
         int value
     )
         public
-        onlyOwner
+        protected
     {
         bytes32 bytes32key = _keccak256(key);
         numberAttr[bytes32key] = value;
@@ -96,7 +96,7 @@ contract SignaturitUser {
 
     function getNumberAttribute (
         string memory key
-    ) 
+    )
         public
         view
         returns (int)
@@ -111,7 +111,7 @@ contract SignaturitUser {
         int value
     )
         public
-        onlyOwner
+        protected
     {
         bytes32 bytes32key = _keccak256(key);
         numberArrayAttr[bytes32key].push(value);
@@ -139,7 +139,7 @@ contract SignaturitUser {
         address value
     )
         public
-        onlyOwner
+        protected
     {
         bytes32 bytes32key = _keccak256(key);
 
@@ -163,7 +163,7 @@ contract SignaturitUser {
         address value
     )
         public
-        onlyOwner
+        protected
     {
         bytes32 bytes32key = _keccak256(key);
         addressArrayAttr[bytes32key].push(value);
@@ -191,7 +191,7 @@ contract SignaturitUser {
         bool value
     )
         public
-        onlyOwner
+        protected
     {
         bytes32 bytes32key = _keccak256(key);
 
@@ -215,7 +215,7 @@ contract SignaturitUser {
         bool value
     )
         public
-        onlyOwner
+        protected
     {
         bytes32 bytes32key = _keccak256(key);
         boolArrayAttr[bytes32key].push(value);
@@ -249,5 +249,4 @@ contract SignaturitUser {
             abi.encode(value)
         );
     }
-    
-} 
+}
