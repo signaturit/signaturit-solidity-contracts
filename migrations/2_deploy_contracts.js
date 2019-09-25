@@ -2,6 +2,7 @@ const v4 = require('uuid');
 
 var File = artifacts.require("./File.sol");
 var User = artifacts.require("./User.sol");
+var SignaturitUser = artifacts.require("./SignaturitUser.sol")
 var Event = artifacts.require("./Event.sol");
 var Payment = artifacts.require("./Payment.sol");
 var Document = artifacts.require("./Document.sol");
@@ -145,6 +146,15 @@ deployer.then(async () => {
 
     tx = await web3.eth.getTransactionReceipt(timeLoggerInstance.transactionHash);
     console.log("GAS USED FOR TIMELOGGER: " + tx.cumulativeGasUsed);
+
+
+    const signaturitUser = await deployer.deploy(
+        SignaturitUser,
+        accounts[0]
+    );
+
+    tx = await web3.eth.getTransactionReceipt(signaturitUser.transactionHash);
+    console.log("GAS USED FOR SignaturitUser: " + tx.cumulativeGasUsed);
 })
 
 };
