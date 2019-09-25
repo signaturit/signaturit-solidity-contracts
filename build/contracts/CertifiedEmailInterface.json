@@ -332,9 +332,9 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity <0.6.0;\n\nimport \"./UserInterface.sol\";\nimport \"./CertificateInterface.sol\";\nimport \"./EventInterface.sol\";\n\n\ncontract CertifiedEmailInterface {\n    address public signaturit;\n    address public deployer;\n    address public owner;\n\n    string public id;\n    string public subjectHash;\n    string public bodyHash;\n    string public deliveryType;\n\n    string[] public certificatesId;\n\n    uint public createdAt;\n\n    UserInterface public userSmartContract;\n\n    mapping(string => CertificateInterface) private certificates;\n\n    function setCertifiedEmailOwner(\n        address certifiedEmailOwner,\n        address userSmartContractAddress\n    )\n        public;\n\n    function createCertificate(\n        string memory certificateId,\n        uint certificateCreatedAt,\n        address certificateOwner\n    )\n        public;\n\n    function createEvent(\n        string memory certificateId,\n        string memory eventId,\n        string memory eventType,\n        string memory eventUserAgent,\n        uint eventCreatedAt\n    )\n        public;\n\n    function createFile(\n        string memory certificateId,\n        string memory fileHash,\n        string memory fileId,\n        string memory fileName,\n        uint fileCreatedAt,\n        uint fileSize\n    )\n        public;\n\n    function getCertificate(\n        string memory certificateId\n    )\n        public\n        view\n        returns (address);\n\n    function getEvent(\n        string memory certificateId,\n        string memory eventId\n        )\n        public\n        view\n        returns (EventInterface);\n\n    function getFile(\n        string memory certificateId\n    )\n        public\n        view\n        returns (FileInterface);\n\n    function getCertificatesSize()\n        public\n        view\n        returns (uint);\n\n    function _certificateExist(\n        string memory certificateId\n    )\n        private\n        view\n        returns (bool);\n\n    function _getCertificate(\n        string memory certificateId\n    )\n        private\n        returns (CertificateInterface);\n}\n",
-  "sourcePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/CertifiedEmailInterface.sol",
+  "sourcePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/CertifiedEmailInterface.sol",
   "ast": {
-    "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/CertifiedEmailInterface.sol",
+    "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/CertifiedEmailInterface.sol",
     "exportedSymbols": {
       "CertifiedEmailInterface": [
         5420
@@ -355,7 +355,7 @@
         "src": "0:23:17"
       },
       {
-        "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/UserInterface.sol",
+        "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/UserInterface.sol",
         "file": "./UserInterface.sol",
         "id": 5306,
         "nodeType": "ImportDirective",
@@ -366,7 +366,7 @@
         "unitAlias": ""
       },
       {
-        "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/CertificateInterface.sol",
+        "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/CertificateInterface.sol",
         "file": "./CertificateInterface.sol",
         "id": 5307,
         "nodeType": "ImportDirective",
@@ -377,7 +377,7 @@
         "unitAlias": ""
       },
       {
-        "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/EventInterface.sol",
+        "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/EventInterface.sol",
         "file": "./EventInterface.sol",
         "id": 5308,
         "nodeType": "ImportDirective",
@@ -1753,7 +1753,7 @@
     "src": "0:2043:17"
   },
   "legacyAST": {
-    "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/CertifiedEmailInterface.sol",
+    "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/CertifiedEmailInterface.sol",
     "exportedSymbols": {
       "CertifiedEmailInterface": [
         5420
@@ -1774,7 +1774,7 @@
         "src": "0:23:17"
       },
       {
-        "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/UserInterface.sol",
+        "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/UserInterface.sol",
         "file": "./UserInterface.sol",
         "id": 5306,
         "nodeType": "ImportDirective",
@@ -1785,7 +1785,7 @@
         "unitAlias": ""
       },
       {
-        "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/CertificateInterface.sol",
+        "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/CertificateInterface.sol",
         "file": "./CertificateInterface.sol",
         "id": 5307,
         "nodeType": "ImportDirective",
@@ -1796,7 +1796,7 @@
         "unitAlias": ""
       },
       {
-        "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/EventInterface.sol",
+        "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/EventInterface.sol",
         "file": "./EventInterface.sol",
         "id": 5308,
         "nodeType": "ImportDirective",
@@ -3176,8 +3176,8 @@
     "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.0.13",
-  "updatedAt": "2019-09-25T14:33:11.853Z",
+  "schemaVersion": "3.0.11",
+  "updatedAt": "2019-09-25T15:55:50.405Z",
   "devdoc": {
     "methods": {}
   },
