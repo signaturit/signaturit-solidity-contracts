@@ -154,7 +154,7 @@ deployer.then(async () => {
     );
 
     tx = await web3.eth.getTransactionReceipt(signaturitUser.transactionHash);
-    console.log("GAS USED FOR SignaturitUser: " + tx.cumulativeGasUsed);
+    console.log("GAS USED FOR SIGNATURITUSER: " + tx.cumulativeGasUsed);
 })
 
 };

@@ -2,6 +2,10 @@ pragma solidity <0.6.0;
 
 import "./interfaces/SignaturitUserInterface.sol";
 
+/*
+Gas to deploy: 1.925.304
+*/
+
 contract SignaturitUser is SignaturitUserInterface {
     address public rootAddress;
     address public ownerAddress;
@@ -50,7 +54,7 @@ contract SignaturitUser is SignaturitUserInterface {
         public
         view
         returns (string memory)
-     {
+    {
         bytes32 bytes32key = _keccak256(key);
 
         return stringAttr[bytes32key];
@@ -77,11 +81,11 @@ contract SignaturitUser is SignaturitUserInterface {
     {
         bytes32 bytes32key = _keccak256(key);
 
-        if(stringArrayAttr[bytes32key].length > index) {
+        if (stringArrayAttr[bytes32key].length > index) {
             return stringArrayAttr[bytes32key][index];
         }
 
-        return '';
+        return "";
     }
 
     function setNumberAttribute (
@@ -101,7 +105,7 @@ contract SignaturitUser is SignaturitUserInterface {
         public
         view
         returns (int)
-     {
+    {
         bytes32 bytes32key = _keccak256(key);
 
         return numberAttr[bytes32key];
@@ -128,7 +132,7 @@ contract SignaturitUser is SignaturitUserInterface {
     {
         bytes32 bytes32key = _keccak256(key);
 
-        if(numberArrayAttr[bytes32key].length > index) {
+        if (numberArrayAttr[bytes32key].length > index) {
             return numberArrayAttr[bytes32key][index];
         }
 
@@ -153,7 +157,7 @@ contract SignaturitUser is SignaturitUserInterface {
         public
         view
         returns (address)
-     {
+    {
         bytes32 bytes32key = _keccak256(key);
 
         return addressAttr[bytes32key];
@@ -180,7 +184,7 @@ contract SignaturitUser is SignaturitUserInterface {
     {
         bytes32 bytes32key = _keccak256(key);
 
-        if(addressArrayAttr[bytes32key].length > index) {
+        if (addressArrayAttr[bytes32key].length > index) {
             return addressArrayAttr[bytes32key][index];
         }
 
@@ -205,7 +209,7 @@ contract SignaturitUser is SignaturitUserInterface {
         public
         view
         returns (bool)
-     {
+    {
         bytes32 bytes32key = _keccak256(key);
 
         return boolAttr[bytes32key];
@@ -232,7 +236,7 @@ contract SignaturitUser is SignaturitUserInterface {
     {
         bytes32 bytes32key = _keccak256(key);
 
-        if(boolArrayAttr[bytes32key].length > index) {
+        if (boolArrayAttr[bytes32key].length > index) {
             return boolArrayAttr[bytes32key][index];
         }
 
