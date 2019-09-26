@@ -1,7 +1,8 @@
 pragma solidity <0.6.0;
 
+import "./interfaces/SignaturitUserInterface.sol";
 
-contract SignaturitUser {
+contract SignaturitUser is SignaturitUserInterface {
     address public rootAddress;
     address public ownerAddress;
 
