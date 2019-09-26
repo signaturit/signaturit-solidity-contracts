@@ -400,19 +400,19 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity <0.6.0;\n\nimport \"./FileInterface.sol\";\nimport \"./EventInterface.sol\";\n\n\ncontract DocumentInterface {\n    address public signature;\n    address public signer;\n    address public deployer;\n\n    string public id;\n    string public cancelReason;\n    string public signatureType;\n    string public declineReason;\n    string public signedFileHash;\n\n    string[] public eventsId;\n\n    uint public signedAt;\n    uint public createdAt;\n\n    bool public signed;\n    bool public canceled;\n    bool public declined;\n\n    FileInterface public file;\n\n    mapping(string => EventInterface) private events;\n\n    function init(\n        string memory initType,\n        uint documentCreatedAt\n    )\n        public;\n\n    function setOwner(\n        address signerAddress\n    )\n        public;\n\n    function sign(\n        uint documentSignedAt\n    )\n        public;\n\n    function decline(\n        string memory documentDeclineReason\n    )\n        public;\n\n    function cancel(\n        string memory documentCancelReason\n    )\n        public;\n\n    function createFile(\n        string memory fileId,\n        string memory fileName,\n        string memory fileHash,\n        uint fileCreatedAt,\n        uint fileSize\n    )\n        public;\n\n    function setFileHash(\n        string memory fileHash\n    )\n        public;\n\n    function createEvent(\n        string memory eventId,\n        string memory eventType,\n        string memory eventUserAgent,\n        uint eventCreatedAt\n    )\n        public;\n\n    function getEvent(\n        string memory eventId\n    )\n        public\n        view\n        returns (EventInterface);\n\n    function getEventsSize()\n        public\n        view\n        returns (uint);\n}\n",
-  "sourcePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/DocumentInterface.sol",
+  "sourcePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/DocumentInterface.sol",
   "ast": {
-    "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/DocumentInterface.sol",
+    "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/DocumentInterface.sol",
     "exportedSymbols": {
       "DocumentInterface": [
-        5589
+        5592
       ]
     },
-    "id": 5590,
+    "id": 5593,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 5483,
+        "id": 5486,
         "literals": [
           "solidity",
           "<",
@@ -423,23 +423,23 @@
         "src": "0:23:20"
       },
       {
-        "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/FileInterface.sol",
+        "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/FileInterface.sol",
         "file": "./FileInterface.sol",
-        "id": 5484,
+        "id": 5487,
         "nodeType": "ImportDirective",
-        "scope": 5590,
-        "sourceUnit": 5627,
+        "scope": 5593,
+        "sourceUnit": 5630,
         "src": "25:29:20",
         "symbolAliases": [],
         "unitAlias": ""
       },
       {
-        "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/EventInterface.sol",
+        "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/EventInterface.sol",
         "file": "./EventInterface.sol",
-        "id": 5485,
+        "id": 5488,
         "nodeType": "ImportDirective",
-        "scope": 5590,
-        "sourceUnit": 5601,
+        "scope": 5593,
+        "sourceUnit": 5604,
         "src": "55:30:20",
         "symbolAliases": [],
         "unitAlias": ""
@@ -450,19 +450,19 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 5589,
+        "id": 5592,
         "linearizedBaseContracts": [
-          5589
+          5592
         ],
         "name": "DocumentInterface",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 5487,
+            "id": 5490,
             "name": "signature",
             "nodeType": "VariableDeclaration",
-            "scope": 5589,
+            "scope": 5592,
             "src": "121:24:20",
             "stateVariable": true,
             "storageLocation": "default",
@@ -471,7 +471,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 5486,
+              "id": 5489,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "121:7:20",
@@ -486,10 +486,10 @@
           },
           {
             "constant": false,
-            "id": 5489,
+            "id": 5492,
             "name": "signer",
             "nodeType": "VariableDeclaration",
-            "scope": 5589,
+            "scope": 5592,
             "src": "151:21:20",
             "stateVariable": true,
             "storageLocation": "default",
@@ -498,7 +498,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 5488,
+              "id": 5491,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "151:7:20",
@@ -513,10 +513,10 @@
           },
           {
             "constant": false,
-            "id": 5491,
+            "id": 5494,
             "name": "deployer",
             "nodeType": "VariableDeclaration",
-            "scope": 5589,
+            "scope": 5592,
             "src": "178:23:20",
             "stateVariable": true,
             "storageLocation": "default",
@@ -525,7 +525,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 5490,
+              "id": 5493,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "178:7:20",
@@ -540,10 +540,10 @@
           },
           {
             "constant": false,
-            "id": 5493,
+            "id": 5496,
             "name": "id",
             "nodeType": "VariableDeclaration",
-            "scope": 5589,
+            "scope": 5592,
             "src": "208:16:20",
             "stateVariable": true,
             "storageLocation": "default",
@@ -552,7 +552,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 5492,
+              "id": 5495,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "208:6:20",
@@ -566,10 +566,10 @@
           },
           {
             "constant": false,
-            "id": 5495,
+            "id": 5498,
             "name": "cancelReason",
             "nodeType": "VariableDeclaration",
-            "scope": 5589,
+            "scope": 5592,
             "src": "230:26:20",
             "stateVariable": true,
             "storageLocation": "default",
@@ -578,7 +578,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 5494,
+              "id": 5497,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "230:6:20",
@@ -592,10 +592,10 @@
           },
           {
             "constant": false,
-            "id": 5497,
+            "id": 5500,
             "name": "signatureType",
             "nodeType": "VariableDeclaration",
-            "scope": 5589,
+            "scope": 5592,
             "src": "262:27:20",
             "stateVariable": true,
             "storageLocation": "default",
@@ -604,7 +604,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 5496,
+              "id": 5499,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "262:6:20",
@@ -618,10 +618,10 @@
           },
           {
             "constant": false,
-            "id": 5499,
+            "id": 5502,
             "name": "declineReason",
             "nodeType": "VariableDeclaration",
-            "scope": 5589,
+            "scope": 5592,
             "src": "295:27:20",
             "stateVariable": true,
             "storageLocation": "default",
@@ -630,7 +630,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 5498,
+              "id": 5501,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "295:6:20",
@@ -644,10 +644,10 @@
           },
           {
             "constant": false,
-            "id": 5501,
+            "id": 5504,
             "name": "signedFileHash",
             "nodeType": "VariableDeclaration",
-            "scope": 5589,
+            "scope": 5592,
             "src": "328:28:20",
             "stateVariable": true,
             "storageLocation": "default",
@@ -656,7 +656,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 5500,
+              "id": 5503,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "328:6:20",
@@ -670,10 +670,10 @@
           },
           {
             "constant": false,
-            "id": 5504,
+            "id": 5507,
             "name": "eventsId",
             "nodeType": "VariableDeclaration",
-            "scope": 5589,
+            "scope": 5592,
             "src": "363:24:20",
             "stateVariable": true,
             "storageLocation": "default",
@@ -683,7 +683,7 @@
             },
             "typeName": {
               "baseType": {
-                "id": 5502,
+                "id": 5505,
                 "name": "string",
                 "nodeType": "ElementaryTypeName",
                 "src": "363:6:20",
@@ -692,7 +692,7 @@
                   "typeString": "string"
                 }
               },
-              "id": 5503,
+              "id": 5506,
               "length": null,
               "nodeType": "ArrayTypeName",
               "src": "363:8:20",
@@ -706,10 +706,10 @@
           },
           {
             "constant": false,
-            "id": 5506,
+            "id": 5509,
             "name": "signedAt",
             "nodeType": "VariableDeclaration",
-            "scope": 5589,
+            "scope": 5592,
             "src": "394:20:20",
             "stateVariable": true,
             "storageLocation": "default",
@@ -718,7 +718,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 5505,
+              "id": 5508,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
               "src": "394:4:20",
@@ -732,10 +732,10 @@
           },
           {
             "constant": false,
-            "id": 5508,
+            "id": 5511,
             "name": "createdAt",
             "nodeType": "VariableDeclaration",
-            "scope": 5589,
+            "scope": 5592,
             "src": "420:21:20",
             "stateVariable": true,
             "storageLocation": "default",
@@ -744,7 +744,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 5507,
+              "id": 5510,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
               "src": "420:4:20",
@@ -758,10 +758,10 @@
           },
           {
             "constant": false,
-            "id": 5510,
+            "id": 5513,
             "name": "signed",
             "nodeType": "VariableDeclaration",
-            "scope": 5589,
+            "scope": 5592,
             "src": "448:18:20",
             "stateVariable": true,
             "storageLocation": "default",
@@ -770,7 +770,7 @@
               "typeString": "bool"
             },
             "typeName": {
-              "id": 5509,
+              "id": 5512,
               "name": "bool",
               "nodeType": "ElementaryTypeName",
               "src": "448:4:20",
@@ -784,10 +784,10 @@
           },
           {
             "constant": false,
-            "id": 5512,
+            "id": 5515,
             "name": "canceled",
             "nodeType": "VariableDeclaration",
-            "scope": 5589,
+            "scope": 5592,
             "src": "472:20:20",
             "stateVariable": true,
             "storageLocation": "default",
@@ -796,7 +796,7 @@
               "typeString": "bool"
             },
             "typeName": {
-              "id": 5511,
+              "id": 5514,
               "name": "bool",
               "nodeType": "ElementaryTypeName",
               "src": "472:4:20",
@@ -810,10 +810,10 @@
           },
           {
             "constant": false,
-            "id": 5514,
+            "id": 5517,
             "name": "declined",
             "nodeType": "VariableDeclaration",
-            "scope": 5589,
+            "scope": 5592,
             "src": "498:20:20",
             "stateVariable": true,
             "storageLocation": "default",
@@ -822,7 +822,7 @@
               "typeString": "bool"
             },
             "typeName": {
-              "id": 5513,
+              "id": 5516,
               "name": "bool",
               "nodeType": "ElementaryTypeName",
               "src": "498:4:20",
@@ -836,26 +836,26 @@
           },
           {
             "constant": false,
-            "id": 5516,
+            "id": 5519,
             "name": "file",
             "nodeType": "VariableDeclaration",
-            "scope": 5589,
+            "scope": 5592,
             "src": "525:25:20",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_FileInterface_$5626",
+              "typeIdentifier": "t_contract$_FileInterface_$5629",
               "typeString": "contract FileInterface"
             },
             "typeName": {
               "contractScope": null,
-              "id": 5515,
+              "id": 5518,
               "name": "FileInterface",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 5626,
+              "referencedDeclaration": 5629,
               "src": "525:13:20",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_FileInterface_$5626",
+                "typeIdentifier": "t_contract$_FileInterface_$5629",
                 "typeString": "contract FileInterface"
               }
             },
@@ -864,21 +864,21 @@
           },
           {
             "constant": false,
-            "id": 5520,
+            "id": 5523,
             "name": "events",
             "nodeType": "VariableDeclaration",
-            "scope": 5589,
+            "scope": 5592,
             "src": "557:48:20",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_string_memory_$_t_contract$_EventInterface_$5600_$",
+              "typeIdentifier": "t_mapping$_t_string_memory_$_t_contract$_EventInterface_$5603_$",
               "typeString": "mapping(string => contract EventInterface)"
             },
             "typeName": {
-              "id": 5519,
+              "id": 5522,
               "keyType": {
-                "id": 5517,
+                "id": 5520,
                 "name": "string",
                 "nodeType": "ElementaryTypeName",
                 "src": "565:6:20",
@@ -890,18 +890,18 @@
               "nodeType": "Mapping",
               "src": "557:33:20",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_string_memory_$_t_contract$_EventInterface_$5600_$",
+                "typeIdentifier": "t_mapping$_t_string_memory_$_t_contract$_EventInterface_$5603_$",
                 "typeString": "mapping(string => contract EventInterface)"
               },
               "valueType": {
                 "contractScope": null,
-                "id": 5518,
+                "id": 5521,
                 "name": "EventInterface",
                 "nodeType": "UserDefinedTypeName",
-                "referencedDeclaration": 5600,
+                "referencedDeclaration": 5603,
                 "src": "575:14:20",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_contract$_EventInterface_$5600",
+                  "typeIdentifier": "t_contract$_EventInterface_$5603",
                   "typeString": "contract EventInterface"
                 }
               }
@@ -912,22 +912,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 5527,
+            "id": 5530,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "init",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5525,
+              "id": 5528,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5522,
+                  "id": 5525,
                   "name": "initType",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5527,
+                  "scope": 5530,
                   "src": "635:22:20",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -936,7 +936,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 5521,
+                    "id": 5524,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "635:6:20",
@@ -950,10 +950,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 5524,
+                  "id": 5527,
                   "name": "documentCreatedAt",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5527,
+                  "scope": 5530,
                   "src": "667:22:20",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -962,7 +962,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5523,
+                    "id": 5526,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "667:4:20",
@@ -978,12 +978,12 @@
               "src": "625:70:20"
             },
             "returnParameters": {
-              "id": 5526,
+              "id": 5529,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "710:0:20"
             },
-            "scope": 5589,
+            "scope": 5592,
             "src": "612:99:20",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -992,22 +992,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 5532,
+            "id": 5535,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "setOwner",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5530,
+              "id": 5533,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5529,
+                  "id": 5532,
                   "name": "signerAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5532,
+                  "scope": 5535,
                   "src": "744:21:20",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1016,7 +1016,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 5528,
+                    "id": 5531,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "744:7:20",
@@ -1033,12 +1033,12 @@
               "src": "734:37:20"
             },
             "returnParameters": {
-              "id": 5531,
+              "id": 5534,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "786:0:20"
             },
-            "scope": 5589,
+            "scope": 5592,
             "src": "717:70:20",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1047,22 +1047,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 5537,
+            "id": 5540,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "sign",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5535,
+              "id": 5538,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5534,
+                  "id": 5537,
                   "name": "documentSignedAt",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5537,
+                  "scope": 5540,
                   "src": "816:21:20",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1071,7 +1071,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5533,
+                    "id": 5536,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "816:4:20",
@@ -1087,12 +1087,12 @@
               "src": "806:37:20"
             },
             "returnParameters": {
-              "id": 5536,
+              "id": 5539,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "858:0:20"
             },
-            "scope": 5589,
+            "scope": 5592,
             "src": "793:66:20",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1101,22 +1101,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 5542,
+            "id": 5545,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "decline",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5540,
+              "id": 5543,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5539,
+                  "id": 5542,
                   "name": "documentDeclineReason",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5542,
+                  "scope": 5545,
                   "src": "891:35:20",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1125,7 +1125,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 5538,
+                    "id": 5541,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "891:6:20",
@@ -1141,12 +1141,12 @@
               "src": "881:51:20"
             },
             "returnParameters": {
-              "id": 5541,
+              "id": 5544,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "947:0:20"
             },
-            "scope": 5589,
+            "scope": 5592,
             "src": "865:83:20",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1155,22 +1155,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 5547,
+            "id": 5550,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "cancel",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5545,
+              "id": 5548,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5544,
+                  "id": 5547,
                   "name": "documentCancelReason",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5547,
+                  "scope": 5550,
                   "src": "979:34:20",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1179,7 +1179,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 5543,
+                    "id": 5546,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "979:6:20",
@@ -1195,12 +1195,12 @@
               "src": "969:50:20"
             },
             "returnParameters": {
-              "id": 5546,
+              "id": 5549,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1034:0:20"
             },
-            "scope": 5589,
+            "scope": 5592,
             "src": "954:81:20",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1209,22 +1209,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 5560,
+            "id": 5563,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "createFile",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5558,
+              "id": 5561,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5549,
+                  "id": 5552,
                   "name": "fileId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5560,
+                  "scope": 5563,
                   "src": "1070:20:20",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1233,7 +1233,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 5548,
+                    "id": 5551,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1070:6:20",
@@ -1247,10 +1247,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 5551,
+                  "id": 5554,
                   "name": "fileName",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5560,
+                  "scope": 5563,
                   "src": "1100:22:20",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1259,7 +1259,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 5550,
+                    "id": 5553,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1100:6:20",
@@ -1273,10 +1273,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 5553,
+                  "id": 5556,
                   "name": "fileHash",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5560,
+                  "scope": 5563,
                   "src": "1132:22:20",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1285,7 +1285,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 5552,
+                    "id": 5555,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1132:6:20",
@@ -1299,10 +1299,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 5555,
+                  "id": 5558,
                   "name": "fileCreatedAt",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5560,
+                  "scope": 5563,
                   "src": "1164:18:20",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1311,7 +1311,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5554,
+                    "id": 5557,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "1164:4:20",
@@ -1325,10 +1325,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 5557,
+                  "id": 5560,
                   "name": "fileSize",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5560,
+                  "scope": 5563,
                   "src": "1192:13:20",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1337,7 +1337,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5556,
+                    "id": 5559,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "1192:4:20",
@@ -1353,12 +1353,12 @@
               "src": "1060:151:20"
             },
             "returnParameters": {
-              "id": 5559,
+              "id": 5562,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1226:0:20"
             },
-            "scope": 5589,
+            "scope": 5592,
             "src": "1041:186:20",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1367,22 +1367,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 5565,
+            "id": 5568,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "setFileHash",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5563,
+              "id": 5566,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5562,
+                  "id": 5565,
                   "name": "fileHash",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5565,
+                  "scope": 5568,
                   "src": "1263:22:20",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1391,7 +1391,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 5561,
+                    "id": 5564,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1263:6:20",
@@ -1407,12 +1407,12 @@
               "src": "1253:38:20"
             },
             "returnParameters": {
-              "id": 5564,
+              "id": 5567,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1306:0:20"
             },
-            "scope": 5589,
+            "scope": 5592,
             "src": "1233:74:20",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1421,22 +1421,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 5576,
+            "id": 5579,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "createEvent",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5574,
+              "id": 5577,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5567,
+                  "id": 5570,
                   "name": "eventId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5576,
+                  "scope": 5579,
                   "src": "1343:21:20",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1445,7 +1445,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 5566,
+                    "id": 5569,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1343:6:20",
@@ -1459,10 +1459,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 5569,
+                  "id": 5572,
                   "name": "eventType",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5576,
+                  "scope": 5579,
                   "src": "1374:23:20",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1471,7 +1471,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 5568,
+                    "id": 5571,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1374:6:20",
@@ -1485,10 +1485,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 5571,
+                  "id": 5574,
                   "name": "eventUserAgent",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5576,
+                  "scope": 5579,
                   "src": "1407:28:20",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1497,7 +1497,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 5570,
+                    "id": 5573,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1407:6:20",
@@ -1511,10 +1511,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 5573,
+                  "id": 5576,
                   "name": "eventCreatedAt",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5576,
+                  "scope": 5579,
                   "src": "1445:19:20",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1523,7 +1523,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5572,
+                    "id": 5575,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "1445:4:20",
@@ -1539,12 +1539,12 @@
               "src": "1333:137:20"
             },
             "returnParameters": {
-              "id": 5575,
+              "id": 5578,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1485:0:20"
             },
-            "scope": 5589,
+            "scope": 5592,
             "src": "1313:173:20",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1553,22 +1553,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 5583,
+            "id": 5586,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getEvent",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5579,
+              "id": 5582,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5578,
+                  "id": 5581,
                   "name": "eventId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5583,
+                  "scope": 5586,
                   "src": "1519:21:20",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1577,7 +1577,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 5577,
+                    "id": 5580,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1519:6:20",
@@ -1593,31 +1593,31 @@
               "src": "1509:37:20"
             },
             "returnParameters": {
-              "id": 5582,
+              "id": 5585,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5581,
+                  "id": 5584,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5583,
+                  "scope": 5586,
                   "src": "1592:14:20",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_EventInterface_$5600",
+                    "typeIdentifier": "t_contract$_EventInterface_$5603",
                     "typeString": "contract EventInterface"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 5580,
+                    "id": 5583,
                     "name": "EventInterface",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 5600,
+                    "referencedDeclaration": 5603,
                     "src": "1592:14:20",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_EventInterface_$5600",
+                      "typeIdentifier": "t_contract$_EventInterface_$5603",
                       "typeString": "contract EventInterface"
                     }
                   },
@@ -1627,7 +1627,7 @@
               ],
               "src": "1591:16:20"
             },
-            "scope": 5589,
+            "scope": 5592,
             "src": "1492:116:20",
             "stateMutability": "view",
             "superFunction": null,
@@ -1636,28 +1636,28 @@
           {
             "body": null,
             "documentation": null,
-            "id": 5588,
+            "id": 5591,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getEventsSize",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5584,
+              "id": 5587,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1636:2:20"
             },
             "returnParameters": {
-              "id": 5587,
+              "id": 5590,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5586,
+                  "id": 5589,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5588,
+                  "scope": 5591,
                   "src": "1684:4:20",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1666,7 +1666,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5585,
+                    "id": 5588,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "1684:4:20",
@@ -1681,31 +1681,31 @@
               ],
               "src": "1683:6:20"
             },
-            "scope": 5589,
+            "scope": 5592,
             "src": "1614:76:20",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 5590,
+        "scope": 5593,
         "src": "88:1604:20"
       }
     ],
     "src": "0:1693:20"
   },
   "legacyAST": {
-    "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/DocumentInterface.sol",
+    "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/DocumentInterface.sol",
     "exportedSymbols": {
       "DocumentInterface": [
-        5589
+        5592
       ]
     },
-    "id": 5590,
+    "id": 5593,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 5483,
+        "id": 5486,
         "literals": [
           "solidity",
           "<",
@@ -1716,23 +1716,23 @@
         "src": "0:23:20"
       },
       {
-        "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/FileInterface.sol",
+        "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/FileInterface.sol",
         "file": "./FileInterface.sol",
-        "id": 5484,
+        "id": 5487,
         "nodeType": "ImportDirective",
-        "scope": 5590,
-        "sourceUnit": 5627,
+        "scope": 5593,
+        "sourceUnit": 5630,
         "src": "25:29:20",
         "symbolAliases": [],
         "unitAlias": ""
       },
       {
-        "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/EventInterface.sol",
+        "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/EventInterface.sol",
         "file": "./EventInterface.sol",
-        "id": 5485,
+        "id": 5488,
         "nodeType": "ImportDirective",
-        "scope": 5590,
-        "sourceUnit": 5601,
+        "scope": 5593,
+        "sourceUnit": 5604,
         "src": "55:30:20",
         "symbolAliases": [],
         "unitAlias": ""
@@ -1743,19 +1743,19 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 5589,
+        "id": 5592,
         "linearizedBaseContracts": [
-          5589
+          5592
         ],
         "name": "DocumentInterface",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 5487,
+            "id": 5490,
             "name": "signature",
             "nodeType": "VariableDeclaration",
-            "scope": 5589,
+            "scope": 5592,
             "src": "121:24:20",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1764,7 +1764,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 5486,
+              "id": 5489,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "121:7:20",
@@ -1779,10 +1779,10 @@
           },
           {
             "constant": false,
-            "id": 5489,
+            "id": 5492,
             "name": "signer",
             "nodeType": "VariableDeclaration",
-            "scope": 5589,
+            "scope": 5592,
             "src": "151:21:20",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1791,7 +1791,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 5488,
+              "id": 5491,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "151:7:20",
@@ -1806,10 +1806,10 @@
           },
           {
             "constant": false,
-            "id": 5491,
+            "id": 5494,
             "name": "deployer",
             "nodeType": "VariableDeclaration",
-            "scope": 5589,
+            "scope": 5592,
             "src": "178:23:20",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1818,7 +1818,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 5490,
+              "id": 5493,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "178:7:20",
@@ -1833,10 +1833,10 @@
           },
           {
             "constant": false,
-            "id": 5493,
+            "id": 5496,
             "name": "id",
             "nodeType": "VariableDeclaration",
-            "scope": 5589,
+            "scope": 5592,
             "src": "208:16:20",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1845,7 +1845,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 5492,
+              "id": 5495,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "208:6:20",
@@ -1859,10 +1859,10 @@
           },
           {
             "constant": false,
-            "id": 5495,
+            "id": 5498,
             "name": "cancelReason",
             "nodeType": "VariableDeclaration",
-            "scope": 5589,
+            "scope": 5592,
             "src": "230:26:20",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1871,7 +1871,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 5494,
+              "id": 5497,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "230:6:20",
@@ -1885,10 +1885,10 @@
           },
           {
             "constant": false,
-            "id": 5497,
+            "id": 5500,
             "name": "signatureType",
             "nodeType": "VariableDeclaration",
-            "scope": 5589,
+            "scope": 5592,
             "src": "262:27:20",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1897,7 +1897,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 5496,
+              "id": 5499,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "262:6:20",
@@ -1911,10 +1911,10 @@
           },
           {
             "constant": false,
-            "id": 5499,
+            "id": 5502,
             "name": "declineReason",
             "nodeType": "VariableDeclaration",
-            "scope": 5589,
+            "scope": 5592,
             "src": "295:27:20",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1923,7 +1923,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 5498,
+              "id": 5501,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "295:6:20",
@@ -1937,10 +1937,10 @@
           },
           {
             "constant": false,
-            "id": 5501,
+            "id": 5504,
             "name": "signedFileHash",
             "nodeType": "VariableDeclaration",
-            "scope": 5589,
+            "scope": 5592,
             "src": "328:28:20",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1949,7 +1949,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 5500,
+              "id": 5503,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "328:6:20",
@@ -1963,10 +1963,10 @@
           },
           {
             "constant": false,
-            "id": 5504,
+            "id": 5507,
             "name": "eventsId",
             "nodeType": "VariableDeclaration",
-            "scope": 5589,
+            "scope": 5592,
             "src": "363:24:20",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1976,7 +1976,7 @@
             },
             "typeName": {
               "baseType": {
-                "id": 5502,
+                "id": 5505,
                 "name": "string",
                 "nodeType": "ElementaryTypeName",
                 "src": "363:6:20",
@@ -1985,7 +1985,7 @@
                   "typeString": "string"
                 }
               },
-              "id": 5503,
+              "id": 5506,
               "length": null,
               "nodeType": "ArrayTypeName",
               "src": "363:8:20",
@@ -1999,10 +1999,10 @@
           },
           {
             "constant": false,
-            "id": 5506,
+            "id": 5509,
             "name": "signedAt",
             "nodeType": "VariableDeclaration",
-            "scope": 5589,
+            "scope": 5592,
             "src": "394:20:20",
             "stateVariable": true,
             "storageLocation": "default",
@@ -2011,7 +2011,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 5505,
+              "id": 5508,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
               "src": "394:4:20",
@@ -2025,10 +2025,10 @@
           },
           {
             "constant": false,
-            "id": 5508,
+            "id": 5511,
             "name": "createdAt",
             "nodeType": "VariableDeclaration",
-            "scope": 5589,
+            "scope": 5592,
             "src": "420:21:20",
             "stateVariable": true,
             "storageLocation": "default",
@@ -2037,7 +2037,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 5507,
+              "id": 5510,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
               "src": "420:4:20",
@@ -2051,10 +2051,10 @@
           },
           {
             "constant": false,
-            "id": 5510,
+            "id": 5513,
             "name": "signed",
             "nodeType": "VariableDeclaration",
-            "scope": 5589,
+            "scope": 5592,
             "src": "448:18:20",
             "stateVariable": true,
             "storageLocation": "default",
@@ -2063,7 +2063,7 @@
               "typeString": "bool"
             },
             "typeName": {
-              "id": 5509,
+              "id": 5512,
               "name": "bool",
               "nodeType": "ElementaryTypeName",
               "src": "448:4:20",
@@ -2077,10 +2077,10 @@
           },
           {
             "constant": false,
-            "id": 5512,
+            "id": 5515,
             "name": "canceled",
             "nodeType": "VariableDeclaration",
-            "scope": 5589,
+            "scope": 5592,
             "src": "472:20:20",
             "stateVariable": true,
             "storageLocation": "default",
@@ -2089,7 +2089,7 @@
               "typeString": "bool"
             },
             "typeName": {
-              "id": 5511,
+              "id": 5514,
               "name": "bool",
               "nodeType": "ElementaryTypeName",
               "src": "472:4:20",
@@ -2103,10 +2103,10 @@
           },
           {
             "constant": false,
-            "id": 5514,
+            "id": 5517,
             "name": "declined",
             "nodeType": "VariableDeclaration",
-            "scope": 5589,
+            "scope": 5592,
             "src": "498:20:20",
             "stateVariable": true,
             "storageLocation": "default",
@@ -2115,7 +2115,7 @@
               "typeString": "bool"
             },
             "typeName": {
-              "id": 5513,
+              "id": 5516,
               "name": "bool",
               "nodeType": "ElementaryTypeName",
               "src": "498:4:20",
@@ -2129,26 +2129,26 @@
           },
           {
             "constant": false,
-            "id": 5516,
+            "id": 5519,
             "name": "file",
             "nodeType": "VariableDeclaration",
-            "scope": 5589,
+            "scope": 5592,
             "src": "525:25:20",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_FileInterface_$5626",
+              "typeIdentifier": "t_contract$_FileInterface_$5629",
               "typeString": "contract FileInterface"
             },
             "typeName": {
               "contractScope": null,
-              "id": 5515,
+              "id": 5518,
               "name": "FileInterface",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 5626,
+              "referencedDeclaration": 5629,
               "src": "525:13:20",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_FileInterface_$5626",
+                "typeIdentifier": "t_contract$_FileInterface_$5629",
                 "typeString": "contract FileInterface"
               }
             },
@@ -2157,21 +2157,21 @@
           },
           {
             "constant": false,
-            "id": 5520,
+            "id": 5523,
             "name": "events",
             "nodeType": "VariableDeclaration",
-            "scope": 5589,
+            "scope": 5592,
             "src": "557:48:20",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_string_memory_$_t_contract$_EventInterface_$5600_$",
+              "typeIdentifier": "t_mapping$_t_string_memory_$_t_contract$_EventInterface_$5603_$",
               "typeString": "mapping(string => contract EventInterface)"
             },
             "typeName": {
-              "id": 5519,
+              "id": 5522,
               "keyType": {
-                "id": 5517,
+                "id": 5520,
                 "name": "string",
                 "nodeType": "ElementaryTypeName",
                 "src": "565:6:20",
@@ -2183,18 +2183,18 @@
               "nodeType": "Mapping",
               "src": "557:33:20",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_string_memory_$_t_contract$_EventInterface_$5600_$",
+                "typeIdentifier": "t_mapping$_t_string_memory_$_t_contract$_EventInterface_$5603_$",
                 "typeString": "mapping(string => contract EventInterface)"
               },
               "valueType": {
                 "contractScope": null,
-                "id": 5518,
+                "id": 5521,
                 "name": "EventInterface",
                 "nodeType": "UserDefinedTypeName",
-                "referencedDeclaration": 5600,
+                "referencedDeclaration": 5603,
                 "src": "575:14:20",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_contract$_EventInterface_$5600",
+                  "typeIdentifier": "t_contract$_EventInterface_$5603",
                   "typeString": "contract EventInterface"
                 }
               }
@@ -2205,22 +2205,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 5527,
+            "id": 5530,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "init",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5525,
+              "id": 5528,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5522,
+                  "id": 5525,
                   "name": "initType",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5527,
+                  "scope": 5530,
                   "src": "635:22:20",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -2229,7 +2229,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 5521,
+                    "id": 5524,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "635:6:20",
@@ -2243,10 +2243,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 5524,
+                  "id": 5527,
                   "name": "documentCreatedAt",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5527,
+                  "scope": 5530,
                   "src": "667:22:20",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2255,7 +2255,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5523,
+                    "id": 5526,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "667:4:20",
@@ -2271,12 +2271,12 @@
               "src": "625:70:20"
             },
             "returnParameters": {
-              "id": 5526,
+              "id": 5529,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "710:0:20"
             },
-            "scope": 5589,
+            "scope": 5592,
             "src": "612:99:20",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -2285,22 +2285,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 5532,
+            "id": 5535,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "setOwner",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5530,
+              "id": 5533,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5529,
+                  "id": 5532,
                   "name": "signerAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5532,
+                  "scope": 5535,
                   "src": "744:21:20",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2309,7 +2309,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 5528,
+                    "id": 5531,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "744:7:20",
@@ -2326,12 +2326,12 @@
               "src": "734:37:20"
             },
             "returnParameters": {
-              "id": 5531,
+              "id": 5534,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "786:0:20"
             },
-            "scope": 5589,
+            "scope": 5592,
             "src": "717:70:20",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -2340,22 +2340,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 5537,
+            "id": 5540,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "sign",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5535,
+              "id": 5538,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5534,
+                  "id": 5537,
                   "name": "documentSignedAt",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5537,
+                  "scope": 5540,
                   "src": "816:21:20",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2364,7 +2364,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5533,
+                    "id": 5536,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "816:4:20",
@@ -2380,12 +2380,12 @@
               "src": "806:37:20"
             },
             "returnParameters": {
-              "id": 5536,
+              "id": 5539,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "858:0:20"
             },
-            "scope": 5589,
+            "scope": 5592,
             "src": "793:66:20",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -2394,22 +2394,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 5542,
+            "id": 5545,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "decline",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5540,
+              "id": 5543,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5539,
+                  "id": 5542,
                   "name": "documentDeclineReason",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5542,
+                  "scope": 5545,
                   "src": "891:35:20",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -2418,7 +2418,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 5538,
+                    "id": 5541,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "891:6:20",
@@ -2434,12 +2434,12 @@
               "src": "881:51:20"
             },
             "returnParameters": {
-              "id": 5541,
+              "id": 5544,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "947:0:20"
             },
-            "scope": 5589,
+            "scope": 5592,
             "src": "865:83:20",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -2448,22 +2448,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 5547,
+            "id": 5550,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "cancel",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5545,
+              "id": 5548,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5544,
+                  "id": 5547,
                   "name": "documentCancelReason",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5547,
+                  "scope": 5550,
                   "src": "979:34:20",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -2472,7 +2472,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 5543,
+                    "id": 5546,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "979:6:20",
@@ -2488,12 +2488,12 @@
               "src": "969:50:20"
             },
             "returnParameters": {
-              "id": 5546,
+              "id": 5549,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1034:0:20"
             },
-            "scope": 5589,
+            "scope": 5592,
             "src": "954:81:20",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -2502,22 +2502,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 5560,
+            "id": 5563,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "createFile",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5558,
+              "id": 5561,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5549,
+                  "id": 5552,
                   "name": "fileId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5560,
+                  "scope": 5563,
                   "src": "1070:20:20",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -2526,7 +2526,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 5548,
+                    "id": 5551,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1070:6:20",
@@ -2540,10 +2540,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 5551,
+                  "id": 5554,
                   "name": "fileName",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5560,
+                  "scope": 5563,
                   "src": "1100:22:20",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -2552,7 +2552,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 5550,
+                    "id": 5553,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1100:6:20",
@@ -2566,10 +2566,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 5553,
+                  "id": 5556,
                   "name": "fileHash",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5560,
+                  "scope": 5563,
                   "src": "1132:22:20",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -2578,7 +2578,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 5552,
+                    "id": 5555,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1132:6:20",
@@ -2592,10 +2592,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 5555,
+                  "id": 5558,
                   "name": "fileCreatedAt",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5560,
+                  "scope": 5563,
                   "src": "1164:18:20",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2604,7 +2604,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5554,
+                    "id": 5557,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "1164:4:20",
@@ -2618,10 +2618,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 5557,
+                  "id": 5560,
                   "name": "fileSize",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5560,
+                  "scope": 5563,
                   "src": "1192:13:20",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2630,7 +2630,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5556,
+                    "id": 5559,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "1192:4:20",
@@ -2646,12 +2646,12 @@
               "src": "1060:151:20"
             },
             "returnParameters": {
-              "id": 5559,
+              "id": 5562,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1226:0:20"
             },
-            "scope": 5589,
+            "scope": 5592,
             "src": "1041:186:20",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -2660,22 +2660,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 5565,
+            "id": 5568,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "setFileHash",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5563,
+              "id": 5566,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5562,
+                  "id": 5565,
                   "name": "fileHash",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5565,
+                  "scope": 5568,
                   "src": "1263:22:20",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -2684,7 +2684,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 5561,
+                    "id": 5564,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1263:6:20",
@@ -2700,12 +2700,12 @@
               "src": "1253:38:20"
             },
             "returnParameters": {
-              "id": 5564,
+              "id": 5567,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1306:0:20"
             },
-            "scope": 5589,
+            "scope": 5592,
             "src": "1233:74:20",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -2714,22 +2714,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 5576,
+            "id": 5579,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "createEvent",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5574,
+              "id": 5577,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5567,
+                  "id": 5570,
                   "name": "eventId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5576,
+                  "scope": 5579,
                   "src": "1343:21:20",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -2738,7 +2738,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 5566,
+                    "id": 5569,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1343:6:20",
@@ -2752,10 +2752,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 5569,
+                  "id": 5572,
                   "name": "eventType",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5576,
+                  "scope": 5579,
                   "src": "1374:23:20",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -2764,7 +2764,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 5568,
+                    "id": 5571,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1374:6:20",
@@ -2778,10 +2778,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 5571,
+                  "id": 5574,
                   "name": "eventUserAgent",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5576,
+                  "scope": 5579,
                   "src": "1407:28:20",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -2790,7 +2790,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 5570,
+                    "id": 5573,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1407:6:20",
@@ -2804,10 +2804,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 5573,
+                  "id": 5576,
                   "name": "eventCreatedAt",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5576,
+                  "scope": 5579,
                   "src": "1445:19:20",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2816,7 +2816,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5572,
+                    "id": 5575,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "1445:4:20",
@@ -2832,12 +2832,12 @@
               "src": "1333:137:20"
             },
             "returnParameters": {
-              "id": 5575,
+              "id": 5578,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1485:0:20"
             },
-            "scope": 5589,
+            "scope": 5592,
             "src": "1313:173:20",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -2846,22 +2846,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 5583,
+            "id": 5586,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getEvent",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5579,
+              "id": 5582,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5578,
+                  "id": 5581,
                   "name": "eventId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5583,
+                  "scope": 5586,
                   "src": "1519:21:20",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -2870,7 +2870,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 5577,
+                    "id": 5580,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1519:6:20",
@@ -2886,31 +2886,31 @@
               "src": "1509:37:20"
             },
             "returnParameters": {
-              "id": 5582,
+              "id": 5585,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5581,
+                  "id": 5584,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5583,
+                  "scope": 5586,
                   "src": "1592:14:20",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_EventInterface_$5600",
+                    "typeIdentifier": "t_contract$_EventInterface_$5603",
                     "typeString": "contract EventInterface"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 5580,
+                    "id": 5583,
                     "name": "EventInterface",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 5600,
+                    "referencedDeclaration": 5603,
                     "src": "1592:14:20",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_EventInterface_$5600",
+                      "typeIdentifier": "t_contract$_EventInterface_$5603",
                       "typeString": "contract EventInterface"
                     }
                   },
@@ -2920,7 +2920,7 @@
               ],
               "src": "1591:16:20"
             },
-            "scope": 5589,
+            "scope": 5592,
             "src": "1492:116:20",
             "stateMutability": "view",
             "superFunction": null,
@@ -2929,28 +2929,28 @@
           {
             "body": null,
             "documentation": null,
-            "id": 5588,
+            "id": 5591,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getEventsSize",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5584,
+              "id": 5587,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1636:2:20"
             },
             "returnParameters": {
-              "id": 5587,
+              "id": 5590,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5586,
+                  "id": 5589,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5588,
+                  "scope": 5591,
                   "src": "1684:4:20",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2959,7 +2959,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5585,
+                    "id": 5588,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "1684:4:20",
@@ -2974,14 +2974,14 @@
               ],
               "src": "1683:6:20"
             },
-            "scope": 5589,
+            "scope": 5592,
             "src": "1614:76:20",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 5590,
+        "scope": 5593,
         "src": "88:1604:20"
       }
     ],
@@ -2992,8 +2992,8 @@
     "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.0.11",
-  "updatedAt": "2019-09-25T15:55:50.411Z",
+  "schemaVersion": "3.0.13",
+  "updatedAt": "2019-09-26T09:27:15.094Z",
   "devdoc": {
     "methods": {}
   },

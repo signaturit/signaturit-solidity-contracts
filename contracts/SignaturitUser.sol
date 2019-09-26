@@ -1,10 +1,12 @@
 pragma solidity <0.6.0;
 
+import "./interfaces/SignaturitUserInterface.sol";
+
 /*
 Gas to deploy: 1.925.304
 */
 
-contract SignaturitUser {
+contract SignaturitUser is SignaturitUserInterface {
     address public rootAddress;
     address public ownerAddress;
 
