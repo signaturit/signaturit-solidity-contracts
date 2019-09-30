@@ -4,7 +4,9 @@ pragma solidity <0.6.0;
 Gas to deploy: 655.214
 */
 
+import "./interfaces/UserInterface.sol";
 import "./interfaces/CertifiedFileInterface.sol";
+import "./interfaces/CertifiedFileCheckerInterface.sol";
 
 
 contract CertifiedFile is CertifiedFileInterface {

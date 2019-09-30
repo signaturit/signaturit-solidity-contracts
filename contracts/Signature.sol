@@ -5,6 +5,10 @@ Gas to deploy: 2.882.648
 */
 
 import "./interfaces/SignatureInterface.sol";
+import "./interfaces/DocumentInterface.sol";
+import "./interfaces/UserInterface.sol";
+import "./interfaces/FileInterface.sol";
+import "./interfaces/EventInterface.sol";
 import "./libraries/Utils.sol";
 
 
