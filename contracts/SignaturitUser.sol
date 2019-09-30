@@ -19,7 +19,6 @@ contract SignaturitUser is SignaturitUserInterface {
     mapping (bytes32 => bool) public boolAttr;
     mapping (bytes32 => bool[]) public boolArrayAttr;
 
-
     constructor (
         address _ownerAddress
     ) public {
@@ -50,7 +49,7 @@ contract SignaturitUser is SignaturitUserInterface {
 
     function getStringAttribute (
         string memory key
-    ) 
+    )
         public
         view
         returns (string memory)

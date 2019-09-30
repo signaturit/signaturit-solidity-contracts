@@ -4,29 +4,28 @@ pragma solidity <0.6.0;
 Gas to deploy: 655.214
 */
 
-import "./interfaces/UserInterface.sol";
 import "./interfaces/CertifiedFileInterface.sol";
-import "./interfaces/CertifiedFileCheckerInterface.sol";
+import "./interfaces/SignaturitUserInterface.sol";
 
 
 contract CertifiedFile is CertifiedFileInterface {
-    CertifiedFileCheckerInterface public certifiedFileChecker;
-
     address public signaturit;
     address public owner;
 
+    string constant CREATED_EVENT = 'certified_file.contract.created';
+    string constant NOTIFICATION_EVENT = 'certified-file-nofify';
+
     string public id;
-    string public name;
     string public hash;
 
     uint public createdAt;
     uint public size;
 
-    UserInterface public userSmartContract;
+    SignaturitUserInterface userContract;
 
     modifier signaturitOnly() {
         require(
-            msg.sender == signaturit, 
+            msg.sender == signaturit,
             "Only Signaturit account can perform this action"
         );
 
@@ -34,36 +33,46 @@ contract CertifiedFile is CertifiedFileInterface {
     }
 
     constructor(
-        address fileOwner,
-        address userSmartContractAddress,
+        address _owner,
+        address userContractAddress,
         string memory fileId,
-        string memory fileName,
         string memory fileHash,
         uint fileCreatedAt,
         uint fileSize
     )
         public
     {
+        signaturit = msg.sender;
+        owner = _owner;
+
         id = fileId;
-        name = fileName;
         hash = fileHash;
         size = fileSize;
         createdAt = fileCreatedAt;
-        signaturit = msg.sender;
-        owner = fileOwner;
-        userSmartContract = UserInterface(userSmartContractAddress);
 
-        userSmartContract.addCertifiedFile(address(this), id);
+        userContract = SignaturitUserInterface(userContractAddress);
     }
 
-    function notify(
-        address certifiedFileCheckerAddress
-    ) 
-        public 
-        signaturitOnly 
+    function notifyEvent ()
+        public
+        signaturitOnly
     {
-        certifiedFileChecker = CertifiedFileCheckerInterface(certifiedFileCheckerAddress);
+        address contractToNofify;
+        uint notificationIndex = 0;
 
-        certifiedFileChecker.addFile(address(this));
+        do {
+            contractToNofify = userContract.getAddressArrayAttribute(NOTIFICATION_EVENT, notificationIndex);
+            ++notificationIndex;
+
+            if (contractToNofify != address(0)) {
+                contractToNofify.call(
+                    abi.encodeWithSignature(
+                        'notify(string,address)',
+                        CREATED_EVENT,
+                        address(this)
+                    )
+                );
+            }
+        } while (contractToNofify != address(0));
     }
 }

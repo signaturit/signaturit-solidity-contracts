@@ -14,6 +14,7 @@ var CertifiedFileChecker = artifacts.require("./CertifiedFileChecker.sol");
 var CertifiedEmail = artifacts.require("./CertifiedEmail.sol");
 var SignatureDeployer = artifacts.require("./SignatureDeployer.sol");
 var CertifiedEmailDeployer = artifacts.require("./CertifiedEmailDeployer.sol");
+var CertifiedFileAggregator = artifacts.require("./CertifiedFileAggregator.sol");
 
 var signatureDeployerAddress;
 var certifiedEmailDeployerAddress;
@@ -80,27 +81,6 @@ deployer.then(async () => {
     tx = await web3.eth.getTransactionReceipt(userInstance.transactionHash);
     console.log("GAS USED FOR USER: " + tx.cumulativeGasUsed);
 
-    const certifiedFileInstance = await deployer.deploy(
-        CertifiedFile,
-        accounts[1],
-        userInstance.address,
-        v4(),
-        'document_super_important.pdf',
-        '1lqnflkahdfahfnadslfnasdfbqwr2j3rñ2ljsaldjf',
-        800000000000,
-        1500
-    );
-
-    tx = await web3.eth.getTransactionReceipt(certifiedFileInstance.transactionHash);
-    console.log("GAS USED FOR CERTIFIED FILE: " + tx.cumulativeGasUsed);
-
-    const certifiedFileChecker = await deployer.deploy(
-        CertifiedFileChecker
-    );
-
-    tx = await web3.eth.getTransactionReceipt(certifiedFileChecker.transactionHash);
-    console.log("GAS USED FOR CERTIFIED FILE CHECKER: " + tx.cumulativeGasUsed);
-
     const certificateInstance = await deployer.deploy(
         Certificate,
         v4(),
@@ -155,6 +135,34 @@ deployer.then(async () => {
 
     tx = await web3.eth.getTransactionReceipt(signaturitUser.transactionHash);
     console.log("GAS USED FOR SIGNATURITUSER: " + tx.cumulativeGasUsed);
+
+    const certifiedFileInstance = await deployer.deploy(
+        CertifiedFile,
+        accounts[1],
+        signaturitUser.address,
+        v4(),
+        '1lqnflkahdfahfnadslfnasdfbqwr2j3rñ2ljsaldjf',
+        Date.now(),
+        1500
+    );
+
+    tx = await web3.eth.getTransactionReceipt(certifiedFileInstance.transactionHash);
+    console.log("GAS USED FOR CERTIFIED FILE: " + tx.cumulativeGasUsed);
+
+    const certifiedFileChecker = await deployer.deploy(
+        CertifiedFileChecker
+    );
+
+    tx = await web3.eth.getTransactionReceipt(certifiedFileChecker.transactionHash);
+    console.log("GAS USED FOR CERTIFIED FILE CHECKER: " + tx.cumulativeGasUsed);
+
+    const certifiedFileAggregator = await deployer.deploy(
+        CertifiedFileAggregator,
+        signaturitUser.address
+    );
+
+    tx = await web3.eth.getTransactionReceipt(certifiedFileAggregator.transactionHash);
+    console.log("GAS USED FOR CERTIFIED FILE AGGREGATOR: " + tx.cumulativeGasUsed);
 })
 
 };
