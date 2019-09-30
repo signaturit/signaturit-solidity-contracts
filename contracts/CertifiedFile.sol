@@ -26,7 +26,7 @@ contract CertifiedFile is CertifiedFileInterface {
 
     modifier signaturitOnly() {
         require(
-            msg.sender == signaturit, 
+            msg.sender == signaturit,
             "Only Signaturit account can perform this action"
         );
 
@@ -58,9 +58,9 @@ contract CertifiedFile is CertifiedFileInterface {
 
     function notify(
         address certifiedFileCheckerAddress
-    ) 
-        public 
-        signaturitOnly 
+    )
+        public
+        signaturitOnly
     {
         certifiedFileChecker = CertifiedFileCheckerInterface(certifiedFileCheckerAddress);
 
