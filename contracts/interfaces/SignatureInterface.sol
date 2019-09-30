@@ -2,8 +2,6 @@ pragma solidity <0.6.0;
 
 import "./DocumentInterface.sol";
 import "./UserInterface.sol";
-import "./FileInterface.sol";
-import "./EventInterface.sol";
 
 
 contract SignatureInterface {

@@ -5,8 +5,6 @@ Gas to deploy: 1.395.948
 */
 
 import "./interfaces/CertificateInterface.sol";
-import "./interfaces/FileInterface.sol";
-import "./interfaces/EventInterface.sol";
 import "./libraries/Utils.sol";
 
 

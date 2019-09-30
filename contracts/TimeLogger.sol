@@ -26,9 +26,8 @@ contract TimeLogger is Clause("timelogger") {
         uint total;
         bool existence;
     }
-    
 
-    UserInterface ownerContract;
+    UserInterface public ownerContract;
 
     bool public expired;
 
@@ -58,14 +57,14 @@ contract TimeLogger is Clause("timelogger") {
     {
         contractId = id;
         documentId = document;
-        
+
         startDate = start;
         endDate = end;
         weeklyHours = weekHours;
         duration = contractDuration;
 
         expired = false;
-        
+
         userContract = UserInterface(managerContractAddress);
         ownerContract = UserInterface(ownerContractAddress);
         signatureContract = SignatureInterface(signatureContractAddress);
@@ -74,7 +73,7 @@ contract TimeLogger is Clause("timelogger") {
 
         setClauseOnSignature();
     }
-    
+
     modifier onlyManager() {
         require(
             msg.sender == address(userContract.userAddress()),
@@ -132,7 +131,7 @@ contract TimeLogger is Clause("timelogger") {
         uint thisDay,
         uint start,
         uint end
-    ) 
+    )
         external
         onlyManager
     {

@@ -2,7 +2,6 @@ pragma solidity <0.6.0;
 
 import "./UserInterface.sol";
 import "./CertificateInterface.sol";
-import "./EventInterface.sol";
 
 
 contract CertifiedEmailInterface {

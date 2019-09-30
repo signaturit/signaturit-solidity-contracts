@@ -50,7 +50,7 @@ contract SignaturitUser is SignaturitUserInterface {
 
     function getStringAttribute (
         string memory key
-    ) 
+    )
         public
         view
         returns (string memory)

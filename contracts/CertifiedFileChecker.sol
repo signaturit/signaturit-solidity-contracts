@@ -5,7 +5,6 @@ Gas to deploy: 894.726
 */
 
 import "./interfaces/CertifiedFileInterface.sol";
-import "./interfaces/CertifiedFileCheckerInterface.sol";
 
 contract CertifiedFileChecker is CertifiedFileCheckerInterface {
 
@@ -20,10 +19,10 @@ contract CertifiedFileChecker is CertifiedFileCheckerInterface {
 
     modifier signaturitOnly() {
         require(
-            tx.origin == signaturit, 
+            tx.origin == signaturit,
             "Only Signaturit account can perform this action"
         );
-        
+
         _;
     }
 
