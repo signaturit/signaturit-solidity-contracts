@@ -1,15 +1,14 @@
 {
+  "contractName": "NotifierInterface",
   "abi": [
     {
       "constant": false,
       "inputs": [
         {
-          "internalType": "string",
           "name": "attribute",
           "type": "string"
         },
         {
-          "internalType": "address",
           "name": "adr",
           "type": "address"
         }
@@ -21,5 +20,268 @@
       "type": "function"
     }
   ],
-  "bytecode": "0x"
+  "metadata": "",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity <0.6.0;\n\n\ncontract NotifierInterface {\n\nfunction notify(\n        string memory attribute,\n        address adr\n    )\n        public;\n}",
+  "sourcePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/NotifierInterface.sol",
+  "ast": {
+    "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/NotifierInterface.sol",
+    "exportedSymbols": {
+      "NotifierInterface": [
+        5863
+      ]
+    },
+    "id": 5864,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 5855,
+        "literals": [
+          "solidity",
+          "<",
+          "0.6",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:24"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 5863,
+        "linearizedBaseContracts": [
+          5863
+        ],
+        "name": "NotifierInterface",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 5862,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "notify",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5860,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5857,
+                  "name": "attribute",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5862,
+                  "src": "81:23:24",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 5856,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "81:6:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5859,
+                  "name": "adr",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5862,
+                  "src": "114:11:24",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 5858,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "114:7:24",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "71:60:24"
+            },
+            "returnParameters": {
+              "id": 5861,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "146:0:24"
+            },
+            "scope": 5863,
+            "src": "56:91:24",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 5864,
+        "src": "26:123:24"
+      }
+    ],
+    "src": "0:149:24"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/NotifierInterface.sol",
+    "exportedSymbols": {
+      "NotifierInterface": [
+        5863
+      ]
+    },
+    "id": 5864,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 5855,
+        "literals": [
+          "solidity",
+          "<",
+          "0.6",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:24"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 5863,
+        "linearizedBaseContracts": [
+          5863
+        ],
+        "name": "NotifierInterface",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 5862,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "notify",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5860,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5857,
+                  "name": "attribute",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5862,
+                  "src": "81:23:24",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 5856,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "81:6:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5859,
+                  "name": "adr",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5862,
+                  "src": "114:11:24",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 5858,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "114:7:24",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "71:60:24"
+            },
+            "returnParameters": {
+              "id": 5861,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "146:0:24"
+            },
+            "scope": 5863,
+            "src": "56:91:24",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 5864,
+        "src": "26:123:24"
+      }
+    ],
+    "src": "0:149:24"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.0.13",
+  "updatedAt": "2019-10-01T11:37:03.663Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
 }
