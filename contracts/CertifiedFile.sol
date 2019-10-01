@@ -13,7 +13,7 @@ contract CertifiedFile is CertifiedFileInterface {
     address public owner;
 
     string constant CREATED_EVENT = 'certified_file.contract.created';
-    string constant NOTIFICATION_EVENT = 'certified-file-nofify';
+    string constant NOTIFIERS_KEY = 'certified-file-nofify';
 
     string public id;
     string public hash;
@@ -61,7 +61,7 @@ contract CertifiedFile is CertifiedFileInterface {
         uint notificationIndex = 0;
 
         do {
-            contractToNofify = userContract.getAddressArrayAttribute(NOTIFICATION_EVENT, notificationIndex);
+            contractToNofify = userContract.getAddressArrayAttribute(NOTIFIERS_KEY, notificationIndex);
             ++notificationIndex;
 
             if (contractToNofify != address(0)) {
