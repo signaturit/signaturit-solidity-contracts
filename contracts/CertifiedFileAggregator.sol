@@ -10,7 +10,7 @@ contract CertifiedFileAggregator is NotifierInterface {
     address signaturit;
 
     string constant AGGREGATOR_NAME = 'certified-file-aggregator';
-    string constant NOTIFICATION_EVENT = 'certified-file-nofify';
+    string constant NOTIFIERS_KEY = 'certified-file-nofiers';
     string constant CERTIFIED_FILE_CREATED_EVENT = 'certified_file.contract.created';
 
     mapping (bytes32 => CertifiedFile) certifiedFiles;
@@ -38,7 +38,7 @@ contract CertifiedFileAggregator is NotifierInterface {
         );
 
         userContract.setAddressArrayAttribute(
-            NOTIFICATION_EVENT,
+            NOTIFIERS_KEY,
             address(this)
         );
     }
