@@ -9,8 +9,9 @@ import "./interfaces/CertifiedFileCheckerInterface.sol";
 
 
 contract CertifiedFileChecker is CertifiedFileCheckerInterface {
-
     address public signaturit;
+
+    string constant CERTIFIED_FILE_CREATED_EVENT = 'certified_file.contract.created';
 
     struct CertifiedFilesWithHash {
         bool exist;
@@ -32,26 +33,11 @@ contract CertifiedFileChecker is CertifiedFileCheckerInterface {
         signaturit = msg.sender;
     }
 
-    function addFile(
-        address certifiedFileAddress
-    ) public signaturitOnly {
-        CertifiedFileInterface cerfiedFile = CertifiedFileInterface(certifiedFileAddress);
-
-        bytes32 hashConverted = keccak256(
-            abi.encodePacked(cerfiedFile.hash())
-        );
-
-        if (!certifiedFiles[hashConverted].exist) certifiedFiles[hashConverted].exist = true;
-
-        certifiedFiles[hashConverted].files.push(cerfiedFile);
-    }
-
     function getFile(
         string memory fileHash,
         uint index
     ) public view returns(
         string memory id,
-        string memory name,
         string memory hash,
         uint size,
         uint createdAt,
@@ -59,9 +45,7 @@ contract CertifiedFileChecker is CertifiedFileCheckerInterface {
         address contract_address,
         bool more
     ) {
-        bytes32 hashConverted = keccak256(
-            abi.encodePacked(fileHash)
-        );
+        bytes32 hashConverted = _keccak(fileHash);
 
         if (
             certifiedFiles[hashConverted].exist &&
@@ -72,7 +56,6 @@ contract CertifiedFileChecker is CertifiedFileCheckerInterface {
 
             return (
                 certifiedFile.id(),
-                certifiedFile.name(),
                 certifiedFile.hash(),
                 certifiedFile.size(),
                 certifiedFile.createdAt(),
@@ -85,12 +68,39 @@ contract CertifiedFileChecker is CertifiedFileCheckerInterface {
         return (
             "",
             "",
-            "",
             0,
             0,
             address(0),
             address(0),
             false
+        );
+    }
+
+    function notify(
+        string memory eventType,
+        address certifiedFileAddress
+    ) public signaturitOnly {
+        bytes32 bytes32eventType = _keccak(eventType);
+
+        if(_keccak(CERTIFIED_FILE_CREATED_EVENT) == bytes32eventType) {
+            CertifiedFileInterface cerfiedFile = CertifiedFileInterface(certifiedFileAddress);
+            bytes32 hashConverted = _keccak(cerfiedFile.hash());
+
+            if (!certifiedFiles[hashConverted].exist) certifiedFiles[hashConverted].exist = true;
+
+            certifiedFiles[hashConverted].files.push(cerfiedFile);
+        }
+    }
+
+    function _keccak (
+        string memory key
+    )
+        private
+        pure
+        returns (bytes32)
+    {
+        return keccak256(
+            abi.encode(key)
         );
     }
 }

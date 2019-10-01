@@ -38,7 +38,6 @@ contract('CertifiedFileChecker', async (accounts) => {
             ownerAddress,
             userContract.address,
             fileId,
-            fileName,
             fileHash,
             fileDate,
             fileSize,
@@ -53,14 +52,18 @@ contract('CertifiedFileChecker', async (accounts) => {
     });
 
     it('Add file to the certified file checker', async () => {
-        await certifiedFileChecker.addFile(fileContract.address, {
+        await certifiedFileChecker.notify(
+            "certified_file.contract.created",
+            fileContract.address, {
             from: signaturitAddress
         });
     });
 
     it('Try to add a certified file from other account than signaturit', async () => {
         try {
-            await certifiedFileChecker.addFile(fileContract.address, {
+            await certifiedFileChecker.notify(
+                "certified_file.contract.created",
+                fileContract.address, {
                 from: ownerAddress
             });
         } catch {
@@ -72,14 +75,15 @@ contract('CertifiedFileChecker', async (accounts) => {
     });
 
     it('Retrieve data from the certified file checker of existent file', async () => {
-        await certifiedFileChecker.addFile(fileContract.address, {
+        await certifiedFileChecker.notify(
+            "certified_file.contract.created",
+            fileContract.address, {
             from: signaturitAddress
         });
 
         const certifiedFile = await certifiedFileChecker.getFile(fileHash, 0);
 
         assert.equal(certifiedFile.id, fileId);
-        assert.equal(certifiedFile.name, fileName);
         assert.equal(certifiedFile.hash, fileHash);
         assert.equal(certifiedFile.size.toNumber(), fileSize);
         assert.equal(certifiedFile.createdAt.toNumber(), fileDate);
@@ -88,14 +92,15 @@ contract('CertifiedFileChecker', async (accounts) => {
     }); 
 
     it('Access to non defined index', async () => {
-        await certifiedFileChecker.addFile(fileContract.address, {
+        await certifiedFileChecker.notify(
+            "certified_file.contract.created",
+            fileContract.address, {
             from: signaturitAddress
         });
 
         const certifiedFile = await certifiedFileChecker.getFile(fileHash, 10);
 
         assert.equal(certifiedFile.id, '');
-        assert.equal(certifiedFile.name, '');
         assert.equal(certifiedFile.hash, '');
         assert.equal(certifiedFile.size.toNumber(), 0);
         assert.equal(certifiedFile.createdAt.toNumber(), 0);
@@ -104,14 +109,15 @@ contract('CertifiedFileChecker', async (accounts) => {
     });
 
     it('Access to non created certified file', async () => {
-        await certifiedFileChecker.addFile(fileContract.address, {
+        await certifiedFileChecker.notify(
+            "certified_file.contract.created",
+            fileContract.address, {
             from: signaturitAddress
         });
 
         const certifiedFile = await certifiedFileChecker.getFile('no existent hash', 0);
 
         assert.equal(certifiedFile.id, '');
-        assert.equal(certifiedFile.name, '');
         assert.equal(certifiedFile.hash, '');
         assert.equal(certifiedFile.size.toNumber(), 0);
         assert.equal(certifiedFile.createdAt.toNumber(), 0);
@@ -121,12 +127,13 @@ contract('CertifiedFileChecker', async (accounts) => {
 
     it('Access to the second certified file', async () => {
         const secondFileId   = v4();
-        const secondFileName = 'Test-second.pdf';
         const secondFileHash = 'File hash';
         const secondFileSize = 12376;
         const secondFileDate = Date.now();
 
-        await certifiedFileChecker.addFile(fileContract.address, {
+        await certifiedFileChecker.notify(
+            "certified_file.contract.created",
+            fileContract.address, {
             from: signaturitAddress
         });
 
@@ -134,7 +141,6 @@ contract('CertifiedFileChecker', async (accounts) => {
             secondOwnerAddress,
             userContract.address,
             secondFileId,
-            secondFileName,
             secondFileHash,
             secondFileDate,
             secondFileSize,
@@ -143,7 +149,9 @@ contract('CertifiedFileChecker', async (accounts) => {
             }
         );
 
-        await certifiedFileChecker.addFile(fileContract2.address, {
+        await certifiedFileChecker.notify(
+            "certified_file.contract.created",
+            fileContract2.address, {
             from: signaturitAddress
         });
 
@@ -154,7 +162,6 @@ contract('CertifiedFileChecker', async (accounts) => {
         const secondCertifiedFile = await certifiedFileChecker.getFile(secondFileHash, 1);
 
         assert.equal(secondCertifiedFile.id, secondFileId);
-        assert.equal(secondCertifiedFile.name, secondFileName);
         assert.equal(secondCertifiedFile.hash, secondFileHash);
         assert.equal(secondCertifiedFile.size.toNumber(), secondFileSize);
         assert.equal(secondCertifiedFile.createdAt.toNumber(), secondFileDate);
