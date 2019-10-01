@@ -7,6 +7,7 @@ Gas to deploy: 894.726
 import "./interfaces/CertifiedFileInterface.sol";
 import "./interfaces/CertifiedFileCheckerInterface.sol";
 
+
 contract CertifiedFileChecker is CertifiedFileCheckerInterface {
     address public signaturit;
 
@@ -24,7 +25,7 @@ contract CertifiedFileChecker is CertifiedFileCheckerInterface {
             tx.origin == signaturit,
             "Only Signaturit account can perform this action"
         );
-        
+
         _;
     }
 

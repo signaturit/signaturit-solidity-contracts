@@ -10,20 +10,22 @@
   "devDependencies": {
     "@types/chai": "^4.1.7",
     "@types/node": "^10.12.18",
-    "diff": ">=3.5.0",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
+    "diff": ">=3.5.0",
+    "solc": "^0.5.0",
     "solhint": "^2.1.0",
     "solidity-coverage": "0.6.4",
-    "truffle-typings": "^1.0.8",
     "truffle-assertions": "^0.9.1",
     "truffle-events": "0.0.7",
+    "truffle-typings": "^1.0.8",
     "uuid": "^3.3.2"
   },
   "scripts": {
     "test": "truffle test",
     "coverage": "solidity-coverage",
-    "lint": "solhint ./contracts/*.sol"
+    "lint": "solhint ./contracts/*.sol",
+    "compile-contracts": "ts-node compile.ts"
   },
   "license": "ISC",
   "dependencies": {}
