@@ -90,6 +90,10 @@ const compilingObject = {
     language: 'Solidity',
     sources: input.sources,
     settings: {
+        optimizer: {
+            enabled: true,
+            runs: 10
+        },
         outputSelection: {
             '*': {
                 '*': ['*']
