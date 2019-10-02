@@ -57,7 +57,7 @@ input = fileNames.reduce(
 );
 
 // Auxiliary callback function for solc.compile to find all the imports
-function findImports(importedPath: string) {
+function findImports(importedPath) {
     if(importedPath.search("interfaces") >= 0) {
         const fileName = importedPath.split("/").pop();
         const filePath = path.resolve(__dirname, "contracts/interfaces", fileName);
