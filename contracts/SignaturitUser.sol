@@ -19,7 +19,6 @@ contract SignaturitUser is SignaturitUserInterface {
     mapping (bytes32 => bool) public boolAttr;
     mapping (bytes32 => bool[]) public boolArrayAttr;
 
-
     constructor (
         address _ownerAddress
     ) public {

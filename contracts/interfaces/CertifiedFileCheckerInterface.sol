@@ -1,22 +1,18 @@
 pragma solidity <0.6.0;
 
-contract CertifiedFileCheckerInterface {
-    address public signaturit;
+import "./NotifierInterface.sol";
 
-    function addFile(
-        address certifiedFileAddree
-    ) 
-        public;
+contract CertifiedFileCheckerInterface is NotifierInterface {
+    address public signaturit;
 
     function getFile(
         string memory fileHash,
         uint index
-    )  
-        public 
-        view 
+    )
+        public
+        view
         returns(
             string memory id,
-            string memory name,
             string memory hash,
             uint size,
             uint createdAt,
