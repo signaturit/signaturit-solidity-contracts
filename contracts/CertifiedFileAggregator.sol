@@ -5,11 +5,11 @@ import "./BaseAggregator.sol";
 import "./CertifiedFile.sol";
 
 contract CertifiedFileAggregator is NotifierInterface, BaseAggregator("certified-file-aggregator", "certified-file-notifiers") {
-    string constant CERTIFIED_FILE_CREATED_EVENT = 'certified_file.contract.created';
+    string constant private CERTIFIED_FILE_CREATED_EVENT = "certified_file.contract.created";
 
-    mapping (bytes32 => CertifiedFile) certifiedFiles;
+    mapping (bytes32 => CertifiedFile) private certifiedFiles;
     
-    bytes32[] certifiedFilesIds;
+    bytes32[] private certifiedFilesIds;
 
     constructor (
         address _userContractAddress

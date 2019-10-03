@@ -12,8 +12,8 @@ contract CertifiedFile is CertifiedFileInterface {
     address public signaturit;
     address public owner;
 
-    string constant CREATED_EVENT = 'certified_file.contract.created';
-    string constant NOTIFIERS_KEY = 'certified-file-notifiers';
+    string constant private CREATED_EVENT = "certified_file.contract.created";
+    string constant private NOTIFIERS_KEY = "certified-file-notifiers";
 
     string public id;
     string public hash;
@@ -21,7 +21,7 @@ contract CertifiedFile is CertifiedFileInterface {
     uint public createdAt;
     uint public size;
 
-    SignaturitUserInterface userContract;
+    SignaturitUserInterface public userContract;
 
     modifier signaturitOnly() {
         require(
@@ -67,7 +67,7 @@ contract CertifiedFile is CertifiedFileInterface {
             if (contractToNofify != address(0)) {
                 contractToNofify.call(
                     abi.encodeWithSignature(
-                        'notify(string,address)',
+                        "notify(string,address)",
                         CREATED_EVENT,
                         address(this)
                     )

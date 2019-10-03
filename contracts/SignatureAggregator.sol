@@ -6,11 +6,11 @@ import "./Signature.sol";
 
 contract SignatureAggregator is NotifierInterface, BaseAggregator("signature-aggregator", "signature-notifiers") {
 
-    string constant SIGNATURE_CREATED_EVENT = 'signature.contract.created';
+    string constant private SIGNATURE_CREATED_EVENT = "signature.contract.created";
 
-    mapping (bytes32 => Signature) signatures;
+    mapping (bytes32 => Signature) private signatures;
     
-    bytes32[] signatureIds;
+    bytes32[] private signatureIds;
 
     constructor (
         address _userContractAddress

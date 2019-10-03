@@ -4,12 +4,12 @@ import "./interfaces/SignaturitUserInterface.sol";
 
 
 contract BaseAggregator {
-    SignaturitUserInterface userContract;
+    SignaturitUserInterface public userContract;
 
     address public signaturit;
 
-    string public AGGREGATOR_NAME;
-    string public NOTIFIERS_KEY;
+    string public aggregatorName;
+    string public notifiersKey;
 
     modifier signaturitOnly () {
         require(
@@ -26,8 +26,8 @@ contract BaseAggregator {
     ) public {
         signaturit = msg.sender;
 
-        AGGREGATOR_NAME = aggregatorString;
-        NOTIFIERS_KEY = notifiersString;
+        aggregatorName = aggregatorString;
+        notifiersKey = notifiersString;
     }
 
     function setOnUser(
@@ -39,12 +39,12 @@ contract BaseAggregator {
         userContract = SignaturitUserInterface(userContractAddress);
 
         userContract.setAddressAttribute(
-            AGGREGATOR_NAME,
+            aggregatorName,
             address(this)
         );
 
         userContract.setAddressArrayAttribute(
-            NOTIFIERS_KEY,
+            notifiersKey,
             address(this)
         );
     }

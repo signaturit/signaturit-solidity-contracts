@@ -14,15 +14,15 @@ import "./libraries/Utils.sol";
 
 
 contract Signature is SignatureInterface {
-    string constant SIGNATURE_CREATED_EVENT = "signature.contract.created";
-    string constant DOCUMENT_CREATED_EVENT = "document.contract.created";
-    string constant FILE_CREATED_EVENT = "file.contract.created";
-    string constant EVENT_CREATED_EVENT = "event.contract.created";
+    string constant private SIGNATURE_CREATED_EVENT = "signature.contract.created";
+    string constant private DOCUMENT_CREATED_EVENT = "document.contract.created";
+    string constant private FILE_CREATED_EVENT = "file.contract.created";
+    string constant private EVENT_CREATED_EVENT = "event.contract.created";
 
-    string constant SIGNATURE_NOTIFIERS_KEY = "signature-notifiers";
-    string constant DOCUMENT_NOTIFIERS_KEY = "document-notifiers";
-    string constant FILE_NOTIFIERS_KEY = "file-notifiers";
-    string constant EVENT_NOTIFIERS_KEY = "event-notifiers";
+    string constant private SIGNATURE_NOTIFIERS_KEY = "signature-notifiers";
+    string constant private DOCUMENT_NOTIFIERS_KEY = "document-notifiers";
+    string constant private FILE_NOTIFIERS_KEY = "file-notifiers";
+    string constant private EVENT_NOTIFIERS_KEY = "event-notifiers";
 
     address public signaturit;
     address public deployer;
@@ -289,7 +289,7 @@ contract Signature is SignatureInterface {
             if (contractToNofify != address(0)) {
                 contractToNofify.call(
                     abi.encodeWithSignature(
-                        'notify(string,address)',
+                        "notify(string,address)",
                         createdEvent,
                         adrToNotify
                     )
