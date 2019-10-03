@@ -23,7 +23,7 @@
 //
 const fs = require('fs');
 const packageJSON = fs.readFileSync("package.json").toString();
-const solcVersion = packageJSON.split('"solc": "^')[1].split('"')[0].toString();
+const solcVersion = packageJSON.split('"solc": "')[1].split('"')[0].toString();
 
 module.exports = {
   /**
