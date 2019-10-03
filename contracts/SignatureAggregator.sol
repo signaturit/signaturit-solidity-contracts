@@ -4,7 +4,13 @@ import "./interfaces/NotifierInterface.sol";
 import "./BaseAggregator.sol";
 import "./Signature.sol";
 
-contract SignatureAggregator is NotifierInterface, BaseAggregator("signature-aggregator", "signature-notifiers") {
+contract SignatureAggregator is
+    NotifierInterface,
+    BaseAggregator(
+        "signature-aggregator",
+        "signature-notifiers"
+    )
+{
 
     string constant private SIGNATURE_CREATED_EVENT = "signature.contract.created";
 
