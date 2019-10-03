@@ -1,7 +1,7 @@
 pragma solidity <0.6.0;
 
 import "./DocumentInterface.sol";
-import "./UserInterface.sol";
+import "./SignaturitUserInterface.sol";
 
 
 contract SignatureInterface {
@@ -19,7 +19,7 @@ contract SignatureInterface {
 
     mapping(string => address) private clauses;
 
-    UserInterface public userSmartContract;
+    SignaturitUserInterface public userContract;
 
     function setSignatureOwner(
         address signatureOwner,
@@ -110,6 +110,13 @@ contract SignatureInterface {
         public
         view
         returns (address);
+
+    function notifyEntityEvent (
+        string memory notifiersKey,
+        string memory createdEvent,
+        address adrToNotify
+    )
+        public;
 
     function _getDocument(
         string memory documentId

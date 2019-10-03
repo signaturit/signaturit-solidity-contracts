@@ -11,7 +11,7 @@ import "./interfaces/CertifiedFileCheckerInterface.sol";
 contract CertifiedFileChecker is CertifiedFileCheckerInterface {
     address public signaturit;
 
-    string constant CERTIFIED_FILE_CREATED_EVENT = 'certified_file.contract.created';
+    string constant private CERTIFIED_FILE_CREATED_EVENT = "certified_file.contract.created";
 
     struct CertifiedFilesWithHash {
         bool exist;
@@ -82,7 +82,7 @@ contract CertifiedFileChecker is CertifiedFileCheckerInterface {
     ) public signaturitOnly {
         bytes32 bytes32eventType = _keccak(eventType);
 
-        if(_keccak(CERTIFIED_FILE_CREATED_EVENT) == bytes32eventType) {
+        if (_keccak(CERTIFIED_FILE_CREATED_EVENT) == bytes32eventType) {
             CertifiedFileInterface cerfiedFile = CertifiedFileInterface(certifiedFileAddress);
             bytes32 hashConverted = _keccak(cerfiedFile.hash());
 

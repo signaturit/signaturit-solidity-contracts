@@ -50,7 +50,7 @@ contract('CertifiedFileAggregator', async (accounts) => {
         assert.equal(certifiedFileAggregatorAddress, certifiedFileAggregatorContract.address);
     });
 
-    it("Deploy certified file contract from invalid account", async () =>{
+    it("Deploy certified file contract from invalid account, expect exception", async () =>{
         try {
             await ArtifactCertifiedFileAggregator.new(
                 userContract.address,
@@ -58,11 +58,12 @@ contract('CertifiedFileAggregator', async (accounts) => {
                     from: invalidAccount
                 }
             );
-        } catch {
-            return
+        } catch(error) {
+            assert.include(
+                error.message,
+                "Only the owner can perform this action"
+            )
         }
-
-        assert.fail("This account can't deploy contract")
     });
 
     it("Create certified file without call notify", async () => {
@@ -194,7 +195,7 @@ contract('CertifiedFileAggregator', async (accounts) => {
         );
 
         await userContract.setAddressArrayAttribute(
-            'certified-file-nofify',
+            'certified-file-notifiers',
             certifiedFileChecker.address
         );
 
