@@ -13,7 +13,7 @@ contract CertifiedFile is CertifiedFileInterface {
     address public owner;
 
     string constant CREATED_EVENT = 'certified_file.contract.created';
-    string constant NOTIFIERS_KEY = 'certified-file-nofiers';
+    string constant NOTIFIERS_KEY = 'certified-file-notifiers';
 
     string public id;
     string public hash;

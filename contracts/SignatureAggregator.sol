@@ -2,14 +2,15 @@ pragma solidity <0.6.0;
 
 import "./interfaces/NotifierInterface.sol";
 import "./BaseAggregator.sol";
-import "./CertifiedFile.sol";
+import "./Signature.sol";
 
-contract CertifiedFileAggregator is NotifierInterface, BaseAggregator("certified-file-aggregator", "certified-file-notifiers") {
-    string constant CERTIFIED_FILE_CREATED_EVENT = 'certified_file.contract.created';
+contract SignatureAggregator is NotifierInterface, BaseAggregator("signature-aggregator", "signature-notifiers") {
 
-    mapping (bytes32 => CertifiedFile) certifiedFiles;
+    string constant SIGNATURE_CREATED_EVENT = 'signature.contract.created';
+
+    mapping (bytes32 => Signature) signatures;
     
-    bytes32[] certifiedFilesIds;
+    bytes32[] signatureIds;
 
     constructor (
         address _userContractAddress
@@ -17,7 +18,7 @@ contract CertifiedFileAggregator is NotifierInterface, BaseAggregator("certified
         setOnUser(_userContractAddress);
     }
 
-    function getCertifiedFileById(
+    function getSignatureById(
         string memory id
     )
         public
@@ -26,21 +27,21 @@ contract CertifiedFileAggregator is NotifierInterface, BaseAggregator("certified
     {
         bytes32 bytes32id = _keccak(id);
 
-        return address(certifiedFiles[bytes32id]);
+        return address(signatures[bytes32id]);
     }
 
-    function getCertifiedFile(
+    function getSignature(
         uint index
     )
         public
         view
         returns (address addr, bool more)
     {
-        bool _more = index + 1 < certifiedFilesIds.length;
-        bytes32 certifiedFileId = certifiedFilesIds[index];
+        bool _more = index + 1 < signatureIds.length;
+        bytes32 signatureId = signatureIds[index];
 
         return (
-            address(certifiedFiles[certifiedFileId]),
+            address(signatures[signatureId]),
             _more
         );
     }
@@ -50,7 +51,7 @@ contract CertifiedFileAggregator is NotifierInterface, BaseAggregator("certified
         view
         returns (uint)
     {
-        return certifiedFilesIds.length;
+        return signatureIds.length;
     }
 
     function notify(
@@ -62,13 +63,13 @@ contract CertifiedFileAggregator is NotifierInterface, BaseAggregator("certified
     {
         bytes32 bytes32eventType = _keccak(eventType);
 
-        if (_keccak(CERTIFIED_FILE_CREATED_EVENT) == bytes32eventType) {
-            CertifiedFile certifiedFile = CertifiedFile(addr);
+        if (_keccak(SIGNATURE_CREATED_EVENT) == bytes32eventType) {
+            Signature signature = Signature(addr);
 
-            bytes32 bytes32id = _keccak(certifiedFile.id());
+            bytes32 bytes32id = _keccak(signature.id());
 
-            certifiedFilesIds.push(bytes32id);
-            certifiedFiles[bytes32id] = certifiedFile;
+            signatureIds.push(bytes32id);
+            signatures[bytes32id] = signature;
         }
     }
 
