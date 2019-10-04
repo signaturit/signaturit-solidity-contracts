@@ -7,12 +7,15 @@ Gas to deploy: 2.168.027
 import "./Clause.sol";
 
 
-contract TimeLogger is Clause("timelogger") {
+contract TimeLogger is Clause(
+    "timelogger",
+    "time_logger.added"
+)
+{
     uint constant public SECONDS_PER_DAY = 86400;
 
     string constant public SOLIDITY_SOURCE = "solidity";
     string constant public EXTERNAL_SOURCE = "external";
-    string constant public NOTIFICATION_EVENT = "time_log.added";
 
     struct TimeLog {
         uint timeStart;
@@ -67,11 +70,9 @@ contract TimeLogger is Clause("timelogger") {
 
         userContract = UserInterface(managerContractAddress);
         ownerContract = UserInterface(ownerContractAddress);
-        signatureContract = SignatureInterface(signatureContractAddress);
+        signatureContract = NotifierInterface(signatureContractAddress);
 
-        signatureId = signatureContract.id();
-
-        setClauseOnSignature();
+        _notify();
     }
 
     modifier onlyManager() {
@@ -360,14 +361,5 @@ contract TimeLogger is Clause("timelogger") {
 
             day[today] = Day(tmpArray, 0, true);
         }
-    }
-
-    function _publish()
-        internal
-    {
-        publishNotification(
-            NOTIFICATION_EVENT,
-            ""
-        );
     }
 }

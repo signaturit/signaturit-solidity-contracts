@@ -71,12 +71,6 @@ contract SignatureInterface {
     )
         public;
 
-    function setClause(
-        string memory clauseType,
-        address clauseAddress
-    )
-        public;
-
     function getClause(
         string memory clauseType
     )

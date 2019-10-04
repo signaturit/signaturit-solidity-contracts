@@ -12,13 +12,14 @@ OVER_PAID      = 3;
 PARTIALLY_PAID = 4;
 */
 
-import "./interfaces/SignatureInterface.sol";
 import "./Clause.sol";
 
 
-contract Payment is Clause("payment"){
-    string constant public NOTIFICATION_EVENT = "payment_check.added";
-
+contract Payment is Clause(
+    "payment",
+    "payment_checker.added"
+)
+{
     struct PaymentCheck {
         string id;
         uint status;
@@ -54,7 +55,7 @@ contract Payment is Clause("payment"){
     mapping(string => Reference) private references;
     mapping(string => PaymentCheck) private paymentChecks;
 
-    SignatureInterface public signatureSmartContract;
+    NotifierInterface public signatureSmartContract;
 
     constructor(
         address userContractAddress,
@@ -67,7 +68,7 @@ contract Payment is Clause("payment"){
         signaturit = msg.sender;
 
         userContract = UserInterface(userContractAddress);
-        signatureContract = SignatureInterface(signatureContractAddress);
+        signatureContract = NotifierInterface(signatureContractAddress);
     }
 
     modifier signaturitOnly() {
@@ -95,7 +96,7 @@ contract Payment is Clause("payment"){
         period = paymentPeriod;
         signatureId = signature;
 
-        setClauseOnSignature();
+        _notify();
     }
 
     function setReceiver(
@@ -150,11 +151,6 @@ contract Payment is Clause("payment"){
         );
 
         newReference.checks.push(paymentCheckId);
-
-        publishNotification(
-            NOTIFICATION_EVENT,
-            paymentCheckId
-        );
     }
 
     // Get paymentCheck if you got the id

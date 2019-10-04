@@ -1,10 +1,12 @@
 pragma solidity <0.6.0;
 
 import "./interfaces/UserInterface.sol";
-import "./interfaces/SignatureInterface.sol";
+import "./interfaces/NotifierInterface.sol";
 
 
 contract Clause {
+    string public notificationEvent;
+
     address public signaturit;
 
     string public clause;
@@ -13,34 +15,23 @@ contract Clause {
     string public signatureId;
 
     UserInterface public userContract;
-    SignatureInterface public signatureContract;
+    NotifierInterface public signatureContract;
 
     constructor(
-        string memory clauseType
+        string memory clauseType,
+        string memory eventType
     )
         public
     {
         clause = clauseType;
+        notificationEvent = eventType;
     }
 
-    function publishNotification(
-        string memory notificationType,
-        string memory id
+    function _notify(
     )
         internal
     {
-        userContract.clauseNotification(
-            address(this),
-            clause,
-            notificationType,
-            id
-        );
-    }
-
-    function setClauseOnSignature()
-        internal
-    {
-        signatureContract.setClause(
+        signatureContract.notify(
             clause,
             address(this)
         );

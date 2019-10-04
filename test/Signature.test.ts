@@ -539,37 +539,4 @@ contract('Signature', async (accounts) => {
 
         assert.ok(transaction.receipt.status);
     });
-
-    it('Set clause as Signaturit account, expect to pass', async() => {
-        await signatureContract.setClause(
-            clauseType,
-            clauseAddress,
-            {
-                from: signaturitAddress
-            }
-        )
-
-        const readClause = await signatureContract.getClause(clauseType);
-
-        assert.equal(readClause, clauseAddress);
-    });
-
-    it('Set clause as not Signaturit account, expect exception', async() => {
-        try {
-            await signatureContract.setClause(
-                clauseType,
-                clauseAddress,
-                {
-                    from: invalidAddress
-                }
-            )
-
-            assert.fail("It should have thrown");
-        } catch(error) {
-            assert.include(
-                error.message,
-                'Only Signaturit account can perform this action.'
-            )
-        }
-    });
 });

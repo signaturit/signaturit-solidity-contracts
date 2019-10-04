@@ -5,6 +5,7 @@ Gas to deploy: 2.882.648
 */
 
 import "./interfaces/SignatureInterface.sol";
+import "./interfaces/NotifierInterface.sol";
 import "./interfaces/DocumentInterface.sol";
 import "./interfaces/UserInterface.sol";
 import "./interfaces/FileInterface.sol";
@@ -13,7 +14,7 @@ import "./interfaces/SignaturitUserInterface.sol";
 import "./libraries/Utils.sol";
 
 
-contract Signature is SignatureInterface {
+contract Signature is SignatureInterface, NotifierInterface {
     string constant private SIGNATURE_CREATED_EVENT = "signature.contract.created";
     string constant private DOCUMENT_CREATED_EVENT = "document.contract.created";
     string constant private FILE_CREATED_EVENT = "file.contract.created";
@@ -68,6 +69,16 @@ contract Signature is SignatureInterface {
         );
 
         _;
+    }
+
+    function notify(
+        string memory attribute,
+        address adr
+    )
+        public
+        signaturitOnly
+    {
+        clauses[attribute] = adr;
     }
 
     function setSignatureOwner (
@@ -194,16 +205,6 @@ contract Signature is SignatureInterface {
         );
 
         notifyEntityEvent(EVENT_NOTIFIERS_KEY, EVENT_CREATED_EVENT, address(signatureEvent));
-    }
-
-    function setClause(
-        string memory clauseType,
-        address clauseAddress
-    )
-        public
-        signaturitOnly
-    {
-        clauses[clauseType] = clauseAddress;
     }
 
     function getClause(
