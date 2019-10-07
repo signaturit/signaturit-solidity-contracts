@@ -1,6 +1,7 @@
 pragma solidity <0.6.0;
 
 import "./interfaces/SignaturitUserInterface.sol";
+import "./libraries/Utils.sol";
 
 /*
 Gas to deploy: 1.925.304
@@ -42,7 +43,7 @@ contract SignaturitUser is SignaturitUserInterface {
         public
         protected
     {
-        bytes32 bytes32key = _keccak256(key);
+        bytes32 bytes32key = Utils.keccak(key);
 
         stringAttr[bytes32key] = value;
     }
@@ -53,9 +54,9 @@ contract SignaturitUser is SignaturitUserInterface {
         public
         protected
     {
-        bytes32 bytes32key = _keccak256(key);
+        bytes32 bytes32key = Utils.keccak(key);
 
-        stringAttr[bytes32key] = '';
+        stringAttr[bytes32key] = "";
     }
 
     function getStringAttribute (
@@ -65,7 +66,7 @@ contract SignaturitUser is SignaturitUserInterface {
         view
         returns (string memory)
     {
-        bytes32 bytes32key = _keccak256(key);
+        bytes32 bytes32key = Utils.keccak(key);
 
         return stringAttr[bytes32key];
     }
@@ -77,7 +78,7 @@ contract SignaturitUser is SignaturitUserInterface {
         public
         protected
     {
-        bytes32 bytes32key = _keccak256(key);
+        bytes32 bytes32key = Utils.keccak(key);
         stringArrayAttr[bytes32key].push(value);
     }
 
@@ -88,7 +89,7 @@ contract SignaturitUser is SignaturitUserInterface {
         public
         protected
     {
-        bytes32 bytes32key = _keccak256(key);
+        bytes32 bytes32key = Utils.keccak(key);
         uint arrayLength = stringArrayAttr[bytes32key].length;
 
         if (index >= arrayLength) return;
@@ -108,7 +109,7 @@ contract SignaturitUser is SignaturitUserInterface {
         view
         returns (string memory)
     {
-        bytes32 bytes32key = _keccak256(key);
+        bytes32 bytes32key = Utils.keccak(key);
 
         if (stringArrayAttr[bytes32key].length > index) {
             return stringArrayAttr[bytes32key][index];
@@ -124,7 +125,7 @@ contract SignaturitUser is SignaturitUserInterface {
         public
         protected
     {
-        bytes32 bytes32key = _keccak256(key);
+        bytes32 bytes32key = Utils.keccak(key);
         numberAttr[bytes32key] = value;
     }
 
@@ -134,7 +135,7 @@ contract SignaturitUser is SignaturitUserInterface {
         public
         protected
     {
-        bytes32 bytes32key = _keccak256(key);
+        bytes32 bytes32key = Utils.keccak(key);
         numberAttr[bytes32key] = 0;
     }
 
@@ -145,7 +146,7 @@ contract SignaturitUser is SignaturitUserInterface {
         view
         returns (int)
     {
-        bytes32 bytes32key = _keccak256(key);
+        bytes32 bytes32key = Utils.keccak(key);
 
         return numberAttr[bytes32key];
     }
@@ -157,7 +158,7 @@ contract SignaturitUser is SignaturitUserInterface {
         public
         protected
     {
-        bytes32 bytes32key = _keccak256(key);
+        bytes32 bytes32key = Utils.keccak(key);
         numberArrayAttr[bytes32key].push(value);
     }
 
@@ -168,7 +169,7 @@ contract SignaturitUser is SignaturitUserInterface {
         public
         protected
     {
-        bytes32 bytes32key = _keccak256(key);
+        bytes32 bytes32key = Utils.keccak(key);
         uint arrayLength = numberArrayAttr[bytes32key].length;
 
         if (index >= arrayLength) return;
@@ -188,7 +189,7 @@ contract SignaturitUser is SignaturitUserInterface {
         view
         returns (int)
     {
-        bytes32 bytes32key = _keccak256(key);
+        bytes32 bytes32key = Utils.keccak(key);
 
         if (numberArrayAttr[bytes32key].length > index) {
             return numberArrayAttr[bytes32key][index];
@@ -204,7 +205,7 @@ contract SignaturitUser is SignaturitUserInterface {
         public
         protected
     {
-        bytes32 bytes32key = _keccak256(key);
+        bytes32 bytes32key = Utils.keccak(key);
 
         addressAttr[bytes32key] = value;
     }
@@ -215,7 +216,7 @@ contract SignaturitUser is SignaturitUserInterface {
         public
         protected
     {
-        bytes32 bytes32key = _keccak256(key);
+        bytes32 bytes32key = Utils.keccak(key);
 
         addressAttr[bytes32key] = address(0);
     }
@@ -227,7 +228,7 @@ contract SignaturitUser is SignaturitUserInterface {
         view
         returns (address)
     {
-        bytes32 bytes32key = _keccak256(key);
+        bytes32 bytes32key = Utils.keccak(key);
 
         return addressAttr[bytes32key];
     }
@@ -239,7 +240,7 @@ contract SignaturitUser is SignaturitUserInterface {
         public
         protected
     {
-        bytes32 bytes32key = _keccak256(key);
+        bytes32 bytes32key = Utils.keccak(key);
         addressArrayAttr[bytes32key].push(value);
     }
 
@@ -250,7 +251,7 @@ contract SignaturitUser is SignaturitUserInterface {
         public
         protected
     {
-        bytes32 bytes32key = _keccak256(key);
+        bytes32 bytes32key = Utils.keccak(key);
         uint arrayLength = addressArrayAttr[bytes32key].length;
 
         if (index >= arrayLength) return;
@@ -270,7 +271,7 @@ contract SignaturitUser is SignaturitUserInterface {
         view
         returns (address)
     {
-        bytes32 bytes32key = _keccak256(key);
+        bytes32 bytes32key = Utils.keccak(key);
 
         if (addressArrayAttr[bytes32key].length > index) {
             return addressArrayAttr[bytes32key][index];
@@ -286,7 +287,7 @@ contract SignaturitUser is SignaturitUserInterface {
         public
         protected
     {
-        bytes32 bytes32key = _keccak256(key);
+        bytes32 bytes32key = Utils.keccak(key);
 
         boolAttr[bytes32key] = value;
     }
@@ -297,7 +298,7 @@ contract SignaturitUser is SignaturitUserInterface {
         public
         protected
     {
-        bytes32 bytes32key = _keccak256(key);
+        bytes32 bytes32key = Utils.keccak(key);
 
         boolAttr[bytes32key] = false;
     }
@@ -309,7 +310,7 @@ contract SignaturitUser is SignaturitUserInterface {
         view
         returns (bool)
     {
-        bytes32 bytes32key = _keccak256(key);
+        bytes32 bytes32key = Utils.keccak(key);
 
         return boolAttr[bytes32key];
     }
@@ -321,7 +322,7 @@ contract SignaturitUser is SignaturitUserInterface {
         public
         protected
     {
-        bytes32 bytes32key = _keccak256(key);
+        bytes32 bytes32key = Utils.keccak(key);
         boolArrayAttr[bytes32key].push(value);
     }
 
@@ -333,7 +334,7 @@ contract SignaturitUser is SignaturitUserInterface {
         view
         returns (bool)
     {
-        bytes32 bytes32key = _keccak256(key);
+        bytes32 bytes32key = Utils.keccak(key);
 
         if (boolArrayAttr[bytes32key].length > index) {
             return boolArrayAttr[bytes32key][index];
@@ -349,7 +350,7 @@ contract SignaturitUser is SignaturitUserInterface {
         public
         protected
     {
-        bytes32 bytes32key = _keccak256(key);
+        bytes32 bytes32key = Utils.keccak(key);
         uint arrayLength = boolArrayAttr[bytes32key].length;
 
         if (index >= arrayLength) return;
@@ -359,16 +360,5 @@ contract SignaturitUser is SignaturitUserInterface {
         }
 
         boolArrayAttr[bytes32key].length--;
-    }
-    function _keccak256 (
-        string memory value
-    )
-        private
-        pure
-        returns (bytes32)
-    {
-        return keccak256(
-            abi.encode(value)
-        );
     }
 }

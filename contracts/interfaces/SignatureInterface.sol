@@ -21,12 +21,6 @@ contract SignatureInterface {
 
     SignaturitUserInterface public userContract;
 
-    function setSignatureOwner(
-        address signatureOwner,
-        address userSmartContractAddress
-    )
-        public;
-
     function createDocument(
         string memory documentId,
         string memory signatureType,
@@ -71,12 +65,6 @@ contract SignatureInterface {
     )
         public;
 
-    function setClause(
-        string memory clauseType,
-        address clauseAddress
-    )
-        public;
-
     function getClause(
         string memory clauseType
     )
@@ -93,6 +81,13 @@ contract SignatureInterface {
 
     function getDocument(
         string memory documentId
+    )
+        public
+        view
+        returns (address);
+
+    function getDocumentByIndex(
+        uint index
     )
         public
         view

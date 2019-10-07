@@ -5,6 +5,7 @@ Gas to deploy: 2.882.648
 */
 
 import "./interfaces/SignatureInterface.sol";
+import "./interfaces/NotifierInterface.sol";
 import "./interfaces/DocumentInterface.sol";
 import "./interfaces/UserInterface.sol";
 import "./interfaces/FileInterface.sol";
@@ -13,7 +14,7 @@ import "./interfaces/SignaturitUserInterface.sol";
 import "./libraries/Utils.sol";
 
 
-contract Signature is SignatureInterface {
+contract Signature is SignatureInterface, NotifierInterface {
     string constant private SIGNATURE_CREATED_EVENT = "signature.contract.created";
     string constant private DOCUMENT_CREATED_EVENT = "document.contract.created";
     string constant private FILE_CREATED_EVENT = "file.contract.created";
@@ -23,6 +24,11 @@ contract Signature is SignatureInterface {
     string constant private DOCUMENT_NOTIFIERS_KEY = "document-notifiers";
     string constant private FILE_NOTIFIERS_KEY = "file-notifiers";
     string constant private EVENT_NOTIFIERS_KEY = "event-notifiers";
+
+    string constant private PAYMENT_CLAUSE_CREATED = "payment_clause.created";
+    string constant private TIMELOGGER_CLAUSE_CREATED = "timelogger_clause.created";
+    string constant private PAYMENT_CLAUSE_KEY = "payment";
+    string constant private TIMELOGGER_CLAUSE_KEY = "timelogger";
 
     address public signaturit;
     address public deployer;
@@ -43,10 +49,15 @@ contract Signature is SignatureInterface {
     constructor(
         string memory signatureId,
         address deployerAddress,
-        int signatureCreatedAt
+        int signatureCreatedAt,
+        address signatureOwner,
+        address userSmartContractAddress
     ) public {
         signaturit = msg.sender;
         deployer = deployerAddress;
+
+        owner = signatureOwner;
+        userContract = SignaturitUserInterface(userSmartContractAddress);
 
         id = signatureId;
         createdAt = signatureCreatedAt;
@@ -70,16 +81,21 @@ contract Signature is SignatureInterface {
         _;
     }
 
-    function setSignatureOwner (
-        address signatureOwner,
-        address userSmartContractAddress
+    function notify(
+        string memory attribute,
+        address adr
     )
         public
         signaturitOnly
     {
-        owner = signatureOwner;
+        if (Utils.keccak(attribute) == Utils.keccak(PAYMENT_CLAUSE_CREATED)) clauses[PAYMENT_CLAUSE_KEY] = adr;
+        else if (Utils.keccak(attribute) == Utils.keccak(TIMELOGGER_CLAUSE_CREATED)) clauses[TIMELOGGER_CLAUSE_KEY] = adr;
+    }
 
-        userContract = SignaturitUserInterface(userSmartContractAddress);
+    function notifyCreation()
+        public
+        signaturitOnly
+    {
         notifyEntityEvent(SIGNATURE_NOTIFIERS_KEY, SIGNATURE_CREATED_EVENT, address(this));
     }
 
@@ -196,16 +212,6 @@ contract Signature is SignatureInterface {
         notifyEntityEvent(EVENT_NOTIFIERS_KEY, EVENT_CREATED_EVENT, address(signatureEvent));
     }
 
-    function setClause(
-        string memory clauseType,
-        address clauseAddress
-    )
-        public
-        signaturitOnly
-    {
-        clauses[clauseType] = clauseAddress;
-    }
-
     function getClause(
         string memory clauseType
     )
@@ -226,6 +232,18 @@ contract Signature is SignatureInterface {
         if (!_documentExist(documentId)) return address(0);
 
         return address(documents[documentId]);
+    }
+
+    function getDocumentByIndex(
+        uint index
+    )
+        public
+        view
+        returns (address)
+    {
+        if (index > documentsId.length - 1) return address(0);
+
+        return address(documents[documentsId[index]]);
     }
 
     function getDocumentsSize()

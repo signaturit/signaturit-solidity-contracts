@@ -1,48 +1,57 @@
 pragma solidity <0.6.0;
 
-import "./interfaces/UserInterface.sol";
-import "./interfaces/SignatureInterface.sol";
+import "./interfaces/SignaturitUserInterface.sol";
+import "./interfaces/NotifierInterface.sol";
 
 
 contract Clause {
+    string public notifiersKey;
+
     address public signaturit;
 
-    string public clause;
     string public contractId;
     string public documentId;
     string public signatureId;
 
-    UserInterface public userContract;
-    SignatureInterface public signatureContract;
+    SignaturitUserInterface public userContract;
+    NotifierInterface public signatureContract;
 
     constructor(
-        string memory clauseType
+        string memory notifiers
     )
         public
     {
-        clause = clauseType;
+        notifiersKey = notifiers;
     }
 
-    function publishNotification(
-        string memory notificationType,
-        string memory id
-    )
+    function _notifySignature(string memory creationEvent)
         internal
     {
-        userContract.clauseNotification(
-            address(this),
-            clause,
-            notificationType,
-            id
-        );
-    }
-
-    function setClauseOnSignature()
-        internal
-    {
-        signatureContract.setClause(
-            clause,
+        signatureContract.notify(
+            creationEvent,
             address(this)
         );
+    }
+
+    function _notify(string memory eventType)
+        internal
+    {
+        address contractToNofify;
+        uint notificationIndex = 0;
+
+        do {
+            contractToNofify = userContract.getAddressArrayAttribute(notifiersKey, notificationIndex);
+            ++notificationIndex;
+
+            if (contractToNofify != address(0)) {
+                contractToNofify.call(
+                    abi.encodeWithSignature(
+                        "notify(string,address)",
+                        eventType,
+                        address(this)
+                    )
+                );
+            }
+        } while (contractToNofify != address(0));
     }
 }

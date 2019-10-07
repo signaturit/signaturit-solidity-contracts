@@ -1,5 +1,9 @@
 pragma solidity <0.6.0;
 
+/*
+Gas to deploy: 959.102
+*/
+
 import "./interfaces/NotifierInterface.sol";
 import "./BaseAggregator.sol";
 import "./Signature.sol";
@@ -31,7 +35,7 @@ contract SignatureAggregator is
         view
         returns (address)
     {
-        bytes32 bytes32id = _keccak(id);
+        bytes32 bytes32id = Utils.keccak(id);
 
         return address(signatures[bytes32id]);
     }
@@ -67,27 +71,15 @@ contract SignatureAggregator is
         public
         signaturitOnly
     {
-        bytes32 bytes32eventType = _keccak(eventType);
+        bytes32 bytes32eventType = Utils.keccak(eventType);
 
-        if (_keccak(SIGNATURE_CREATED_EVENT) == bytes32eventType) {
+        if (Utils.keccak(SIGNATURE_CREATED_EVENT) == bytes32eventType) {
             Signature signature = Signature(addr);
 
-            bytes32 bytes32id = _keccak(signature.id());
+            bytes32 bytes32id = Utils.keccak(signature.id());
 
             signatureIds.push(bytes32id);
             signatures[bytes32id] = signature;
         }
-    }
-
-    function _keccak (
-        string memory key
-    )
-        private
-        pure
-        returns (bytes32)
-    {
-        return keccak256(
-            abi.encode(key)
-        );
     }
 }

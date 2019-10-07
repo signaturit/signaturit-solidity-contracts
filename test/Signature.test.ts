@@ -66,14 +66,14 @@ contract('Signature', async (accounts) => {
             signatureId,
             signatureDeployer.address,
             Date.now(),
+            signatureOwner,
+            userContract.address,
             {
                 from: signaturitAddress
             }
         );
 
-        await signatureContract.setSignatureOwner(
-            signatureOwner,
-            userContract.address,
+        await signatureContract.notifyCreation(
             {
                 from: signaturitAddress
             }
@@ -99,11 +99,9 @@ contract('Signature', async (accounts) => {
         assert.equal(signatureId, readContractId);
     });
 
-    it('Add owner to the signature contract from signaturit account', async () => {
+    it('notify creation from signaturit account', async () => {
 
-        await signatureContract.setSignatureOwner(
-            signatureOwner,
-            userContract.address,
+        await signatureContract.notifyCreation(
             {
                 from: signaturitAddress
             }
@@ -117,11 +115,9 @@ contract('Signature', async (accounts) => {
         assert.equal(readSignature.addr, signatureContract.address);
     });
 
-    it('Add owner to the signature contract from invalid signaturit account', async () => {
+    it('notify creation from from invalid signaturit account', async () => {
         try {
-            await signatureContract.setSignatureOwner(
-                signatureOwner,
-                signatureContract.address,
+            await signatureContract.notifyCreation(
                 {
                     from: invalidAddress
                 }
@@ -538,38 +534,5 @@ contract('Signature', async (accounts) => {
         );
 
         assert.ok(transaction.receipt.status);
-    });
-
-    it('Set clause as Signaturit account, expect to pass', async() => {
-        await signatureContract.setClause(
-            clauseType,
-            clauseAddress,
-            {
-                from: signaturitAddress
-            }
-        )
-
-        const readClause = await signatureContract.getClause(clauseType);
-
-        assert.equal(readClause, clauseAddress);
-    });
-
-    it('Set clause as not Signaturit account, expect exception', async() => {
-        try {
-            await signatureContract.setClause(
-                clauseType,
-                clauseAddress,
-                {
-                    from: invalidAddress
-                }
-            )
-
-            assert.fail("It should have thrown");
-        } catch(error) {
-            assert.include(
-                error.message,
-                'Only Signaturit account can perform this action.'
-            )
-        }
     });
 });
