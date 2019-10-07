@@ -9,7 +9,6 @@ contract Clause {
 
     address public signaturit;
 
-    string public clause;
     string public contractId;
     string public documentId;
     string public signatureId;
@@ -18,12 +17,10 @@ contract Clause {
     NotifierInterface public signatureContract;
 
     constructor(
-        string memory clauseType,
         string memory notifiers
     )
         public
     {
-        clause = clauseType;
         notifiersKey = notifiers;
     }
 

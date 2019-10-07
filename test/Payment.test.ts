@@ -71,9 +71,6 @@ contract('Payment', async (accounts) => {
 
         const readContractId = await paymentContract.contractId();
 
-        const readClauseType = await paymentContract.clause();
-
-        assert.equal(readClauseType, clauseType);
         assert.equal(readContractId, contractId);
     });
 

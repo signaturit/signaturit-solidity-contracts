@@ -25,6 +25,11 @@ contract Signature is SignatureInterface, NotifierInterface {
     string constant private FILE_NOTIFIERS_KEY = "file-notifiers";
     string constant private EVENT_NOTIFIERS_KEY = "event-notifiers";
 
+    string constant private PAYMENT_CLAUSE_CREATED = "payment_clause.created";
+    string constant private TIMELOGGER_CLAUSE_CREATED = "timelogger_clause.created";
+    string constant private PAYMENT_CLAUSE_KEY = "payment";
+    string constant private TIMELOGGER_CLAUSE_KEY = "timelogger";
+
     address public signaturit;
     address public deployer;
     address public owner;
@@ -83,8 +88,8 @@ contract Signature is SignatureInterface, NotifierInterface {
         public
         signaturitOnly
     {
-        if (Utils.keccak(attribute) == Utils.keccak("payment_clause.created")) clauses["payment"] = adr;
-        else if (Utils.keccak(attribute) == Utils.keccak("timelogger_clause.created")) clauses["timelogger"] = adr;
+        if (Utils.keccak(attribute) == Utils.keccak(PAYMENT_CLAUSE_CREATED)) clauses[PAYMENT_CLAUSE_KEY] = adr;
+        else if (Utils.keccak(attribute) == Utils.keccak(TIMELOGGER_CLAUSE_CREATED)) clauses[TIMELOGGER_CLAUSE_KEY] = adr;
     }
 
     function notifyCreation()

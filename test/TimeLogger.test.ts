@@ -78,9 +78,7 @@ contract('TimeLogger', async (accounts) => {
         assert.ok(timeLoggerContract.address);
 
         const readContractId = await timeLoggerContract.contractId();
-        const readClauseType = await timeLoggerContract.clause();
 
-        assert.equal(readClauseType, clauseType);
         assert.equal(readContractId, contractId);
     });
 

@@ -16,7 +16,6 @@ import "./Clause.sol";
 
 
 contract Payment is Clause(
-    "payment",
     "payment_clause_notifiers"
 )
 {

@@ -8,7 +8,6 @@ import "./Clause.sol";
 
 
 contract TimeLogger is Clause(
-    "timelogger",
     "timeloger-clause-notifiers"
 )
 {
