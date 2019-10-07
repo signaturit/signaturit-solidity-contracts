@@ -1,5 +1,5 @@
 contract('TimeLogger', async (accounts) => {
-    const ArtifactUser      = artifacts.require('User');
+    const ArtifactUser      = artifacts.require('SignaturitUser');
     const ArtifactSignature = artifacts.require('Signature');
     const ArtifactTimeLogger = artifacts.require('TimeLogger');
     const ArtifactSignatureDeployer = artifacts.require('SignatureDeployer');

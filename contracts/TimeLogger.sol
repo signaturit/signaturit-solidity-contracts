@@ -32,9 +32,6 @@ contract TimeLogger is Clause(
 
     SignaturitUserInterface public ownerContract;
 
-    NotifierInterface public signatureContract;
-
-
     bool public expired;
 
     uint public endDate;

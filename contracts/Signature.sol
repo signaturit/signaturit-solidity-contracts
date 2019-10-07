@@ -83,8 +83,8 @@ contract Signature is SignatureInterface, NotifierInterface {
         public
         signaturitOnly
     {
-        if(Utils.keccak(attribute) == Utils.keccak("payment")) clauses[attribute] = adr;
-        else if(Utils.keccak(attribute) == Utils.keccak("timelogger")) clauses[attribute] = adr;
+        if (Utils.keccak(attribute) == Utils.keccak("payment")) clauses[attribute] = adr;
+        else if (Utils.keccak(attribute) == Utils.keccak("timelogger")) clauses[attribute] = adr;
     }
 
     function notifyCreation()

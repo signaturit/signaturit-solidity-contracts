@@ -21,9 +21,6 @@ contract SignatureInterface {
 
     SignaturitUserInterface public userContract;
 
-    function setClause()
-        public;
-
     function createDocument(
         string memory documentId,
         string memory signatureType,
@@ -65,12 +62,6 @@ contract SignatureInterface {
         string memory eventType,
         string memory eventUserAgent,
         uint eventCreatedAt
-    )
-        public;
-
-    function notify(
-        string memory attribute,
-        address adr
     )
         public;
 

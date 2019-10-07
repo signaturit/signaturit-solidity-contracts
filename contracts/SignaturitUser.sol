@@ -55,7 +55,7 @@ contract SignaturitUser is SignaturitUserInterface {
     {
         bytes32 bytes32key = _keccak256(key);
 
-        stringAttr[bytes32key] = '';
+        stringAttr[bytes32key] = "";
     }
 
     function getStringAttribute (

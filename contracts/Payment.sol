@@ -55,8 +55,6 @@ contract Payment is Clause(
     mapping(string => Reference) private references;
     mapping(string => PaymentCheck) private paymentChecks;
 
-    NotifierInterface public signatureSmartContract;
-
     constructor(
         address userContractAddress,
         address signatureContractAddress,
