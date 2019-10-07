@@ -229,6 +229,18 @@ contract Signature is SignatureInterface, NotifierInterface {
         return address(documents[documentId]);
     }
 
+    function getDocumentByIndex(
+        uint index
+    )
+        public
+        view
+        returns (address)
+    {
+        if (index > documentsId.length - 1) return address(0);
+
+        return address(documents[documentsId[index]]);
+    }
+
     function getDocumentsSize()
         public
         view

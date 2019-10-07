@@ -86,6 +86,13 @@ contract SignatureInterface {
         view
         returns (address);
 
+    function getDocumentByIndex(
+        uint index
+    )
+        public
+        view
+        returns (address);
+
     function getDocumentsSize()
         public
         view
