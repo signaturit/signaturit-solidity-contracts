@@ -43,17 +43,20 @@ contract('TimeLogger', async (accounts) => {
     beforeEach(async () => {
         signatureDeployer = await ArtifactSignatureDeployer.new();
 
+        ownerContract = await ArtifactUser.new(ownerAddress);
+        
         signatureContract = await ArtifactSignature.new(
             signatureId,
             signatureDeployer.address,
             Date.now(),
+            ownerAddress,
+            ownerContract.address,
             {
                 from: signaturitAddress
             }
         );
 
         managerContract = await ArtifactUser.new(managerAddress);
-        ownerContract   = await ArtifactUser.new(ownerAddress);
 
         timeLoggerContract = await ArtifactTimeLogger.new(
             managerContract.address,

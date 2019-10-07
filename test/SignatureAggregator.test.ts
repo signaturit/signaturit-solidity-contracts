@@ -64,7 +64,9 @@ contract('SignatureAggregator', async (accounts) => {
         const signatureContract = await ArtifactSignature.new(
             signatureId,
             deployerAddress,
-            signatureCreatedAt
+            signatureCreatedAt,
+            ownerAddress,
+            userContract.address
         );
 
         const storedSignatures = await signatureAggregatorContract.count();
@@ -77,7 +79,9 @@ contract('SignatureAggregator', async (accounts) => {
         const signatureContract = await ArtifactSignature.new(
             signatureId,
             deployerAddress,
-            signatureCreatedAt
+            signatureCreatedAt,
+            ownerAddress,
+            userContract.address
         );
 
         signatureAggregatorContract.notify(
@@ -95,13 +99,12 @@ contract('SignatureAggregator', async (accounts) => {
         const signatureContract = await ArtifactSignature.new(
             signatureId,
             deployerAddress,
-            signatureCreatedAt
-        );
-
-        await signatureContract.setSignatureOwner(
-            rootAddress,
+            signatureCreatedAt,
+            ownerAddress,
             userContract.address
         );
+
+        await signatureContract.notifyCreation();
 
         const storedSignatures = await signatureAggregatorContract.count();
         const signatureByIdAddress = await signatureAggregatorContract.getSignatureById(signatureId);
@@ -118,6 +121,8 @@ contract('SignatureAggregator', async (accounts) => {
             signatureId,
             deployerAddress,
             signatureCreatedAt,
+            ownerAddress,
+            userContract.address,
             {
                 from: invalidAccount
             }
@@ -137,24 +142,22 @@ contract('SignatureAggregator', async (accounts) => {
         const signatureContract = await ArtifactSignature.new(
             signatureId,
             deployerAddress,
-            signatureCreatedAt
-        );
-
-        await signatureContract.setSignatureOwner(
-            rootAddress,
+            signatureCreatedAt,
+            ownerAddress,
             userContract.address
         );
+
+        await signatureContract.notifyCreation();
 
         const signatureContractTwo = await ArtifactSignature.new(
             signatureSecondId,
             deployerAddress,
-            signatureCreatedAt
-        );
-
-        await signatureContractTwo.setSignatureOwner(
-            rootAddress,
+            signatureCreatedAt,
+            ownerAddress,
             userContract.address
         );
+
+        await signatureContractTwo.notifyCreation();
 
         const storedSignatures = await signatureAggregatorContract.count();
         const signatureAddressById = await signatureAggregatorContract.getSignatureById(signatureId);

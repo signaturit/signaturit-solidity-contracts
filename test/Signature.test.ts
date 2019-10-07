@@ -66,14 +66,14 @@ contract('Signature', async (accounts) => {
             signatureId,
             signatureDeployer.address,
             Date.now(),
+            signatureOwner,
+            userContract.address,
             {
                 from: signaturitAddress
             }
         );
 
-        await signatureContract.setSignatureOwner(
-            signatureOwner,
-            userContract.address,
+        await signatureContract.notifyCreation(
             {
                 from: signaturitAddress
             }
@@ -99,11 +99,9 @@ contract('Signature', async (accounts) => {
         assert.equal(signatureId, readContractId);
     });
 
-    it('Add owner to the signature contract from signaturit account', async () => {
+    it('notify creation from signaturit account', async () => {
 
-        await signatureContract.setSignatureOwner(
-            signatureOwner,
-            userContract.address,
+        await signatureContract.notifyCreation(
             {
                 from: signaturitAddress
             }
@@ -117,11 +115,9 @@ contract('Signature', async (accounts) => {
         assert.equal(readSignature.addr, signatureContract.address);
     });
 
-    it('Add owner to the signature contract from invalid signaturit account', async () => {
+    it('notify creation from from invalid signaturit account', async () => {
         try {
-            await signatureContract.setSignatureOwner(
-                signatureOwner,
-                signatureContract.address,
+            await signatureContract.notifyCreation(
                 {
                     from: invalidAddress
                 }

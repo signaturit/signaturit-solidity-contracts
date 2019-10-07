@@ -2,7 +2,7 @@ var truffleAssert = require('truffle-assertions');
 var truffleEvent  = require('truffle-events');
 
 contract('Payment', async (accounts) => {
-    const ArtifactUser      = artifacts.require('User');
+    const ArtifactUser      = artifacts.require('SignaturitUser');
     const ArtifactPayment   = artifacts.require('Payment');
     const ArtifactSignature = artifacts.require('Signature');
     const ArtifactSignatureDeployer = artifacts.require('SignatureDeployer');
@@ -42,17 +42,19 @@ contract('Payment', async (accounts) => {
 
     beforeEach(async () => {
         signatureDeployerContract = await ArtifactSignatureDeployer.new();
-
+        
+        userContract = await ArtifactUser.new(signaturitAddress);
+        
         signatureContract = await ArtifactSignature.new(
             signatureId,
             signatureDeployerContract.address,
             Date.now(),
+            signaturitAddress,
+            userContract.address,
             {
                 from: signaturitAddress
             }
         );
-
-        userContract = await ArtifactUser.new(signaturitAddress);
 
         paymentContract = await ArtifactPayment.new(
             userContract.address,

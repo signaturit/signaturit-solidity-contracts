@@ -21,10 +21,7 @@ contract SignatureInterface {
 
     SignaturitUserInterface public userContract;
 
-    function setSignatureOwner(
-        address signatureOwner,
-        address userSmartContractAddress
-    )
+    function notifyCreation()
         public;
 
     function createDocument(

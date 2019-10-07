@@ -44,10 +44,15 @@ contract Signature is SignatureInterface, NotifierInterface {
     constructor(
         string memory signatureId,
         address deployerAddress,
-        int signatureCreatedAt
+        int signatureCreatedAt,
+        address signatureOwner,
+        address userSmartContractAddress
     ) public {
         signaturit = msg.sender;
         deployer = deployerAddress;
+
+        owner = signatureOwner;
+        userContract = SignaturitUserInterface(userSmartContractAddress);
 
         id = signatureId;
         createdAt = signatureCreatedAt;
@@ -81,16 +86,10 @@ contract Signature is SignatureInterface, NotifierInterface {
         clauses[attribute] = adr;
     }
 
-    function setSignatureOwner (
-        address signatureOwner,
-        address userSmartContractAddress
-    )
+    function notifyCreation()
         public
         signaturitOnly
     {
-        owner = signatureOwner;
-
-        userContract = SignaturitUserInterface(userSmartContractAddress);
         notifyEntityEvent(SIGNATURE_NOTIFIERS_KEY, SIGNATURE_CREATED_EVENT, address(this));
     }
 
