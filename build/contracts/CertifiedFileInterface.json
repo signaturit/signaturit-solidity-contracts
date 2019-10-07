@@ -1,1 +1,607 @@
-{"abi":[{"constant":true,"inputs":[],"name":"hash","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"size","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"id","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"createdAt","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"signaturit","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"}],"bytecode":"0x608060405234801561001057600080fd5b506102c0806100206000396000f3fe60806040526004361061005e5763ffffffff60e060020a60003504166309bd5a6081146100635780638da5cb5b146100ed578063949d225d1461011e578063af640d0f14610145578063cf09e0d01461015a578063f9b533351461016f575b600080fd5b34801561006f57600080fd5b50610078610184565b6040805160208082528351818301528351919283929083019185019080838360005b838110156100b257818101518382015260200161009a565b50505050905090810190601f1680156100df5780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b3480156100f957600080fd5b50610102610212565b60408051600160a060020a039092168252519081900360200190f35b34801561012a57600080fd5b50610133610221565b60408051918252519081900360200190f35b34801561015157600080fd5b50610078610227565b34801561016657600080fd5b5061013361027f565b34801561017b57600080fd5b50610102610285565b6003805460408051602060026001851615610100026000190190941693909304601f8101849004840282018401909252818152929183018282801561020a5780601f106101df5761010080835404028352916020019161020a565b820191906000526020600020905b8154815290600101906020018083116101ed57829003601f168201915b505050505081565b600154600160a060020a031681565b60055481565b6002805460408051602060018416156101000260001901909316849004601f8101849004840282018401909252818152929183018282801561020a5780601f106101df5761010080835404028352916020019161020a565b60045481565b600054600160a060020a03168156fea165627a7a723058202413a64f682e4baff92049c709067873da97dc79abbd286197dba8dddbc2405f0029"}
+{
+  "contractName": "CertifiedFileInterface",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "hash",
+      "outputs": [
+        {
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "size",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "id",
+      "outputs": [
+        {
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "createdAt",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "signaturit",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.0+commit.1d4f565a\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"hash\",\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"size\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"id\",\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"createdAt\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"signaturit\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/CertifiedFileInterface.sol\":\"CertifiedFileInterface\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":10},\"remappings\":[]},\"sources\":{\"/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/CertifiedFileCheckerInterface.sol\":{\"keccak256\":\"0x6e50694967edffe926b6290b7d60e82b6c51bf54eef68f061d0769875af0941d\",\"urls\":[\"bzzr://064c76fdf7d1af2f29510942995d0159b7e7a3da93960bc8f44abb8eb6c50228\"]},\"/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/CertifiedFileInterface.sol\":{\"keccak256\":\"0x9394f607cd9ac7535192f1742527c60ebc83c67bb5804dc6f5e4f0dbbe809d2c\",\"urls\":[\"bzzr://32b600baec0e9974f08ec14ba68740cb0067a470e769e9cad536e6f9fa0769fa\"]},\"/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/NotifierInterface.sol\":{\"keccak256\":\"0x5d57c71d5394e75372e93fccb95eebe47dbd5e93693aebada8119851fbe3f866\",\"urls\":[\"bzzr://d638038b8adca86a674e68eef3393ae02feb7a6b5dc92a95114473755b5f73ac\"]},\"/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/SignaturitUserInterface.sol\":{\"keccak256\":\"0x8cf1e2daa0e030269cdf046e57f8bd3266798da969b616f39a180768072d68c4\",\"urls\":[\"bzzr://0a146506507b2ab92e2a2e11aec4eac4af200c584a5675ab04dadba282145407\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b506102c0806100206000396000f3fe60806040526004361061005e5763ffffffff60e060020a60003504166309bd5a6081146100635780638da5cb5b146100ed578063949d225d1461011e578063af640d0f14610145578063cf09e0d01461015a578063f9b533351461016f575b600080fd5b34801561006f57600080fd5b50610078610184565b6040805160208082528351818301528351919283929083019185019080838360005b838110156100b257818101518382015260200161009a565b50505050905090810190601f1680156100df5780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b3480156100f957600080fd5b50610102610212565b60408051600160a060020a039092168252519081900360200190f35b34801561012a57600080fd5b50610133610221565b60408051918252519081900360200190f35b34801561015157600080fd5b50610078610227565b34801561016657600080fd5b5061013361027f565b34801561017b57600080fd5b50610102610285565b6003805460408051602060026001851615610100026000190190941693909304601f8101849004840282018401909252818152929183018282801561020a5780601f106101df5761010080835404028352916020019161020a565b820191906000526020600020905b8154815290600101906020018083116101ed57829003601f168201915b505050505081565b600154600160a060020a031681565b60055481565b6002805460408051602060018416156101000260001901909316849004601f8101849004840282018401909252818152929183018282801561020a5780601f106101df5761010080835404028352916020019161020a565b60045481565b600054600160a060020a03168156fea165627a7a7230582091ebd5241c571c87b3cce6a01fe50ef5dfc2f3342a2cec59b869e70dac02eae50029",
+  "deployedBytecode": "0x60806040526004361061005e5763ffffffff60e060020a60003504166309bd5a6081146100635780638da5cb5b146100ed578063949d225d1461011e578063af640d0f14610145578063cf09e0d01461015a578063f9b533351461016f575b600080fd5b34801561006f57600080fd5b50610078610184565b6040805160208082528351818301528351919283929083019185019080838360005b838110156100b257818101518382015260200161009a565b50505050905090810190601f1680156100df5780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b3480156100f957600080fd5b50610102610212565b60408051600160a060020a039092168252519081900360200190f35b34801561012a57600080fd5b50610133610221565b60408051918252519081900360200190f35b34801561015157600080fd5b50610078610227565b34801561016657600080fd5b5061013361027f565b34801561017b57600080fd5b50610102610285565b6003805460408051602060026001851615610100026000190190941693909304601f8101849004840282018401909252818152929183018282801561020a5780601f106101df5761010080835404028352916020019161020a565b820191906000526020600020905b8154815290600101906020018083116101ed57829003601f168201915b505050505081565b600154600160a060020a031681565b60055481565b6002805460408051602060018416156101000260001901909316849004601f8101849004840282018401909252818152929183018282801561020a5780601f106101df5761010080835404028352916020019161020a565b60045481565b600054600160a060020a03168156fea165627a7a7230582091ebd5241c571c87b3cce6a01fe50ef5dfc2f3342a2cec59b869e70dac02eae50029",
+  "sourceMap": "112:232:22:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;112:232:22;;;;;;;",
+  "deployedSourceMap": "112:232:22:-;;;;;;;;;-1:-1:-1;;;112:232:22;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;230:18;;8:9:-1;5:2;;;30:1;27;20:12;5:2;230:18:22;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8:100:-1;33:3;30:1;27:10;8:100;;;90:11;;;84:18;71:11;;;64:39;52:2;45:10;8:100;;;12:14;230:18:22;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;181:20;;8:9:-1;5:2;;;30:1;27;20:12;5:2;181:20:22;;;;;;;;-1:-1:-1;;;;;181:20:22;;;;;;;;;;;;;;282:16;;8:9:-1;5:2;;;30:1;27;20:12;5:2;282:16:22;;;;;;;;;;;;;;;;;;;;208;;8:9:-1;5:2;;;30:1;27;20:12;5:2;208:16:22;;;;255:21;;8:9:-1;5:2;;;30:1;27;20:12;5:2;255:21:22;;;;150:25;;8:9:-1;5:2;;;30:1;27;20:12;5:2;150:25:22;;;;230:18;;;;;;;;;;;;;;;-1:-1:-1;;230:18:22;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;181:20::-;;;-1:-1:-1;;;;;181:20:22;;:::o;282:16::-;;;;:::o;208:::-;;;;;;;;;;;;;;-1:-1:-1;;208:16:22;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;255:21;;;;:::o;150:25::-;;;-1:-1:-1;;;;;150:25:22;;:::o",
+  "source": "pragma solidity <0.6.0;\n\nimport \"./SignaturitUserInterface.sol\";\nimport \"./CertifiedFileCheckerInterface.sol\";\n\ncontract CertifiedFileInterface {\n    address public signaturit;\n    address public owner;\n\n    string public id;\n    string public hash;\n\n    uint public createdAt;\n    uint public size;\n\n    SignaturitUserInterface userContract;\n}\n",
+  "sourcePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/CertifiedFileInterface.sol",
+  "ast": {
+    "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/CertifiedFileInterface.sol",
+    "exportedSymbols": {
+      "CertifiedFileInterface": [
+        6353
+      ]
+    },
+    "id": 6354,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 6336,
+        "literals": [
+          "solidity",
+          "<",
+          "0.6",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:22"
+      },
+      {
+        "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/SignaturitUserInterface.sol",
+        "file": "./SignaturitUserInterface.sol",
+        "id": 6337,
+        "nodeType": "ImportDirective",
+        "scope": 6354,
+        "sourceUnit": 6816,
+        "src": "25:39:22",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/CertifiedFileCheckerInterface.sol",
+        "file": "./CertifiedFileCheckerInterface.sol",
+        "id": 6338,
+        "nodeType": "ImportDirective",
+        "scope": 6354,
+        "sourceUnit": 6335,
+        "src": "65:45:22",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 6353,
+        "linearizedBaseContracts": [
+          6353
+        ],
+        "name": "CertifiedFileInterface",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 6340,
+            "name": "signaturit",
+            "nodeType": "VariableDeclaration",
+            "scope": 6353,
+            "src": "150:25:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 6339,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "150:7:22",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 6342,
+            "name": "owner",
+            "nodeType": "VariableDeclaration",
+            "scope": 6353,
+            "src": "181:20:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 6341,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "181:7:22",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 6344,
+            "name": "id",
+            "nodeType": "VariableDeclaration",
+            "scope": 6353,
+            "src": "208:16:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_storage",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 6343,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "208:6:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 6346,
+            "name": "hash",
+            "nodeType": "VariableDeclaration",
+            "scope": 6353,
+            "src": "230:18:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_storage",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 6345,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "230:6:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 6348,
+            "name": "createdAt",
+            "nodeType": "VariableDeclaration",
+            "scope": 6353,
+            "src": "255:21:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 6347,
+              "name": "uint",
+              "nodeType": "ElementaryTypeName",
+              "src": "255:4:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 6350,
+            "name": "size",
+            "nodeType": "VariableDeclaration",
+            "scope": 6353,
+            "src": "282:16:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 6349,
+              "name": "uint",
+              "nodeType": "ElementaryTypeName",
+              "src": "282:4:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 6352,
+            "name": "userContract",
+            "nodeType": "VariableDeclaration",
+            "scope": 6353,
+            "src": "305:36:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_contract$_SignaturitUserInterface_$6815",
+              "typeString": "contract SignaturitUserInterface"
+            },
+            "typeName": {
+              "contractScope": null,
+              "id": 6351,
+              "name": "SignaturitUserInterface",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 6815,
+              "src": "305:23:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_SignaturitUserInterface_$6815",
+                "typeString": "contract SignaturitUserInterface"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 6354,
+        "src": "112:232:22"
+      }
+    ],
+    "src": "0:345:22"
+  },
+  "legacyAST": {
+    "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/CertifiedFileInterface.sol",
+    "exportedSymbols": {
+      "CertifiedFileInterface": [
+        6353
+      ]
+    },
+    "id": 6354,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 6336,
+        "literals": [
+          "solidity",
+          "<",
+          "0.6",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:22"
+      },
+      {
+        "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/SignaturitUserInterface.sol",
+        "file": "./SignaturitUserInterface.sol",
+        "id": 6337,
+        "nodeType": "ImportDirective",
+        "scope": 6354,
+        "sourceUnit": 6816,
+        "src": "25:39:22",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/CertifiedFileCheckerInterface.sol",
+        "file": "./CertifiedFileCheckerInterface.sol",
+        "id": 6338,
+        "nodeType": "ImportDirective",
+        "scope": 6354,
+        "sourceUnit": 6335,
+        "src": "65:45:22",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 6353,
+        "linearizedBaseContracts": [
+          6353
+        ],
+        "name": "CertifiedFileInterface",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 6340,
+            "name": "signaturit",
+            "nodeType": "VariableDeclaration",
+            "scope": 6353,
+            "src": "150:25:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 6339,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "150:7:22",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 6342,
+            "name": "owner",
+            "nodeType": "VariableDeclaration",
+            "scope": 6353,
+            "src": "181:20:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 6341,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "181:7:22",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 6344,
+            "name": "id",
+            "nodeType": "VariableDeclaration",
+            "scope": 6353,
+            "src": "208:16:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_storage",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 6343,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "208:6:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 6346,
+            "name": "hash",
+            "nodeType": "VariableDeclaration",
+            "scope": 6353,
+            "src": "230:18:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_storage",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 6345,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "230:6:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 6348,
+            "name": "createdAt",
+            "nodeType": "VariableDeclaration",
+            "scope": 6353,
+            "src": "255:21:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 6347,
+              "name": "uint",
+              "nodeType": "ElementaryTypeName",
+              "src": "255:4:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 6350,
+            "name": "size",
+            "nodeType": "VariableDeclaration",
+            "scope": 6353,
+            "src": "282:16:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 6349,
+              "name": "uint",
+              "nodeType": "ElementaryTypeName",
+              "src": "282:4:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 6352,
+            "name": "userContract",
+            "nodeType": "VariableDeclaration",
+            "scope": 6353,
+            "src": "305:36:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_contract$_SignaturitUserInterface_$6815",
+              "typeString": "contract SignaturitUserInterface"
+            },
+            "typeName": {
+              "contractScope": null,
+              "id": 6351,
+              "name": "SignaturitUserInterface",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 6815,
+              "src": "305:23:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_SignaturitUserInterface_$6815",
+                "typeString": "contract SignaturitUserInterface"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 6354,
+        "src": "112:232:22"
+      }
+    ],
+    "src": "0:345:22"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.0.11",
+  "updatedAt": "2019-10-07T12:01:23.947Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
