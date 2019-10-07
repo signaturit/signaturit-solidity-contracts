@@ -3,6 +3,7 @@ pragma solidity <0.6.0;
 import "./interfaces/NotifierInterface.sol";
 import "./BaseAggregator.sol";
 import "./CertifiedFile.sol";
+import "./libraries/Utils.sol";
 
 contract CertifiedFileAggregator is
     NotifierInterface,
@@ -29,7 +30,7 @@ contract CertifiedFileAggregator is
         view
         returns (address)
     {
-        bytes32 bytes32id = _keccak(id);
+        bytes32 bytes32id = Utils.keccak(id);
 
         return address(certifiedFiles[bytes32id]);
     }
@@ -65,27 +66,15 @@ contract CertifiedFileAggregator is
         public
         signaturitOnly
     {
-        bytes32 bytes32eventType = _keccak(eventType);
+        bytes32 bytes32eventType = Utils.keccak(eventType);
 
-        if (_keccak(CERTIFIED_FILE_CREATED_EVENT) == bytes32eventType) {
+        if (Utils.keccak(CERTIFIED_FILE_CREATED_EVENT) == bytes32eventType) {
             CertifiedFile certifiedFile = CertifiedFile(addr);
 
-            bytes32 bytes32id = _keccak(certifiedFile.id());
+            bytes32 bytes32id = Utils.keccak(certifiedFile.id());
 
             certifiedFilesIds.push(bytes32id);
             certifiedFiles[bytes32id] = certifiedFile;
         }
-    }
-
-    function _keccak (
-        string memory key
-    )
-        private
-        pure
-        returns (bytes32)
-    {
-        return keccak256(
-            abi.encode(key)
-        );
     }
 }

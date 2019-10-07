@@ -17,9 +17,12 @@ import "./Clause.sol";
 
 contract Payment is Clause(
     "payment",
-    "payment_check.added"
+    "payment_clause_notifiers"
 )
 {
+    string constant public CLAUSE_EVENT_TYPE = "payment_check.added";
+    string constant public CREATION_EVENT_TYPE = "payment_clause.created";
+
     struct PaymentCheck {
         string id;
         uint status;
@@ -94,7 +97,7 @@ contract Payment is Clause(
         period = paymentPeriod;
         signatureId = signature;
 
-        _notifySignature();
+        _notifySignature(CREATION_EVENT_TYPE);
     }
 
     function setReceiver(
@@ -150,7 +153,7 @@ contract Payment is Clause(
 
         newReference.checks.push(paymentCheckId);
 
-        _notify();
+        _notify(CLAUSE_EVENT_TYPE);
     }
 
     // Get paymentCheck if you got the id

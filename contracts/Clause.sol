@@ -5,7 +5,7 @@ import "./interfaces/NotifierInterface.sol";
 
 
 contract Clause {
-    string public notificationEvent;
+    string public notifiersKey;
 
     address public signaturit;
 
@@ -19,38 +19,38 @@ contract Clause {
 
     constructor(
         string memory clauseType,
-        string memory eventType
+        string memory notifiers
     )
         public
     {
         clause = clauseType;
-        notificationEvent = eventType;
+        notifiersKey = notifiers;
     }
 
-    function _notifySignature()
+    function _notifySignature(string memory creationEvent)
         internal
     {
         signatureContract.notify(
-            clause,
+            creationEvent,
             address(this)
         );
     }
 
-    function _notify()
+    function _notify(string memory eventType)
         internal
     {
         address contractToNofify;
         uint notificationIndex = 0;
 
         do {
-            contractToNofify = userContract.getAddressArrayAttribute(notificationEvent, notificationIndex);
+            contractToNofify = userContract.getAddressArrayAttribute(notifiersKey, notificationIndex);
             ++notificationIndex;
 
             if (contractToNofify != address(0)) {
                 contractToNofify.call(
                     abi.encodeWithSignature(
                         "notify(string,address)",
-                        notificationEvent,
+                        eventType,
                         address(this)
                     )
                 );

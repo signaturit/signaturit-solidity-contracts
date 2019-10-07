@@ -9,13 +9,17 @@ import "./Clause.sol";
 
 contract TimeLogger is Clause(
     "timelogger",
-    "time_log.added"
+    "timeloger-clause-notifiers"
 )
 {
     uint constant public SECONDS_PER_DAY = 86400;
 
     string constant public SOLIDITY_SOURCE = "solidity";
     string constant public EXTERNAL_SOURCE = "external";
+
+    string constant public CLAUSE_EVENT_TYPE = "timelog.added";
+    string constant public CREATION_EVENT_TYPE = "timelogger_clause.created";
+
 
     struct TimeLog {
         uint timeStart;
@@ -72,7 +76,7 @@ contract TimeLogger is Clause(
         ownerContract = SignaturitUserInterface(ownerContractAddress);
         signatureContract = NotifierInterface(signatureContractAddress);
 
-        _notifySignature();
+        _notifySignature(CREATION_EVENT_TYPE);
     }
 
     modifier onlyManager() {
@@ -260,7 +264,7 @@ contract TimeLogger is Clause(
 
         lastOpenDay = today;
 
-        _notify();
+        _notify(CLAUSE_EVENT_TYPE);
     }
 
     function _createLog(

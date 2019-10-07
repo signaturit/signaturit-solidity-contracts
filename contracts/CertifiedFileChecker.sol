@@ -6,6 +6,7 @@ Gas to deploy: 894.726
 
 import "./interfaces/CertifiedFileInterface.sol";
 import "./interfaces/CertifiedFileCheckerInterface.sol";
+import "./libraries/Utils.sol";
 
 
 contract CertifiedFileChecker is CertifiedFileCheckerInterface {
@@ -45,7 +46,7 @@ contract CertifiedFileChecker is CertifiedFileCheckerInterface {
         address contract_address,
         bool more
     ) {
-        bytes32 hashConverted = _keccak(fileHash);
+        bytes32 hashConverted = Utils.keccak(fileHash);
 
         if (
             certifiedFiles[hashConverted].exist &&
@@ -80,27 +81,15 @@ contract CertifiedFileChecker is CertifiedFileCheckerInterface {
         string memory eventType,
         address certifiedFileAddress
     ) public signaturitOnly {
-        bytes32 bytes32eventType = _keccak(eventType);
+        bytes32 bytes32eventType = Utils.keccak(eventType);
 
-        if (_keccak(CERTIFIED_FILE_CREATED_EVENT) == bytes32eventType) {
+        if (Utils.keccak(CERTIFIED_FILE_CREATED_EVENT) == bytes32eventType) {
             CertifiedFileInterface cerfiedFile = CertifiedFileInterface(certifiedFileAddress);
-            bytes32 hashConverted = _keccak(cerfiedFile.hash());
+            bytes32 hashConverted = Utils.keccak(cerfiedFile.hash());
 
             if (!certifiedFiles[hashConverted].exist) certifiedFiles[hashConverted].exist = true;
 
             certifiedFiles[hashConverted].files.push(cerfiedFile);
         }
-    }
-
-    function _keccak (
-        string memory key
-    )
-        private
-        pure
-        returns (bytes32)
-    {
-        return keccak256(
-            abi.encode(key)
-        );
     }
 }

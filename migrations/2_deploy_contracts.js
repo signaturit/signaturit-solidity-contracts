@@ -15,6 +15,7 @@ var CertifiedEmail = artifacts.require("./CertifiedEmail.sol");
 var SignatureDeployer = artifacts.require("./SignatureDeployer.sol");
 var CertifiedEmailDeployer = artifacts.require("./CertifiedEmailDeployer.sol");
 var CertifiedFileAggregator = artifacts.require("./CertifiedFileAggregator.sol");
+var SignatureAggregator = artifacts.require("./SignatureAggregator.sol");
 
 var signatureDeployerAddress;
 var certifiedEmailDeployerAddress;
@@ -165,5 +166,13 @@ module.exports = async function(deployer, network, accounts) {
 
         tx = await web3.eth.getTransactionReceipt(certifiedFileAggregator.transactionHash);
         console.log("GAS USED FOR CERTIFIED FILE AGGREGATOR: " + tx.cumulativeGasUsed);
+
+        const signatureAggregator = await deployer.deploy(
+            SignatureAggregator,
+            signaturitUser.address
+        );
+
+        tx = await web3.eth.getTransactionReceipt(signatureAggregator.transactionHash);
+        console.log("GAS USED FOR SIGNATURE AGGREGATOR: " + tx.cumulativeGasUsed);
     })
 };
