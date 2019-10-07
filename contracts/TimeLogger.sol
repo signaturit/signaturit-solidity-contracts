@@ -9,7 +9,7 @@ import "./Clause.sol";
 
 contract TimeLogger is Clause(
     "timelogger",
-    "time_logger.added"
+    "time_log.added"
 )
 {
     uint constant public SECONDS_PER_DAY = 86400;
@@ -30,7 +30,10 @@ contract TimeLogger is Clause(
         bool existence;
     }
 
-    UserInterface public ownerContract;
+    SignaturitUserInterface public ownerContract;
+
+    NotifierInterface public signatureContract;
+
 
     bool public expired;
 
@@ -68,16 +71,16 @@ contract TimeLogger is Clause(
 
         expired = false;
 
-        userContract = UserInterface(managerContractAddress);
-        ownerContract = UserInterface(ownerContractAddress);
+        userContract = SignaturitUserInterface(managerContractAddress);
+        ownerContract = SignaturitUserInterface(ownerContractAddress);
         signatureContract = NotifierInterface(signatureContractAddress);
 
-        _notify();
+        _notifySignature();
     }
 
     modifier onlyManager() {
         require(
-            msg.sender == address(userContract.userAddress()),
+            msg.sender == address(userContract.ownerAddress()),
             "Only the manager account can perform this action"
         );
 
@@ -86,7 +89,7 @@ contract TimeLogger is Clause(
 
     modifier onlyOwner() {
         require(
-            msg.sender == address(ownerContract.userAddress()),
+            msg.sender == address(ownerContract.ownerAddress()),
             "Only the owner account can perform this action"
         );
 
@@ -259,6 +262,8 @@ contract TimeLogger is Clause(
         _createLog(today, time, source);
 
         lastOpenDay = today;
+
+        _notify();
     }
 
     function _createLog(

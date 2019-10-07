@@ -1,6 +1,6 @@
 pragma solidity <0.6.0;
 
-import "./interfaces/UserInterface.sol";
+import "./interfaces/SignaturitUserInterface.sol";
 import "./interfaces/NotifierInterface.sol";
 
 
@@ -14,7 +14,7 @@ contract Clause {
     string public documentId;
     string public signatureId;
 
-    UserInterface public userContract;
+    SignaturitUserInterface public userContract;
     NotifierInterface public signatureContract;
 
     constructor(
@@ -27,13 +27,34 @@ contract Clause {
         notificationEvent = eventType;
     }
 
-    function _notify(
-    )
+    function _notifySignature()
         internal
     {
         signatureContract.notify(
             clause,
             address(this)
         );
+    }
+
+    function _notify()
+        internal
+    {
+        address contractToNofify;
+        uint notificationIndex = 0;
+
+        do {
+            contractToNofify = userContract.getAddressArrayAttribute(notificationEvent, notificationIndex);
+            ++notificationIndex;
+
+            if (contractToNofify != address(0)) {
+                contractToNofify.call(
+                    abi.encodeWithSignature(
+                        "notify(string,address)",
+                        notificationEvent,
+                        address(this)
+                    )
+                );
+            }
+        } while (contractToNofify != address(0));
     }
 }

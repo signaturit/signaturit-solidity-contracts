@@ -17,7 +17,7 @@ import "./Clause.sol";
 
 contract Payment is Clause(
     "payment",
-    "payment_checker.added"
+    "payment_check.added"
 )
 {
     struct PaymentCheck {
@@ -67,7 +67,7 @@ contract Payment is Clause(
         contractId = id;
         signaturit = msg.sender;
 
-        userContract = UserInterface(userContractAddress);
+        userContract = SignaturitUserInterface(userContractAddress);
         signatureContract = NotifierInterface(signatureContractAddress);
     }
 
@@ -96,7 +96,7 @@ contract Payment is Clause(
         period = paymentPeriod;
         signatureId = signature;
 
-        _notify();
+        _notifySignature();
     }
 
     function setReceiver(
@@ -151,6 +151,8 @@ contract Payment is Clause(
         );
 
         newReference.checks.push(paymentCheckId);
+
+        _notify();
     }
 
     // Get paymentCheck if you got the id
