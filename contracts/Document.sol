@@ -204,14 +204,14 @@ contract Document is DocumentInterface {
     )
         public
         view
-        returns (EventInterface)
+        returns (address)
     {
         require(
             address(events[eventId]) != address(0),
             "The event doesn't exist"
         );
 
-        return events[eventId];
+        return address(events[eventId]);
     }
 
     function getEventsSize()

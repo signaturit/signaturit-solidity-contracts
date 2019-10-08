@@ -1,10 +1,11 @@
 contract('Certified Email', async (accounts) => {
-    const ArtifactUser  = artifacts.require('User');
+    const ArtifactUser  = artifacts.require('SignaturitUser');
     const ArtifactEvent = artifacts.require('Event');
     const ArtifactFile  = artifacts.require('File');
     const ArtifactCertificate            = artifacts.require('Certificate');
     const ArtifactCertifiedEmail         = artifacts.require('CertifiedEmail');
     const ArtifactCertifiedEmailDeployer = artifacts.require('CertifiedEmailDeployer');
+    const ArtifactCertifiedEmailAggregator = artifacts.require('CertifiedEmailAggregator');
 
     const v4 = require("uuid").v4;
 
@@ -13,6 +14,7 @@ contract('Certified Email', async (accounts) => {
     let eventContract;
     let certificateContract;
     let certifiedEmailContract;
+    let certifiedEmailAggregatorContract;
     let certifiedEmailDeployer;
 
     const signaturitAddress = accounts[0];
@@ -53,6 +55,13 @@ contract('Certified Email', async (accounts) => {
             }
         )
 
+        certifiedEmailAggregatorContract = await ArtifactCertifiedEmailAggregator.new(
+            userContract.address,
+            {
+                from: signaturitAddress
+            }
+        )
+
         certifiedEmailContract = await ArtifactCertifiedEmail.new(
             certifiedEmailId,
             subjectHash,
@@ -60,29 +69,14 @@ contract('Certified Email', async (accounts) => {
             deliveryType,
             createdAt,
             certifiedEmailDeployer.address,
+            signaturitAddress,
+            userContract.address,
             {
                 from: signaturitAddress
             }
         );
 
-        await certifiedEmailContract.setCertifiedEmailOwner(ownerAddress, userContract.address);
-    });
-
-    it('Set certifiedEmailOwner as not signaturit account, expect exception', async () => {
-        try {
-            await certifiedEmailContract.setCertifiedEmailOwner(
-                ownerAddress, 
-                userContract.address,
-                {
-                    from: invalidAddress
-                }
-            );
-        } catch(error) {
-            assert.include(
-                error.message,
-                "Only Signaturit account can perform this action"
-            );
-        }
+        await certifiedEmailContract.notifyCreation();
     });
 
     it('Check if it deploy correctly', async () => {
@@ -92,7 +86,7 @@ contract('Certified Email', async (accounts) => {
     it('Check the owner address correctness', async () => {
         const readOwnerContractAddress = await certifiedEmailContract.owner();
 
-        assert.equal(ownerAddress, readOwnerContractAddress);
+        assert.equal(signaturitAddress, readOwnerContractAddress);
     });
 
     it('Check the stored constructor parameters correctness', async () => {
@@ -118,9 +112,13 @@ contract('Certified Email', async (accounts) => {
             }
         );
 
-        assert.ok('Contract deployed')
+        assert.ok('Contract deployed');
+        
+        const readSavedCertifiedEmail = await certifiedEmailAggregatorContract.getCertifiedEmail(0);
 
-        const readSavedCertificateAddress = await userContract.getCertificate(0);
+        const savedCertifiedEmailContract = await ArtifactCertifiedEmail.at(readSavedCertifiedEmail.addr);
+
+        const readSavedCertificateAddress = await savedCertifiedEmailContract.getCertificate(certificateId)
 
         const readCertificateAddress = await certifiedEmailContract.getCertificate(certificateId);
 
@@ -129,9 +127,9 @@ contract('Certified Email', async (accounts) => {
         const readCertificateId = await certificateContract.id();
         const readCertificateCreatedAt = await certificateContract.createdAt();
         const readCertificatesSize = await certifiedEmailContract.getCertificatesSize();
-
+        
         assert.equal(certificateId, readCertificateId);
-        assert.equal(readSavedCertificateAddress.adr, readCertificateAddress);
+        assert.equal(readSavedCertificateAddress, readCertificateAddress);
         assert.equal(createdAt, readCertificateCreatedAt);
         assert.equal(readCertificatesSize, 1);
     });
@@ -201,6 +199,31 @@ contract('Certified Email', async (accounts) => {
         assert.equal(ownerAddress,readCertificateOwner);
     });
 
+    it('Retrieve certificate from index', async () => {
+        await certifiedEmailContract.createCertificate(
+            certificateId,
+            createdAt,
+            ownerAddress, {
+                from: signaturitAddress
+            }
+        );
+
+        const readCertificateAddress = await certifiedEmailContract.getCertificateByIndex(0);
+        const notExistingCertificateAddress = await certifiedEmailContract.getCertificateByIndex(1);
+
+        certificateContract = await ArtifactCertificate.at(readCertificateAddress);
+
+        const readCertificateContractId = await certificateContract.id();
+        const readCertificateContractCreatedAt = await certificateContract.createdAt();
+        const readCertificateOwner = await certificateContract.owner();
+
+        assert.equal(certificateId, readCertificateContractId);
+        assert.equal(createdAt, readCertificateContractCreatedAt);
+        assert.equal(ownerAddress,readCertificateOwner);
+        
+        assert.equal(notExistingCertificateAddress, '0x0000000000000000000000000000000000000000');
+    });
+
     it('Retrieve uncreated certificate from certificateId', async() => {
         try {
             await certifiedEmailContract.getCertificate(invalidId);
@@ -267,6 +290,39 @@ contract('Certified Email', async (accounts) => {
         assert.equal(createdAt, readEventCreatedAt.toNumber());
     });
 
+    it('notify creation from signaturit account', async () => {
+
+        await certifiedEmailContract.notifyCreation(
+            {
+                from: signaturitAddress
+            }
+        );
+
+        const readCertifiedEmail = await certifiedEmailAggregatorContract.getCertifiedEmail(0);
+
+        const readOwnerAddress = await certifiedEmailContract.owner();
+
+        assert.equal(signaturitAddress, readOwnerAddress);
+        assert.equal(readCertifiedEmail.addr, certifiedEmailContract.address);
+    });
+
+    it('notify creation from from invalid signaturit account', async () => {
+        try {
+            await certifiedEmailContract.notifyCreation(
+                {
+                    from: invalidAddress
+                }
+            );
+
+            assert.fail("This account can't add the owner");
+        } catch (error) {
+            assert.include(
+                error.message,
+                'Only Signaturit account can perform this action.',
+            );
+        }
+    });
+
     it('Create event on uncreated certificate, expect it to be created', async () => {
         await certifiedEmailContract.createEvent(
             certificateId,
@@ -277,7 +333,10 @@ contract('Certified Email', async (accounts) => {
         );
 
         const readEventAddress = await certifiedEmailContract.getEvent.call(certificateId,eventId);
-        const readSavedEventAddress = await userContract.getCertifiedEmailEvent(0);
+        const readSavedCertifiedEmail = await certifiedEmailAggregatorContract.getCertifiedEmail(0);
+        const readCertifiedEmail = await ArtifactCertifiedEmail.at(readSavedCertifiedEmail.addr);
+
+        const readSavedEventAddress = await readCertifiedEmail.getEvent(certificateId, eventId);
 
         eventContract = await ArtifactEvent.at(readEventAddress);
 
@@ -289,7 +348,7 @@ contract('Certified Email', async (accounts) => {
         assert.equal(eventId, readEventId);
         assert.equal(eventType, readEventType);
         assert.equal(eventUserAgent, readUserAgent);
-        assert.equal(readSavedEventAddress.adr, readEventAddress);
+        assert.equal(readSavedEventAddress, readEventAddress);
         assert.equal(createdAt, readEventCreatedAt.toNumber());
     });
 
@@ -324,14 +383,17 @@ contract('Certified Email', async (accounts) => {
         );
 
         const readCertificateAddress = await certifiedEmailContract.getCertificate(certificateId);
-        const readSavedFileAddress = await userContract.getCertifiedEmailFile(0);
+        const readSavedCertifiedEmail = await certifiedEmailAggregatorContract.getCertifiedEmail(0);
+
+        const readCertifiedEmail = await ArtifactCertifiedEmail.at(readSavedCertifiedEmail.addr);
+        const readSavedFileAddress = await readCertifiedEmail.getFile(certificateId);
 
         certificateContract = await ArtifactCertificate.at(readCertificateAddress);
         const readCurrentCertificateId = await certificateContract.id();
         const readFileAddress = await certificateContract.file();
 
         assert.equal(certificateId, readCurrentCertificateId);
-        assert.equal(readSavedFileAddress.adr, readFileAddress);
+        assert.equal(readSavedFileAddress, readFileAddress);
     });
 
     it('Add file to uncreated certificate and after create the certificate', async () => {
