@@ -23,10 +23,7 @@ contract CertifiedEmailInterface {
 
     mapping(string => CertificateInterface) private certificates;
 
-    function setCertifiedEmailOwner(
-        address certifiedEmailOwner,
-        address userSmartContractAddress
-    )
+    function notifyCreation()
         public;
 
     function createCertificate(
@@ -68,19 +65,26 @@ contract CertifiedEmailInterface {
         )
         public
         view
-        returns (EventInterface);
+        returns (address);
 
     function getFile(
         string memory certificateId
     )
         public
         view
-        returns (FileInterface);
+        returns (address);
 
     function getCertificatesSize()
         public
         view
         returns (uint);
+
+    function notifyEntityEvent (
+        string memory notifiersKey,
+        string memory createdEvent,
+        address adrToNotify
+    )
+        public;
 
     function _certificateExist(
         string memory certificateId

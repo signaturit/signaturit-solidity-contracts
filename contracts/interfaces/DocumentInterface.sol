@@ -81,7 +81,7 @@ contract DocumentInterface {
     )
         public
         view
-        returns (EventInterface);
+        returns (address);
 
     function getEventsSize()
         public

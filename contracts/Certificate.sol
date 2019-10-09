@@ -132,7 +132,11 @@ contract Certificate is CertificateInterface {
         return address(events[eventId]);
     }
 
-    function getEventsSize() public view returns(uint) {
+    function getEventsSize()
+        public
+        view
+        returns (uint)
+    {
         return eventsId.length;
     }
 }

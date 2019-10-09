@@ -156,6 +156,34 @@ contract('Signature', async (accounts) => {
         assert.equal(readDocumentsSize, 1);
     });
 
+    it('Retrieve certificate from index', async () => {
+        const transaction = await signatureContract.createDocument(
+            documentId,
+            signatureType,
+            createdAt,
+            {
+                from: signaturitAddress
+            }
+        );
+
+        const readDocumentAddress = await signatureContract.getDocumentByIndex(0);
+        const notExistingCertificateAddress = await signatureContract.getDocumentByIndex(1);
+
+        const documentContract = await ArtifactDocument.at(readDocumentAddress);
+
+        const readDocumentId = await documentContract.id();
+        const readDocumentSignatureType = await documentContract.signatureType()
+        const readCreatedAt = await documentContract.createdAt();
+        const readDocumentsSize = await signatureContract.getDocumentsSize();
+
+        assert.equal(readDocumentId, documentId);
+        assert.equal(signatureType, readDocumentSignatureType);
+        assert.equal(createdAt, readCreatedAt);
+        assert.equal(readDocumentsSize, 1);
+        
+        assert.equal(notExistingCertificateAddress, '0x0000000000000000000000000000000000000000');
+    });
+
     it('Create a new document as not Signaturit account, expect exception', async() => {
         try {
             await signatureContract.createDocument(

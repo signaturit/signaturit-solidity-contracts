@@ -175,6 +175,7 @@ contract Signature is SignatureInterface, NotifierInterface {
         );
 
         FileInterface signatureFile = document.file();
+        
         require(
             address(signatureFile) != address(0),
             "Error while retrieving file from document"
@@ -202,7 +203,7 @@ contract Signature is SignatureInterface, NotifierInterface {
             eventCreatedAt
         );
 
-        EventInterface signatureEvent = document.getEvent(eventId);
+        EventInterface signatureEvent = EventInterface(document.getEvent(eventId));
 
         require(
             address(signatureEvent) != address(0),
@@ -280,9 +281,9 @@ contract Signature is SignatureInterface, NotifierInterface {
     {
         if (!_documentExist(documentId)) return address(0);
 
-        EventInterface signatureEvent = documents[documentId].getEvent(
+        EventInterface signatureEvent = EventInterface(documents[documentId].getEvent(
             eventId
-        );
+        ));
 
         if (address(signatureEvent) == address(0)) return address(0);
 
