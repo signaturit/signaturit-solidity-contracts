@@ -8,15 +8,15 @@ import "./libraries/Utils.sol";
 contract UserEvents is NotifierInterface {
     address public signaturit;
 
-    SignaturitUserInterface userContract;
+    SignaturitUserInterface public userContract;
 
-    string constant private SIGNATURE_CREATED_EVENT = 'signature.contract.created';
-    string constant private DOCUMENT_CREATED_EVENT = 'document.contract.created';
-    string constant private FILE_CREATED_EVENT = 'file.contract.created';
-    string constant private EVENT_CREATED_EVENT = 'event.contract.created';
-    string constant private CERTIFIED_EMAIL_CREATED_EVENT = 'certified_email.contract.created';
-    string constant private CERTIFICATE_CREATED_EVENT = 'certificate.contract.created';
-    string constant private CERTIFIED_FILE_CREATED_EVENT = 'certified_file.contract.created';
+    string constant private SIGNATURE_CREATED_EVENT = "signature.contract.created";
+    string constant private DOCUMENT_CREATED_EVENT = "document.contract.created";
+    string constant private FILE_CREATED_EVENT = "file.contract.created";
+    string constant private EVENT_CREATED_EVENT = "event.contract.created";
+    string constant private CERTIFIED_EMAIL_CREATED_EVENT = "certified_email.contract.created";
+    string constant private CERTIFICATE_CREATED_EVENT = "certificate.contract.created";
+    string constant private CERTIFIED_FILE_CREATED_EVENT = "certified_file.contract.created";
 
     string constant private SIGNATURE_NOTIFIERS_KEY = "signature-notifiers";
     string constant private DOCUMENT_NOTIFIERS_KEY = "document-notifiers";
@@ -37,7 +37,7 @@ contract UserEvents is NotifierInterface {
     modifier signaturitOnly () {
         require(
             tx.origin == signaturit,
-            'Only signaturit account can perform this acction'
+            "Only signaturit account can perform this acction"
         );
 
         _;
