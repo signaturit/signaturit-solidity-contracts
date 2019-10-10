@@ -17,9 +17,8 @@ var CertifiedEmailDeployer = artifacts.require("./CertifiedEmailDeployer.sol");
 var CertifiedFileAggregator = artifacts.require("./CertifiedFileAggregator.sol");
 var SignatureAggregator = artifacts.require("./SignatureAggregator.sol");
 var CertifiedEmailAggregator = artifacts.require("./CertifiedEmailAggregator.sol");
+var UserEvents = artifacts.require("./UserEvents.sol");
 
-var signatureDeployerAddress;
-var certifiedEmailDeployerAddress;
 
 module.exports = async function(deployer, network, accounts) {
 //there is no better way to do this with await until this is solved: https://github.com/trufflesuite/truffle/issues/501
@@ -185,5 +184,13 @@ module.exports = async function(deployer, network, accounts) {
 
         tx = await web3.eth.getTransactionReceipt(certifiedEmailAggregator.transactionHash);
         console.log("GAS USED FOR CERTIFIED EMAIL AGGREGATOR: " + tx.cumulativeGasUsed);
+        
+        const userEvents = await deployer.deploy(
+            UserEvents,
+            signaturitUser.address
+        );
+        
+        tx = await web3.eth.getTransactionReceipt(userEvents.transactionHash);
+        console.log("GAS USED FOR USER EVENTS: " + tx.cumulativeGasUsed);
     })
 };
