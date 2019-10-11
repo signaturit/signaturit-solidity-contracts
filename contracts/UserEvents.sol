@@ -10,6 +10,8 @@ contract UserEvents is NotifierInterface {
 
     SignaturitUserInterface public userContract;
 
+    string constant private USER_EVENTS = "user_events";
+
     string constant private SIGNATURE_CREATED_EVENT = "signature.contract.created";
     string constant private DOCUMENT_CREATED_EVENT = "document.contract.created";
     string constant private FILE_CREATED_EVENT = "file.contract.created";
@@ -51,6 +53,8 @@ contract UserEvents is NotifierInterface {
         signaturit = msg.sender;
 
         userContract = SignaturitUserInterface(signaturitUser);
+
+        userContract.setAddressAttribute(USER_EVENTS, address(this));
 
         userContract.setAddressArrayAttribute(SIGNATURE_NOTIFIERS_KEY, address(this));
         userContract.setAddressArrayAttribute(DOCUMENT_NOTIFIERS_KEY, address(this));
