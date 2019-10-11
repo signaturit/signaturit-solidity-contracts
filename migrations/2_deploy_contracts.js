@@ -89,7 +89,7 @@ module.exports = async function(deployer, network, accounts) {
 
         const userInstance = await deployer.deploy(
             User,
-            accounts[2]
+            accounts[0]
         );
         
         tx = await web3.eth.getTransactionReceipt(userInstance.transactionHash);
@@ -127,8 +127,8 @@ module.exports = async function(deployer, network, accounts) {
 
         const timeLoggerInstance = await deployer.deploy(
             TimeLogger,
-            userInstance.address,
-            userInstance.address,
+            signaturitUser.address,
+            signaturitUser.address,
             signatureInstance.address,
             v4(),
             v4(),

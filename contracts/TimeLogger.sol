@@ -8,7 +8,7 @@ import "./Clause.sol";
 
 
 contract TimeLogger is Clause(
-    "timeloger-clause-notifiers"
+    "timelogger-clause-notifiers"
 )
 {
     uint constant public SECONDS_PER_DAY = 86400;
@@ -19,6 +19,7 @@ contract TimeLogger is Clause(
     string constant public CLAUSE_EVENT_TYPE = "timelog.added";
     string constant public CREATION_EVENT_TYPE = "timelogger_clause.created";
 
+    string constant public VALIDATED_NOTIFIERS_KEY = "validated-notifiers";
 
     struct TimeLog {
         uint timeStart;
@@ -74,6 +75,9 @@ contract TimeLogger is Clause(
         userContract = SignaturitUserInterface(managerContractAddress);
         ownerContract = SignaturitUserInterface(ownerContractAddress);
         signatureContract = NotifierInterface(signatureContractAddress);
+
+        userContract.setAddressArrayAttribute(VALIDATED_NOTIFIERS_KEY, userContract.ownerAddress());
+        userContract.setAddressArrayAttribute(VALIDATED_NOTIFIERS_KEY, ownerContract.ownerAddress());
 
         _notifySignature(CREATION_EVENT_TYPE);
     }

@@ -731,19 +731,19 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity <0.6.0;\n\n\ncontract UserInterface {\n    string public certificatePublicKey;\n\n    address public signaturitAddress;\n    address public userAddress;\n\n    event SignatureAdded(address adr);\n    event DocumentAdded(address adr);\n    event FileAdded(address adr, string source);\n    event EventAdded(address adr, string source);\n    event CertificatePublickeySet(string key);\n    event CertifiedEmailAdded(address adr);\n    event CertificateAdded(address adr);\n    event CertifiedFileAdded(address adr);\n    event ClauseNotification(\n        address clauseContract,\n        string clauseType,\n        string notificationType,\n        string id\n    );\n\n    function setCertificatePublicKey(\n        string memory key\n    )\n        public;\n\n    function addSignature(\n        address signatureAddress,\n        string memory id\n    )\n        public;\n\n    function addDocument(\n        address documentAddress\n    )\n        public;\n\n    function addFile(\n        string memory fileType,\n        address fileAddress\n    )\n        public;\n\n    function addEvent(\n        string memory eventSource,\n        address eventAddress\n    )\n        public;\n\n    function addCertifiedEmail(\n        address certifiedEmailAddress,\n        string memory id\n    )\n        public;\n\n    function addCertificate(\n        address certificate\n    )\n        public;\n\n    function addCertifiedFile(\n        address certifiedFileAddress,\n        string memory id\n    )\n        public;\n\n    function getSignatureById(\n        string memory id\n    )\n        public\n        view\n        returns (address);\n\n    function getSignature(\n        uint index\n    )\n        public\n        view\n        returns (address adr, bool more);\n\n    function getDocument(\n        uint index\n    )\n        public\n        view\n        returns (address adr, bool more);\n\n    function getSignatureFile(\n        uint index\n    )\n        public\n        view\n        returns (address adr, bool more);\n\n    function getSignatureEvent(\n        uint index\n    )\n        public\n        view\n        returns (address adr, bool more);\n\n    function getCertifiedEmailById(\n        string memory id\n    )\n        public\n        view\n        returns (address);\n\n    function getCertifiedEmail(\n        uint index\n    )\n        public\n        view\n        returns (address adr, bool more);\n\n    function getCertificate(\n        uint index\n    )\n        public\n        view\n        returns (address adr, bool more);\n\n    function getCertifiedEmailFile(\n        uint index\n    )\n        public\n        view\n        returns (address adr, bool more);\n\n    function getCertifiedEmailEvent(\n        uint index\n    )\n        public\n        view\n        returns (address adr, bool more);\n\n    function getSignaturesCount()\n        public\n        view\n        returns (uint256 count);\n\n    function getDocumentsCount()\n        public\n        view\n        returns (uint256 count);\n\n    function getSignatureFilesCount()\n        public\n        view\n        returns (uint256 count);\n\n    function getSignatureEventsCount()\n        public\n        view\n        returns (uint256 count);\n\n    function getCertifiedEmailsCount()\n        public\n        view\n        returns (uint256 count);\n\n    function getCertificatesCount()\n        public\n        view\n        returns(uint256 count);\n\n    function getCertifiedEmailFilesCount()\n        public\n        view\n        returns(uint256 count);\n\n    function getCertifiedEmailEventsCount()\n        public\n        view\n        returns(uint256 count);\n\n    function getCertifiedFilesCount()\n        public\n        view\n        returns(uint256 count);\n\n    function getCertifiedFile(\n        uint index\n    )\n        public\n        view\n        returns(address adr, bool more);\n\n    function getCertifiedFileById(\n        string memory id\n    )\n        public\n        view\n        returns(address);\n\n    function clauseNotification(\n        address clauseContract,\n        string memory clauseType,\n        string memory notificationType,\n        string memory id\n    )\n        public;\n}\n",
-  "sourcePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/UserInterface.sol",
+  "sourcePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/UserInterface.sol",
   "ast": {
-    "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/UserInterface.sol",
+    "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/UserInterface.sol",
     "exportedSymbols": {
       "UserInterface": [
-        7661
+        7778
       ]
     },
-    "id": 7662,
+    "id": 7779,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 7400,
+        "id": 7517,
         "literals": [
           "solidity",
           "<",
@@ -759,19 +759,19 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 7661,
+        "id": 7778,
         "linearizedBaseContracts": [
-          7661
+          7778
         ],
         "name": "UserInterface",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 7402,
+            "id": 7519,
             "name": "certificatePublicKey",
             "nodeType": "VariableDeclaration",
-            "scope": 7661,
+            "scope": 7778,
             "src": "55:34:31",
             "stateVariable": true,
             "storageLocation": "default",
@@ -780,7 +780,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 7401,
+              "id": 7518,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "55:6:31",
@@ -794,10 +794,10 @@
           },
           {
             "constant": false,
-            "id": 7404,
+            "id": 7521,
             "name": "signaturitAddress",
             "nodeType": "VariableDeclaration",
-            "scope": 7661,
+            "scope": 7778,
             "src": "96:32:31",
             "stateVariable": true,
             "storageLocation": "default",
@@ -806,7 +806,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 7403,
+              "id": 7520,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "96:7:31",
@@ -821,10 +821,10 @@
           },
           {
             "constant": false,
-            "id": 7406,
+            "id": 7523,
             "name": "userAddress",
             "nodeType": "VariableDeclaration",
-            "scope": 7661,
+            "scope": 7778,
             "src": "134:26:31",
             "stateVariable": true,
             "storageLocation": "default",
@@ -833,7 +833,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 7405,
+              "id": 7522,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "134:7:31",
@@ -849,20 +849,20 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 7410,
+            "id": 7527,
             "name": "SignatureAdded",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 7409,
+              "id": 7526,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7408,
+                  "id": 7525,
                   "indexed": false,
                   "name": "adr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7410,
+                  "scope": 7527,
                   "src": "188:11:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -871,7 +871,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7407,
+                    "id": 7524,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "188:7:31",
@@ -892,20 +892,20 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 7414,
+            "id": 7531,
             "name": "DocumentAdded",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 7413,
+              "id": 7530,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7412,
+                  "id": 7529,
                   "indexed": false,
                   "name": "adr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7414,
+                  "scope": 7531,
                   "src": "226:11:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -914,7 +914,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7411,
+                    "id": 7528,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "226:7:31",
@@ -935,20 +935,20 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 7420,
+            "id": 7537,
             "name": "FileAdded",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 7419,
+              "id": 7536,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7416,
+                  "id": 7533,
                   "indexed": false,
                   "name": "adr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7420,
+                  "scope": 7537,
                   "src": "260:11:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -957,7 +957,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7415,
+                    "id": 7532,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "260:7:31",
@@ -972,11 +972,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 7418,
+                  "id": 7535,
                   "indexed": false,
                   "name": "source",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7420,
+                  "scope": 7537,
                   "src": "273:13:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -985,7 +985,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7417,
+                    "id": 7534,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "273:6:31",
@@ -1005,20 +1005,20 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 7426,
+            "id": 7543,
             "name": "EventAdded",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 7425,
+              "id": 7542,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7422,
+                  "id": 7539,
                   "indexed": false,
                   "name": "adr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7426,
+                  "scope": 7543,
                   "src": "310:11:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1027,7 +1027,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7421,
+                    "id": 7538,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "310:7:31",
@@ -1042,11 +1042,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 7424,
+                  "id": 7541,
                   "indexed": false,
                   "name": "source",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7426,
+                  "scope": 7543,
                   "src": "323:13:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1055,7 +1055,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7423,
+                    "id": 7540,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "323:6:31",
@@ -1075,20 +1075,20 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 7430,
+            "id": 7547,
             "name": "CertificatePublickeySet",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 7429,
+              "id": 7546,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7428,
+                  "id": 7545,
                   "indexed": false,
                   "name": "key",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7430,
+                  "scope": 7547,
                   "src": "373:10:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1097,7 +1097,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7427,
+                    "id": 7544,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "373:6:31",
@@ -1117,20 +1117,20 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 7434,
+            "id": 7551,
             "name": "CertifiedEmailAdded",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 7433,
+              "id": 7550,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7432,
+                  "id": 7549,
                   "indexed": false,
                   "name": "adr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7434,
+                  "scope": 7551,
                   "src": "416:11:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1139,7 +1139,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7431,
+                    "id": 7548,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "416:7:31",
@@ -1160,20 +1160,20 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 7438,
+            "id": 7555,
             "name": "CertificateAdded",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 7437,
+              "id": 7554,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7436,
+                  "id": 7553,
                   "indexed": false,
                   "name": "adr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7438,
+                  "scope": 7555,
                   "src": "457:11:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1182,7 +1182,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7435,
+                    "id": 7552,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "457:7:31",
@@ -1203,20 +1203,20 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 7442,
+            "id": 7559,
             "name": "CertifiedFileAdded",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 7441,
+              "id": 7558,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7440,
+                  "id": 7557,
                   "indexed": false,
                   "name": "adr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7442,
+                  "scope": 7559,
                   "src": "500:11:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1225,7 +1225,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7439,
+                    "id": 7556,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "500:7:31",
@@ -1246,20 +1246,20 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 7452,
+            "id": 7569,
             "name": "ClauseNotification",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 7451,
+              "id": 7568,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7444,
+                  "id": 7561,
                   "indexed": false,
                   "name": "clauseContract",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7452,
+                  "scope": 7569,
                   "src": "552:22:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1268,7 +1268,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7443,
+                    "id": 7560,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "552:7:31",
@@ -1283,11 +1283,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 7446,
+                  "id": 7563,
                   "indexed": false,
                   "name": "clauseType",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7452,
+                  "scope": 7569,
                   "src": "584:17:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1296,7 +1296,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7445,
+                    "id": 7562,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "584:6:31",
@@ -1310,11 +1310,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 7448,
+                  "id": 7565,
                   "indexed": false,
                   "name": "notificationType",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7452,
+                  "scope": 7569,
                   "src": "611:23:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1323,7 +1323,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7447,
+                    "id": 7564,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "611:6:31",
@@ -1337,11 +1337,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 7450,
+                  "id": 7567,
                   "indexed": false,
                   "name": "id",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7452,
+                  "scope": 7569,
                   "src": "644:9:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1350,7 +1350,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7449,
+                    "id": 7566,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "644:6:31",
@@ -1370,22 +1370,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7457,
+            "id": 7574,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "setCertificatePublicKey",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7455,
+              "id": 7572,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7454,
+                  "id": 7571,
                   "name": "key",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7457,
+                  "scope": 7574,
                   "src": "708:17:31",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1394,7 +1394,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7453,
+                    "id": 7570,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "708:6:31",
@@ -1410,12 +1410,12 @@
               "src": "698:33:31"
             },
             "returnParameters": {
-              "id": 7456,
+              "id": 7573,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "746:0:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "666:81:31",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1424,22 +1424,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7464,
+            "id": 7581,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "addSignature",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7462,
+              "id": 7579,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7459,
+                  "id": 7576,
                   "name": "signatureAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7464,
+                  "scope": 7581,
                   "src": "784:24:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1448,7 +1448,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7458,
+                    "id": 7575,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "784:7:31",
@@ -1463,10 +1463,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7461,
+                  "id": 7578,
                   "name": "id",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7464,
+                  "scope": 7581,
                   "src": "818:16:31",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1475,7 +1475,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7460,
+                    "id": 7577,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "818:6:31",
@@ -1491,12 +1491,12 @@
               "src": "774:66:31"
             },
             "returnParameters": {
-              "id": 7463,
+              "id": 7580,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "855:0:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "753:103:31",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1505,22 +1505,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7469,
+            "id": 7586,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "addDocument",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7467,
+              "id": 7584,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7466,
+                  "id": 7583,
                   "name": "documentAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7469,
+                  "scope": 7586,
                   "src": "892:23:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1529,7 +1529,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7465,
+                    "id": 7582,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "892:7:31",
@@ -1546,12 +1546,12 @@
               "src": "882:39:31"
             },
             "returnParameters": {
-              "id": 7468,
+              "id": 7585,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "936:0:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "862:75:31",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1560,22 +1560,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7476,
+            "id": 7593,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "addFile",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7474,
+              "id": 7591,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7471,
+                  "id": 7588,
                   "name": "fileType",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7476,
+                  "scope": 7593,
                   "src": "969:22:31",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1584,7 +1584,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7470,
+                    "id": 7587,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "969:6:31",
@@ -1598,10 +1598,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7473,
+                  "id": 7590,
                   "name": "fileAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7476,
+                  "scope": 7593,
                   "src": "1001:19:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1610,7 +1610,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7472,
+                    "id": 7589,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1001:7:31",
@@ -1627,12 +1627,12 @@
               "src": "959:67:31"
             },
             "returnParameters": {
-              "id": 7475,
+              "id": 7592,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1041:0:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "943:99:31",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1641,22 +1641,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7483,
+            "id": 7600,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "addEvent",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7481,
+              "id": 7598,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7478,
+                  "id": 7595,
                   "name": "eventSource",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7483,
+                  "scope": 7600,
                   "src": "1075:25:31",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1665,7 +1665,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7477,
+                    "id": 7594,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1075:6:31",
@@ -1679,10 +1679,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7480,
+                  "id": 7597,
                   "name": "eventAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7483,
+                  "scope": 7600,
                   "src": "1110:20:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1691,7 +1691,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7479,
+                    "id": 7596,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1110:7:31",
@@ -1708,12 +1708,12 @@
               "src": "1065:71:31"
             },
             "returnParameters": {
-              "id": 7482,
+              "id": 7599,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1151:0:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "1048:104:31",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1722,22 +1722,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7490,
+            "id": 7607,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "addCertifiedEmail",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7488,
+              "id": 7605,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7485,
+                  "id": 7602,
                   "name": "certifiedEmailAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7490,
+                  "scope": 7607,
                   "src": "1194:29:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1746,7 +1746,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7484,
+                    "id": 7601,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1194:7:31",
@@ -1761,10 +1761,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7487,
+                  "id": 7604,
                   "name": "id",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7490,
+                  "scope": 7607,
                   "src": "1233:16:31",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1773,7 +1773,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7486,
+                    "id": 7603,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1233:6:31",
@@ -1789,12 +1789,12 @@
               "src": "1184:71:31"
             },
             "returnParameters": {
-              "id": 7489,
+              "id": 7606,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1270:0:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "1158:113:31",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1803,22 +1803,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7495,
+            "id": 7612,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "addCertificate",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7493,
+              "id": 7610,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7492,
+                  "id": 7609,
                   "name": "certificate",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7495,
+                  "scope": 7612,
                   "src": "1310:19:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1827,7 +1827,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7491,
+                    "id": 7608,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1310:7:31",
@@ -1844,12 +1844,12 @@
               "src": "1300:35:31"
             },
             "returnParameters": {
-              "id": 7494,
+              "id": 7611,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1350:0:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "1277:74:31",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1858,22 +1858,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7502,
+            "id": 7619,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "addCertifiedFile",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7500,
+              "id": 7617,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7497,
+                  "id": 7614,
                   "name": "certifiedFileAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7502,
+                  "scope": 7619,
                   "src": "1392:28:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1882,7 +1882,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7496,
+                    "id": 7613,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1392:7:31",
@@ -1897,10 +1897,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7499,
+                  "id": 7616,
                   "name": "id",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7502,
+                  "scope": 7619,
                   "src": "1430:16:31",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1909,7 +1909,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7498,
+                    "id": 7615,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1430:6:31",
@@ -1925,12 +1925,12 @@
               "src": "1382:70:31"
             },
             "returnParameters": {
-              "id": 7501,
+              "id": 7618,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1467:0:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "1357:111:31",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1939,22 +1939,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7509,
+            "id": 7626,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getSignatureById",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7505,
+              "id": 7622,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7504,
+                  "id": 7621,
                   "name": "id",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7509,
+                  "scope": 7626,
                   "src": "1509:16:31",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1963,7 +1963,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7503,
+                    "id": 7620,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1509:6:31",
@@ -1979,15 +1979,15 @@
               "src": "1499:32:31"
             },
             "returnParameters": {
-              "id": 7508,
+              "id": 7625,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7507,
+                  "id": 7624,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7509,
+                  "scope": 7626,
                   "src": "1577:7:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1996,7 +1996,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7506,
+                    "id": 7623,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1577:7:31",
@@ -2012,7 +2012,7 @@
               ],
               "src": "1576:9:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "1474:112:31",
             "stateMutability": "view",
             "superFunction": null,
@@ -2021,22 +2021,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7518,
+            "id": 7635,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getSignature",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7512,
+              "id": 7629,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7511,
+                  "id": 7628,
                   "name": "index",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7518,
+                  "scope": 7635,
                   "src": "1623:10:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2045,7 +2045,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7510,
+                    "id": 7627,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "1623:4:31",
@@ -2061,15 +2061,15 @@
               "src": "1613:26:31"
             },
             "returnParameters": {
-              "id": 7517,
+              "id": 7634,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7514,
+                  "id": 7631,
                   "name": "adr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7518,
+                  "scope": 7635,
                   "src": "1685:11:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2078,7 +2078,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7513,
+                    "id": 7630,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1685:7:31",
@@ -2093,10 +2093,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7516,
+                  "id": 7633,
                   "name": "more",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7518,
+                  "scope": 7635,
                   "src": "1698:9:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2105,7 +2105,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 7515,
+                    "id": 7632,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "1698:4:31",
@@ -2120,7 +2120,7 @@
               ],
               "src": "1684:24:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "1592:117:31",
             "stateMutability": "view",
             "superFunction": null,
@@ -2129,22 +2129,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7527,
+            "id": 7644,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getDocument",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7521,
+              "id": 7638,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7520,
+                  "id": 7637,
                   "name": "index",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7527,
+                  "scope": 7644,
                   "src": "1745:10:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2153,7 +2153,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7519,
+                    "id": 7636,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "1745:4:31",
@@ -2169,15 +2169,15 @@
               "src": "1735:26:31"
             },
             "returnParameters": {
-              "id": 7526,
+              "id": 7643,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7523,
+                  "id": 7640,
                   "name": "adr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7527,
+                  "scope": 7644,
                   "src": "1807:11:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2186,7 +2186,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7522,
+                    "id": 7639,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1807:7:31",
@@ -2201,10 +2201,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7525,
+                  "id": 7642,
                   "name": "more",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7527,
+                  "scope": 7644,
                   "src": "1820:9:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2213,7 +2213,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 7524,
+                    "id": 7641,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "1820:4:31",
@@ -2228,7 +2228,7 @@
               ],
               "src": "1806:24:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "1715:116:31",
             "stateMutability": "view",
             "superFunction": null,
@@ -2237,22 +2237,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7536,
+            "id": 7653,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getSignatureFile",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7530,
+              "id": 7647,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7529,
+                  "id": 7646,
                   "name": "index",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7536,
+                  "scope": 7653,
                   "src": "1872:10:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2261,7 +2261,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7528,
+                    "id": 7645,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "1872:4:31",
@@ -2277,15 +2277,15 @@
               "src": "1862:26:31"
             },
             "returnParameters": {
-              "id": 7535,
+              "id": 7652,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7532,
+                  "id": 7649,
                   "name": "adr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7536,
+                  "scope": 7653,
                   "src": "1934:11:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2294,7 +2294,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7531,
+                    "id": 7648,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1934:7:31",
@@ -2309,10 +2309,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7534,
+                  "id": 7651,
                   "name": "more",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7536,
+                  "scope": 7653,
                   "src": "1947:9:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2321,7 +2321,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 7533,
+                    "id": 7650,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "1947:4:31",
@@ -2336,7 +2336,7 @@
               ],
               "src": "1933:24:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "1837:121:31",
             "stateMutability": "view",
             "superFunction": null,
@@ -2345,22 +2345,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7545,
+            "id": 7662,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getSignatureEvent",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7539,
+              "id": 7656,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7538,
+                  "id": 7655,
                   "name": "index",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7545,
+                  "scope": 7662,
                   "src": "2000:10:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2369,7 +2369,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7537,
+                    "id": 7654,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "2000:4:31",
@@ -2385,15 +2385,15 @@
               "src": "1990:26:31"
             },
             "returnParameters": {
-              "id": 7544,
+              "id": 7661,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7541,
+                  "id": 7658,
                   "name": "adr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7545,
+                  "scope": 7662,
                   "src": "2062:11:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2402,7 +2402,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7540,
+                    "id": 7657,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "2062:7:31",
@@ -2417,10 +2417,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7543,
+                  "id": 7660,
                   "name": "more",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7545,
+                  "scope": 7662,
                   "src": "2075:9:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2429,7 +2429,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 7542,
+                    "id": 7659,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "2075:4:31",
@@ -2444,7 +2444,7 @@
               ],
               "src": "2061:24:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "1964:122:31",
             "stateMutability": "view",
             "superFunction": null,
@@ -2453,22 +2453,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7552,
+            "id": 7669,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getCertifiedEmailById",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7548,
+              "id": 7665,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7547,
+                  "id": 7664,
                   "name": "id",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7552,
+                  "scope": 7669,
                   "src": "2132:16:31",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -2477,7 +2477,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7546,
+                    "id": 7663,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "2132:6:31",
@@ -2493,15 +2493,15 @@
               "src": "2122:32:31"
             },
             "returnParameters": {
-              "id": 7551,
+              "id": 7668,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7550,
+                  "id": 7667,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7552,
+                  "scope": 7669,
                   "src": "2200:7:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2510,7 +2510,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7549,
+                    "id": 7666,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "2200:7:31",
@@ -2526,7 +2526,7 @@
               ],
               "src": "2199:9:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "2092:117:31",
             "stateMutability": "view",
             "superFunction": null,
@@ -2535,22 +2535,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7561,
+            "id": 7678,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getCertifiedEmail",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7555,
+              "id": 7672,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7554,
+                  "id": 7671,
                   "name": "index",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7561,
+                  "scope": 7678,
                   "src": "2251:10:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2559,7 +2559,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7553,
+                    "id": 7670,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "2251:4:31",
@@ -2575,15 +2575,15 @@
               "src": "2241:26:31"
             },
             "returnParameters": {
-              "id": 7560,
+              "id": 7677,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7557,
+                  "id": 7674,
                   "name": "adr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7561,
+                  "scope": 7678,
                   "src": "2313:11:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2592,7 +2592,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7556,
+                    "id": 7673,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "2313:7:31",
@@ -2607,10 +2607,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7559,
+                  "id": 7676,
                   "name": "more",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7561,
+                  "scope": 7678,
                   "src": "2326:9:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2619,7 +2619,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 7558,
+                    "id": 7675,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "2326:4:31",
@@ -2634,7 +2634,7 @@
               ],
               "src": "2312:24:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "2215:122:31",
             "stateMutability": "view",
             "superFunction": null,
@@ -2643,22 +2643,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7570,
+            "id": 7687,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getCertificate",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7564,
+              "id": 7681,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7563,
+                  "id": 7680,
                   "name": "index",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7570,
+                  "scope": 7687,
                   "src": "2376:10:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2667,7 +2667,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7562,
+                    "id": 7679,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "2376:4:31",
@@ -2683,15 +2683,15 @@
               "src": "2366:26:31"
             },
             "returnParameters": {
-              "id": 7569,
+              "id": 7686,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7566,
+                  "id": 7683,
                   "name": "adr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7570,
+                  "scope": 7687,
                   "src": "2438:11:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2700,7 +2700,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7565,
+                    "id": 7682,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "2438:7:31",
@@ -2715,10 +2715,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7568,
+                  "id": 7685,
                   "name": "more",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7570,
+                  "scope": 7687,
                   "src": "2451:9:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2727,7 +2727,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 7567,
+                    "id": 7684,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "2451:4:31",
@@ -2742,7 +2742,7 @@
               ],
               "src": "2437:24:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "2343:119:31",
             "stateMutability": "view",
             "superFunction": null,
@@ -2751,22 +2751,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7579,
+            "id": 7696,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getCertifiedEmailFile",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7573,
+              "id": 7690,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7572,
+                  "id": 7689,
                   "name": "index",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7579,
+                  "scope": 7696,
                   "src": "2508:10:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2775,7 +2775,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7571,
+                    "id": 7688,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "2508:4:31",
@@ -2791,15 +2791,15 @@
               "src": "2498:26:31"
             },
             "returnParameters": {
-              "id": 7578,
+              "id": 7695,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7575,
+                  "id": 7692,
                   "name": "adr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7579,
+                  "scope": 7696,
                   "src": "2570:11:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2808,7 +2808,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7574,
+                    "id": 7691,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "2570:7:31",
@@ -2823,10 +2823,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7577,
+                  "id": 7694,
                   "name": "more",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7579,
+                  "scope": 7696,
                   "src": "2583:9:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2835,7 +2835,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 7576,
+                    "id": 7693,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "2583:4:31",
@@ -2850,7 +2850,7 @@
               ],
               "src": "2569:24:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "2468:126:31",
             "stateMutability": "view",
             "superFunction": null,
@@ -2859,22 +2859,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7588,
+            "id": 7705,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getCertifiedEmailEvent",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7582,
+              "id": 7699,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7581,
+                  "id": 7698,
                   "name": "index",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7588,
+                  "scope": 7705,
                   "src": "2641:10:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2883,7 +2883,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7580,
+                    "id": 7697,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "2641:4:31",
@@ -2899,15 +2899,15 @@
               "src": "2631:26:31"
             },
             "returnParameters": {
-              "id": 7587,
+              "id": 7704,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7584,
+                  "id": 7701,
                   "name": "adr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7588,
+                  "scope": 7705,
                   "src": "2703:11:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2916,7 +2916,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7583,
+                    "id": 7700,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "2703:7:31",
@@ -2931,10 +2931,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7586,
+                  "id": 7703,
                   "name": "more",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7588,
+                  "scope": 7705,
                   "src": "2716:9:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2943,7 +2943,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 7585,
+                    "id": 7702,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "2716:4:31",
@@ -2958,7 +2958,7 @@
               ],
               "src": "2702:24:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "2600:127:31",
             "stateMutability": "view",
             "superFunction": null,
@@ -2967,28 +2967,28 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7593,
+            "id": 7710,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getSignaturesCount",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7589,
+              "id": 7706,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "2760:2:31"
             },
             "returnParameters": {
-              "id": 7592,
+              "id": 7709,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7591,
+                  "id": 7708,
                   "name": "count",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7593,
+                  "scope": 7710,
                   "src": "2808:13:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2997,7 +2997,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7590,
+                    "id": 7707,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "2808:7:31",
@@ -3012,7 +3012,7 @@
               ],
               "src": "2807:15:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "2733:90:31",
             "stateMutability": "view",
             "superFunction": null,
@@ -3021,28 +3021,28 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7598,
+            "id": 7715,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getDocumentsCount",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7594,
+              "id": 7711,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "2855:2:31"
             },
             "returnParameters": {
-              "id": 7597,
+              "id": 7714,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7596,
+                  "id": 7713,
                   "name": "count",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7598,
+                  "scope": 7715,
                   "src": "2903:13:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3051,7 +3051,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7595,
+                    "id": 7712,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "2903:7:31",
@@ -3066,7 +3066,7 @@
               ],
               "src": "2902:15:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "2829:89:31",
             "stateMutability": "view",
             "superFunction": null,
@@ -3075,28 +3075,28 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7603,
+            "id": 7720,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getSignatureFilesCount",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7599,
+              "id": 7716,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "2955:2:31"
             },
             "returnParameters": {
-              "id": 7602,
+              "id": 7719,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7601,
+                  "id": 7718,
                   "name": "count",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7603,
+                  "scope": 7720,
                   "src": "3003:13:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3105,7 +3105,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7600,
+                    "id": 7717,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "3003:7:31",
@@ -3120,7 +3120,7 @@
               ],
               "src": "3002:15:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "2924:94:31",
             "stateMutability": "view",
             "superFunction": null,
@@ -3129,28 +3129,28 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7608,
+            "id": 7725,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getSignatureEventsCount",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7604,
+              "id": 7721,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "3056:2:31"
             },
             "returnParameters": {
-              "id": 7607,
+              "id": 7724,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7606,
+                  "id": 7723,
                   "name": "count",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7608,
+                  "scope": 7725,
                   "src": "3104:13:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3159,7 +3159,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7605,
+                    "id": 7722,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "3104:7:31",
@@ -3174,7 +3174,7 @@
               ],
               "src": "3103:15:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "3024:95:31",
             "stateMutability": "view",
             "superFunction": null,
@@ -3183,28 +3183,28 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7613,
+            "id": 7730,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getCertifiedEmailsCount",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7609,
+              "id": 7726,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "3157:2:31"
             },
             "returnParameters": {
-              "id": 7612,
+              "id": 7729,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7611,
+                  "id": 7728,
                   "name": "count",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7613,
+                  "scope": 7730,
                   "src": "3205:13:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3213,7 +3213,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7610,
+                    "id": 7727,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "3205:7:31",
@@ -3228,7 +3228,7 @@
               ],
               "src": "3204:15:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "3125:95:31",
             "stateMutability": "view",
             "superFunction": null,
@@ -3237,28 +3237,28 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7618,
+            "id": 7735,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getCertificatesCount",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7614,
+              "id": 7731,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "3255:2:31"
             },
             "returnParameters": {
-              "id": 7617,
+              "id": 7734,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7616,
+                  "id": 7733,
                   "name": "count",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7618,
+                  "scope": 7735,
                   "src": "3302:13:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3267,7 +3267,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7615,
+                    "id": 7732,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "3302:7:31",
@@ -3282,7 +3282,7 @@
               ],
               "src": "3301:15:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "3226:91:31",
             "stateMutability": "view",
             "superFunction": null,
@@ -3291,28 +3291,28 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7623,
+            "id": 7740,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getCertifiedEmailFilesCount",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7619,
+              "id": 7736,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "3359:2:31"
             },
             "returnParameters": {
-              "id": 7622,
+              "id": 7739,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7621,
+                  "id": 7738,
                   "name": "count",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7623,
+                  "scope": 7740,
                   "src": "3406:13:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3321,7 +3321,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7620,
+                    "id": 7737,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "3406:7:31",
@@ -3336,7 +3336,7 @@
               ],
               "src": "3405:15:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "3323:98:31",
             "stateMutability": "view",
             "superFunction": null,
@@ -3345,28 +3345,28 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7628,
+            "id": 7745,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getCertifiedEmailEventsCount",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7624,
+              "id": 7741,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "3464:2:31"
             },
             "returnParameters": {
-              "id": 7627,
+              "id": 7744,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7626,
+                  "id": 7743,
                   "name": "count",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7628,
+                  "scope": 7745,
                   "src": "3511:13:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3375,7 +3375,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7625,
+                    "id": 7742,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "3511:7:31",
@@ -3390,7 +3390,7 @@
               ],
               "src": "3510:15:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "3427:99:31",
             "stateMutability": "view",
             "superFunction": null,
@@ -3399,28 +3399,28 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7633,
+            "id": 7750,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getCertifiedFilesCount",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7629,
+              "id": 7746,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "3563:2:31"
             },
             "returnParameters": {
-              "id": 7632,
+              "id": 7749,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7631,
+                  "id": 7748,
                   "name": "count",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7633,
+                  "scope": 7750,
                   "src": "3610:13:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3429,7 +3429,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7630,
+                    "id": 7747,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "3610:7:31",
@@ -3444,7 +3444,7 @@
               ],
               "src": "3609:15:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "3532:93:31",
             "stateMutability": "view",
             "superFunction": null,
@@ -3453,22 +3453,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7642,
+            "id": 7759,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getCertifiedFile",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7636,
+              "id": 7753,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7635,
+                  "id": 7752,
                   "name": "index",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7642,
+                  "scope": 7759,
                   "src": "3666:10:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3477,7 +3477,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7634,
+                    "id": 7751,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "3666:4:31",
@@ -3493,15 +3493,15 @@
               "src": "3656:26:31"
             },
             "returnParameters": {
-              "id": 7641,
+              "id": 7758,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7638,
+                  "id": 7755,
                   "name": "adr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7642,
+                  "scope": 7759,
                   "src": "3727:11:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3510,7 +3510,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7637,
+                    "id": 7754,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "3727:7:31",
@@ -3525,10 +3525,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7640,
+                  "id": 7757,
                   "name": "more",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7642,
+                  "scope": 7759,
                   "src": "3740:9:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3537,7 +3537,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 7639,
+                    "id": 7756,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "3740:4:31",
@@ -3552,7 +3552,7 @@
               ],
               "src": "3726:24:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "3631:120:31",
             "stateMutability": "view",
             "superFunction": null,
@@ -3561,22 +3561,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7649,
+            "id": 7766,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getCertifiedFileById",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7645,
+              "id": 7762,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7644,
+                  "id": 7761,
                   "name": "id",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7649,
+                  "scope": 7766,
                   "src": "3796:16:31",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -3585,7 +3585,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7643,
+                    "id": 7760,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "3796:6:31",
@@ -3601,15 +3601,15 @@
               "src": "3786:32:31"
             },
             "returnParameters": {
-              "id": 7648,
+              "id": 7765,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7647,
+                  "id": 7764,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7649,
+                  "scope": 7766,
                   "src": "3863:7:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3618,7 +3618,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7646,
+                    "id": 7763,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "3863:7:31",
@@ -3634,7 +3634,7 @@
               ],
               "src": "3862:9:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "3757:115:31",
             "stateMutability": "view",
             "superFunction": null,
@@ -3643,22 +3643,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7660,
+            "id": 7777,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "clauseNotification",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7658,
+              "id": 7775,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7651,
+                  "id": 7768,
                   "name": "clauseContract",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7660,
+                  "scope": 7777,
                   "src": "3915:22:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3667,7 +3667,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7650,
+                    "id": 7767,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "3915:7:31",
@@ -3682,10 +3682,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7653,
+                  "id": 7770,
                   "name": "clauseType",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7660,
+                  "scope": 7777,
                   "src": "3947:24:31",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -3694,7 +3694,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7652,
+                    "id": 7769,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "3947:6:31",
@@ -3708,10 +3708,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7655,
+                  "id": 7772,
                   "name": "notificationType",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7660,
+                  "scope": 7777,
                   "src": "3981:30:31",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -3720,7 +3720,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7654,
+                    "id": 7771,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "3981:6:31",
@@ -3734,10 +3734,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7657,
+                  "id": 7774,
                   "name": "id",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7660,
+                  "scope": 7777,
                   "src": "4021:16:31",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -3746,7 +3746,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7656,
+                    "id": 7773,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "4021:6:31",
@@ -3762,36 +3762,36 @@
               "src": "3905:138:31"
             },
             "returnParameters": {
-              "id": 7659,
+              "id": 7776,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "4058:0:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "3878:181:31",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 7662,
+        "scope": 7779,
         "src": "26:4035:31"
       }
     ],
     "src": "0:4062:31"
   },
   "legacyAST": {
-    "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/UserInterface.sol",
+    "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/UserInterface.sol",
     "exportedSymbols": {
       "UserInterface": [
-        7661
+        7778
       ]
     },
-    "id": 7662,
+    "id": 7779,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 7400,
+        "id": 7517,
         "literals": [
           "solidity",
           "<",
@@ -3807,19 +3807,19 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 7661,
+        "id": 7778,
         "linearizedBaseContracts": [
-          7661
+          7778
         ],
         "name": "UserInterface",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 7402,
+            "id": 7519,
             "name": "certificatePublicKey",
             "nodeType": "VariableDeclaration",
-            "scope": 7661,
+            "scope": 7778,
             "src": "55:34:31",
             "stateVariable": true,
             "storageLocation": "default",
@@ -3828,7 +3828,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 7401,
+              "id": 7518,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "55:6:31",
@@ -3842,10 +3842,10 @@
           },
           {
             "constant": false,
-            "id": 7404,
+            "id": 7521,
             "name": "signaturitAddress",
             "nodeType": "VariableDeclaration",
-            "scope": 7661,
+            "scope": 7778,
             "src": "96:32:31",
             "stateVariable": true,
             "storageLocation": "default",
@@ -3854,7 +3854,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 7403,
+              "id": 7520,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "96:7:31",
@@ -3869,10 +3869,10 @@
           },
           {
             "constant": false,
-            "id": 7406,
+            "id": 7523,
             "name": "userAddress",
             "nodeType": "VariableDeclaration",
-            "scope": 7661,
+            "scope": 7778,
             "src": "134:26:31",
             "stateVariable": true,
             "storageLocation": "default",
@@ -3881,7 +3881,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 7405,
+              "id": 7522,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "134:7:31",
@@ -3897,20 +3897,20 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 7410,
+            "id": 7527,
             "name": "SignatureAdded",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 7409,
+              "id": 7526,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7408,
+                  "id": 7525,
                   "indexed": false,
                   "name": "adr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7410,
+                  "scope": 7527,
                   "src": "188:11:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3919,7 +3919,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7407,
+                    "id": 7524,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "188:7:31",
@@ -3940,20 +3940,20 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 7414,
+            "id": 7531,
             "name": "DocumentAdded",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 7413,
+              "id": 7530,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7412,
+                  "id": 7529,
                   "indexed": false,
                   "name": "adr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7414,
+                  "scope": 7531,
                   "src": "226:11:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3962,7 +3962,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7411,
+                    "id": 7528,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "226:7:31",
@@ -3983,20 +3983,20 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 7420,
+            "id": 7537,
             "name": "FileAdded",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 7419,
+              "id": 7536,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7416,
+                  "id": 7533,
                   "indexed": false,
                   "name": "adr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7420,
+                  "scope": 7537,
                   "src": "260:11:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4005,7 +4005,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7415,
+                    "id": 7532,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "260:7:31",
@@ -4020,11 +4020,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 7418,
+                  "id": 7535,
                   "indexed": false,
                   "name": "source",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7420,
+                  "scope": 7537,
                   "src": "273:13:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4033,7 +4033,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7417,
+                    "id": 7534,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "273:6:31",
@@ -4053,20 +4053,20 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 7426,
+            "id": 7543,
             "name": "EventAdded",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 7425,
+              "id": 7542,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7422,
+                  "id": 7539,
                   "indexed": false,
                   "name": "adr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7426,
+                  "scope": 7543,
                   "src": "310:11:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4075,7 +4075,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7421,
+                    "id": 7538,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "310:7:31",
@@ -4090,11 +4090,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 7424,
+                  "id": 7541,
                   "indexed": false,
                   "name": "source",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7426,
+                  "scope": 7543,
                   "src": "323:13:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4103,7 +4103,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7423,
+                    "id": 7540,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "323:6:31",
@@ -4123,20 +4123,20 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 7430,
+            "id": 7547,
             "name": "CertificatePublickeySet",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 7429,
+              "id": 7546,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7428,
+                  "id": 7545,
                   "indexed": false,
                   "name": "key",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7430,
+                  "scope": 7547,
                   "src": "373:10:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4145,7 +4145,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7427,
+                    "id": 7544,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "373:6:31",
@@ -4165,20 +4165,20 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 7434,
+            "id": 7551,
             "name": "CertifiedEmailAdded",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 7433,
+              "id": 7550,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7432,
+                  "id": 7549,
                   "indexed": false,
                   "name": "adr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7434,
+                  "scope": 7551,
                   "src": "416:11:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4187,7 +4187,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7431,
+                    "id": 7548,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "416:7:31",
@@ -4208,20 +4208,20 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 7438,
+            "id": 7555,
             "name": "CertificateAdded",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 7437,
+              "id": 7554,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7436,
+                  "id": 7553,
                   "indexed": false,
                   "name": "adr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7438,
+                  "scope": 7555,
                   "src": "457:11:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4230,7 +4230,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7435,
+                    "id": 7552,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "457:7:31",
@@ -4251,20 +4251,20 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 7442,
+            "id": 7559,
             "name": "CertifiedFileAdded",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 7441,
+              "id": 7558,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7440,
+                  "id": 7557,
                   "indexed": false,
                   "name": "adr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7442,
+                  "scope": 7559,
                   "src": "500:11:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4273,7 +4273,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7439,
+                    "id": 7556,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "500:7:31",
@@ -4294,20 +4294,20 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 7452,
+            "id": 7569,
             "name": "ClauseNotification",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 7451,
+              "id": 7568,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7444,
+                  "id": 7561,
                   "indexed": false,
                   "name": "clauseContract",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7452,
+                  "scope": 7569,
                   "src": "552:22:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4316,7 +4316,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7443,
+                    "id": 7560,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "552:7:31",
@@ -4331,11 +4331,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 7446,
+                  "id": 7563,
                   "indexed": false,
                   "name": "clauseType",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7452,
+                  "scope": 7569,
                   "src": "584:17:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4344,7 +4344,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7445,
+                    "id": 7562,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "584:6:31",
@@ -4358,11 +4358,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 7448,
+                  "id": 7565,
                   "indexed": false,
                   "name": "notificationType",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7452,
+                  "scope": 7569,
                   "src": "611:23:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4371,7 +4371,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7447,
+                    "id": 7564,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "611:6:31",
@@ -4385,11 +4385,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 7450,
+                  "id": 7567,
                   "indexed": false,
                   "name": "id",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7452,
+                  "scope": 7569,
                   "src": "644:9:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4398,7 +4398,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7449,
+                    "id": 7566,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "644:6:31",
@@ -4418,22 +4418,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7457,
+            "id": 7574,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "setCertificatePublicKey",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7455,
+              "id": 7572,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7454,
+                  "id": 7571,
                   "name": "key",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7457,
+                  "scope": 7574,
                   "src": "708:17:31",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -4442,7 +4442,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7453,
+                    "id": 7570,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "708:6:31",
@@ -4458,12 +4458,12 @@
               "src": "698:33:31"
             },
             "returnParameters": {
-              "id": 7456,
+              "id": 7573,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "746:0:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "666:81:31",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -4472,22 +4472,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7464,
+            "id": 7581,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "addSignature",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7462,
+              "id": 7579,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7459,
+                  "id": 7576,
                   "name": "signatureAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7464,
+                  "scope": 7581,
                   "src": "784:24:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4496,7 +4496,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7458,
+                    "id": 7575,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "784:7:31",
@@ -4511,10 +4511,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7461,
+                  "id": 7578,
                   "name": "id",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7464,
+                  "scope": 7581,
                   "src": "818:16:31",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -4523,7 +4523,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7460,
+                    "id": 7577,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "818:6:31",
@@ -4539,12 +4539,12 @@
               "src": "774:66:31"
             },
             "returnParameters": {
-              "id": 7463,
+              "id": 7580,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "855:0:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "753:103:31",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -4553,22 +4553,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7469,
+            "id": 7586,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "addDocument",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7467,
+              "id": 7584,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7466,
+                  "id": 7583,
                   "name": "documentAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7469,
+                  "scope": 7586,
                   "src": "892:23:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4577,7 +4577,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7465,
+                    "id": 7582,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "892:7:31",
@@ -4594,12 +4594,12 @@
               "src": "882:39:31"
             },
             "returnParameters": {
-              "id": 7468,
+              "id": 7585,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "936:0:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "862:75:31",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -4608,22 +4608,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7476,
+            "id": 7593,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "addFile",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7474,
+              "id": 7591,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7471,
+                  "id": 7588,
                   "name": "fileType",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7476,
+                  "scope": 7593,
                   "src": "969:22:31",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -4632,7 +4632,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7470,
+                    "id": 7587,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "969:6:31",
@@ -4646,10 +4646,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7473,
+                  "id": 7590,
                   "name": "fileAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7476,
+                  "scope": 7593,
                   "src": "1001:19:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4658,7 +4658,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7472,
+                    "id": 7589,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1001:7:31",
@@ -4675,12 +4675,12 @@
               "src": "959:67:31"
             },
             "returnParameters": {
-              "id": 7475,
+              "id": 7592,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1041:0:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "943:99:31",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -4689,22 +4689,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7483,
+            "id": 7600,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "addEvent",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7481,
+              "id": 7598,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7478,
+                  "id": 7595,
                   "name": "eventSource",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7483,
+                  "scope": 7600,
                   "src": "1075:25:31",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -4713,7 +4713,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7477,
+                    "id": 7594,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1075:6:31",
@@ -4727,10 +4727,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7480,
+                  "id": 7597,
                   "name": "eventAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7483,
+                  "scope": 7600,
                   "src": "1110:20:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4739,7 +4739,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7479,
+                    "id": 7596,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1110:7:31",
@@ -4756,12 +4756,12 @@
               "src": "1065:71:31"
             },
             "returnParameters": {
-              "id": 7482,
+              "id": 7599,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1151:0:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "1048:104:31",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -4770,22 +4770,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7490,
+            "id": 7607,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "addCertifiedEmail",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7488,
+              "id": 7605,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7485,
+                  "id": 7602,
                   "name": "certifiedEmailAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7490,
+                  "scope": 7607,
                   "src": "1194:29:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4794,7 +4794,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7484,
+                    "id": 7601,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1194:7:31",
@@ -4809,10 +4809,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7487,
+                  "id": 7604,
                   "name": "id",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7490,
+                  "scope": 7607,
                   "src": "1233:16:31",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -4821,7 +4821,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7486,
+                    "id": 7603,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1233:6:31",
@@ -4837,12 +4837,12 @@
               "src": "1184:71:31"
             },
             "returnParameters": {
-              "id": 7489,
+              "id": 7606,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1270:0:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "1158:113:31",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -4851,22 +4851,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7495,
+            "id": 7612,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "addCertificate",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7493,
+              "id": 7610,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7492,
+                  "id": 7609,
                   "name": "certificate",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7495,
+                  "scope": 7612,
                   "src": "1310:19:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4875,7 +4875,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7491,
+                    "id": 7608,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1310:7:31",
@@ -4892,12 +4892,12 @@
               "src": "1300:35:31"
             },
             "returnParameters": {
-              "id": 7494,
+              "id": 7611,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1350:0:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "1277:74:31",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -4906,22 +4906,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7502,
+            "id": 7619,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "addCertifiedFile",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7500,
+              "id": 7617,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7497,
+                  "id": 7614,
                   "name": "certifiedFileAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7502,
+                  "scope": 7619,
                   "src": "1392:28:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4930,7 +4930,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7496,
+                    "id": 7613,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1392:7:31",
@@ -4945,10 +4945,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7499,
+                  "id": 7616,
                   "name": "id",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7502,
+                  "scope": 7619,
                   "src": "1430:16:31",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -4957,7 +4957,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7498,
+                    "id": 7615,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1430:6:31",
@@ -4973,12 +4973,12 @@
               "src": "1382:70:31"
             },
             "returnParameters": {
-              "id": 7501,
+              "id": 7618,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1467:0:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "1357:111:31",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -4987,22 +4987,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7509,
+            "id": 7626,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getSignatureById",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7505,
+              "id": 7622,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7504,
+                  "id": 7621,
                   "name": "id",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7509,
+                  "scope": 7626,
                   "src": "1509:16:31",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -5011,7 +5011,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7503,
+                    "id": 7620,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1509:6:31",
@@ -5027,15 +5027,15 @@
               "src": "1499:32:31"
             },
             "returnParameters": {
-              "id": 7508,
+              "id": 7625,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7507,
+                  "id": 7624,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7509,
+                  "scope": 7626,
                   "src": "1577:7:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -5044,7 +5044,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7506,
+                    "id": 7623,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1577:7:31",
@@ -5060,7 +5060,7 @@
               ],
               "src": "1576:9:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "1474:112:31",
             "stateMutability": "view",
             "superFunction": null,
@@ -5069,22 +5069,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7518,
+            "id": 7635,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getSignature",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7512,
+              "id": 7629,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7511,
+                  "id": 7628,
                   "name": "index",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7518,
+                  "scope": 7635,
                   "src": "1623:10:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -5093,7 +5093,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7510,
+                    "id": 7627,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "1623:4:31",
@@ -5109,15 +5109,15 @@
               "src": "1613:26:31"
             },
             "returnParameters": {
-              "id": 7517,
+              "id": 7634,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7514,
+                  "id": 7631,
                   "name": "adr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7518,
+                  "scope": 7635,
                   "src": "1685:11:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -5126,7 +5126,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7513,
+                    "id": 7630,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1685:7:31",
@@ -5141,10 +5141,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7516,
+                  "id": 7633,
                   "name": "more",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7518,
+                  "scope": 7635,
                   "src": "1698:9:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -5153,7 +5153,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 7515,
+                    "id": 7632,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "1698:4:31",
@@ -5168,7 +5168,7 @@
               ],
               "src": "1684:24:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "1592:117:31",
             "stateMutability": "view",
             "superFunction": null,
@@ -5177,22 +5177,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7527,
+            "id": 7644,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getDocument",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7521,
+              "id": 7638,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7520,
+                  "id": 7637,
                   "name": "index",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7527,
+                  "scope": 7644,
                   "src": "1745:10:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -5201,7 +5201,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7519,
+                    "id": 7636,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "1745:4:31",
@@ -5217,15 +5217,15 @@
               "src": "1735:26:31"
             },
             "returnParameters": {
-              "id": 7526,
+              "id": 7643,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7523,
+                  "id": 7640,
                   "name": "adr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7527,
+                  "scope": 7644,
                   "src": "1807:11:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -5234,7 +5234,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7522,
+                    "id": 7639,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1807:7:31",
@@ -5249,10 +5249,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7525,
+                  "id": 7642,
                   "name": "more",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7527,
+                  "scope": 7644,
                   "src": "1820:9:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -5261,7 +5261,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 7524,
+                    "id": 7641,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "1820:4:31",
@@ -5276,7 +5276,7 @@
               ],
               "src": "1806:24:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "1715:116:31",
             "stateMutability": "view",
             "superFunction": null,
@@ -5285,22 +5285,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7536,
+            "id": 7653,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getSignatureFile",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7530,
+              "id": 7647,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7529,
+                  "id": 7646,
                   "name": "index",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7536,
+                  "scope": 7653,
                   "src": "1872:10:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -5309,7 +5309,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7528,
+                    "id": 7645,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "1872:4:31",
@@ -5325,15 +5325,15 @@
               "src": "1862:26:31"
             },
             "returnParameters": {
-              "id": 7535,
+              "id": 7652,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7532,
+                  "id": 7649,
                   "name": "adr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7536,
+                  "scope": 7653,
                   "src": "1934:11:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -5342,7 +5342,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7531,
+                    "id": 7648,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1934:7:31",
@@ -5357,10 +5357,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7534,
+                  "id": 7651,
                   "name": "more",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7536,
+                  "scope": 7653,
                   "src": "1947:9:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -5369,7 +5369,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 7533,
+                    "id": 7650,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "1947:4:31",
@@ -5384,7 +5384,7 @@
               ],
               "src": "1933:24:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "1837:121:31",
             "stateMutability": "view",
             "superFunction": null,
@@ -5393,22 +5393,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7545,
+            "id": 7662,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getSignatureEvent",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7539,
+              "id": 7656,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7538,
+                  "id": 7655,
                   "name": "index",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7545,
+                  "scope": 7662,
                   "src": "2000:10:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -5417,7 +5417,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7537,
+                    "id": 7654,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "2000:4:31",
@@ -5433,15 +5433,15 @@
               "src": "1990:26:31"
             },
             "returnParameters": {
-              "id": 7544,
+              "id": 7661,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7541,
+                  "id": 7658,
                   "name": "adr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7545,
+                  "scope": 7662,
                   "src": "2062:11:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -5450,7 +5450,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7540,
+                    "id": 7657,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "2062:7:31",
@@ -5465,10 +5465,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7543,
+                  "id": 7660,
                   "name": "more",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7545,
+                  "scope": 7662,
                   "src": "2075:9:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -5477,7 +5477,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 7542,
+                    "id": 7659,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "2075:4:31",
@@ -5492,7 +5492,7 @@
               ],
               "src": "2061:24:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "1964:122:31",
             "stateMutability": "view",
             "superFunction": null,
@@ -5501,22 +5501,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7552,
+            "id": 7669,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getCertifiedEmailById",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7548,
+              "id": 7665,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7547,
+                  "id": 7664,
                   "name": "id",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7552,
+                  "scope": 7669,
                   "src": "2132:16:31",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -5525,7 +5525,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7546,
+                    "id": 7663,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "2132:6:31",
@@ -5541,15 +5541,15 @@
               "src": "2122:32:31"
             },
             "returnParameters": {
-              "id": 7551,
+              "id": 7668,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7550,
+                  "id": 7667,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7552,
+                  "scope": 7669,
                   "src": "2200:7:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -5558,7 +5558,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7549,
+                    "id": 7666,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "2200:7:31",
@@ -5574,7 +5574,7 @@
               ],
               "src": "2199:9:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "2092:117:31",
             "stateMutability": "view",
             "superFunction": null,
@@ -5583,22 +5583,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7561,
+            "id": 7678,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getCertifiedEmail",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7555,
+              "id": 7672,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7554,
+                  "id": 7671,
                   "name": "index",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7561,
+                  "scope": 7678,
                   "src": "2251:10:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -5607,7 +5607,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7553,
+                    "id": 7670,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "2251:4:31",
@@ -5623,15 +5623,15 @@
               "src": "2241:26:31"
             },
             "returnParameters": {
-              "id": 7560,
+              "id": 7677,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7557,
+                  "id": 7674,
                   "name": "adr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7561,
+                  "scope": 7678,
                   "src": "2313:11:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -5640,7 +5640,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7556,
+                    "id": 7673,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "2313:7:31",
@@ -5655,10 +5655,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7559,
+                  "id": 7676,
                   "name": "more",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7561,
+                  "scope": 7678,
                   "src": "2326:9:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -5667,7 +5667,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 7558,
+                    "id": 7675,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "2326:4:31",
@@ -5682,7 +5682,7 @@
               ],
               "src": "2312:24:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "2215:122:31",
             "stateMutability": "view",
             "superFunction": null,
@@ -5691,22 +5691,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7570,
+            "id": 7687,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getCertificate",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7564,
+              "id": 7681,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7563,
+                  "id": 7680,
                   "name": "index",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7570,
+                  "scope": 7687,
                   "src": "2376:10:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -5715,7 +5715,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7562,
+                    "id": 7679,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "2376:4:31",
@@ -5731,15 +5731,15 @@
               "src": "2366:26:31"
             },
             "returnParameters": {
-              "id": 7569,
+              "id": 7686,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7566,
+                  "id": 7683,
                   "name": "adr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7570,
+                  "scope": 7687,
                   "src": "2438:11:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -5748,7 +5748,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7565,
+                    "id": 7682,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "2438:7:31",
@@ -5763,10 +5763,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7568,
+                  "id": 7685,
                   "name": "more",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7570,
+                  "scope": 7687,
                   "src": "2451:9:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -5775,7 +5775,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 7567,
+                    "id": 7684,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "2451:4:31",
@@ -5790,7 +5790,7 @@
               ],
               "src": "2437:24:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "2343:119:31",
             "stateMutability": "view",
             "superFunction": null,
@@ -5799,22 +5799,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7579,
+            "id": 7696,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getCertifiedEmailFile",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7573,
+              "id": 7690,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7572,
+                  "id": 7689,
                   "name": "index",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7579,
+                  "scope": 7696,
                   "src": "2508:10:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -5823,7 +5823,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7571,
+                    "id": 7688,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "2508:4:31",
@@ -5839,15 +5839,15 @@
               "src": "2498:26:31"
             },
             "returnParameters": {
-              "id": 7578,
+              "id": 7695,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7575,
+                  "id": 7692,
                   "name": "adr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7579,
+                  "scope": 7696,
                   "src": "2570:11:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -5856,7 +5856,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7574,
+                    "id": 7691,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "2570:7:31",
@@ -5871,10 +5871,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7577,
+                  "id": 7694,
                   "name": "more",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7579,
+                  "scope": 7696,
                   "src": "2583:9:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -5883,7 +5883,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 7576,
+                    "id": 7693,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "2583:4:31",
@@ -5898,7 +5898,7 @@
               ],
               "src": "2569:24:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "2468:126:31",
             "stateMutability": "view",
             "superFunction": null,
@@ -5907,22 +5907,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7588,
+            "id": 7705,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getCertifiedEmailEvent",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7582,
+              "id": 7699,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7581,
+                  "id": 7698,
                   "name": "index",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7588,
+                  "scope": 7705,
                   "src": "2641:10:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -5931,7 +5931,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7580,
+                    "id": 7697,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "2641:4:31",
@@ -5947,15 +5947,15 @@
               "src": "2631:26:31"
             },
             "returnParameters": {
-              "id": 7587,
+              "id": 7704,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7584,
+                  "id": 7701,
                   "name": "adr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7588,
+                  "scope": 7705,
                   "src": "2703:11:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -5964,7 +5964,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7583,
+                    "id": 7700,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "2703:7:31",
@@ -5979,10 +5979,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7586,
+                  "id": 7703,
                   "name": "more",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7588,
+                  "scope": 7705,
                   "src": "2716:9:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -5991,7 +5991,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 7585,
+                    "id": 7702,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "2716:4:31",
@@ -6006,7 +6006,7 @@
               ],
               "src": "2702:24:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "2600:127:31",
             "stateMutability": "view",
             "superFunction": null,
@@ -6015,28 +6015,28 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7593,
+            "id": 7710,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getSignaturesCount",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7589,
+              "id": 7706,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "2760:2:31"
             },
             "returnParameters": {
-              "id": 7592,
+              "id": 7709,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7591,
+                  "id": 7708,
                   "name": "count",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7593,
+                  "scope": 7710,
                   "src": "2808:13:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -6045,7 +6045,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7590,
+                    "id": 7707,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "2808:7:31",
@@ -6060,7 +6060,7 @@
               ],
               "src": "2807:15:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "2733:90:31",
             "stateMutability": "view",
             "superFunction": null,
@@ -6069,28 +6069,28 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7598,
+            "id": 7715,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getDocumentsCount",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7594,
+              "id": 7711,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "2855:2:31"
             },
             "returnParameters": {
-              "id": 7597,
+              "id": 7714,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7596,
+                  "id": 7713,
                   "name": "count",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7598,
+                  "scope": 7715,
                   "src": "2903:13:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -6099,7 +6099,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7595,
+                    "id": 7712,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "2903:7:31",
@@ -6114,7 +6114,7 @@
               ],
               "src": "2902:15:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "2829:89:31",
             "stateMutability": "view",
             "superFunction": null,
@@ -6123,28 +6123,28 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7603,
+            "id": 7720,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getSignatureFilesCount",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7599,
+              "id": 7716,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "2955:2:31"
             },
             "returnParameters": {
-              "id": 7602,
+              "id": 7719,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7601,
+                  "id": 7718,
                   "name": "count",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7603,
+                  "scope": 7720,
                   "src": "3003:13:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -6153,7 +6153,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7600,
+                    "id": 7717,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "3003:7:31",
@@ -6168,7 +6168,7 @@
               ],
               "src": "3002:15:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "2924:94:31",
             "stateMutability": "view",
             "superFunction": null,
@@ -6177,28 +6177,28 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7608,
+            "id": 7725,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getSignatureEventsCount",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7604,
+              "id": 7721,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "3056:2:31"
             },
             "returnParameters": {
-              "id": 7607,
+              "id": 7724,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7606,
+                  "id": 7723,
                   "name": "count",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7608,
+                  "scope": 7725,
                   "src": "3104:13:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -6207,7 +6207,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7605,
+                    "id": 7722,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "3104:7:31",
@@ -6222,7 +6222,7 @@
               ],
               "src": "3103:15:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "3024:95:31",
             "stateMutability": "view",
             "superFunction": null,
@@ -6231,28 +6231,28 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7613,
+            "id": 7730,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getCertifiedEmailsCount",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7609,
+              "id": 7726,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "3157:2:31"
             },
             "returnParameters": {
-              "id": 7612,
+              "id": 7729,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7611,
+                  "id": 7728,
                   "name": "count",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7613,
+                  "scope": 7730,
                   "src": "3205:13:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -6261,7 +6261,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7610,
+                    "id": 7727,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "3205:7:31",
@@ -6276,7 +6276,7 @@
               ],
               "src": "3204:15:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "3125:95:31",
             "stateMutability": "view",
             "superFunction": null,
@@ -6285,28 +6285,28 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7618,
+            "id": 7735,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getCertificatesCount",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7614,
+              "id": 7731,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "3255:2:31"
             },
             "returnParameters": {
-              "id": 7617,
+              "id": 7734,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7616,
+                  "id": 7733,
                   "name": "count",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7618,
+                  "scope": 7735,
                   "src": "3302:13:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -6315,7 +6315,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7615,
+                    "id": 7732,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "3302:7:31",
@@ -6330,7 +6330,7 @@
               ],
               "src": "3301:15:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "3226:91:31",
             "stateMutability": "view",
             "superFunction": null,
@@ -6339,28 +6339,28 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7623,
+            "id": 7740,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getCertifiedEmailFilesCount",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7619,
+              "id": 7736,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "3359:2:31"
             },
             "returnParameters": {
-              "id": 7622,
+              "id": 7739,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7621,
+                  "id": 7738,
                   "name": "count",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7623,
+                  "scope": 7740,
                   "src": "3406:13:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -6369,7 +6369,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7620,
+                    "id": 7737,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "3406:7:31",
@@ -6384,7 +6384,7 @@
               ],
               "src": "3405:15:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "3323:98:31",
             "stateMutability": "view",
             "superFunction": null,
@@ -6393,28 +6393,28 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7628,
+            "id": 7745,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getCertifiedEmailEventsCount",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7624,
+              "id": 7741,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "3464:2:31"
             },
             "returnParameters": {
-              "id": 7627,
+              "id": 7744,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7626,
+                  "id": 7743,
                   "name": "count",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7628,
+                  "scope": 7745,
                   "src": "3511:13:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -6423,7 +6423,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7625,
+                    "id": 7742,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "3511:7:31",
@@ -6438,7 +6438,7 @@
               ],
               "src": "3510:15:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "3427:99:31",
             "stateMutability": "view",
             "superFunction": null,
@@ -6447,28 +6447,28 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7633,
+            "id": 7750,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getCertifiedFilesCount",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7629,
+              "id": 7746,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "3563:2:31"
             },
             "returnParameters": {
-              "id": 7632,
+              "id": 7749,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7631,
+                  "id": 7748,
                   "name": "count",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7633,
+                  "scope": 7750,
                   "src": "3610:13:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -6477,7 +6477,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7630,
+                    "id": 7747,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "3610:7:31",
@@ -6492,7 +6492,7 @@
               ],
               "src": "3609:15:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "3532:93:31",
             "stateMutability": "view",
             "superFunction": null,
@@ -6501,22 +6501,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7642,
+            "id": 7759,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getCertifiedFile",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7636,
+              "id": 7753,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7635,
+                  "id": 7752,
                   "name": "index",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7642,
+                  "scope": 7759,
                   "src": "3666:10:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -6525,7 +6525,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7634,
+                    "id": 7751,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "3666:4:31",
@@ -6541,15 +6541,15 @@
               "src": "3656:26:31"
             },
             "returnParameters": {
-              "id": 7641,
+              "id": 7758,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7638,
+                  "id": 7755,
                   "name": "adr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7642,
+                  "scope": 7759,
                   "src": "3727:11:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -6558,7 +6558,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7637,
+                    "id": 7754,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "3727:7:31",
@@ -6573,10 +6573,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7640,
+                  "id": 7757,
                   "name": "more",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7642,
+                  "scope": 7759,
                   "src": "3740:9:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -6585,7 +6585,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 7639,
+                    "id": 7756,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "3740:4:31",
@@ -6600,7 +6600,7 @@
               ],
               "src": "3726:24:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "3631:120:31",
             "stateMutability": "view",
             "superFunction": null,
@@ -6609,22 +6609,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7649,
+            "id": 7766,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getCertifiedFileById",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7645,
+              "id": 7762,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7644,
+                  "id": 7761,
                   "name": "id",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7649,
+                  "scope": 7766,
                   "src": "3796:16:31",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -6633,7 +6633,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7643,
+                    "id": 7760,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "3796:6:31",
@@ -6649,15 +6649,15 @@
               "src": "3786:32:31"
             },
             "returnParameters": {
-              "id": 7648,
+              "id": 7765,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7647,
+                  "id": 7764,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7649,
+                  "scope": 7766,
                   "src": "3863:7:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -6666,7 +6666,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7646,
+                    "id": 7763,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "3863:7:31",
@@ -6682,7 +6682,7 @@
               ],
               "src": "3862:9:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "3757:115:31",
             "stateMutability": "view",
             "superFunction": null,
@@ -6691,22 +6691,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7660,
+            "id": 7777,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "clauseNotification",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7658,
+              "id": 7775,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7651,
+                  "id": 7768,
                   "name": "clauseContract",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7660,
+                  "scope": 7777,
                   "src": "3915:22:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -6715,7 +6715,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7650,
+                    "id": 7767,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "3915:7:31",
@@ -6730,10 +6730,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7653,
+                  "id": 7770,
                   "name": "clauseType",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7660,
+                  "scope": 7777,
                   "src": "3947:24:31",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -6742,7 +6742,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7652,
+                    "id": 7769,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "3947:6:31",
@@ -6756,10 +6756,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7655,
+                  "id": 7772,
                   "name": "notificationType",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7660,
+                  "scope": 7777,
                   "src": "3981:30:31",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -6768,7 +6768,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7654,
+                    "id": 7771,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "3981:6:31",
@@ -6782,10 +6782,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7657,
+                  "id": 7774,
                   "name": "id",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7660,
+                  "scope": 7777,
                   "src": "4021:16:31",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -6794,7 +6794,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7656,
+                    "id": 7773,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "4021:6:31",
@@ -6810,19 +6810,19 @@
               "src": "3905:138:31"
             },
             "returnParameters": {
-              "id": 7659,
+              "id": 7776,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "4058:0:31"
             },
-            "scope": 7661,
+            "scope": 7778,
             "src": "3878:181:31",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 7662,
+        "scope": 7779,
         "src": "26:4035:31"
       }
     ],
@@ -6833,8 +6833,8 @@
     "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.0.13",
-  "updatedAt": "2019-10-10T12:55:24.845Z",
+  "schemaVersion": "3.0.11",
+  "updatedAt": "2019-10-11T11:15:19.308Z",
   "devdoc": {
     "methods": {}
   },

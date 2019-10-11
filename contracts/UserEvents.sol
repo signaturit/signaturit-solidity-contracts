@@ -19,6 +19,7 @@ contract UserEvents is NotifierInterface {
     string constant private CERTIFIED_EMAIL_CREATED_EVENT = "certified_email.contract.created";
     string constant private CERTIFICATE_CREATED_EVENT = "certificate.contract.created";
     string constant private CERTIFIED_FILE_CREATED_EVENT = "certified_file.contract.created";
+    string constant private TIMELOG_CREATED_EVENT = "timelog.added";
 
     string constant private SIGNATURE_NOTIFIERS_KEY = "signature-notifiers";
     string constant private DOCUMENT_NOTIFIERS_KEY = "document-notifiers";
@@ -27,6 +28,9 @@ contract UserEvents is NotifierInterface {
     string constant private CERTIFIED_EMAIL_NOTIFIERS_KEY = "certified-email-notifiers";
     string constant private CERTIFICATE_NOTIFIERS_KEY = "certificate-notifiers";
     string constant private CERTIFIED_FILE_NOTIFIERS_KEY = "certified-file-notifiers";
+    string constant private TIMELOGGER_NOTIFIERS_KEY = "timelogger-clause-notifiers";
+
+    string constant private VALIDATED_NOTIFIERS_KEY = "validated-notifiers";
 
     event SignatureCreated(address);
     event DocumentCreated(address);
@@ -35,15 +39,7 @@ contract UserEvents is NotifierInterface {
     event CertifiedFileCreated(address);
     event CertifiedEmailCreated(address);
     event CertificateCreated(address);
-
-    modifier signaturitOnly () {
-        require(
-            tx.origin == signaturit,
-            "Only signaturit account can perform this acction"
-        );
-
-        _;
-    }
+    event TimeLogAdded(address);
 
     constructor (
         address signaturitUser
@@ -63,6 +59,7 @@ contract UserEvents is NotifierInterface {
         userContract.setAddressArrayAttribute(CERTIFIED_EMAIL_NOTIFIERS_KEY, address(this));
         userContract.setAddressArrayAttribute(CERTIFICATE_NOTIFIERS_KEY, address(this));
         userContract.setAddressArrayAttribute(CERTIFIED_FILE_NOTIFIERS_KEY, address(this));
+        userContract.setAddressArrayAttribute(TIMELOGGER_NOTIFIERS_KEY, address(this));
     }
 
     function notify (
@@ -70,9 +67,14 @@ contract UserEvents is NotifierInterface {
         address addr
     )
         public
-        signaturitOnly
     {
         bytes32 bytes32event = Utils.keccak(eventType);
+
+        require(
+            tx.origin == signaturit ||
+            validAddress(),
+            "Only Signaturit or a validated account can perform this action"
+        );
 
         if (bytes32event == Utils.keccak(SIGNATURE_CREATED_EVENT)) {
             emit SignatureCreated(addr);
@@ -88,6 +90,27 @@ contract UserEvents is NotifierInterface {
             emit CertifiedEmailCreated(addr);
         } else if (bytes32event == Utils.keccak(CERTIFICATE_CREATED_EVENT)) {
             emit CertificateCreated(addr);
+        } else if (bytes32event == Utils.keccak(TIMELOG_CREATED_EVENT)) {
+            emit TimeLogAdded(addr);
         }
+    }
+
+    function validAddress() internal view returns(bool){
+        address checkedAddress;
+        uint notificationIndex = 0;
+        bool result = false;
+        do {
+            checkedAddress = userContract.getAddressArrayAttribute(VALIDATED_NOTIFIERS_KEY, notificationIndex);
+
+            if (checkedAddress == tx.origin) {
+                result = true;
+
+                checkedAddress = address(0);
+            }
+
+            ++notificationIndex;
+        } while (checkedAddress != address(0));
+
+        return result;
     }
 }
