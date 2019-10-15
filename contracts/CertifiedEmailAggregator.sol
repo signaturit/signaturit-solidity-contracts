@@ -49,8 +49,15 @@ contract CertifiedEmailAggregator is
         bool _more = index + 1 < certifiedEmailIds.length;
         bytes32 certifiedEmailId = certifiedEmailIds[index];
 
+        if (address(certifiedEmails[certifiedEmailId]) != address(0)) {
+            return (
+                address(certifiedEmails[certifiedEmailId]),
+                _more
+            );
+        }
+
         return (
-            address(certifiedEmails[certifiedEmailId]),
+            address(0),
             _more
         );
     }

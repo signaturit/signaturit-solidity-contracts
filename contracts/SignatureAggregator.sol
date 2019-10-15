@@ -50,8 +50,15 @@ contract SignatureAggregator is
         bool _more = index + 1 < signatureIds.length;
         bytes32 signatureId = signatureIds[index];
 
+        if(address(signatures[signatureId]) != address(0)) {
+            return (
+                address(signatures[signatureId]),
+                _more
+            );
+        }
+
         return (
-            address(signatures[signatureId]),
+            address(0),
             _more
         );
     }
