@@ -19,7 +19,7 @@ contract UserEvents is NotifierInterface {
     string constant private CERTIFIED_EMAIL_CREATED_EVENT = "certified_email.contract.created";
     string constant private CERTIFICATE_CREATED_EVENT = "certificate.contract.created";
     string constant private CERTIFIED_FILE_CREATED_EVENT = "certified_file.contract.created";
-    string constant private TIMELOG_CREATED_EVENT = "timelog.added";
+    string constant private TIMELOG_ADDED_EVENT = "timelog.added";
 
     string constant private SIGNATURE_NOTIFIERS_KEY = "signature-notifiers";
     string constant private DOCUMENT_NOTIFIERS_KEY = "document-notifiers";
@@ -71,7 +71,6 @@ contract UserEvents is NotifierInterface {
         bytes32 bytes32event = Utils.keccak(eventType);
 
         require(
-            tx.origin == signaturit ||
             validAddress(),
             "Only Signaturit or a validated account can perform this action"
         );
@@ -90,7 +89,7 @@ contract UserEvents is NotifierInterface {
             emit CertifiedEmailCreated(addr);
         } else if (bytes32event == Utils.keccak(CERTIFICATE_CREATED_EVENT)) {
             emit CertificateCreated(addr);
-        } else if (bytes32event == Utils.keccak(TIMELOG_CREATED_EVENT)) {
+        } else if (bytes32event == Utils.keccak(TIMELOG_ADDED_EVENT)) {
             emit TimeLogAdded(addr);
         }
     }
@@ -99,17 +98,23 @@ contract UserEvents is NotifierInterface {
         address checkedAddress;
         uint notificationIndex = 0;
         bool result = false;
-        do {
-            checkedAddress = userContract.getAddressArrayAttribute(VALIDATED_NOTIFIERS_KEY, notificationIndex);
 
-            if (checkedAddress == tx.origin) {
-                result = true;
+        if (tx.origin == signaturit) {
+            result = true;
 
-                checkedAddress = address(0);
-            }
+        } else {
+            do {
+                checkedAddress = userContract.getAddressArrayAttribute(VALIDATED_NOTIFIERS_KEY, notificationIndex);
 
-            ++notificationIndex;
-        } while (checkedAddress != address(0));
+                if (checkedAddress == tx.origin) {
+                    result = true;
+
+                    checkedAddress = address(0);
+                }
+
+                ++notificationIndex;
+            } while (checkedAddress != address(0));
+        }
 
         return result;
     }
