@@ -93,7 +93,7 @@ contract('CertifiedEmailAggregator', async (accounts) => {
             userContract.address
         );
 
-        certifiedEmailAggregatorContract.notify(
+        await certifiedEmailAggregatorContract.notify(
             'certified_email.contract.created',
             certifiedEmailContract.address
         );
@@ -102,6 +102,34 @@ contract('CertifiedEmailAggregator', async (accounts) => {
 
         assert.equal(1, storedCertifiedEmails.toNumber());
         assert.ok(certifiedEmailContract.address);
+    });
+
+    it("Create certifiedEmail without address to notify and notify manually from invalid account, expect exception", async () => {
+        const certifiedEmailContract = await ArtifactCertifiedEmail.new(
+            certifiedEmailId,
+            certifiedEmailSubjectHash,
+            certifiedEmailBodyHash,
+            certifiedEmailDeliveryType,
+            certifiedEmailCreatedAt,
+            deployerAddress,
+            ownerAddress,
+            userContract.address
+        );
+        
+        try {
+            const tx = await certifiedEmailAggregatorContract.notify(
+                'certified_email.contract.created',
+                certifiedEmailContract.address,
+                {
+                    from: invalidAccount
+                }
+            );
+        } catch(error) {
+            assert.include(
+                error.message,
+                "Only Signaturit account can perform this action"
+            )
+        }
     });
 
     it("Create certifiedEmail on user with certifiedEmail aggregator", async () => {

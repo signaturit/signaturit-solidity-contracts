@@ -7,10 +7,8 @@ import "./libraries/Utils.sol";
 
 contract CertifiedFileAggregator is
     NotifierInterface,
-    BaseAggregator(
-        "certified-file-aggregator",
-        "certified-file-notifiers"
-) {
+    BaseAggregator
+{
     string constant private CERTIFIED_FILE_CREATED_EVENT = "certified_file.contract.created";
 
     mapping (bytes32 => CertifiedFile) private certifiedFiles;
@@ -19,9 +17,14 @@ contract CertifiedFileAggregator is
 
     constructor (
         address _userContractAddress
-    ) public {
-        setOnUser(_userContractAddress);
-    }
+    )
+        public
+        BaseAggregator(
+            _userContractAddress,
+            "certified-file-aggregator",
+            "certified-file-notifiers"
+        )
+    {}
 
     function getCertifiedFileById(
         string memory id

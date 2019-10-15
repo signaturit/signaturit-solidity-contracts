@@ -92,7 +92,7 @@ contract('CertifiedFileAggregator', async (accounts) => {
             certifiedFileSize
         );
 
-        certifiedFileAggregatorContract.notify(
+        await certifiedFileAggregatorContract.notify(
             'certified_file.contract.created',
             certifiedFileContract.address
         );
@@ -101,6 +101,32 @@ contract('CertifiedFileAggregator', async (accounts) => {
 
         assert.equal(1, storedFiles.toNumber());
         assert.ok(certifiedFileContract.address);
+    });
+
+    it("Create certified file without address to notify and notify manually with invalid account, expect exception", async () => {
+        const certifiedFileContract = await ArtifactCertifiedFile.new(
+            ownerAddress,
+            userContract.address,
+            certifiedFileId,
+            certifiedFileHash,
+            certifiedFileCreatedAt,
+            certifiedFileSize
+        );
+
+        try {
+            await certifiedFileAggregatorContract.notify(
+                'certified_file.contract.created',
+                certifiedFileContract.address,
+                {
+                    from: invalidAccount
+                }
+            );
+        } catch(error) {
+            assert.include(
+                error.message,
+                "Only Signaturit account can perform this action"
+            )
+        }
     });
 
     it("Create certified file on user with certified file aggregator", async () => {

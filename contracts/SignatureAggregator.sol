@@ -10,10 +10,7 @@ import "./Signature.sol";
 
 contract SignatureAggregator is
     NotifierInterface,
-    BaseAggregator(
-        "signature-aggregator",
-        "signature-notifiers"
-    )
+    BaseAggregator
 {
 
     string constant private SIGNATURE_CREATED_EVENT = "signature.contract.created";
@@ -24,9 +21,14 @@ contract SignatureAggregator is
 
     constructor (
         address _userContractAddress
-    ) public {
-        setOnUser(_userContractAddress);
-    }
+    )
+        public
+        BaseAggregator(
+            _userContractAddress,
+            "signature-aggregator",
+            "signature-notifiers"
+        )
+    {}
 
     function getSignatureById(
         string memory id
