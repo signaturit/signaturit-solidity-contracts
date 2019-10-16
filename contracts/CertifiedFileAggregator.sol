@@ -12,7 +12,7 @@ contract CertifiedFileAggregator is
     string constant private CERTIFIED_FILE_CREATED_EVENT = "certified_file.contract.created";
 
     mapping (bytes32 => CertifiedFile) private certifiedFiles;
-    
+
     bytes32[] private certifiedFilesIds;
 
     constructor (
@@ -47,9 +47,15 @@ contract CertifiedFileAggregator is
     {
         bool _more = index + 1 < certifiedFilesIds.length;
         bytes32 certifiedFileId = certifiedFilesIds[index];
+        if(address(certifiedFiles[certifiedFileId]) != address(0)) {
+            return (
+                address(certifiedFiles[certifiedFileId]),
+                _more
+            );
+        }
 
         return (
-            address(certifiedFiles[certifiedFileId]),
+            address(0),
             _more
         );
     }
