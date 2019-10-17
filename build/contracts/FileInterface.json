@@ -118,19 +118,19 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity <0.6.0;\n\n\ncontract FileInterface {\n    address public parent;\n\n    string public id;\n    string public name;\n    string public originalFileHash;\n\n    uint public createdAt;\n    uint public size;\n\n    function init(\n        string memory fileName,\n        string memory fileHash,\n        uint fileDate,\n        uint fileSize\n    )\n        public;\n}\n",
-  "sourcePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/FileInterface.sol",
+  "sourcePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/FileInterface.sol",
   "ast": {
-    "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/FileInterface.sol",
+    "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/FileInterface.sol",
     "exportedSymbols": {
       "FileInterface": [
-        7074
+        7239
       ]
     },
-    "id": 7075,
+    "id": 7240,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 7050,
+        "id": 7215,
         "literals": [
           "solidity",
           "<",
@@ -146,19 +146,19 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 7074,
+        "id": 7239,
         "linearizedBaseContracts": [
-          7074
+          7239
         ],
         "name": "FileInterface",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 7052,
+            "id": 7217,
             "name": "parent",
             "nodeType": "VariableDeclaration",
-            "scope": 7074,
+            "scope": 7239,
             "src": "55:21:27",
             "stateVariable": true,
             "storageLocation": "default",
@@ -167,7 +167,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 7051,
+              "id": 7216,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "55:7:27",
@@ -182,10 +182,10 @@
           },
           {
             "constant": false,
-            "id": 7054,
+            "id": 7219,
             "name": "id",
             "nodeType": "VariableDeclaration",
-            "scope": 7074,
+            "scope": 7239,
             "src": "83:16:27",
             "stateVariable": true,
             "storageLocation": "default",
@@ -194,7 +194,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 7053,
+              "id": 7218,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "83:6:27",
@@ -208,10 +208,10 @@
           },
           {
             "constant": false,
-            "id": 7056,
+            "id": 7221,
             "name": "name",
             "nodeType": "VariableDeclaration",
-            "scope": 7074,
+            "scope": 7239,
             "src": "105:18:27",
             "stateVariable": true,
             "storageLocation": "default",
@@ -220,7 +220,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 7055,
+              "id": 7220,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "105:6:27",
@@ -234,10 +234,10 @@
           },
           {
             "constant": false,
-            "id": 7058,
+            "id": 7223,
             "name": "originalFileHash",
             "nodeType": "VariableDeclaration",
-            "scope": 7074,
+            "scope": 7239,
             "src": "129:30:27",
             "stateVariable": true,
             "storageLocation": "default",
@@ -246,7 +246,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 7057,
+              "id": 7222,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "129:6:27",
@@ -260,10 +260,10 @@
           },
           {
             "constant": false,
-            "id": 7060,
+            "id": 7225,
             "name": "createdAt",
             "nodeType": "VariableDeclaration",
-            "scope": 7074,
+            "scope": 7239,
             "src": "166:21:27",
             "stateVariable": true,
             "storageLocation": "default",
@@ -272,7 +272,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 7059,
+              "id": 7224,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
               "src": "166:4:27",
@@ -286,10 +286,10 @@
           },
           {
             "constant": false,
-            "id": 7062,
+            "id": 7227,
             "name": "size",
             "nodeType": "VariableDeclaration",
-            "scope": 7074,
+            "scope": 7239,
             "src": "193:16:27",
             "stateVariable": true,
             "storageLocation": "default",
@@ -298,7 +298,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 7061,
+              "id": 7226,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
               "src": "193:4:27",
@@ -313,22 +313,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7073,
+            "id": 7238,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "init",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7071,
+              "id": 7236,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7064,
+                  "id": 7229,
                   "name": "fileName",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7073,
+                  "scope": 7238,
                   "src": "239:22:27",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -337,7 +337,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7063,
+                    "id": 7228,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "239:6:27",
@@ -351,10 +351,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7066,
+                  "id": 7231,
                   "name": "fileHash",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7073,
+                  "scope": 7238,
                   "src": "271:22:27",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -363,7 +363,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7065,
+                    "id": 7230,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "271:6:27",
@@ -377,10 +377,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7068,
+                  "id": 7233,
                   "name": "fileDate",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7073,
+                  "scope": 7238,
                   "src": "303:13:27",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -389,7 +389,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7067,
+                    "id": 7232,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "303:4:27",
@@ -403,10 +403,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7070,
+                  "id": 7235,
                   "name": "fileSize",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7073,
+                  "scope": 7238,
                   "src": "326:13:27",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -415,7 +415,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7069,
+                    "id": 7234,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "326:4:27",
@@ -431,36 +431,36 @@
               "src": "229:116:27"
             },
             "returnParameters": {
-              "id": 7072,
+              "id": 7237,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "360:0:27"
             },
-            "scope": 7074,
+            "scope": 7239,
             "src": "216:145:27",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 7075,
+        "scope": 7240,
         "src": "26:337:27"
       }
     ],
     "src": "0:364:27"
   },
   "legacyAST": {
-    "absolutePath": "/Users/alex/workspace/signaturit-solidity-contracts/contracts/interfaces/FileInterface.sol",
+    "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/FileInterface.sol",
     "exportedSymbols": {
       "FileInterface": [
-        7074
+        7239
       ]
     },
-    "id": 7075,
+    "id": 7240,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 7050,
+        "id": 7215,
         "literals": [
           "solidity",
           "<",
@@ -476,19 +476,19 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 7074,
+        "id": 7239,
         "linearizedBaseContracts": [
-          7074
+          7239
         ],
         "name": "FileInterface",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 7052,
+            "id": 7217,
             "name": "parent",
             "nodeType": "VariableDeclaration",
-            "scope": 7074,
+            "scope": 7239,
             "src": "55:21:27",
             "stateVariable": true,
             "storageLocation": "default",
@@ -497,7 +497,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 7051,
+              "id": 7216,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "55:7:27",
@@ -512,10 +512,10 @@
           },
           {
             "constant": false,
-            "id": 7054,
+            "id": 7219,
             "name": "id",
             "nodeType": "VariableDeclaration",
-            "scope": 7074,
+            "scope": 7239,
             "src": "83:16:27",
             "stateVariable": true,
             "storageLocation": "default",
@@ -524,7 +524,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 7053,
+              "id": 7218,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "83:6:27",
@@ -538,10 +538,10 @@
           },
           {
             "constant": false,
-            "id": 7056,
+            "id": 7221,
             "name": "name",
             "nodeType": "VariableDeclaration",
-            "scope": 7074,
+            "scope": 7239,
             "src": "105:18:27",
             "stateVariable": true,
             "storageLocation": "default",
@@ -550,7 +550,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 7055,
+              "id": 7220,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "105:6:27",
@@ -564,10 +564,10 @@
           },
           {
             "constant": false,
-            "id": 7058,
+            "id": 7223,
             "name": "originalFileHash",
             "nodeType": "VariableDeclaration",
-            "scope": 7074,
+            "scope": 7239,
             "src": "129:30:27",
             "stateVariable": true,
             "storageLocation": "default",
@@ -576,7 +576,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 7057,
+              "id": 7222,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "129:6:27",
@@ -590,10 +590,10 @@
           },
           {
             "constant": false,
-            "id": 7060,
+            "id": 7225,
             "name": "createdAt",
             "nodeType": "VariableDeclaration",
-            "scope": 7074,
+            "scope": 7239,
             "src": "166:21:27",
             "stateVariable": true,
             "storageLocation": "default",
@@ -602,7 +602,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 7059,
+              "id": 7224,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
               "src": "166:4:27",
@@ -616,10 +616,10 @@
           },
           {
             "constant": false,
-            "id": 7062,
+            "id": 7227,
             "name": "size",
             "nodeType": "VariableDeclaration",
-            "scope": 7074,
+            "scope": 7239,
             "src": "193:16:27",
             "stateVariable": true,
             "storageLocation": "default",
@@ -628,7 +628,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 7061,
+              "id": 7226,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
               "src": "193:4:27",
@@ -643,22 +643,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 7073,
+            "id": 7238,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "init",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7071,
+              "id": 7236,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7064,
+                  "id": 7229,
                   "name": "fileName",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7073,
+                  "scope": 7238,
                   "src": "239:22:27",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -667,7 +667,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7063,
+                    "id": 7228,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "239:6:27",
@@ -681,10 +681,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7066,
+                  "id": 7231,
                   "name": "fileHash",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7073,
+                  "scope": 7238,
                   "src": "271:22:27",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -693,7 +693,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7065,
+                    "id": 7230,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "271:6:27",
@@ -707,10 +707,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7068,
+                  "id": 7233,
                   "name": "fileDate",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7073,
+                  "scope": 7238,
                   "src": "303:13:27",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -719,7 +719,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7067,
+                    "id": 7232,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "303:4:27",
@@ -733,10 +733,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7070,
+                  "id": 7235,
                   "name": "fileSize",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7073,
+                  "scope": 7238,
                   "src": "326:13:27",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -745,7 +745,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7069,
+                    "id": 7234,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "326:4:27",
@@ -761,19 +761,19 @@
               "src": "229:116:27"
             },
             "returnParameters": {
-              "id": 7072,
+              "id": 7237,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "360:0:27"
             },
-            "scope": 7074,
+            "scope": 7239,
             "src": "216:145:27",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 7075,
+        "scope": 7240,
         "src": "26:337:27"
       }
     ],
@@ -784,8 +784,8 @@
     "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.0.13",
-  "updatedAt": "2019-10-10T12:55:24.835Z",
+  "schemaVersion": "3.0.11",
+  "updatedAt": "2019-10-16T13:50:03.124Z",
   "devdoc": {
     "methods": {}
   },

@@ -21,6 +21,7 @@ contract BaseAggregator {
     }
 
     constructor(
+        address userContractAddress,
         string memory aggregatorString,
         string memory notifiersString
     ) public {
@@ -28,14 +29,7 @@ contract BaseAggregator {
 
         aggregatorName = aggregatorString;
         notifiersKey = notifiersString;
-    }
 
-    function setOnUser(
-        address userContractAddress
-    )
-        public
-        signaturitOnly
-    {
         userContract = SignaturitUserInterface(userContractAddress);
 
         userContract.setAddressAttribute(

@@ -84,7 +84,7 @@ contract('SignatureAggregator', async (accounts) => {
             userContract.address
         );
 
-        signatureAggregatorContract.notify(
+        await signatureAggregatorContract.notify(
             'signature.contract.created',
             signatureContract.address
         );
@@ -93,6 +93,31 @@ contract('SignatureAggregator', async (accounts) => {
 
         assert.equal(1, storedSignatures.toNumber());
         assert.ok(signatureContract.address);
+    });
+
+    it("Create signature without address to notify and notify manually from invalid account, expect exception", async () => {
+        const signatureContract = await ArtifactSignature.new(
+            signatureId,
+            deployerAddress,
+            signatureCreatedAt,
+            ownerAddress,
+            userContract.address
+        );
+
+        try {
+            await signatureAggregatorContract.notify(
+                'signature.contract.created',
+                signatureContract.address,
+                {
+                    from: invalidAccount
+                }
+            );
+        } catch(error) {
+            assert.include(
+                error.message,
+                "Only Signaturit account can perform this action"
+            )
+        }
     });
 
     it("Create signature on user with signature aggregator", async () => {

@@ -10,10 +10,7 @@ import "./CertifiedEmail.sol";
 
 contract CertifiedEmailAggregator is
     NotifierInterface,
-    BaseAggregator(
-        "certified-email-aggregator",
-        "certified-email-notifiers"
-    )
+    BaseAggregator
 {
     string constant private CERTIFIED_EMAIL_CREATED_EVENT = "certified_email.contract.created";
 
@@ -23,9 +20,14 @@ contract CertifiedEmailAggregator is
 
     constructor (
         address _userContractAddress
-    ) public {
-        setOnUser(_userContractAddress);
-    }
+    )
+        public
+        BaseAggregator(
+            _userContractAddress,
+            "certified-email-aggregator",
+            "certified-email-notifiers"
+        )
+    {}
 
     function getCertifiedEmailById(
         string memory id

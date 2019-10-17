@@ -10,6 +10,7 @@ contract('UserEvents', async (accounts) => {
     const ArtifactCertifiedEmail = artifacts.require('CertifiedEmail');
     const ArtifactCertifiedEmailDeployer = artifacts.require('CertifiedEmailDeployer');
     const ArtifactCertificate = artifacts.require('Certificate');
+    const ArtifactTimeLogger = artifacts.require('TimeLogger');
 
     const SIGNATURE_NOTIFIERS_KEY = "signature-notifiers";
     const DOCUMENT_NOTIFIERS_KEY = "document-notifiers";
@@ -18,11 +19,12 @@ contract('UserEvents', async (accounts) => {
     const CERTIFIED_EMAIL_NOTIFIERS_KEY = "certified-email-notifiers";
     const CERTIFICATE_NOTIFIERS_KEY = "certificate-notifiers";
     const CERTIFIED_FILE_NOTIFIERS_KEY = "certified-file-notifiers";
-
-
+    const TIMELOGGER_CLAUSE_NOTIFIERS_KEY = "timelogger-clause-notifiers";
 
     const ownerAddress = accounts[0];
     const signaturitUser = accounts[1];
+    const managerAddress = accounts[2];
+    const invalidAddress = accounts[3];
 
     const signatureId = v4();
     const signatureType = 'advanced';
@@ -45,14 +47,22 @@ contract('UserEvents', async (accounts) => {
     const certifiedEmailBody = 'body';
     const certifiedEmailDelivery = 'full';
     const certifiedEmailCreatedAt = Date.now();
+
+    const timeLoggerContractId = v4();
+    const startDate = Date.now();
+    const endDate = Date.now() + 1000;
+    const weekHours = 40;
+    const contractDuration = 365;
     
     const certificateId = v4();
     const certificateCreatedAt = Date.now();
 
     let userEventsContract;
     let userContract;
+    let managerContract;
     let signatureContract;
     let certifiedFileContract;
+    let timeLoggerContract;
     let signatureDeployerContract;
     let certifiedEmailDeployerContract;
     let certifiedEmailContract;
@@ -111,6 +121,23 @@ contract('UserEvents', async (accounts) => {
                 from: signaturitUser
             }
         );
+
+        managerContract = await ArtifactUser.new(managerAddress);
+
+        timeLoggerContract = await ArtifactTimeLogger.new(
+            userContract.address,
+            managerContract.address,
+            signatureContract.address,
+            timeLoggerContractId,
+            documentId,
+            startDate,
+            endDate,
+            weekHours,
+            contractDuration,
+            {
+                from: signaturitUser
+            }
+        )
     });
 
     it("Check if it deploy correctly", async (done) => {
@@ -312,6 +339,7 @@ contract('UserEvents', async (accounts) => {
                 from: signaturitUser
             }
         );
+
         const events = await userEventsContract.getPastEvents('CertifiedFileCreated', {
             fromBlock: 0,
             toBlock: "latest"
@@ -319,5 +347,19 @@ contract('UserEvents', async (accounts) => {
         
         assert.equal(events.length, 1)
         assert.equal(events[0].returnValues[0], certifiedFileContract.address);
+    });
+
+    it("log a time and expect to be notified", async () => {
+        await timeLoggerContract.soliditySourceLog(
+            {from: managerAddress}
+        );
+
+        const events = await userEventsContract.getPastEvents('TimeLogAdded', {
+            fromBlock: 0,
+            toBlock: "latest"
+        });
+
+        assert.equal(events.length, 1)
+        assert.equal(events[0].returnValues[0], timeLoggerContract.address);
     });
 })
