@@ -1,7 +1,7 @@
 pragma solidity <0.6.0;
 
 /*
-Gas to deploy: 2.379.930
+Gas to deploy: 2.707.646
 */
 
 import "./interfaces/CertifiedEmailInterface.sol";

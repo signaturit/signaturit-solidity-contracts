@@ -4,7 +4,7 @@ import "./interfaces/SignaturitUserInterface.sol";
 import "./libraries/Utils.sol";
 
 /*
-Gas to deploy: 1.925.304
+Gas to deploy: 2.896.394
 */
 
 contract SignaturitUser is SignaturitUserInterface {

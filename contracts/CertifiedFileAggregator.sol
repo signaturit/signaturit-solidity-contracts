@@ -1,5 +1,9 @@
 pragma solidity <0.6.0;
 
+/*
+Gas to deploy: 785.379
+*/
+
 import "./interfaces/NotifierInterface.sol";
 import "./BaseAggregator.sol";
 import "./CertifiedFile.sol";
@@ -47,7 +51,7 @@ contract CertifiedFileAggregator is
     {
         bool _more = index + 1 < certifiedFilesIds.length;
         bytes32 certifiedFileId = certifiedFilesIds[index];
-        if(address(certifiedFiles[certifiedFileId]) != address(0)) {
+        if (address(certifiedFiles[certifiedFileId]) != address(0)) {
             return (
                 address(certifiedFiles[certifiedFileId]),
                 _more

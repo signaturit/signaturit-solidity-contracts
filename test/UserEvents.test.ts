@@ -11,6 +11,7 @@ contract('UserEvents', async (accounts) => {
     const ArtifactCertifiedEmailDeployer = artifacts.require('CertifiedEmailDeployer');
     const ArtifactCertificate = artifacts.require('Certificate');
     const ArtifactTimeLogger = artifacts.require('TimeLogger');
+    const ArtifactPayment = artifacts.require('Payment');
 
     const SIGNATURE_NOTIFIERS_KEY = "signature-notifiers";
     const DOCUMENT_NOTIFIERS_KEY = "document-notifiers";
@@ -48,6 +49,8 @@ contract('UserEvents', async (accounts) => {
     const certifiedEmailDelivery = 'full';
     const certifiedEmailCreatedAt = Date.now();
 
+    const paymentContractId = v4();
+
     const timeLoggerContractId = v4();
     const startDate = Date.now();
     const endDate = Date.now() + 1000;
@@ -56,6 +59,16 @@ contract('UserEvents', async (accounts) => {
     
     const certificateId = v4();
     const certificateCreatedAt = Date.now();
+
+    const paymentContractStart = Date.now();
+    const paymentContractEnd = Date.now() + 2000;
+    const paymentContractPeriod = 1;
+    const receiverId = v4();
+    const referenceId = v4();
+    const paymentCheckId = v4();
+    const paymentCheckStatus = 2;
+    const paymentCheckCheckedAt = Date.now();
+    const paymentCheckCreatedAt = Date.now();
 
     let userEventsContract;
     let userContract;
@@ -66,6 +79,7 @@ contract('UserEvents', async (accounts) => {
     let signatureDeployerContract;
     let certifiedEmailDeployerContract;
     let certifiedEmailContract;
+    let paymentContract;
 
     beforeEach(async () => {
         userContract = await ArtifactUser.new(
@@ -138,6 +152,15 @@ contract('UserEvents', async (accounts) => {
                 from: signaturitUser
             }
         )
+
+        paymentContract = await ArtifactPayment.new(
+            userContract.address,
+            signatureContract.address,
+            paymentContractId,
+            {
+                from: signaturitUser
+            }
+        );
     });
 
     it("Check if it deploy correctly", async (done) => {
@@ -361,5 +384,38 @@ contract('UserEvents', async (accounts) => {
 
         assert.equal(events.length, 1)
         assert.equal(events[0].returnValues[0], timeLoggerContract.address);
+    });
+
+    it("init payment and add a check, expect to be notified", async () => {
+        await paymentContract.init(
+            signatureId,
+            documentId,
+            paymentContractStart,
+            paymentContractEnd,
+            paymentContractPeriod,
+            {
+                from: signaturitUser
+            }
+        );
+
+        await paymentContract.addPaymentCheck(
+            receiverId,
+            referenceId,
+            paymentCheckId,
+            paymentCheckStatus,
+            paymentCheckCheckedAt,
+            paymentCheckCreatedAt,
+            {
+                from: signaturitUser
+            }
+        );
+        
+        const events = await userEventsContract.getPastEvents('PaymentCheckAdded', {
+            fromBlock: 0,
+            toBlock: "latest"
+        });
+
+        assert.equal(events.length, 1)
+        assert.equal(events[0].returnValues[0], paymentContract.address);
     });
 })
