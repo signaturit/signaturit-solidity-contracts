@@ -155,6 +155,14 @@ contract Payment is Clause(
         _notify(CLAUSE_EVENT_TYPE);
     }
 
+    function getReceiversSize()
+        public
+        view
+        returns(uint)
+    {
+        return receiversArray.length;
+    }
+
     // Get paymentCheck if you got the id
     function getPaymentCheckById(
         string memory paymentCheckId
