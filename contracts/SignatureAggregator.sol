@@ -1,7 +1,7 @@
 pragma solidity <0.6.0;
 
 /*
-Gas to deploy: 959.102
+Gas to deploy: 784.355
 */
 
 import "./interfaces/NotifierInterface.sol";
@@ -52,7 +52,7 @@ contract SignatureAggregator is
         bool _more = index + 1 < signatureIds.length;
         bytes32 signatureId = signatureIds[index];
 
-        if(address(signatures[signatureId]) != address(0)) {
+        if (address(signatures[signatureId]) != address(0)) {
             return (
                 address(signatures[signatureId]),
                 _more

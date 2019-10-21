@@ -1,7 +1,7 @@
 pragma solidity <0.6.0;
 
 /*
-Gas to deploy: 3.347.342
+Gas to deploy: 3.536.741
 
 PaymentCheck status legend:
 
@@ -16,7 +16,7 @@ import "./Clause.sol";
 
 
 contract Payment is Clause(
-    "payment_clause_notifiers"
+    "payment-clause-notifiers"
 )
 {
     string constant public CLAUSE_EVENT_TYPE = "payment_check.added";
@@ -153,6 +153,14 @@ contract Payment is Clause(
         newReference.checks.push(paymentCheckId);
 
         _notify(CLAUSE_EVENT_TYPE);
+    }
+
+    function getReceiversSize()
+        public
+        view
+        returns(uint)
+    {
+        return receiversArray.length;
     }
 
     // Get paymentCheck if you got the id

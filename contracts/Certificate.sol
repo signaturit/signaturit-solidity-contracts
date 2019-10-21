@@ -1,7 +1,7 @@
 pragma solidity <0.6.0;
 
 /*
-Gas to deploy: 1.395.948
+Gas to deploy: 1.441.547
 */
 
 import "./interfaces/CertificateInterface.sol";

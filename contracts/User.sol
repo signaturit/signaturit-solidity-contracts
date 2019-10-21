@@ -1,7 +1,7 @@
 pragma solidity <0.6.0;
 
 /*
-Gas to deploy: 2.511.966
+Gas to deploy: 2.725.594
 */
 
 import "./interfaces/UserInterface.sol";

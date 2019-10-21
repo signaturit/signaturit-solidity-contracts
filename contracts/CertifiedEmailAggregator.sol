@@ -1,7 +1,7 @@
 pragma solidity <0.6.0;
 
 /*
-Gas to deploy: 959.102
+Gas to deploy: 785.507
 */
 
 import "./interfaces/NotifierInterface.sol";

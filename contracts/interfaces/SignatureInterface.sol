@@ -21,6 +21,15 @@ contract SignatureInterface {
 
     SignaturitUserInterface public userContract;
 
+    function notify(
+        string memory attribute,
+        address adr
+    )
+        public;
+    
+    function notifyCreation()
+        public;
+
     function createDocument(
         string memory documentId,
         string memory signatureType,
