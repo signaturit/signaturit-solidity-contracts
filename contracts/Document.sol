@@ -4,7 +4,6 @@ pragma solidity <0.6.0;
 Gas to deploy: 2.094.931
 */
 
-import "./interfaces/SignatureInterface.sol";
 import "./interfaces/DocumentInterface.sol";
 import "./interfaces/FileInterface.sol";
 import "./interfaces/EventInterface.sol";
