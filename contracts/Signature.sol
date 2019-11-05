@@ -7,7 +7,7 @@ Gas to deploy: 3.329.557
 import "./interfaces/SignatureInterface.sol";
 import "./interfaces/NotifierInterface.sol";
 import "./interfaces/DocumentInterface.sol";
-import "./interfaces/UserInterface.sol";
+import "./interfaces/SignaturitUserInterface.sol";
 import "./interfaces/FileInterface.sol";
 import "./interfaces/EventInterface.sol";
 import "./interfaces/SignaturitUserInterface.sol";

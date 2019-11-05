@@ -1,6 +1,6 @@
 pragma solidity <0.6.0;
 
-import "./UserInterface.sol";
+import "./SignaturitUserInterface.sol";
 import "./CertificateInterface.sol";
 import "./EventInterface.sol";
 
@@ -19,7 +19,7 @@ contract CertifiedEmailInterface {
 
     uint public createdAt;
 
-    UserInterface public userSmartContract;
+    SignaturitUserInterface public userSmartContract;
 
     mapping(string => CertificateInterface) private certificates;
 
