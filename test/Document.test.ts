@@ -1,30 +1,36 @@
 contract('Document', async (accounts) => {
+    const ArtifactUser = artifacts.require('SignaturitUser');
     const ArtifactFile      = artifacts.require('File');
     const ArtifactEvent     = artifacts.require('Event');
-    const ArtifactDocuments = artifacts.require('Document');
+    const ArtifactDocument = artifacts.require('Document');
+    const ArtifactSignature = artifacts.require('Signature');
     const ArtifactSignatureDeployer = artifacts.require('SignatureDeployer');
 
     const v4 = require("uuid").v4;
 
+    let userContract;
     let fileContract;
     let eventContract;
     let documentContract;
     let signatureDeployer;
+    let signatureContract;
 
-    const signatureAddress = accounts[0];
-    const ownerAddress = accounts[1];
-    const signerAddress = accounts[2];
-    const invalidAddress = accounts[3];
+    let documentContractAddress;
+
+    const signaturitAddress = accounts[0];
+    const signatureOwner = accounts[1]
+    const ownerAddress = accounts[2];
+    const invalidAddress = accounts[4];
 
     const documentId = v4();
     const signatureType = 'advanced';
     const cancelReason = 'Cancel reason';
     const declineReason = 'Decline reason';
     const signedAt = Date.now();
-    const finishedAt = Date.now();
     const createdAt = Date.now();
 
     const fileId = v4();
+    const signatureId = v4();
     const fileName = 'Test.pdf';
     const fileHash = 'File hash';
     const fileSize = 123;
@@ -37,52 +43,53 @@ contract('Document', async (accounts) => {
     beforeEach(async () => {
         signatureDeployer = await ArtifactSignatureDeployer.new();
 
-        documentContract = await ArtifactDocuments.new(
-            documentId,
-            signatureDeployer.address,
+        userContract = await ArtifactUser.new(
+            signatureOwner,
             {
-                from: signatureAddress
+                from: signaturitAddress
             }
         );
+
+        signatureContract = await ArtifactSignature.new(
+            signatureId,
+            signatureDeployer.address,
+            Date.now(),
+            signatureOwner,
+            userContract.address,
+            {
+                from: signaturitAddress
+            }
+        );
+
+        await signatureContract.notifyCreation(
+            {
+                from: signaturitAddress
+            }
+        );
+
+        await signatureContract.createDocument(
+            documentId,
+            signatureType,
+            createdAt,
+            {
+                from: signaturitAddress
+            }
+        );
+
+        documentContractAddress = await signatureContract.getDocument(documentId);
+
+        documentContract = await ArtifactDocument.at(documentContractAddress);
     });
 
     it('Check if it deploy correctly', async () => {
         assert.ok(documentContract.address);
     });
 
-    it('Try to init with not signature role, expect exception', async() => {
-        try {
-            await documentContract.init(
-                signatureType,
-                finishedAt,
-                {from: ownerAddress}
-            );
-
-            assert.fail('Invalid input parameter');
-        } catch(error) {
-            assert.include(
-                error.message,
-                'Only the Signature account can perform this action.'
-            );
-        }
-    });
-
-    it('Try to init as signature role, expect to pass', async() => {
-        await documentContract.init(
-            signatureType,
-            createdAt,
-            {from: signatureAddress}
-        );
-
-        const readCreatedAt = await documentContract.createdAt();
-
-        assert.equal(createdAt, readCreatedAt);
-    });
-
     it('Try to setFileHash as signature role, expect to pass', async() => {
-        await documentContract.setFileHash(
+        await signatureContract.setSignedFileHash(
+            documentId,
             fileHash,
-            {from: signatureAddress}
+            {from: signaturitAddress}
         );
 
         const readFileHash = await documentContract.signedFileHash();
@@ -92,27 +99,32 @@ contract('Document', async (accounts) => {
 
     it('Try to setFileHash with not signature role, expect exception', async() => {
         try {
-            await documentContract.setFileHash(
+            await signatureContract.setSignedFileHash(
+                documentId,
                 fileHash,
-                {from: signerAddress}
+                {from: invalidAddress}
             );
 
             assert.fail('Invalid input parameter');
         } catch(error) {
             assert.include(
                 error.message,
-                'Only the Signature account can perform this action.'
+                'Only Signaturit account can perform this action'
             );
         }
     });
 
     it('Create an instance of file', async() => {
-        await documentContract.createFile(
+        await signatureContract.createFile(
+            documentId,
             fileId,
             fileName,
             fileHash,
             createdAt,
-            fileSize
+            fileSize,
+            {
+                from: signaturitAddress
+            }
         );
 
         const readFileAddress = await documentContract.file();
@@ -126,7 +138,13 @@ contract('Document', async (accounts) => {
     });
 
     it("Sign a document", async () => {
-        await documentContract.setOwner(ownerAddress);
+        await signatureContract.setDocumentOwner(
+            documentId, 
+            ownerAddress,
+            {
+                from: signaturitAddress
+            }
+        );
 
         await documentContract.sign(
             signedAt,
@@ -141,10 +159,11 @@ contract('Document', async (accounts) => {
     });
 
     it("Cancel a document", async () => {
-        await documentContract.cancel(
+        await signatureContract.cancelDocument(
+            documentId,
             cancelReason,
             {
-                from: signatureAddress
+                from: signatureOwner
             }
         );
 
@@ -157,7 +176,8 @@ contract('Document', async (accounts) => {
 
     it("Cancel a document from other account ", async () => {
         try {
-            await documentContract.cancel(
+            await signatureContract.cancelDocument(
+                documentId,
                 cancelReason,
                 {
                     from: invalidAddress
@@ -168,13 +188,13 @@ contract('Document', async (accounts) => {
         } catch (error) {
             assert.include(
                 error.message,
-                'Only the Signature account can perform this action.'
+                'Only the owner account can perform this action'
             );
         }
     });
 
     it("Decline a document", async () => {
-        await documentContract.setOwner(ownerAddress);
+        await signatureContract.setDocumentOwner(documentId, ownerAddress);
 
         await documentContract.decline(
             declineReason,
@@ -210,11 +230,15 @@ contract('Document', async (accounts) => {
 
     it("Try to sign a document after cancel", async () => {
         try {
-            await documentContract.setOwner(ownerAddress);
+            await signatureContract.setDocumentOwner(documentId, ownerAddress);
 
-            await documentContract.cancel('Cancel documentContract', {
-                from: signatureAddress
-            });
+            await signatureContract.cancelDocument(
+                documentId,
+                cancelReason,
+                {
+                    from: signatureOwner
+                }
+            );
 
             await documentContract.sign(
                 signedAt,
@@ -233,7 +257,7 @@ contract('Document', async (accounts) => {
 
     it("Try to cancel a signed document", async () => {
         try {
-            await documentContract.setOwner(ownerAddress);
+            await signatureContract.setDocumentOwner(documentId, ownerAddress);
 
             await documentContract.sign(
                 signedAt,
@@ -242,23 +266,27 @@ contract('Document', async (accounts) => {
                 }
             );
 
-            await documentContract.cancel('Cancel documentContract', {
-                from: signatureAddress
-            });
+            await signatureContract.cancelDocument(
+                documentId,
+                cancelReason,
+                {
+                    from: signatureOwner
+                }
+            );
 
             assert.fail('The documentContract cant be canceled');
 
         } catch (error) {
             assert.include(
                 error.message,
-                "Document is already signed, you can't cancel it."
+                "revert"
             );
         }
     })
 
     it("Try to sign the document after decline", async () => {
         try {
-            await documentContract.setOwner(ownerAddress);
+            await signatureContract.setDocumentOwner(documentId, ownerAddress);
 
             await documentContract.decline('Decline documentContract', {
                 from: ownerAddress
@@ -281,7 +309,7 @@ contract('Document', async (accounts) => {
 
     it("Try to decline a signed document", async () => {
         try {
-            await documentContract.setOwner(ownerAddress);
+            await signatureContract.setDocumentOwner(documentId, ownerAddress);
 
             await documentContract.sign(
                 signedAt,
@@ -299,19 +327,20 @@ contract('Document', async (accounts) => {
         } catch (error) {
             assert.include(
                 error.message,
-                "Document is already signed, you can't decline it."
+                "revert"
             )
         }
     });
 
     it("Create event on the document", async () => {
-        await documentContract.createEvent(
+        await signatureContract.createEvent(
+            documentId,
             eventOneId,
             eventType,
             userAgent,
             createdAt,
             {
-                from: signatureAddress
+                from: signaturitAddress
             }
         );
 
@@ -321,23 +350,25 @@ contract('Document', async (accounts) => {
     });
 
     it("Create two event on the document", async () => {
-        documentContract.createEvent(
+        signatureContract.createEvent(
+            documentId,
             eventOneId,
             eventType,
             userAgent,
             createdAt,
             {
-                from: signatureAddress
+                from: signaturitAddress
             }
         );
 
-        documentContract.createEvent(
+        signatureContract.createEvent(
+            documentId,
             eventTwoId,
             eventType,
             userAgent,
             createdAt,
             {
-                from: signatureAddress
+                from: signaturitAddress
             }
         );
 
@@ -347,23 +378,25 @@ contract('Document', async (accounts) => {
     });
 
     it("Get existing event from the document", async () => {
-        documentContract.createEvent(
+        signatureContract.createEvent(
+            documentId,
             eventOneId,
             eventType,
             userAgent,
             createdAt,
             {
-                from: signatureAddress
+                from: signaturitAddress
             }
         );
 
-        documentContract.createEvent(
+        signatureContract.createEvent(
+            documentId,
             eventTwoId,
             eventType,
             userAgent,
             createdAt,
             {
-                from: signatureAddress
+                from: signaturitAddress
             }
         );
 
@@ -383,13 +416,14 @@ contract('Document', async (accounts) => {
     });
 
     it("Get non existing event from the document", async () => {
-        documentContract.createEvent(
+        signatureContract.createEvent(
+            documentId,
             eventOneId,
             eventType,
             userAgent,
             createdAt,
             {
-                from: signatureAddress
+                from: signaturitAddress
             }
         );
 

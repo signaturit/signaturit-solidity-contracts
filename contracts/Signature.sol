@@ -125,7 +125,7 @@ contract Signature is SignatureInterface, NotifierInterface {
     {
         DocumentInterface document = _getDocument(documentId);
 
-        document.setOwner(documentOwner);
+        document.setOwner(documentOwner, address(userContract));
     }
 
     function setSignedFileHash (

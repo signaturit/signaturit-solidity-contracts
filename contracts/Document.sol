@@ -4,13 +4,18 @@ pragma solidity <0.6.0;
 Gas to deploy: 2.094.931
 */
 
+import "./interfaces/SignatureInterface.sol";
 import "./interfaces/DocumentInterface.sol";
 import "./interfaces/FileInterface.sol";
 import "./interfaces/EventInterface.sol";
+import "./interfaces/SignaturitUserInterface.sol";
 import "./libraries/Utils.sol";
 
 
 contract Document is DocumentInterface {
+    string constant private DOCUMENT_SIGNED_EVENT = "document.contract.signed";
+    string constant private DOCUMENT_NOTIFIERS_KEY = "document-notifiers";
+
     address public signature;
     address public signer;
     address public deployer;
@@ -31,6 +36,8 @@ contract Document is DocumentInterface {
     bool public declined;
 
     FileInterface public file;
+
+    SignaturitUserInterface public signatureOwner;
 
     mapping(string => EventInterface) private events;
 
@@ -73,12 +80,14 @@ contract Document is DocumentInterface {
     }
 
     function setOwner(
-        address signerAddress
+        address signerAddress,
+        address signatureOwnerAddress
     )
         public
         signatureOnly
     {
         signer = signerAddress;
+        signatureOwner = SignaturitUserInterface(signatureOwnerAddress);
     }
 
     function sign(
@@ -95,6 +104,8 @@ contract Document is DocumentInterface {
         signedAt = documentSignedAt;
 
         signed = true;
+        
+        notifyEntityEvent(DOCUMENT_NOTIFIERS_KEY, DOCUMENT_SIGNED_EVENT, address(this));
     }
 
     function decline(
@@ -197,6 +208,32 @@ contract Document is DocumentInterface {
         events[eventId] = EventInterface(Utils._bytesToAddress(returnData));
 
         eventsId.push(eventId);
+    }
+
+    function notifyEntityEvent (
+        string memory notifiersKey,
+        string memory createdEvent,
+        address adrToNotify
+    )
+        internal
+    {
+        address contractToNofify;
+        uint notificationIndex = 0;
+
+        do {
+            contractToNofify = signatureOwner.getAddressArrayAttribute(notifiersKey, notificationIndex);
+            ++notificationIndex;
+
+            if (contractToNofify != address(0)) {
+                contractToNofify.call(
+                    abi.encodeWithSignature(
+                        "notify(string,address)",
+                        createdEvent,
+                        adrToNotify
+                    )
+                );
+            }
+        } while (contractToNofify != address(0));
     }
 
     function getEvent(

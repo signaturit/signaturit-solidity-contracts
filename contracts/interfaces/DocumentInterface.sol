@@ -35,7 +35,8 @@ contract DocumentInterface {
         public;
 
     function setOwner(
-        address signerAddress
+        address signerAddress,
+        address signatureOwner
     )
         public;
 
@@ -43,6 +44,13 @@ contract DocumentInterface {
         uint documentSignedAt
     )
         public;
+
+    function notifyEntityEvent(
+        string memory notifiersKey,
+        string memory createdEvent,
+        address adrToNotify
+    )
+        internal;
 
     function decline(
         string memory documentDeclineReason
