@@ -11,6 +11,8 @@ contract SignaturitUser is SignaturitUserInterface {
     address public rootAddress;
     address public ownerAddress;
 
+    string constant private MANAGERS_KEY = "admitted-managers";
+
     mapping (bytes32 => string) public stringAttr;
     mapping (bytes32 => string[]) private stringArrayAttr;
     mapping (bytes32 => int) public numberAttr;
@@ -25,11 +27,13 @@ contract SignaturitUser is SignaturitUserInterface {
     ) public {
         rootAddress = msg.sender;
         ownerAddress = _ownerAddress;
+
+        setAddressArrayAttribute(MANAGERS_KEY, rootAddress);
     }
 
     modifier protected() {
         require(
-            tx.origin == rootAddress,
+            _itsManager(tx.origin),
             "Only the owner can perform this action"
         );
 
@@ -360,5 +364,27 @@ contract SignaturitUser is SignaturitUserInterface {
         }
 
         boolArrayAttr[bytes32key].length--;
+    }
+
+    function _itsManager(
+        address adr
+    )
+        internal
+        view
+        returns (bool)
+    {
+        uint index = 0;
+        address managerAddress;
+
+        do {
+            managerAddress = getAddressArrayAttribute(MANAGERS_KEY, index);
+            ++index;
+
+            if (managerAddress == adr) {
+                return true;
+            }
+        } while (managerAddress != address(0));
+
+        return false;
     }
 }
