@@ -20,7 +20,6 @@ contract UserEvents is NotifierInterface {
     string constant private EVENT_CREATED_EVENT = "event.contract.created";
     string constant private TIMELOG_ADDED_EVENT = "timelog.added";
     string constant private DOCUMENT_CREATED_EVENT = "document.contract.created";
-    string constant private DOCUMENT_SIGNED_EVENT = "document.contract.signed";
     string constant private SIGNATURE_CREATED_EVENT = "signature.contract.created";
     string constant private PAYMENT_CHECK_ADDED_EVENT = "payment_check.added";
     string constant private CERTIFICATE_CREATED_EVENT = "certificate.contract.created";
@@ -41,7 +40,6 @@ contract UserEvents is NotifierInterface {
 
     event SignatureCreated(address);
     event DocumentCreated(address);
-    event DocumentSigned(address);
     event FileCreated(address);
     event EventCreated(address);
     event CertifiedFileCreated(address);
@@ -89,8 +87,6 @@ contract UserEvents is NotifierInterface {
             emit SignatureCreated(addr);
         } else if (bytes32event == Utils.keccak(DOCUMENT_CREATED_EVENT)) {
             emit DocumentCreated(addr);
-        } else if (bytes32event == Utils.keccak(DOCUMENT_SIGNED_EVENT)) {
-            emit DocumentSigned(addr);
         } else if (bytes32event == Utils.keccak(FILE_CREATED_EVENT)) {
             emit FileCreated(addr);
         } else if (bytes32event == Utils.keccak(EVENT_CREATED_EVENT)) {

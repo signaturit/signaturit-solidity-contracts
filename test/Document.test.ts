@@ -76,6 +76,14 @@ contract('Document', async (accounts) => {
             }
         );
 
+        await signatureContract.setDocumentOwner(
+            documentId,
+            ownerAddress,
+            {
+                from: signaturitAddress
+            }
+        )
+
         documentContractAddress = await signatureContract.getDocument(documentId);
 
         documentContract = await ArtifactDocument.at(documentContractAddress);
@@ -138,14 +146,6 @@ contract('Document', async (accounts) => {
     });
 
     it("Sign a document", async () => {
-        await signatureContract.setDocumentOwner(
-            documentId, 
-            ownerAddress,
-            {
-                from: signaturitAddress
-            }
-        );
-
         await documentContract.sign(
             signedAt,
             {
@@ -194,8 +194,6 @@ contract('Document', async (accounts) => {
     });
 
     it("Decline a document", async () => {
-        await signatureContract.setDocumentOwner(documentId, ownerAddress);
-
         await documentContract.decline(
             declineReason,
             {

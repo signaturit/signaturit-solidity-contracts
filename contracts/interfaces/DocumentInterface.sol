@@ -34,9 +34,13 @@ contract DocumentInterface {
     )
         public;
 
+    function setSignatureOwner(
+        address signatureOwnerAdr
+    )
+        public;
+
     function setOwner(
-        address signerAddress,
-        address signatureOwner
+        address signerAddress
     )
         public;
 
