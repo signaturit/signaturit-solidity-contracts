@@ -8,26 +8,35 @@ Gas to deploy: 2.896.394
 */
 
 /*
-super admins can:
-- create users
-- set role as admins or users
-- set reputations of admins and users
-- set validity of admins and users
-
-admins can:
-- create users
-- set reputations of users
-- set validity of users
-
 User's role:
 0 - User
-1 - Admin 
+1 - Admin
 2 - Root
+
+- Everyone that create an user is also manager for that user
+- Root is manager of all the users
+
+Admins can:
+- create users
+- create admins
+- set role, reputation and validity for managed users
+
+Admins can't:
+- set role, validity and reputation of root
+- create root users
+- set role, reputation and validity of not managed users
+
+Root can:
+- create admins
+- create users
+- create root users
+- set role, reputation and validity of everyone
+- revoke management of users to admins
 
 User's reputation:
 Scale from 0 to 5, by default it sets to 3 to reflect neutrality
 
-users can't do anything.
+- For each new user with contractAddress not null the rootAddress is set as manager on the user smart contract
 */
 
 contract UserAuthority {
@@ -53,16 +62,25 @@ contract UserAuthority {
         users[rootAddress] = User(address(0), 2, 5, true, tmpAddresses);
     }
 
-    modifier atLeastAdmin() {
+    modifier allowedAdminCreation() {
         require(
-            users[msg.sender].role > 0,
-            "Only an allowed account can perform this action"
+            users[msg.sender].role > 1,
+            "The account can't perform this action"
         );
 
         _;
     }
 
-    modifier authorizedAction(address userAdr) {
+    modifier allowedUserCreation() {
+        require(
+            users[msg.sender].role > 0,
+            "The account can't perform this action"
+        );
+
+        _;
+    }
+
+    modifier allowedEdit(address userAdr) {
         require(
             users[msg.sender].role >= users[userAdr].role &&
             _isUserManager(userAdr, msg.sender),
@@ -72,25 +90,48 @@ contract UserAuthority {
         _;
     }
 
-    function createUser(
-        address userAdr,
-        address contractAddress,
-        uint role
+    function createAdmin(
+        address adminAdr
     )
         public
-        atLeastAdmin
+        allowedAdminCreation
     {
-        require(role <= users[msg.sender].role, "Can't set an higher role from this account");
-
-        address smartContractAddress = uint(contractAddress) > 0 ? contractAddress : address(0);
-
         address[] memory tmpAddresses;
 
-        users[userAdr] = User(smartContractAddress, role, 3, true, tmpAddresses);
+        users[adminAdr] = User(address(0), 1, 3, true, tmpAddresses);
 
-        // here it should be setted as manager in the user smart contract
+        users[msg.sender].managedUsers.push(adminAdr);
+    }
+
+    function createUser(
+        address userAdr
+    )
+        public
+        allowedUserCreation
+    {
+        address[] memory tmpAddresses;
+
+        users[userAdr] = User(address(0), 0, 3, true, tmpAddresses);
 
         users[msg.sender].managedUsers.push(userAdr);
+    }
+
+    function setUserContract(
+        address userAdr,
+        address contractAddress
+    )
+        public
+        allowedEdit(userAdr)
+    {
+        require(users[userAdr].validity, "The user doesn't exists or it's not valid anymore");
+
+        SignaturitUserInterface tmpUserContract = SignaturitUserInterface(contractAddress);
+
+        tmpUserContract.setAddressArrayAttribute(MANAGERS_KEY, rootAddress);
+
+        users[rootAddress].managedUsers.push(userAdr);
+
+        users[userAdr].contractAddress = contractAddress;
     }
 
     function setRole(
@@ -98,10 +139,8 @@ contract UserAuthority {
         uint role
     )
         public
-        atLeastAdmin
-        authorizedAction(userAdr)
+        allowedEdit(userAdr)
     {
-
         users[userAdr].role = role;
     }
 
@@ -110,8 +149,7 @@ contract UserAuthority {
         uint reputation
     )
         public
-        atLeastAdmin
-        authorizedAction(userAdr)
+        allowedEdit(userAdr)
     {
         users[userAdr].reputation = reputation;
     }
@@ -121,8 +159,7 @@ contract UserAuthority {
         bool validity
     )
         public
-        atLeastAdmin
-        authorizedAction(userAdr)
+        allowedEdit(userAdr)
     {
         users[userAdr].validity = validity;
     }
@@ -136,7 +173,8 @@ contract UserAuthority {
             address contractAddress,
             uint role,
             uint reputation,
-            bool validity
+            bool validity,
+            uint managedUsers
         )
     {
         if (users[userAdr].validity)
@@ -145,10 +183,37 @@ contract UserAuthority {
             users[userAdr].contractAddress,
             users[userAdr].role,
             users[userAdr].reputation,
-            users[userAdr].validity
+            users[userAdr].validity,
+            users[userAdr].managedUsers.length
         );
 
-        else return(address(0), 0, 0, false);
+        else return(address(0), 0, 0, false, 0);
+    }
+
+    function getManagedUser(
+        address userAdr,
+        uint index
+    )
+        public
+        view
+        returns (
+            address adr,
+            bool more
+        )
+    {
+        if(
+            users[userAdr].validity &&
+            users[userAdr].managedUsers[index] == address(0)
+        ) return(address(0), false);
+
+        bool thereIsMore = false;
+
+        if (index < users[userAdr].managedUsers.length - 1) thereIsMore = true;
+
+        return(
+            users[userAdr].managedUsers[index],
+            thereIsMore
+        );
     }
 
     function _isUserManager(

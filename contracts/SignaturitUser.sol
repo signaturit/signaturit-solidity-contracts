@@ -33,7 +33,7 @@ contract SignaturitUser is SignaturitUserInterface {
 
     modifier protected() {
         require(
-            _itsManager(tx.origin),
+            msg.sender == rootAddress || _isManager(tx.origin),
             "Only the owner can perform this action"
         );
 
@@ -366,7 +366,7 @@ contract SignaturitUser is SignaturitUserInterface {
         boolArrayAttr[bytes32key].length--;
     }
 
-    function _itsManager(
+    function _isManager(
         address adr
     )
         internal
