@@ -1,43 +1,11 @@
 pragma solidity <0.6.0;
 
-import "./interfaces/SignaturitUserInterface.sol";
 import "./libraries/Utils.sol";
 
 /*
-Gas to deploy: 2.896.394
+Gas to deploy: 880.108
 */
 
-/*
-User's role:
-0 - User
-1 - Admin
-2 - Root
-
-- Everyone that create an user is also manager for that user
-- Root is manager of all the users
-
-Admins can:
-- create users
-- create admins
-- set role, reputation and validity for managed users
-
-Admins can't:
-- set role, validity and reputation of root
-- create root users
-- set role, reputation and validity of not managed users
-
-Root can:
-- create admins
-- create users
-- create root users
-- set role, reputation and validity of everyone
-- revoke management of users to admins
-
-User's reputation:
-Scale from 0 to 5, by default it sets to 3 to reflect neutrality
-
-- For each new user with contractAddress not null the rootAddress is set as manager on the user smart contract
-*/
 
 contract UserAuthority {
     string constant private MANAGERS_KEY = "admitted-managers";
@@ -50,9 +18,10 @@ contract UserAuthority {
         uint reputation;
         bool validity;
         address[] managedUsers;
+        mapping(address => bool) managers;
     }
     
-    mapping(address => User) users;
+    mapping(address => User) private users;
 
     constructor () public {
         rootAddress = msg.sender;
@@ -64,7 +33,7 @@ contract UserAuthority {
 
     modifier allowedAdminCreation() {
         require(
-            users[msg.sender].role > 1,
+            users[msg.sender].role >= 1,
             "The account can't perform this action"
         );
 
@@ -82,8 +51,8 @@ contract UserAuthority {
 
     modifier allowedEdit(address userAdr) {
         require(
-            users[msg.sender].role >= users[userAdr].role &&
-            _isUserManager(userAdr, msg.sender),
+            users[msg.sender].role > 0 &&
+            isUserManager(userAdr, msg.sender),
             "Unauthorized action"
         );
 
@@ -100,6 +69,8 @@ contract UserAuthority {
 
         users[adminAdr] = User(address(0), 1, 3, true, tmpAddresses);
 
+        users[adminAdr].managers[msg.sender] = true;
+
         users[msg.sender].managedUsers.push(adminAdr);
     }
 
@@ -113,6 +84,8 @@ contract UserAuthority {
 
         users[userAdr] = User(address(0), 0, 3, true, tmpAddresses);
 
+        users[userAdr].managers[msg.sender] = true;
+
         users[msg.sender].managedUsers.push(userAdr);
     }
 
@@ -123,14 +96,6 @@ contract UserAuthority {
         public
         allowedEdit(userAdr)
     {
-        require(users[userAdr].validity, "The user doesn't exists or it's not valid anymore");
-
-        SignaturitUserInterface tmpUserContract = SignaturitUserInterface(contractAddress);
-
-        tmpUserContract.setAddressArrayAttribute(MANAGERS_KEY, rootAddress);
-
-        users[rootAddress].managedUsers.push(userAdr);
-
         users[userAdr].contractAddress = contractAddress;
     }
 
@@ -141,6 +106,8 @@ contract UserAuthority {
         public
         allowedEdit(userAdr)
     {
+        require(role <= users[msg.sender].role, "Can't set an higher role");
+
         users[userAdr].role = role;
     }
 
@@ -179,15 +146,16 @@ contract UserAuthority {
     {
         if (users[userAdr].validity)
 
-        return(
-            users[userAdr].contractAddress,
-            users[userAdr].role,
-            users[userAdr].reputation,
-            users[userAdr].validity,
-            users[userAdr].managedUsers.length
-        );
+            return(
+                users[userAdr].contractAddress,
+                users[userAdr].role,
+                users[userAdr].reputation,
+                users[userAdr].validity,
+                users[userAdr].managedUsers.length
+            );
 
-        else return(address(0), 0, 0, false, 0);
+        else
+            return(address(0), 0, 0, false, 0);
     }
 
     function getManagedUser(
@@ -201,10 +169,11 @@ contract UserAuthority {
             bool more
         )
     {
-        if(
-            users[userAdr].validity &&
+        if (
+            users[userAdr].managedUsers.length == 0 ||
             users[userAdr].managedUsers[index] == address(0)
-        ) return(address(0), false);
+        )
+            return(address(0), false);
 
         bool thereIsMore = false;
 
@@ -216,7 +185,7 @@ contract UserAuthority {
         );
     }
 
-    function _isUserManager(
+    function isUserManager(
         address userAdr,
         address managerAdr
     )
@@ -224,10 +193,6 @@ contract UserAuthority {
         view
         returns (bool)
     {
-        for(uint i = 0; i < users[managerAdr].managedUsers.length; i++) {
-            if(users[managerAdr].managedUsers[i] == userAdr) return true;
-        }
-
-        return false;
+        return users[userAdr].managers[managerAdr];
     }
 }
