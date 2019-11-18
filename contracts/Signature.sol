@@ -92,7 +92,7 @@ contract Signature is SignatureInterface, NotifierInterface {
         public
         signaturitOnly
     {
-        notifyEntityEvent(SIGNATURE_NOTIFIERS_KEY, SIGNATURE_CREATED_EVENT, address(this));
+        _notifyEntityEvent(SIGNATURE_NOTIFIERS_KEY, SIGNATURE_CREATED_EVENT, address(this));
     }
 
     function createDocument(
@@ -109,7 +109,7 @@ contract Signature is SignatureInterface, NotifierInterface {
 
         documentsId.push(documentId);
 
-        notifyEntityEvent(DOCUMENT_NOTIFIERS_KEY, DOCUMENT_CREATED_EVENT, address(document));
+        _notifyEntityEvent(DOCUMENT_NOTIFIERS_KEY, DOCUMENT_CREATED_EVENT, address(document));
     }
 
     function setDocumentOwner (
@@ -268,13 +268,12 @@ contract Signature is SignatureInterface, NotifierInterface {
         return address(signatureEvent);
     }
 
-    function notifyEntityEvent (
+    function _notifyEntityEvent (
         string memory notifiersKey,
         string memory createdEvent,
         address adrToNotify
     )
-        public
-        signaturitOnly
+        private
     {
         address contractToNofify;
         uint notificationIndex = 0;
