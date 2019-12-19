@@ -1,6 +1,6 @@
 pragma solidity <0.6.0;
 
-import "./UserInterface.sol";
+import "./SignaturitUserInterface.sol";
 import "./CertificateInterface.sol";
 import "./EventInterface.sol";
 
@@ -19,14 +19,11 @@ contract CertifiedEmailInterface {
 
     uint public createdAt;
 
-    UserInterface public userSmartContract;
+    SignaturitUserInterface public userSmartContract;
 
     mapping(string => CertificateInterface) private certificates;
 
-    function setCertifiedEmailOwner(
-        address certifiedEmailOwner,
-        address userSmartContractAddress
-    )
+    function notifyCreation()
         public;
 
     function createCertificate(
@@ -68,19 +65,26 @@ contract CertifiedEmailInterface {
         )
         public
         view
-        returns (EventInterface);
+        returns (address);
 
     function getFile(
         string memory certificateId
     )
         public
         view
-        returns (FileInterface);
+        returns (address);
 
     function getCertificatesSize()
         public
         view
         returns (uint);
+
+    function notifyEntityEvent (
+        string memory notifiersKey,
+        string memory createdEvent,
+        address adrToNotify
+    )
+        public;
 
     function _certificateExist(
         string memory certificateId

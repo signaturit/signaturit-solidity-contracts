@@ -1,7 +1,7 @@
 pragma solidity <0.6.0;
 
 import "./DocumentInterface.sol";
-import "./UserInterface.sol";
+import "./SignaturitUserInterface.sol";
 
 
 contract SignatureInterface {
@@ -19,12 +19,15 @@ contract SignatureInterface {
 
     mapping(string => address) private clauses;
 
-    UserInterface public userSmartContract;
+    SignaturitUserInterface public userContract;
 
-    function setSignatureOwner(
-        address signatureOwner,
-        address userSmartContractAddress
+    function notify(
+        string memory attribute,
+        address adr
     )
+        public;
+    
+    function notifyCreation()
         public;
 
     function createDocument(
@@ -71,12 +74,6 @@ contract SignatureInterface {
     )
         public;
 
-    function setClause(
-        string memory clauseType,
-        address clauseAddress
-    )
-        public;
-
     function getClause(
         string memory clauseType
     )
@@ -98,6 +95,13 @@ contract SignatureInterface {
         view
         returns (address);
 
+    function getDocumentByIndex(
+        uint index
+    )
+        public
+        view
+        returns (address);
+
     function getDocumentsSize()
         public
         view
@@ -110,6 +114,13 @@ contract SignatureInterface {
         public
         view
         returns (address);
+
+    function _notifyEntityEvent (
+        string memory notifiersKey,
+        string memory createdEvent,
+        address adrToNotify
+    )
+        private;
 
     function _getDocument(
         string memory documentId

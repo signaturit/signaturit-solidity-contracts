@@ -21,8 +21,9 @@
 // const HDWalletProvider = require('truffle-hdwallet-provider');
 // const infuraKey = "fj4jll3k.....";
 //
-// const fs = require('fs');
-// const mnemonic = fs.readFileSync(".secret").toString().trim();
+const fs = require('fs');
+const packageJSON = fs.readFileSync("package.json").toString();
+const solcVersion = packageJSON.split('"solc": "')[1].split('"')[0].toString();
 
 module.exports = {
   /**
@@ -60,7 +61,7 @@ module.exports = {
  // Configure your compilers
   compilers: {
       solc: {
-          version: '0.5.0',
+          version: solcVersion,
       },
   },
 

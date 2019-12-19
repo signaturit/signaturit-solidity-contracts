@@ -1,5 +1,5 @@
 contract('CertifiedFile', async (accounts) => {
-    const ArtifactUser = artifacts.require('User');
+    const ArtifactUser = artifacts.require('SignaturitUser');
     const ArtifactCertifiedFile = artifacts.require('CertifiedFile');
     const ArtifactCertifiedFileChecker = artifacts.require('CertifiedFileChecker');
 
@@ -15,7 +15,6 @@ contract('CertifiedFile', async (accounts) => {
     let userContract;
 
     const fileId   = v4();
-    const fileName = 'Test.pdf';
     const fileHash = 'File hash';
     const fileSize = 123;
     const fileDate = Date.now();
@@ -32,7 +31,6 @@ contract('CertifiedFile', async (accounts) => {
             ownerAddress,
             userContract.address,
             fileId,
-            fileName,
             fileHash,
             fileDate,
             fileSize,
@@ -49,7 +47,6 @@ contract('CertifiedFile', async (accounts) => {
             ownerAddress,
             userContract.address,
             fileId,
-            fileName,
             fileHash,
             fileDate,
             fileSize,
@@ -60,7 +57,6 @@ contract('CertifiedFile', async (accounts) => {
 
         const readFileSize = await fileContract.size();
         const readFileId = await fileContract.id();
-        const readFileName = await fileContract.name();
         const readFileHash = await fileContract.hash();
         const readFileDate = await fileContract.createdAt();
         const readFileOwner = await fileContract.owner();
@@ -68,7 +64,6 @@ contract('CertifiedFile', async (accounts) => {
 
         assert.equal(readFileSize, fileSize);
         assert.equal(readFileId, fileId);
-        assert.equal(readFileName, fileName);
         assert.equal(readFileHash, fileHash);
         assert.equal(readFileDate, fileDate);
         assert.equal(readFileOwner, ownerAddress);
@@ -82,8 +77,7 @@ contract('CertifiedFile', async (accounts) => {
             }
         );
 
-        const transaction = await fileContract.notify(
-            certifiedFileCheckerContract.address,
+        const transaction = await fileContract.notifyEvent(
             {
                 from: signaturitAddress
             }
@@ -100,8 +94,7 @@ contract('CertifiedFile', async (accounts) => {
         );
 
         try {
-            await fileContract.notify(
-                certifiedFileCheckerContract.address,
+            await fileContract.notifyEvent(
                 {
                     from: noOwnerAddress
                 }
@@ -122,8 +115,7 @@ contract('CertifiedFile', async (accounts) => {
         );
 
         try {
-            await fileContract.notify(
-                noOwnerAddress,
+            await fileContract.notifyEvent(
                 {
                     from: signaturitAddress
                 }

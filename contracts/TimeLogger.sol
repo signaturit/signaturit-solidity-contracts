@@ -1,18 +1,25 @@
 pragma solidity <0.6.0;
 
 /*
-Gas to deploy: 2.168.027
+Gas to deploy: 2.623.165
 */
 
 import "./Clause.sol";
 
 
-contract TimeLogger is Clause("timelogger") {
+contract TimeLogger is Clause(
+    "timelogger-clause-notifiers"
+)
+{
     uint constant public SECONDS_PER_DAY = 86400;
 
     string constant public SOLIDITY_SOURCE = "solidity";
     string constant public EXTERNAL_SOURCE = "external";
-    string constant public NOTIFICATION_EVENT = "time_log.added";
+
+    string constant public CLAUSE_EVENT_TYPE = "timelog.added";
+    string constant public CREATION_EVENT_TYPE = "timelogger_clause.created";
+
+    string constant public VALIDATED_NOTIFIERS_KEY = "validated-notifiers";
 
     struct TimeLog {
         uint timeStart;
@@ -27,7 +34,7 @@ contract TimeLogger is Clause("timelogger") {
         bool existence;
     }
 
-    UserInterface public ownerContract;
+    SignaturitUserInterface public ownerContract;
 
     bool public expired;
 
@@ -65,18 +72,19 @@ contract TimeLogger is Clause("timelogger") {
 
         expired = false;
 
-        userContract = UserInterface(managerContractAddress);
-        ownerContract = UserInterface(ownerContractAddress);
-        signatureContract = SignatureInterface(signatureContractAddress);
+        userContract = SignaturitUserInterface(managerContractAddress);
+        ownerContract = SignaturitUserInterface(ownerContractAddress);
+        signatureContract = NotifierInterface(signatureContractAddress);
 
-        signatureId = signatureContract.id();
+        userContract.setAddressArrayAttribute(VALIDATED_NOTIFIERS_KEY, userContract.ownerAddress());
+        userContract.setAddressArrayAttribute(VALIDATED_NOTIFIERS_KEY, ownerContract.ownerAddress());
 
-        setClauseOnSignature();
+        _notifySignature(CREATION_EVENT_TYPE);
     }
 
     modifier onlyManager() {
         require(
-            msg.sender == address(userContract.userAddress()),
+            msg.sender == address(userContract.ownerAddress()),
             "Only the manager account can perform this action"
         );
 
@@ -85,7 +93,7 @@ contract TimeLogger is Clause("timelogger") {
 
     modifier onlyOwner() {
         require(
-            msg.sender == address(ownerContract.userAddress()),
+            msg.sender == address(ownerContract.ownerAddress()),
             "Only the owner account can perform this action"
         );
 
@@ -258,6 +266,8 @@ contract TimeLogger is Clause("timelogger") {
         _createLog(today, time, source);
 
         lastOpenDay = today;
+
+        _notify(CLAUSE_EVENT_TYPE);
     }
 
     function _createLog(
@@ -360,14 +370,5 @@ contract TimeLogger is Clause("timelogger") {
 
             day[today] = Day(tmpArray, 0, true);
         }
-    }
-
-    function _publish()
-        internal
-    {
-        publishNotification(
-            NOTIFICATION_EVENT,
-            ""
-        );
     }
 }

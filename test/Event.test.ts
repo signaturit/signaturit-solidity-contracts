@@ -3,7 +3,7 @@ contract('Event', async (accounts) => {
 
     const v4 = require("uuid").v4;
 
-    let signaturitAddress = accounts[0];
+    const signaturitAddress = accounts[0];
 
     let eventContract;
 
@@ -12,27 +12,23 @@ contract('Event', async (accounts) => {
     const userAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.90 Safari/537.36';
     const createdAt = Date.now();
 
-    it('Check if it deploy correctly', async () => {
+    beforeEach(async () => {
         eventContract = await ArtifactEvent.new(
             eventId,
             eventType,
             userAgent,
             createdAt,
-            {from: signaturitAddress}
+            {
+                from: signaturitAddress
+            }
         );
+    })
 
+    it('Check if it deploy correctly', async () => {
         assert.ok(eventContract.address);
     });
 
     it('Try to deploy and retrieve data', async() => {
-        eventContract = await ArtifactEvent.new(
-            eventId,
-            eventType,
-            userAgent,
-            createdAt,
-            {from: signaturitAddress}
-        );
-
         const readEventId = await eventContract.id();
         const readEventType = await eventContract.eventType();
         const readUserAgent = await eventContract.userAgent();

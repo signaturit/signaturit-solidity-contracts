@@ -1,16 +1,18 @@
 contract('Signature', async (accounts) => {
     const ArtifactFile      = artifacts.require('File');
-    const ArtifactUser      = artifacts.require('User');
+    const ArtifactUser      = artifacts.require('SignaturitUser');
     const ArtifactEvent     = artifacts.require('Event');
     const ArtifactDocument  = artifacts.require('Document');
     const ArtifactSignature = artifacts.require('Signature');
     const ArtifactSignatureDeployer = artifacts.require('SignatureDeployer');
+    const ArtifactSignatureAggregator = artifacts.require('SignatureAggregator');
 
     const v4 = require("uuid").v4;
 
     let userContract;
     let signatureContract;
     let signatureDeployer;
+    let signatureAggregatorContract;
 
     const signaturitAddress = accounts[0];
     const signatureOwner = accounts[1];
@@ -51,20 +53,27 @@ contract('Signature', async (accounts) => {
             {
                 from: signaturitAddress
             }
-        )
+        );
 
-        signatureContract = await ArtifactSignature.new(
-            signatureId,
-            signatureDeployer.address,
-            Date.now(),
+        signatureAggregatorContract = await ArtifactSignatureAggregator.new(
+            userContract.address,
             {
                 from: signaturitAddress
             }
         );
 
-        await signatureContract.setSignatureOwner(
+        signatureContract = await ArtifactSignature.new(
+            signatureId,
+            signatureDeployer.address,
+            Date.now(),
             signatureOwner,
             userContract.address,
+            {
+                from: signaturitAddress
+            }
+        );
+
+        await signatureContract.notifyCreation(
             {
                 from: signaturitAddress
             }
@@ -75,34 +84,40 @@ contract('Signature', async (accounts) => {
         assert.ok(signatureContract.address);
     });
 
+    it('Check if aggregator has been added into the user', async () => {
+        const aggregatorAddress = await userContract.getAddressArrayAttribute('signature-notifiers', 0);
+
+        const aggregatorNotifierAddress = await userContract.getAddressAttribute('signature-aggregator');
+
+        assert.ok(aggregatorAddress);
+        assert.ok(aggregatorNotifierAddress);
+    });
+
     it('Check the signature id', async () => {
         const readContractId = await signatureContract.id();
 
         assert.equal(signatureId, readContractId);
     });
 
-    it('Add owner to the signature contract from signaturit account', async () => {
+    it('notify creation from signaturit account', async () => {
 
-        await signatureContract.setSignatureOwner(
-            signatureOwner,
-            userContract.address,
+        await signatureContract.notifyCreation(
             {
                 from: signaturitAddress
             }
         );
 
-        const readSignature = await userContract.getSignature(0);
+        const readSignature = await signatureAggregatorContract.getSignature(0);
+
         const readOwnerAddress = await signatureContract.owner();
 
         assert.equal(signatureOwner, readOwnerAddress);
-        assert.equal(readSignature.adr, signatureContract.address);
+        assert.equal(readSignature.addr, signatureContract.address);
     });
 
-    it('Add owner to the signature contract from invalid signaturit account', async () => {
+    it('notify creation from from invalid signaturit account', async () => {
         try {
-            await signatureContract.setSignatureOwner(
-                signatureOwner,
-                signatureContract.address,
+            await signatureContract.notifyCreation(
                 {
                     from: invalidAddress
                 }
@@ -127,8 +142,6 @@ contract('Signature', async (accounts) => {
             }
         );
 
-        const readDocument = await userContract.getDocument(0);
-
         const readDocumentAddress = await signatureContract.getDocument(documentId);
         const documentContract = await ArtifactDocument.at(readDocumentAddress);
 
@@ -137,11 +150,38 @@ contract('Signature', async (accounts) => {
         const readCreatedAt = await documentContract.createdAt();
         const readDocumentsSize = await signatureContract.getDocumentsSize();
 
-        assert.equal(readDocument.adr, readDocumentAddress);
         assert.equal(readDocumentId, documentId);
         assert.equal(signatureType, readDocumentSignatureType);
         assert.equal(createdAt, readCreatedAt);
         assert.equal(readDocumentsSize, 1);
+    });
+
+    it('Retrieve certificate from index', async () => {
+        const transaction = await signatureContract.createDocument(
+            documentId,
+            signatureType,
+            createdAt,
+            {
+                from: signaturitAddress
+            }
+        );
+
+        const readDocumentAddress = await signatureContract.getDocumentByIndex(0);
+        const notExistingCertificateAddress = await signatureContract.getDocumentByIndex(1);
+
+        const documentContract = await ArtifactDocument.at(readDocumentAddress);
+
+        const readDocumentId = await documentContract.id();
+        const readDocumentSignatureType = await documentContract.signatureType()
+        const readCreatedAt = await documentContract.createdAt();
+        const readDocumentsSize = await signatureContract.getDocumentsSize();
+
+        assert.equal(readDocumentId, documentId);
+        assert.equal(signatureType, readDocumentSignatureType);
+        assert.equal(createdAt, readCreatedAt);
+        assert.equal(readDocumentsSize, 1);
+        
+        assert.equal(notExistingCertificateAddress, '0x0000000000000000000000000000000000000000');
     });
 
     it('Create a new document as not Signaturit account, expect exception', async() => {
@@ -181,8 +221,6 @@ contract('Signature', async (accounts) => {
                 from: signatureOwner
             }
         )
-
-        const readDocument = await userContract.getDocument(0);
 
         const readDocumentAddress = await signatureContract.getDocument(documentId);
         const documentContract = await ArtifactDocument.at(readDocumentAddress);
@@ -261,7 +299,7 @@ contract('Signature', async (accounts) => {
         }
     });
 
-    it('Sign document with from the owner address', async () => {
+    it('Sign document from the owner address', async () => {
         await signatureContract.createDocument(
             documentId,
             signatureType,
@@ -272,7 +310,7 @@ contract('Signature', async (accounts) => {
 
         );
 
-        signatureContract.setDocumentOwner(
+        await signatureContract.setDocumentOwner(
             documentId,
             documentOwnerAddress
         );
@@ -341,7 +379,6 @@ contract('Signature', async (accounts) => {
         );
 
         const readDocumentAddress = await signatureContract.getDocument(documentId);
-        const readFile = await userContract.getSignatureFile(0);
 
         const documentContract = await ArtifactDocument.at(readDocumentAddress);
 
@@ -349,7 +386,6 @@ contract('Signature', async (accounts) => {
         const readFileAddress = await documentContract.file();
 
         assert.equal(documentId, readDocumentId);
-        assert.equal(readFile.adr, readFileAddress);
     });
 
     it('Add file to uncreated document and after create the document', async () => {
@@ -461,8 +497,6 @@ contract('Signature', async (accounts) => {
             }
         );
 
-        const readEvent = await userContract.getSignatureEvent(0);
-
         const readEventAddress = await signatureContract.getEvent.call(
             documentId,
             eventId
@@ -473,7 +507,6 @@ contract('Signature', async (accounts) => {
         const readEventId = await eventContract.id.call();
         const readEventType = await eventContract.eventType.call();
 
-        assert.equal(readEvent.adr, readEventAddress);
         assert.equal(eventId,readEventId);
         assert.equal(eventType, readEventType);
     });
@@ -529,38 +562,5 @@ contract('Signature', async (accounts) => {
         );
 
         assert.ok(transaction.receipt.status);
-    });
-
-    it('Set clause as Signaturit account, expect to pass', async() => {
-        await signatureContract.setClause(
-            clauseType,
-            clauseAddress,
-            {
-                from: signaturitAddress
-            }
-        )
-
-        const readClause = await signatureContract.getClause(clauseType);
-
-        assert.equal(readClause, clauseAddress);
-    });
-
-    it('Set clause as not Signaturit account, expect exception', async() => {
-        try {
-            await signatureContract.setClause(
-                clauseType,
-                clauseAddress,
-                {
-                    from: invalidAddress
-                }
-            )
-
-            assert.fail("It should have thrown");
-        } catch(error) {
-            assert.include(
-                error.message,
-                'Only Signaturit account can perform this action.'
-            )
-        }
     });
 });

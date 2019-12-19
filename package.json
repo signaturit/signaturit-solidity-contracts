@@ -1,6 +1,6 @@
 {
   "name": "signaturit-solidity-contracts",
-  "version": "0.3.9",
+  "version": "0.4.0",
   "description": "All deployed contracts of signaturit",
   "main": "truffle-config.js",
   "repository": {
@@ -10,10 +10,11 @@
   "devDependencies": {
     "@types/chai": "^4.1.7",
     "@types/node": "^10.12.18",
+    "@types/jasmine": "^3.4.2",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "diff": ">=3.5.0",
-    "solc": "^0.5.0",
+    "solc": "0.5.0",
     "solhint": "^2.1.0",
     "solidity-coverage": "0.6.4",
     "truffle-assertions": "^0.9.1",
@@ -25,8 +26,7 @@
     "test": "truffle test",
     "coverage": "solidity-coverage",
     "lint": "solhint ./contracts/*.sol",
-    "compile-contracts": "ts-node compile.ts"
+    "compile-contracts": "node compile.js"
   },
-  "license": "ISC",
-  "dependencies": {}
+  "license": "ISC"
 }

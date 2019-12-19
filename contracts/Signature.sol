@@ -1,18 +1,31 @@
 pragma solidity <0.6.0;
 
 /*
-Gas to deploy: 2.882.648
+Gas to deploy: 3.329.557
 */
 
 import "./interfaces/SignatureInterface.sol";
+import "./interfaces/NotifierInterface.sol";
 import "./interfaces/DocumentInterface.sol";
-import "./interfaces/UserInterface.sol";
+import "./interfaces/SignaturitUserInterface.sol";
 import "./interfaces/FileInterface.sol";
 import "./interfaces/EventInterface.sol";
+import "./interfaces/SignaturitUserInterface.sol";
 import "./libraries/Utils.sol";
 
 
-contract Signature is SignatureInterface {
+contract Signature is SignatureInterface, NotifierInterface {
+    string constant private SIGNATURE_CREATED_EVENT = "signature.contract.created";
+    string constant private DOCUMENT_CREATED_EVENT = "document.contract.created";
+
+    string constant private SIGNATURE_NOTIFIERS_KEY = "signature-notifiers";
+    string constant private DOCUMENT_NOTIFIERS_KEY = "document-notifiers";
+
+    string constant private PAYMENT_CLAUSE_CREATED = "payment_clause.created";
+    string constant private TIMELOGGER_CLAUSE_CREATED = "timelogger_clause.created";
+    string constant private PAYMENT_CLAUSE_KEY = "payment";
+    string constant private TIMELOGGER_CLAUSE_KEY = "timelogger";
+
     address public signaturit;
     address public deployer;
     address public owner;
@@ -27,15 +40,20 @@ contract Signature is SignatureInterface {
 
     mapping(string => address) private clauses;
 
-    UserInterface public userSmartContract;
+    SignaturitUserInterface public userContract;
 
     constructor(
         string memory signatureId,
         address deployerAddress,
-        int signatureCreatedAt
+        int signatureCreatedAt,
+        address signatureOwner,
+        address userSmartContractAddress
     ) public {
         signaturit = msg.sender;
         deployer = deployerAddress;
+
+        owner = signatureOwner;
+        userContract = SignaturitUserInterface(userSmartContractAddress);
 
         id = signatureId;
         createdAt = signatureCreatedAt;
@@ -59,17 +77,22 @@ contract Signature is SignatureInterface {
         _;
     }
 
-    function setSignatureOwner (
-        address signatureOwner,
-        address userSmartContractAddress
+    function notify(
+        string memory attribute,
+        address adr
     )
         public
         signaturitOnly
     {
-        owner = signatureOwner;
+        if (Utils.keccak(attribute) == Utils.keccak(PAYMENT_CLAUSE_CREATED)) clauses[PAYMENT_CLAUSE_KEY] = adr;
+        else if (Utils.keccak(attribute) == Utils.keccak(TIMELOGGER_CLAUSE_CREATED)) clauses[TIMELOGGER_CLAUSE_KEY] = adr;
+    }
 
-        userSmartContract = UserInterface(userSmartContractAddress);
-        userSmartContract.addSignature(address(this), id);
+    function notifyCreation()
+        public
+        signaturitOnly
+    {
+        _notifyEntityEvent(SIGNATURE_NOTIFIERS_KEY, SIGNATURE_CREATED_EVENT, address(this));
     }
 
     function createDocument(
@@ -84,9 +107,9 @@ contract Signature is SignatureInterface {
 
         document.init(signatureType, documentCreatedAt);
 
-        userSmartContract.addDocument(address(document));
-
         documentsId.push(documentId);
+
+        _notifyEntityEvent(DOCUMENT_NOTIFIERS_KEY, DOCUMENT_CREATED_EVENT, address(document));
     }
 
     function setDocumentOwner (
@@ -146,17 +169,6 @@ contract Signature is SignatureInterface {
             fileCreatedAt,
             fileSize
         );
-
-        FileInterface signatureFile = document.file();
-        require(
-            address(signatureFile) != address(0),
-            "Error while retrieving file from document"
-        );
-
-        userSmartContract.addFile(
-            "signature",
-            address(signatureFile)
-        );
     }
 
     function createEvent(
@@ -177,25 +189,6 @@ contract Signature is SignatureInterface {
             eventUserAgent,
             eventCreatedAt
         );
-
-        EventInterface signatureEvent = document.getEvent(eventId);
-
-        require(
-            address(signatureEvent) != address(0),
-            "Error while retrieving event from document"
-        );
-
-        userSmartContract.addEvent("signature", address(signatureEvent));
-    }
-
-    function setClause(
-        string memory clauseType,
-        address clauseAddress
-    )
-        public
-        signaturitOnly
-    {
-        clauses[clauseType] = clauseAddress;
     }
 
     function getClause(
@@ -218,6 +211,18 @@ contract Signature is SignatureInterface {
         if (!_documentExist(documentId)) return address(0);
 
         return address(documents[documentId]);
+    }
+
+    function getDocumentByIndex(
+        uint index
+    )
+        public
+        view
+        returns (address)
+    {
+        if (index > documentsId.length - 1) return address(0);
+
+        return address(documents[documentsId[index]]);
     }
 
     function getDocumentsSize()
@@ -254,13 +259,39 @@ contract Signature is SignatureInterface {
     {
         if (!_documentExist(documentId)) return address(0);
 
-        EventInterface signatureEvent = documents[documentId].getEvent(
+        EventInterface signatureEvent = EventInterface(documents[documentId].getEvent(
             eventId
-        );
+        ));
 
         if (address(signatureEvent) == address(0)) return address(0);
 
         return address(signatureEvent);
+    }
+
+    function _notifyEntityEvent (
+        string memory notifiersKey,
+        string memory createdEvent,
+        address adrToNotify
+    )
+        private
+    {
+        address contractToNofify;
+        uint notificationIndex = 0;
+
+        do {
+            contractToNofify = userContract.getAddressArrayAttribute(notifiersKey, notificationIndex);
+            ++notificationIndex;
+
+            if (contractToNofify != address(0)) {
+                contractToNofify.call(
+                    abi.encodeWithSignature(
+                        "notify(string,address)",
+                        createdEvent,
+                        adrToNotify
+                    )
+                );
+            }
+        } while (contractToNofify != address(0));
     }
 
     function _getDocument(
@@ -289,6 +320,8 @@ contract Signature is SignatureInterface {
         documents[documentId] = DocumentInterface(
             Utils._bytesToAddress(returnData)
         );
+
+        documents[documentId].setSignatureOwner(address(userContract));
 
         return documents[documentId];
     }

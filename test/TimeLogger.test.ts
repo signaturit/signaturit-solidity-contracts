@@ -1,5 +1,5 @@
 contract('TimeLogger', async (accounts) => {
-    const ArtifactUser      = artifacts.require('User');
+    const ArtifactUser      = artifacts.require('SignaturitUser');
     const ArtifactSignature = artifacts.require('Signature');
     const ArtifactTimeLogger = artifacts.require('TimeLogger');
     const ArtifactSignatureDeployer = artifacts.require('SignatureDeployer');
@@ -43,17 +43,20 @@ contract('TimeLogger', async (accounts) => {
     beforeEach(async () => {
         signatureDeployer = await ArtifactSignatureDeployer.new();
 
+        ownerContract = await ArtifactUser.new(ownerAddress);
+        
         signatureContract = await ArtifactSignature.new(
             signatureId,
             signatureDeployer.address,
             Date.now(),
+            ownerAddress,
+            ownerContract.address,
             {
                 from: signaturitAddress
             }
         );
 
         managerContract = await ArtifactUser.new(managerAddress);
-        ownerContract   = await ArtifactUser.new(ownerAddress);
 
         timeLoggerContract = await ArtifactTimeLogger.new(
             managerContract.address,
@@ -75,9 +78,7 @@ contract('TimeLogger', async (accounts) => {
         assert.ok(timeLoggerContract.address);
 
         const readContractId = await timeLoggerContract.contractId();
-        const readClauseType = await timeLoggerContract.clause();
 
-        assert.equal(readClauseType, clauseType);
         assert.equal(readContractId, contractId);
     });
 

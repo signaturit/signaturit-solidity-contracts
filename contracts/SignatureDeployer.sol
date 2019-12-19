@@ -1,7 +1,7 @@
 pragma solidity <0.6.0;
 
 /*
-Gas to deploy: 3.302.156
+Gas to deploy: 3.365.936
 */
 
 import "./File.sol";
