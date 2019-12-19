@@ -115,12 +115,12 @@ contract SignatureInterface {
         view
         returns (address);
 
-    function notifyEntityEvent (
+    function _notifyEntityEvent (
         string memory notifiersKey,
         string memory createdEvent,
         address adrToNotify
     )
-        public;
+        private;
 
     function _getDocument(
         string memory documentId

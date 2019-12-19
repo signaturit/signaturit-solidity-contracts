@@ -299,7 +299,7 @@ contract('Signature', async (accounts) => {
         }
     });
 
-    it('Sign document with from the owner address', async () => {
+    it('Sign document from the owner address', async () => {
         await signatureContract.createDocument(
             documentId,
             signatureType,
@@ -310,7 +310,7 @@ contract('Signature', async (accounts) => {
 
         );
 
-        signatureContract.setDocumentOwner(
+        await signatureContract.setDocumentOwner(
             documentId,
             documentOwnerAddress
         );

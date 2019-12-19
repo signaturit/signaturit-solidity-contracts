@@ -7,10 +7,28 @@ Gas to deploy: 2.094.931
 import "./interfaces/DocumentInterface.sol";
 import "./interfaces/FileInterface.sol";
 import "./interfaces/EventInterface.sol";
+import "./interfaces/SignaturitUserInterface.sol";
 import "./libraries/Utils.sol";
 
 
 contract Document is DocumentInterface {
+    string constant private FILE_CREATED_EVENT = "file.contract.created";
+    string constant private EVENT_CREATED_EVENT = "event.contract.created";
+
+    string constant private ID_DOCUMENT_SIGNED = "id_document_signed";
+    string constant private ID_FILE_SIGNED_HASH = "id_file_signed_hash";
+    string constant private ID_DOCUMENT_DECLINED = "id_document_declined";
+    string constant private ID_DOCUMENT_CANCELED = "id_document_canceled";
+
+    string constant private DOCUMENT_SIGNED_EVENT = "document.contract.signed";
+    string constant private FILE_SIGNED_HASH_EVENT = "file.signed_hash.created";
+    string constant private DOCUMENT_DECLINED_EVENT = "document.contract.declined";
+    string constant private DOCUMENT_CANCELED_EVENT = "document.contract.canceled";
+
+    string constant private DOCUMENT_NOTIFIERS_KEY = "document-notifiers";
+    string constant private FILE_NOTIFIERS_KEY = "file-notifiers";
+    string constant private EVENT_NOTIFIERS_KEY = "event-notifiers";
+
     address public signature;
     address public signer;
     address public deployer;
@@ -32,6 +50,8 @@ contract Document is DocumentInterface {
 
     FileInterface public file;
 
+    SignaturitUserInterface public signatureOwner;
+
     mapping(string => EventInterface) private events;
 
     constructor(
@@ -43,9 +63,9 @@ contract Document is DocumentInterface {
         id = documentId;
     }
 
-    modifier signatureOnly() {
+    modifier protected() {
         require(
-            msg.sender == signature,
+            msg.sender == signature || msg.sender == signer,
             "Only the Signature account can perform this action"
         );
 
@@ -66,17 +86,26 @@ contract Document is DocumentInterface {
         uint documentCreatedAt
     )
         public
-        signatureOnly
+        protected
     {
         signatureType = initType;
         createdAt = documentCreatedAt;
+    }
+
+    function setSignatureOwner(
+        address signatureOwnerAdr
+    )
+        public
+        protected
+    {
+        signatureOwner = SignaturitUserInterface(signatureOwnerAdr);
     }
 
     function setOwner(
         address signerAddress
     )
         public
-        signatureOnly
+        protected
     {
         signer = signerAddress;
     }
@@ -95,6 +124,13 @@ contract Document is DocumentInterface {
         signedAt = documentSignedAt;
 
         signed = true;
+            
+        createEvent(
+            ID_DOCUMENT_SIGNED,
+            DOCUMENT_SIGNED_EVENT,
+            "solidity",
+            block.timestamp
+        );
     }
 
     function decline(
@@ -111,13 +147,20 @@ contract Document is DocumentInterface {
         declineReason = documentDeclineReason;
 
         declined = true;
+
+        createEvent(
+            ID_DOCUMENT_DECLINED,
+            DOCUMENT_DECLINED_EVENT,
+            "Solidity",
+            block.timestamp
+        );
     }
 
     function cancel(
         string memory documentCancelReason
     )
         public
-        signatureOnly
+        protected
     {
         require(
             !signed,
@@ -127,6 +170,13 @@ contract Document is DocumentInterface {
         cancelReason = documentCancelReason;
 
         canceled = true;
+
+        createEvent(
+            ID_DOCUMENT_CANCELED,
+            DOCUMENT_CANCELED_EVENT,
+            "solidity",
+            block.timestamp
+        );
     }
 
     function createFile(
@@ -137,7 +187,7 @@ contract Document is DocumentInterface {
         uint fileSize
     )
         public
-        signatureOnly
+        protected
     {
         (bool success, bytes memory returnData) = deployer.delegatecall(
             abi.encodeWithSignature(
@@ -159,15 +209,24 @@ contract Document is DocumentInterface {
                 fileCreatedAt,
                 fileSize
         );
+
+        notifyEntityEvent(FILE_NOTIFIERS_KEY, FILE_CREATED_EVENT, address(file));
     }
 
     function setFileHash(
         string memory fileHash
     )
         public
-        signatureOnly
+        protected
     {
         signedFileHash = fileHash;
+
+        createEvent(
+            ID_FILE_SIGNED_HASH,
+            FILE_SIGNED_HASH_EVENT,
+            "solidity",
+            block.timestamp
+        );
     }
 
     function createEvent(
@@ -177,7 +236,7 @@ contract Document is DocumentInterface {
         uint eventCreatedAt
     )
         public
-        signatureOnly
+        protected
     {
         (bool success, bytes memory returnData) = deployer.delegatecall(
             abi.encodeWithSignature(
@@ -197,6 +256,34 @@ contract Document is DocumentInterface {
         events[eventId] = EventInterface(Utils._bytesToAddress(returnData));
 
         eventsId.push(eventId);
+
+        notifyEntityEvent(EVENT_NOTIFIERS_KEY, EVENT_CREATED_EVENT, address(events[eventId]));
+    }
+
+    function notifyEntityEvent (
+        string memory notifiersKey,
+        string memory createdEvent,
+        address adrToNotify
+    )
+        internal
+    {
+        address contractToNofify;
+        uint notificationIndex = 0;
+
+        do {
+            contractToNofify = signatureOwner.getAddressArrayAttribute(notifiersKey, notificationIndex);
+            ++notificationIndex;
+
+            if (contractToNofify != address(0)) {
+                contractToNofify.call(
+                    abi.encodeWithSignature(
+                        "notify(string,address)",
+                        createdEvent,
+                        adrToNotify
+                    )
+                );
+            }
+        } while (contractToNofify != address(0));
     }
 
     function getEvent(

@@ -1,7 +1,7 @@
 contract('CertifiedFileChecker', async (accounts) => {
     const ArtifactCertifiedFileChecker = artifacts.require('CertifiedFileChecker');
     const ArtifactCertifiedFile = artifacts.require('CertifiedFile');
-    const ArtifactUser = artifacts.require('User');
+    const ArtifactUser = artifacts.require('SignaturitUser');
 
     const v4 = require("uuid").v4;
 

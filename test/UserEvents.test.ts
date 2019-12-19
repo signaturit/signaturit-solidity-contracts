@@ -10,6 +10,8 @@ contract('UserEvents', async (accounts) => {
     const ArtifactCertifiedEmail = artifacts.require('CertifiedEmail');
     const ArtifactCertifiedEmailDeployer = artifacts.require('CertifiedEmailDeployer');
     const ArtifactCertificate = artifacts.require('Certificate');
+    const ArtifactDocument = artifacts.require('Document');
+    const ArtifactEvent = artifacts.require('Event');
     const ArtifactTimeLogger = artifacts.require('TimeLogger');
     const ArtifactPayment = artifacts.require('Payment');
 
@@ -31,6 +33,9 @@ contract('UserEvents', async (accounts) => {
     const signatureType = 'advanced';
     const documentId = v4();
     const documentCreatedAt = Date.now();
+    const documentSignedAt = Date.now();
+    const documentDeclineReason = "decline reason";
+    const documentCancelReason = "cancel reason";
 
     const eventId = v4();
     const eventType = 'document_opened';
@@ -41,6 +46,7 @@ contract('UserEvents', async (accounts) => {
     const fileSize = 123423;
     const fileName = 'File.name';
     const fileHash = 'asdf';
+    const signedFileHash = "fdsa";
     const fileCreatedAt = Date.now();
 
     const certifiedEmailId = v4();
@@ -59,6 +65,11 @@ contract('UserEvents', async (accounts) => {
     
     const certificateId = v4();
     const certificateCreatedAt = Date.now();
+
+    const documentSignedEventId = "id_document_signed";
+    const documentDeclinedEventId = "id_document_declined";
+    const documentCanceledEventId = "id_document_canceled";
+    const signedFileHashEventId = "id_file_signed_hash";
 
     const paymentContractStart = Date.now();
     const paymentContractEnd = Date.now() + 2000;
@@ -417,5 +428,199 @@ contract('UserEvents', async (accounts) => {
 
         assert.equal(events.length, 1)
         assert.equal(events[0].returnValues[0], paymentContract.address);
+    });
+
+    it("sign a document, expect to be notified", async () => {
+        await signatureContract.notifyCreation(
+            {
+                from: signaturitUser
+            }
+        );
+
+        await signatureContract.createDocument(
+            documentId,
+            signatureType,
+            documentCreatedAt,
+            {
+                from: signaturitUser
+            }
+        );
+
+        await signatureContract.setDocumentOwner(
+            documentId,
+            signaturitUser,
+            {
+                from: signaturitUser
+            }
+        )
+
+        const documentAddress = await signatureContract.getDocumentByIndex(0);
+
+        const documentContract = await ArtifactDocument.at(documentAddress);
+
+        await documentContract.sign(
+            documentSignedAt,
+            {
+                from: signaturitUser
+            }
+        );
+
+        const eventAddress = await documentContract.getEvent(documentSignedEventId);
+
+        const eventContract = await ArtifactEvent.at(eventAddress);
+
+        const events = await userEventsContract.getPastEvents('EventCreated', {
+            fromBlock: 0,
+            toBlock: "latest"
+        });
+
+        assert.equal(events.length, 1)
+        assert.equal(events[0].returnValues[0], eventContract.address);
+    });
+    
+    it("decline a document, expect to be notified", async () => {
+        await signatureContract.notifyCreation(
+            {
+                from: signaturitUser
+            }
+        );
+
+        await signatureContract.createDocument(
+            documentId,
+            signatureType,
+            documentCreatedAt,
+            {
+                from: signaturitUser
+            }
+        );
+
+        await signatureContract.setDocumentOwner(
+            documentId,
+            signaturitUser,
+            {
+                from: signaturitUser
+            }
+        )
+
+        const documentAddress = await signatureContract.getDocumentByIndex(0);
+
+        const documentContract = await ArtifactDocument.at(documentAddress);
+
+        await documentContract.decline(
+            documentDeclineReason,
+            {
+                from: signaturitUser
+            }
+        );
+
+        const eventAddress = await documentContract.getEvent(documentDeclinedEventId);
+
+        const eventContract = await ArtifactEvent.at(eventAddress);
+
+        const events = await userEventsContract.getPastEvents('EventCreated', {
+            fromBlock: 0,
+            toBlock: "latest"
+        });
+
+        assert.equal(events.length, 1)
+        assert.equal(events[0].returnValues[0], eventContract.address);
+    });
+
+    it("cancel a document, expect to be notified", async () => {
+        await signatureContract.notifyCreation(
+            {
+                from: signaturitUser
+            }
+        );
+
+        await signatureContract.createDocument(
+            documentId,
+            signatureType,
+            documentCreatedAt,
+            {
+                from: signaturitUser
+            }
+        );
+
+        await signatureContract.setDocumentOwner(
+            documentId,
+            signaturitUser,
+            {
+                from: signaturitUser
+            }
+        )
+
+        const documentAddress = await signatureContract.getDocumentByIndex(0);
+
+        const documentContract = await ArtifactDocument.at(documentAddress);
+
+        await signatureContract.cancelDocument(
+            documentId,
+            documentCancelReason,
+            {
+                from: ownerAddress
+            }
+        );
+
+        const eventAddress = await documentContract.getEvent(documentCanceledEventId);
+
+        const eventContract = await ArtifactEvent.at(eventAddress);
+
+        const events = await userEventsContract.getPastEvents('EventCreated', {
+            fromBlock: 0,
+            toBlock: "latest"
+        });
+
+        assert.equal(events.length, 1)
+        assert.equal(events[0].returnValues[0], eventContract.address);
+    });
+
+    it("set signed file hash, expect to be notified", async () => {
+        await signatureContract.notifyCreation(
+            {
+                from: signaturitUser
+            }
+        );
+
+        await signatureContract.createDocument(
+            documentId,
+            signatureType,
+            documentCreatedAt,
+            {
+                from: signaturitUser
+            }
+        );
+
+        await signatureContract.setDocumentOwner(
+            documentId,
+            signaturitUser,
+            {
+                from: signaturitUser
+            }
+        )
+
+        const documentAddress = await signatureContract.getDocumentByIndex(0);
+
+        const documentContract = await ArtifactDocument.at(documentAddress);
+
+        await signatureContract.setSignedFileHash(
+            documentId,
+            signedFileHash,
+            {
+                from: signaturitUser
+            }
+        );
+
+        const eventAddress = await documentContract.getEvent(signedFileHashEventId);
+
+        const eventContract = await ArtifactEvent.at(eventAddress);
+
+        const events = await userEventsContract.getPastEvents('EventCreated', {
+            fromBlock: 0,
+            toBlock: "latest"
+        });
+
+        assert.equal(events.length, 1)
+        assert.equal(events[0].returnValues[0], eventContract.address);
     });
 })

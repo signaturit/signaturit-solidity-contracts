@@ -1,7 +1,6 @@
 const v4 = require('uuid');
 
 var File = artifacts.require("./File.sol");
-var User = artifacts.require("./User.sol");
 var SignaturitUser = artifacts.require("./SignaturitUser.sol")
 var Event = artifacts.require("./Event.sol");
 var Payment = artifacts.require("./Payment.sol");
@@ -18,7 +17,7 @@ var CertifiedFileAggregator = artifacts.require("./CertifiedFileAggregator.sol")
 var SignatureAggregator = artifacts.require("./SignatureAggregator.sol");
 var CertifiedEmailAggregator = artifacts.require("./CertifiedEmailAggregator.sol");
 var UserEvents = artifacts.require("./UserEvents.sol");
-
+var UserAuthority = artifacts.require("./UserAuthority.sol");
 
 module.exports = async function(deployer, network, accounts) {
 //there is no better way to do this with await until this is solved: https://github.com/trufflesuite/truffle/issues/501
@@ -87,14 +86,6 @@ module.exports = async function(deployer, network, accounts) {
         tx = await web3.eth.getTransactionReceipt(fileInstance.transactionHash);
         console.log("GAS USED FOR FILE: " + tx.cumulativeGasUsed);
 
-        const userInstance = await deployer.deploy(
-            User,
-            accounts[0]
-        );
-        
-        tx = await web3.eth.getTransactionReceipt(userInstance.transactionHash);
-        console.log("GAS USED FOR USER: " + tx.cumulativeGasUsed);
-        
         const certificateInstance = await deployer.deploy(
             Certificate,
             v4(),
@@ -117,7 +108,7 @@ module.exports = async function(deployer, network, accounts) {
         
         const paymentInstance = await deployer.deploy(
             Payment,
-            userInstance.address,
+            signaturitUser.address,
             signatureInstance.address,
             'contractId'
         );
@@ -192,5 +183,12 @@ module.exports = async function(deployer, network, accounts) {
         
         tx = await web3.eth.getTransactionReceipt(userEvents.transactionHash);
         console.log("GAS USED FOR USER EVENTS: " + tx.cumulativeGasUsed);
+
+        const userAuthority = await deployer.deploy(
+            UserAuthority
+        );
+        
+        tx = await web3.eth.getTransactionReceipt(userAuthority.transactionHash);
+        console.log("GAS USED FOR USER AUTHORITY: " + tx.cumulativeGasUsed);
     })
 };

@@ -7,7 +7,7 @@ Gas to deploy: 3.329.557
 import "./interfaces/SignatureInterface.sol";
 import "./interfaces/NotifierInterface.sol";
 import "./interfaces/DocumentInterface.sol";
-import "./interfaces/UserInterface.sol";
+import "./interfaces/SignaturitUserInterface.sol";
 import "./interfaces/FileInterface.sol";
 import "./interfaces/EventInterface.sol";
 import "./interfaces/SignaturitUserInterface.sol";
@@ -17,13 +17,9 @@ import "./libraries/Utils.sol";
 contract Signature is SignatureInterface, NotifierInterface {
     string constant private SIGNATURE_CREATED_EVENT = "signature.contract.created";
     string constant private DOCUMENT_CREATED_EVENT = "document.contract.created";
-    string constant private FILE_CREATED_EVENT = "file.contract.created";
-    string constant private EVENT_CREATED_EVENT = "event.contract.created";
 
     string constant private SIGNATURE_NOTIFIERS_KEY = "signature-notifiers";
     string constant private DOCUMENT_NOTIFIERS_KEY = "document-notifiers";
-    string constant private FILE_NOTIFIERS_KEY = "file-notifiers";
-    string constant private EVENT_NOTIFIERS_KEY = "event-notifiers";
 
     string constant private PAYMENT_CLAUSE_CREATED = "payment_clause.created";
     string constant private TIMELOGGER_CLAUSE_CREATED = "timelogger_clause.created";
@@ -96,7 +92,7 @@ contract Signature is SignatureInterface, NotifierInterface {
         public
         signaturitOnly
     {
-        notifyEntityEvent(SIGNATURE_NOTIFIERS_KEY, SIGNATURE_CREATED_EVENT, address(this));
+        _notifyEntityEvent(SIGNATURE_NOTIFIERS_KEY, SIGNATURE_CREATED_EVENT, address(this));
     }
 
     function createDocument(
@@ -113,7 +109,7 @@ contract Signature is SignatureInterface, NotifierInterface {
 
         documentsId.push(documentId);
 
-        notifyEntityEvent(DOCUMENT_NOTIFIERS_KEY, DOCUMENT_CREATED_EVENT, address(document));
+        _notifyEntityEvent(DOCUMENT_NOTIFIERS_KEY, DOCUMENT_CREATED_EVENT, address(document));
     }
 
     function setDocumentOwner (
@@ -132,7 +128,7 @@ contract Signature is SignatureInterface, NotifierInterface {
         string memory documentId,
         string memory signedFileHash
     )
-        public 
+        public
         signaturitOnly
     {
         DocumentInterface document = _getDocument(documentId);
@@ -173,15 +169,6 @@ contract Signature is SignatureInterface, NotifierInterface {
             fileCreatedAt,
             fileSize
         );
-
-        FileInterface signatureFile = document.file();
-        
-        require(
-            address(signatureFile) != address(0),
-            "Error while retrieving file from document"
-        );
-
-        notifyEntityEvent(FILE_NOTIFIERS_KEY, FILE_CREATED_EVENT, address(signatureFile));
     }
 
     function createEvent(
@@ -202,15 +189,6 @@ contract Signature is SignatureInterface, NotifierInterface {
             eventUserAgent,
             eventCreatedAt
         );
-
-        EventInterface signatureEvent = EventInterface(document.getEvent(eventId));
-
-        require(
-            address(signatureEvent) != address(0),
-            "Error while retrieving event from document"
-        );
-
-        notifyEntityEvent(EVENT_NOTIFIERS_KEY, EVENT_CREATED_EVENT, address(signatureEvent));
     }
 
     function getClause(
@@ -290,13 +268,12 @@ contract Signature is SignatureInterface, NotifierInterface {
         return address(signatureEvent);
     }
 
-    function notifyEntityEvent (
+    function _notifyEntityEvent (
         string memory notifiersKey,
         string memory createdEvent,
         address adrToNotify
     )
-        public
-        signaturitOnly
+        private
     {
         address contractToNofify;
         uint notificationIndex = 0;
@@ -343,6 +320,8 @@ contract Signature is SignatureInterface, NotifierInterface {
         documents[documentId] = DocumentInterface(
             Utils._bytesToAddress(returnData)
         );
+
+        documents[documentId].setSignatureOwner(address(userContract));
 
         return documents[documentId];
     }

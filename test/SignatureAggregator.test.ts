@@ -141,28 +141,6 @@ contract('SignatureAggregator', async (accounts) => {
         assert.equal(signatureByIndex.more, false);
     });
 
-    it("Create signature from invalid user and try to notify", async () => {
-        const signatureContract = await ArtifactSignature.new(
-            signatureId,
-            deployerAddress,
-            signatureCreatedAt,
-            ownerAddress,
-            userContract.address,
-            {
-                from: invalidAccount
-            }
-        );
-
-        try {
-            await signatureContract.notifyEntityEvent("signature-notifiers", "signature.contract.created", signatureContract.address);
-        } catch(error) {
-            assert.include(
-                error.message,
-                "Only Signaturit account can perform this action"
-            )
-        }
-    });
-
     it("Create two signatures on user with signature aggregator", async () => {
         const signatureContract = await ArtifactSignature.new(
             signatureId,
