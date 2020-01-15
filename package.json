@@ -28,5 +28,23 @@
     "lint": "solhint ./contracts/*.sol",
     "compile-contracts": "node compile.js"
   },
+  "nyc": {
+    "extension": [
+      ".ts",
+      ".tsx"
+    ],
+    "exclude": [
+      "test/**/*.ts",
+      "coverage/**/*.*",
+      "**/*.d.ts"
+    ],
+    "reporter": [
+      "html",
+      "lcov",
+      "text",
+      "text-summary"
+    ],
+    "all": true
+  },
   "license": "ISC"
 }
