@@ -13,10 +13,6 @@ private build(pipeline) {
 }
 
 private deploy(pipeline) {
-  if (params.environment) {
-    env.ENVIRONMENT = params.environment
-  }
-
   sh "npm install && npm run test && npm run compile-contracts && npm run coverage";
 
   pipeline.slack("good")
