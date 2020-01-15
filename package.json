@@ -24,7 +24,7 @@
   },
   "scripts": {
     "test": "truffle test",
-    "coverage": "solidity-coverage",
+    "coverage": "solidity-coverage && bash format-report.sh",
     "lint": "solhint ./contracts/*.sol",
     "compile-contracts": "node compile.js"
   },

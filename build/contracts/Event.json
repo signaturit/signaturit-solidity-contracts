@@ -1,1 +1,1111 @@
-{"abi":[{"constant":true,"inputs":[],"name":"evenType","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"id","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"userAgent","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"createdAt","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"eventType","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[{"name":"eventId","type":"string"},{"name":"initType","type":"string"},{"name":"eventUserAgent","type":"string"},{"name":"eventCreatedAt","type":"uint256"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"}],"bytecode":"0x608060405234801561001057600080fd5b506040516105203803806105208339810180604052608081101561003357600080fd5b81019080805164010000000081111561004b57600080fd5b8201602081018481111561005e57600080fd5b815164010000000081118282018710171561007857600080fd5b5050929190602001805164010000000081111561009457600080fd5b820160208101848111156100a757600080fd5b81516401000000008111828201871017156100c157600080fd5b505092919060200180516401000000008111156100dd57600080fd5b820160208101848111156100f057600080fd5b815164010000000081118282018710171561010a57600080fd5b505060209182015186519194509250610129916004919087019061015e565b50825161013d90600190602086019061015e565b50815161015190600690602085019061015e565b50600755506101f9915050565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061019f57805160ff19168380011785556101cc565b828001600101855582156101cc579182015b828111156101cc5782518255916020019190600101906101b1565b506101d89291506101dc565b5090565b6101f691905b808211156101d857600081556001016101e2565b90565b610318806102086000396000f3fe6080604052600436106100535763ffffffff60e060020a6000350416630b305f308114610058578063af640d0f146100e2578063bdf1c4a1146100f7578063cf09e0d01461010c578063d44b930014610133575b600080fd5b34801561006457600080fd5b5061006d610148565b6040805160208082528351818301528351919283929083019185019080838360005b838110156100a757818101518382015260200161008f565b50505050905090810190601f1680156100d45780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b3480156100ee57600080fd5b5061006d6101d6565b34801561010357600080fd5b5061006d610231565b34801561011857600080fd5b5061012161028c565b60408051918252519081900360200190f35b34801561013f57600080fd5b5061006d610292565b6005805460408051602060026001851615610100026000190190941693909304601f810184900484028201840190925281815292918301828280156101ce5780601f106101a3576101008083540402835291602001916101ce565b820191906000526020600020905b8154815290600101906020018083116101b157829003601f168201915b505050505081565b6004805460408051602060026001851615610100026000190190941693909304601f810184900484028201840190925281815292918301828280156101ce5780601f106101a3576101008083540402835291602001916101ce565b6006805460408051602060026001851615610100026000190190941693909304601f810184900484028201840190925281815292918301828280156101ce5780601f106101a3576101008083540402835291602001916101ce565b60075481565b60018054604080516020600284861615610100026000190190941693909304601f810184900484028201840190925281815292918301828280156101ce5780601f106101a3576101008083540402835291602001916101ce56fea165627a7a72305820c697ed544d4d9581c61d7d9d8e288bcf28f2e72053a7e486e1a7db4e38b26c620029"}
+{
+  "contractName": "Event",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "evenType",
+      "outputs": [
+        {
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "id",
+      "outputs": [
+        {
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "userAgent",
+      "outputs": [
+        {
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "createdAt",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "eventType",
+      "outputs": [
+        {
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "name": "eventId",
+          "type": "string"
+        },
+        {
+          "name": "initType",
+          "type": "string"
+        },
+        {
+          "name": "eventUserAgent",
+          "type": "string"
+        },
+        {
+          "name": "eventCreatedAt",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    }
+  ],
+  "bytecode": "0x608060405234801561001057600080fd5b506040516105203803806105208339810180604052608081101561003357600080fd5b81019080805164010000000081111561004b57600080fd5b8201602081018481111561005e57600080fd5b815164010000000081118282018710171561007857600080fd5b5050929190602001805164010000000081111561009457600080fd5b820160208101848111156100a757600080fd5b81516401000000008111828201871017156100c157600080fd5b505092919060200180516401000000008111156100dd57600080fd5b820160208101848111156100f057600080fd5b815164010000000081118282018710171561010a57600080fd5b505060209182015186519194509250610129916004919087019061015e565b50825161013d90600190602086019061015e565b50815161015190600690602085019061015e565b50600755506101f9915050565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061019f57805160ff19168380011785556101cc565b828001600101855582156101cc579182015b828111156101cc5782518255916020019190600101906101b1565b506101d89291506101dc565b5090565b6101f691905b808211156101d857600081556001016101e2565b90565b610318806102086000396000f3fe6080604052600436106100535763ffffffff60e060020a6000350416630b305f308114610058578063af640d0f146100e2578063bdf1c4a1146100f7578063cf09e0d01461010c578063d44b930014610133575b600080fd5b34801561006457600080fd5b5061006d610148565b6040805160208082528351818301528351919283929083019185019080838360005b838110156100a757818101518382015260200161008f565b50505050905090810190601f1680156100d45780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b3480156100ee57600080fd5b5061006d6101d6565b34801561010357600080fd5b5061006d610231565b34801561011857600080fd5b5061012161028c565b60408051918252519081900360200190f35b34801561013f57600080fd5b5061006d610292565b6005805460408051602060026001851615610100026000190190941693909304601f810184900484028201840190925281815292918301828280156101ce5780601f106101a3576101008083540402835291602001916101ce565b820191906000526020600020905b8154815290600101906020018083116101b157829003601f168201915b505050505081565b6004805460408051602060026001851615610100026000190190941693909304601f810184900484028201840190925281815292918301828280156101ce5780601f106101a3576101008083540402835291602001916101ce565b6006805460408051602060026001851615610100026000190190941693909304601f810184900484028201840190925281815292918301828280156101ce5780601f106101a3576101008083540402835291602001916101ce565b60075481565b60018054604080516020600284861615610100026000190190941693909304601f810184900484028201840190925281815292918301828280156101ce5780601f106101a3576101008083540402835291602001916101ce56fea165627a7a72305820da7d04bdf353912ffc207cce60a1e719ade498f37d4d53fbf649747790331bd80029",
+  "deployedBytecode": "0x6080604052600436106100535763ffffffff60e060020a6000350416630b305f308114610058578063af640d0f146100e2578063bdf1c4a1146100f7578063cf09e0d01461010c578063d44b930014610133575b600080fd5b34801561006457600080fd5b5061006d610148565b6040805160208082528351818301528351919283929083019185019080838360005b838110156100a757818101518382015260200161008f565b50505050905090810190601f1680156100d45780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b3480156100ee57600080fd5b5061006d6101d6565b34801561010357600080fd5b5061006d610231565b34801561011857600080fd5b5061012161028c565b60408051918252519081900360200190f35b34801561013f57600080fd5b5061006d610292565b6005805460408051602060026001851615610100026000190190941693909304601f810184900484028201840190925281815292918301828280156101ce5780601f106101a3576101008083540402835291602001916101ce565b820191906000526020600020905b8154815290600101906020018083116101b157829003601f168201915b505050505081565b6004805460408051602060026001851615610100026000190190941693909304601f810184900484028201840190925281815292918301828280156101ce5780601f106101a3576101008083540402835291602001916101ce565b6006805460408051602060026001851615610100026000190190941693909304601f810184900484028201840190925281815292918301828280156101ce5780601f106101a3576101008083540402835291602001916101ce565b60075481565b60018054604080516020600284861615610100026000190190941693909304601f810184900484028201840190925281815292918301828280156101ce5780601f106101a3576101008083540402835291602001916101ce56fea165627a7a72305820da7d04bdf353912ffc207cce60a1e719ade498f37d4d53fbf649747790331bd80029",
+  "sourceMap": "99:447:10:-;;;246:298;8:9:-1;5:2;;;30:1;27;20:12;5:2;246:298:10;;;;;;;;;;;;;;;13:3:-1;8;5:12;2:2;;;30:1;27;20:12;2:2;246:298:10;;;;;;19:11:-1;14:3;11:20;8:2;;;44:1;41;34:12;8:2;62:21;;123:4;114:14;;138:31;;;135:2;;;182:1;179;172:12;135:2;213:10;;261:11;244:29;;285:43;;;282:58;-1:-1;233:115;230:2;;;361:1;358;351:12;230:2;0:372;;246:298:10;;;;;;;19:11:-1;14:3;11:20;8:2;;;44:1;41;34:12;8:2;62:21;;123:4;114:14;;138:31;;;135:2;;;182:1;179;172:12;135:2;213:10;;261:11;244:29;;285:43;;;282:58;-1:-1;233:115;230:2;;;361:1;358;351:12;230:2;0:372;;246:298:10;;;;;;;19:11:-1;14:3;11:20;8:2;;;44:1;41;34:12;8:2;62:21;;123:4;114:14;;138:31;;;135:2;;;182:1;179;172:12;135:2;213:10;;261:11;244:29;;285:43;;;282:58;-1:-1;233:115;230:2;;;361:1;358;351:12;230:2;-1:-1;;246:298:10;;;;;423:12;;246:298;;-1:-1:-1;246:298:10;-1:-1:-1;423:12:10;;:2;;:12;;;;;:::i;:::-;-1:-1:-1;445:20:10;;;;:9;;:20;;;;;:::i;:::-;-1:-1:-1;475:26:10;;;;:9;;:26;;;;;:::i;:::-;-1:-1:-1;511:9:10;:26;-1:-1:-1;99:447:10;;-1:-1:-1;;99:447:10;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;99:447:10;;;-1:-1:-1;99:447:10;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;:::o;:::-;;;;;;;",
+  "deployedSourceMap": "99:447:10:-;;;;;;;;;-1:-1:-1;;;99:447:10;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;160:22;;8:9:-1;5:2;;;30:1;27;20:12;5:2;160:22:10;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8:100:-1;33:3;30:1;27:10;8:100;;;90:11;;;84:18;71:11;;;64:39;52:2;45:10;8:100;;;12:14;160:22:10;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;138:16;;8:9:-1;5:2;;;30:1;27;20:12;5:2;138:16:10;;;;188:23;;8:9:-1;5:2;;;30:1;27;20:12;5:2;188:23:10;;;;218:21;;8:9:-1;5:2;;;30:1;27;20:12;5:2;218:21:10;;;;;;;;;;;;;;;;;;;;78:23:26;;8:9:-1;5:2;;;30:1;27;20:12;5:2;78:23:26;;;;160:22:10;;;;;;;;;;;;;;;-1:-1:-1;;160:22:10;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;138:16::-;;;;;;;;;;;;;;;-1:-1:-1;;138:16:10;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;188:23;;;;;;;;;;;;;;;-1:-1:-1;;188:23:10;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;218:21;;;;:::o;78:23:26:-;;;;;;;;;;;;;;;-1:-1:-1;;78:23:26;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",
+  "source": "pragma solidity <0.6.0;\n\n/*\nGas to deploy: 381.267\n*/\n\nimport \"./interfaces/EventInterface.sol\";\n\n\ncontract Event is EventInterface {\n    string public id;\n    string public evenType;\n    string public userAgent;\n\n    uint public createdAt;\n\n    constructor(\n        string memory eventId,\n        string memory initType,\n        string memory eventUserAgent,\n        uint eventCreatedAt\n    )\n        public\n    {\n        id = eventId;\n        eventType = initType;\n        userAgent = eventUserAgent;\n        createdAt = eventCreatedAt;\n    }\n}\n",
+  "sourcePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/Event.sol",
+  "ast": {
+    "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/Event.sol",
+    "exportedSymbols": {
+      "Event": [
+        2253
+      ]
+    },
+    "id": 2254,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 2213,
+        "literals": [
+          "solidity",
+          "<",
+          "0.6",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:10"
+      },
+      {
+        "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/EventInterface.sol",
+        "file": "./interfaces/EventInterface.sol",
+        "id": 2214,
+        "nodeType": "ImportDirective",
+        "scope": 2254,
+        "sourceUnit": 6892,
+        "src": "55:41:10",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 2215,
+              "name": "EventInterface",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 6891,
+              "src": "117:14:10",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_EventInterface_$6891",
+                "typeString": "contract EventInterface"
+              }
+            },
+            "id": 2216,
+            "nodeType": "InheritanceSpecifier",
+            "src": "117:14:10"
+          }
+        ],
+        "contractDependencies": [
+          6891
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 2253,
+        "linearizedBaseContracts": [
+          2253,
+          6891
+        ],
+        "name": "Event",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 2218,
+            "name": "id",
+            "nodeType": "VariableDeclaration",
+            "scope": 2253,
+            "src": "138:16:10",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_storage",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 2217,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "138:6:10",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 2220,
+            "name": "evenType",
+            "nodeType": "VariableDeclaration",
+            "scope": 2253,
+            "src": "160:22:10",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_storage",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 2219,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "160:6:10",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 2222,
+            "name": "userAgent",
+            "nodeType": "VariableDeclaration",
+            "scope": 2253,
+            "src": "188:23:10",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_storage",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 2221,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "188:6:10",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 2224,
+            "name": "createdAt",
+            "nodeType": "VariableDeclaration",
+            "scope": 2253,
+            "src": "218:21:10",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 2223,
+              "name": "uint",
+              "nodeType": "ElementaryTypeName",
+              "src": "218:4:10",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 2251,
+              "nodeType": "Block",
+              "src": "413:131:10",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 2237,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 2235,
+                      "name": "id",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2218,
+                      "src": "423:2:10",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_storage",
+                        "typeString": "string storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 2236,
+                      "name": "eventId",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2226,
+                      "src": "428:7:10",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string memory"
+                      }
+                    },
+                    "src": "423:12:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage",
+                      "typeString": "string storage ref"
+                    }
+                  },
+                  "id": 2238,
+                  "nodeType": "ExpressionStatement",
+                  "src": "423:12:10"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 2241,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 2239,
+                      "name": "eventType",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 6886,
+                      "src": "445:9:10",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_storage",
+                        "typeString": "string storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 2240,
+                      "name": "initType",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2228,
+                      "src": "457:8:10",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string memory"
+                      }
+                    },
+                    "src": "445:20:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage",
+                      "typeString": "string storage ref"
+                    }
+                  },
+                  "id": 2242,
+                  "nodeType": "ExpressionStatement",
+                  "src": "445:20:10"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 2245,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 2243,
+                      "name": "userAgent",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2222,
+                      "src": "475:9:10",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_storage",
+                        "typeString": "string storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 2244,
+                      "name": "eventUserAgent",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2230,
+                      "src": "487:14:10",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string memory"
+                      }
+                    },
+                    "src": "475:26:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage",
+                      "typeString": "string storage ref"
+                    }
+                  },
+                  "id": 2246,
+                  "nodeType": "ExpressionStatement",
+                  "src": "475:26:10"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 2249,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 2247,
+                      "name": "createdAt",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2224,
+                      "src": "511:9:10",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 2248,
+                      "name": "eventCreatedAt",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2232,
+                      "src": "523:14:10",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "511:26:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 2250,
+                  "nodeType": "ExpressionStatement",
+                  "src": "511:26:10"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 2252,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2233,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2226,
+                  "name": "eventId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2252,
+                  "src": "267:21:10",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 2225,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "267:6:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2228,
+                  "name": "initType",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2252,
+                  "src": "298:22:10",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 2227,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "298:6:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2230,
+                  "name": "eventUserAgent",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2252,
+                  "src": "330:28:10",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 2229,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "330:6:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2232,
+                  "name": "eventCreatedAt",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2252,
+                  "src": "368:19:10",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 2231,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "368:4:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "257:136:10"
+            },
+            "returnParameters": {
+              "id": 2234,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "413:0:10"
+            },
+            "scope": 2253,
+            "src": "246:298:10",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 2254,
+        "src": "99:447:10"
+      }
+    ],
+    "src": "0:547:10"
+  },
+  "legacyAST": {
+    "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/Event.sol",
+    "exportedSymbols": {
+      "Event": [
+        2253
+      ]
+    },
+    "id": 2254,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 2213,
+        "literals": [
+          "solidity",
+          "<",
+          "0.6",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:10"
+      },
+      {
+        "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/EventInterface.sol",
+        "file": "./interfaces/EventInterface.sol",
+        "id": 2214,
+        "nodeType": "ImportDirective",
+        "scope": 2254,
+        "sourceUnit": 6892,
+        "src": "55:41:10",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 2215,
+              "name": "EventInterface",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 6891,
+              "src": "117:14:10",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_EventInterface_$6891",
+                "typeString": "contract EventInterface"
+              }
+            },
+            "id": 2216,
+            "nodeType": "InheritanceSpecifier",
+            "src": "117:14:10"
+          }
+        ],
+        "contractDependencies": [
+          6891
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 2253,
+        "linearizedBaseContracts": [
+          2253,
+          6891
+        ],
+        "name": "Event",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 2218,
+            "name": "id",
+            "nodeType": "VariableDeclaration",
+            "scope": 2253,
+            "src": "138:16:10",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_storage",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 2217,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "138:6:10",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 2220,
+            "name": "evenType",
+            "nodeType": "VariableDeclaration",
+            "scope": 2253,
+            "src": "160:22:10",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_storage",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 2219,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "160:6:10",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 2222,
+            "name": "userAgent",
+            "nodeType": "VariableDeclaration",
+            "scope": 2253,
+            "src": "188:23:10",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_storage",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 2221,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "188:6:10",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 2224,
+            "name": "createdAt",
+            "nodeType": "VariableDeclaration",
+            "scope": 2253,
+            "src": "218:21:10",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 2223,
+              "name": "uint",
+              "nodeType": "ElementaryTypeName",
+              "src": "218:4:10",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 2251,
+              "nodeType": "Block",
+              "src": "413:131:10",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 2237,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 2235,
+                      "name": "id",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2218,
+                      "src": "423:2:10",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_storage",
+                        "typeString": "string storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 2236,
+                      "name": "eventId",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2226,
+                      "src": "428:7:10",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string memory"
+                      }
+                    },
+                    "src": "423:12:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage",
+                      "typeString": "string storage ref"
+                    }
+                  },
+                  "id": 2238,
+                  "nodeType": "ExpressionStatement",
+                  "src": "423:12:10"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 2241,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 2239,
+                      "name": "eventType",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 6886,
+                      "src": "445:9:10",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_storage",
+                        "typeString": "string storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 2240,
+                      "name": "initType",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2228,
+                      "src": "457:8:10",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string memory"
+                      }
+                    },
+                    "src": "445:20:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage",
+                      "typeString": "string storage ref"
+                    }
+                  },
+                  "id": 2242,
+                  "nodeType": "ExpressionStatement",
+                  "src": "445:20:10"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 2245,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 2243,
+                      "name": "userAgent",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2222,
+                      "src": "475:9:10",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_storage",
+                        "typeString": "string storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 2244,
+                      "name": "eventUserAgent",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2230,
+                      "src": "487:14:10",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string memory"
+                      }
+                    },
+                    "src": "475:26:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage",
+                      "typeString": "string storage ref"
+                    }
+                  },
+                  "id": 2246,
+                  "nodeType": "ExpressionStatement",
+                  "src": "475:26:10"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 2249,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 2247,
+                      "name": "createdAt",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2224,
+                      "src": "511:9:10",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 2248,
+                      "name": "eventCreatedAt",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2232,
+                      "src": "523:14:10",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "511:26:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 2250,
+                  "nodeType": "ExpressionStatement",
+                  "src": "511:26:10"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 2252,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2233,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2226,
+                  "name": "eventId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2252,
+                  "src": "267:21:10",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 2225,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "267:6:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2228,
+                  "name": "initType",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2252,
+                  "src": "298:22:10",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 2227,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "298:6:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2230,
+                  "name": "eventUserAgent",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2252,
+                  "src": "330:28:10",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 2229,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "330:6:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2232,
+                  "name": "eventCreatedAt",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2252,
+                  "src": "368:19:10",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 2231,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "368:4:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "257:136:10"
+            },
+            "returnParameters": {
+              "id": 2234,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "413:0:10"
+            },
+            "scope": 2253,
+            "src": "246:298:10",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 2254,
+        "src": "99:447:10"
+      }
+    ],
+    "src": "0:547:10"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "2.0.3",
+  "updatedAt": "2020-01-15T10:55:50.245Z"
+}

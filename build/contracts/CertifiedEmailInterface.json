@@ -1,1 +1,3293 @@
-{"abi":[{"constant":false,"inputs":[{"name":"certificateId","type":"string"},{"name":"fileHash","type":"string"},{"name":"fileId","type":"string"},{"name":"fileName","type":"string"},{"name":"fileCreatedAt","type":"uint256"},{"name":"fileSize","type":"uint256"}],"name":"createFile","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"getCertificatesSize","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"deliveryType","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"id","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"certificateId","type":"string"},{"name":"certificateCreatedAt","type":"uint256"},{"name":"certificateOwner","type":"address"}],"name":"createCertificate","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"certificateId","type":"string"},{"name":"eventId","type":"string"},{"name":"eventType","type":"string"},{"name":"eventUserAgent","type":"string"},{"name":"eventCreatedAt","type":"uint256"}],"name":"createEvent","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"userSmartContract","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"subjectHash","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"certificateId","type":"string"},{"name":"eventId","type":"string"}],"name":"getEvent","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"bodyHash","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"createdAt","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"certificatesId","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"deployer","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"notifiersKey","type":"string"},{"name":"createdEvent","type":"string"},{"name":"adrToNotify","type":"address"}],"name":"notifyEntityEvent","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"certificateId","type":"string"}],"name":"getFile","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"notifyCreation","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"certificateId","type":"string"}],"name":"getCertificate","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"signaturit","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"}],"bytecode":"0x"}
+{
+  "contractName": "CertifiedEmailInterface",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "deliveryType",
+      "outputs": [
+        {
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "id",
+      "outputs": [
+        {
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "userSmartContract",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "subjectHash",
+      "outputs": [
+        {
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "bodyHash",
+      "outputs": [
+        {
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "createdAt",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "certificatesId",
+      "outputs": [
+        {
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "deployer",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "signaturit",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "notifyCreation",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "certificateId",
+          "type": "string"
+        },
+        {
+          "name": "certificateCreatedAt",
+          "type": "uint256"
+        },
+        {
+          "name": "certificateOwner",
+          "type": "address"
+        }
+      ],
+      "name": "createCertificate",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "certificateId",
+          "type": "string"
+        },
+        {
+          "name": "eventId",
+          "type": "string"
+        },
+        {
+          "name": "eventType",
+          "type": "string"
+        },
+        {
+          "name": "eventUserAgent",
+          "type": "string"
+        },
+        {
+          "name": "eventCreatedAt",
+          "type": "uint256"
+        }
+      ],
+      "name": "createEvent",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "certificateId",
+          "type": "string"
+        },
+        {
+          "name": "fileHash",
+          "type": "string"
+        },
+        {
+          "name": "fileId",
+          "type": "string"
+        },
+        {
+          "name": "fileName",
+          "type": "string"
+        },
+        {
+          "name": "fileCreatedAt",
+          "type": "uint256"
+        },
+        {
+          "name": "fileSize",
+          "type": "uint256"
+        }
+      ],
+      "name": "createFile",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "certificateId",
+          "type": "string"
+        }
+      ],
+      "name": "getCertificate",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "certificateId",
+          "type": "string"
+        },
+        {
+          "name": "eventId",
+          "type": "string"
+        }
+      ],
+      "name": "getEvent",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "certificateId",
+          "type": "string"
+        }
+      ],
+      "name": "getFile",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getCertificatesSize",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "notifiersKey",
+          "type": "string"
+        },
+        {
+          "name": "createdEvent",
+          "type": "string"
+        },
+        {
+          "name": "adrToNotify",
+          "type": "address"
+        }
+      ],
+      "name": "notifyEntityEvent",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity <0.6.0;\n\nimport \"./SignaturitUserInterface.sol\";\nimport \"./CertificateInterface.sol\";\nimport \"./EventInterface.sol\";\n\n\ncontract CertifiedEmailInterface {\n    address public signaturit;\n    address public deployer;\n    address public owner;\n\n    string public id;\n    string public subjectHash;\n    string public bodyHash;\n    string public deliveryType;\n\n    string[] public certificatesId;\n\n    uint public createdAt;\n\n    SignaturitUserInterface public userSmartContract;\n\n    mapping(string => CertificateInterface) private certificates;\n\n    function notifyCreation()\n        public;\n\n    function createCertificate(\n        string memory certificateId,\n        uint certificateCreatedAt,\n        address certificateOwner\n    )\n        public;\n\n    function createEvent(\n        string memory certificateId,\n        string memory eventId,\n        string memory eventType,\n        string memory eventUserAgent,\n        uint eventCreatedAt\n    )\n        public;\n\n    function createFile(\n        string memory certificateId,\n        string memory fileHash,\n        string memory fileId,\n        string memory fileName,\n        uint fileCreatedAt,\n        uint fileSize\n    )\n        public;\n\n    function getCertificate(\n        string memory certificateId\n    )\n        public\n        view\n        returns (address);\n\n    function getEvent(\n        string memory certificateId,\n        string memory eventId\n        )\n        public\n        view\n        returns (address);\n\n    function getFile(\n        string memory certificateId\n    )\n        public\n        view\n        returns (address);\n\n    function getCertificatesSize()\n        public\n        view\n        returns (uint);\n\n    function notifyEntityEvent (\n        string memory notifiersKey,\n        string memory createdEvent,\n        address adrToNotify\n    )\n        public;\n\n    function _certificateExist(\n        string memory certificateId\n    )\n        private\n        view\n        returns (bool);\n\n    function _getCertificate(\n        string memory certificateId\n    )\n        private\n        returns (CertificateInterface);\n}\n",
+  "sourcePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/CertifiedEmailInterface.sol",
+  "ast": {
+    "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/CertifiedEmailInterface.sol",
+    "exportedSymbols": {
+      "CertifiedEmailInterface": [
+        6710
+      ]
+    },
+    "id": 6711,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 6590,
+        "literals": [
+          "solidity",
+          "<",
+          "0.6",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:22"
+      },
+      {
+        "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/SignaturitUserInterface.sol",
+        "file": "./SignaturitUserInterface.sol",
+        "id": 6591,
+        "nodeType": "ImportDirective",
+        "scope": 6711,
+        "sourceUnit": 7252,
+        "src": "25:39:22",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/CertificateInterface.sol",
+        "file": "./CertificateInterface.sol",
+        "id": 6592,
+        "nodeType": "ImportDirective",
+        "scope": 6711,
+        "sourceUnit": 6589,
+        "src": "65:36:22",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/EventInterface.sol",
+        "file": "./EventInterface.sol",
+        "id": 6593,
+        "nodeType": "ImportDirective",
+        "scope": 6711,
+        "sourceUnit": 6892,
+        "src": "102:30:22",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 6710,
+        "linearizedBaseContracts": [
+          6710
+        ],
+        "name": "CertifiedEmailInterface",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 6595,
+            "name": "signaturit",
+            "nodeType": "VariableDeclaration",
+            "scope": 6710,
+            "src": "174:25:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 6594,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "174:7:22",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 6597,
+            "name": "deployer",
+            "nodeType": "VariableDeclaration",
+            "scope": 6710,
+            "src": "205:23:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 6596,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "205:7:22",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 6599,
+            "name": "owner",
+            "nodeType": "VariableDeclaration",
+            "scope": 6710,
+            "src": "234:20:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 6598,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "234:7:22",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 6601,
+            "name": "id",
+            "nodeType": "VariableDeclaration",
+            "scope": 6710,
+            "src": "261:16:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_storage",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 6600,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "261:6:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 6603,
+            "name": "subjectHash",
+            "nodeType": "VariableDeclaration",
+            "scope": 6710,
+            "src": "283:25:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_storage",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 6602,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "283:6:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 6605,
+            "name": "bodyHash",
+            "nodeType": "VariableDeclaration",
+            "scope": 6710,
+            "src": "314:22:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_storage",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 6604,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "314:6:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 6607,
+            "name": "deliveryType",
+            "nodeType": "VariableDeclaration",
+            "scope": 6710,
+            "src": "342:26:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_storage",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 6606,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "342:6:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 6610,
+            "name": "certificatesId",
+            "nodeType": "VariableDeclaration",
+            "scope": 6710,
+            "src": "375:30:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
+              "typeString": "string[]"
+            },
+            "typeName": {
+              "baseType": {
+                "id": 6608,
+                "name": "string",
+                "nodeType": "ElementaryTypeName",
+                "src": "375:6:22",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                }
+              },
+              "id": 6609,
+              "length": null,
+              "nodeType": "ArrayTypeName",
+              "src": "375:8:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_string_storage_$dyn_storage_ptr",
+                "typeString": "string[]"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 6612,
+            "name": "createdAt",
+            "nodeType": "VariableDeclaration",
+            "scope": 6710,
+            "src": "412:21:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 6611,
+              "name": "uint",
+              "nodeType": "ElementaryTypeName",
+              "src": "412:4:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 6614,
+            "name": "userSmartContract",
+            "nodeType": "VariableDeclaration",
+            "scope": 6710,
+            "src": "440:48:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_contract$_SignaturitUserInterface_$7251",
+              "typeString": "contract SignaturitUserInterface"
+            },
+            "typeName": {
+              "contractScope": null,
+              "id": 6613,
+              "name": "SignaturitUserInterface",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 7251,
+              "src": "440:23:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_SignaturitUserInterface_$7251",
+                "typeString": "contract SignaturitUserInterface"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 6618,
+            "name": "certificates",
+            "nodeType": "VariableDeclaration",
+            "scope": 6710,
+            "src": "495:60:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_string_memory_$_t_contract$_CertificateInterface_$6588_$",
+              "typeString": "mapping(string => contract CertificateInterface)"
+            },
+            "typeName": {
+              "id": 6617,
+              "keyType": {
+                "id": 6615,
+                "name": "string",
+                "nodeType": "ElementaryTypeName",
+                "src": "503:6:22",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "495:39:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_string_memory_$_t_contract$_CertificateInterface_$6588_$",
+                "typeString": "mapping(string => contract CertificateInterface)"
+              },
+              "valueType": {
+                "contractScope": null,
+                "id": 6616,
+                "name": "CertificateInterface",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 6588,
+                "src": "513:20:22",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_contract$_CertificateInterface_$6588",
+                  "typeString": "contract CertificateInterface"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "private"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 6621,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "notifyCreation",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6619,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "585:2:22"
+            },
+            "returnParameters": {
+              "id": 6620,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "602:0:22"
+            },
+            "scope": 6710,
+            "src": "562:41:22",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 6630,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "createCertificate",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6628,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6623,
+                  "name": "certificateId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6630,
+                  "src": "645:27:22",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 6622,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "645:6:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 6625,
+                  "name": "certificateCreatedAt",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6630,
+                  "src": "682:25:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 6624,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "682:4:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 6627,
+                  "name": "certificateOwner",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6630,
+                  "src": "717:24:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 6626,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "717:7:22",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "635:112:22"
+            },
+            "returnParameters": {
+              "id": 6629,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "762:0:22"
+            },
+            "scope": 6710,
+            "src": "609:154:22",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 6643,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "createEvent",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6641,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6632,
+                  "name": "certificateId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6643,
+                  "src": "799:27:22",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 6631,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "799:6:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 6634,
+                  "name": "eventId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6643,
+                  "src": "836:21:22",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 6633,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "836:6:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 6636,
+                  "name": "eventType",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6643,
+                  "src": "867:23:22",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 6635,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "867:6:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 6638,
+                  "name": "eventUserAgent",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6643,
+                  "src": "900:28:22",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 6637,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "900:6:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 6640,
+                  "name": "eventCreatedAt",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6643,
+                  "src": "938:19:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 6639,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "938:4:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "789:174:22"
+            },
+            "returnParameters": {
+              "id": 6642,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "978:0:22"
+            },
+            "scope": 6710,
+            "src": "769:210:22",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 6658,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "createFile",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6656,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6645,
+                  "name": "certificateId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6658,
+                  "src": "1014:27:22",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 6644,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1014:6:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 6647,
+                  "name": "fileHash",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6658,
+                  "src": "1051:22:22",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 6646,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1051:6:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 6649,
+                  "name": "fileId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6658,
+                  "src": "1083:20:22",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 6648,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1083:6:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 6651,
+                  "name": "fileName",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6658,
+                  "src": "1113:22:22",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 6650,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1113:6:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 6653,
+                  "name": "fileCreatedAt",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6658,
+                  "src": "1145:18:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 6652,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1145:4:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 6655,
+                  "name": "fileSize",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6658,
+                  "src": "1173:13:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 6654,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1173:4:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1004:188:22"
+            },
+            "returnParameters": {
+              "id": 6657,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1207:0:22"
+            },
+            "scope": 6710,
+            "src": "985:223:22",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 6665,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getCertificate",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6661,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6660,
+                  "name": "certificateId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6665,
+                  "src": "1247:27:22",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 6659,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1247:6:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1237:43:22"
+            },
+            "returnParameters": {
+              "id": 6664,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6663,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6665,
+                  "src": "1326:7:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 6662,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1326:7:22",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1325:9:22"
+            },
+            "scope": 6710,
+            "src": "1214:121:22",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 6674,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getEvent",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6670,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6667,
+                  "name": "certificateId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6674,
+                  "src": "1368:27:22",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 6666,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1368:6:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 6669,
+                  "name": "eventId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6674,
+                  "src": "1405:21:22",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 6668,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1405:6:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1358:78:22"
+            },
+            "returnParameters": {
+              "id": 6673,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6672,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6674,
+                  "src": "1482:7:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 6671,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1482:7:22",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1481:9:22"
+            },
+            "scope": 6710,
+            "src": "1341:150:22",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 6681,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getFile",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6677,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6676,
+                  "name": "certificateId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6681,
+                  "src": "1523:27:22",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 6675,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1523:6:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1513:43:22"
+            },
+            "returnParameters": {
+              "id": 6680,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6679,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6681,
+                  "src": "1602:7:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 6678,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1602:7:22",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1601:9:22"
+            },
+            "scope": 6710,
+            "src": "1497:114:22",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 6686,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getCertificatesSize",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6682,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1645:2:22"
+            },
+            "returnParameters": {
+              "id": 6685,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6684,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6686,
+                  "src": "1693:4:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 6683,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1693:4:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1692:6:22"
+            },
+            "scope": 6710,
+            "src": "1617:82:22",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 6695,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "notifyEntityEvent",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6693,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6688,
+                  "name": "notifiersKey",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6695,
+                  "src": "1742:26:22",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 6687,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1742:6:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 6690,
+                  "name": "createdEvent",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6695,
+                  "src": "1778:26:22",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 6689,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1778:6:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 6692,
+                  "name": "adrToNotify",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6695,
+                  "src": "1814:19:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 6691,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1814:7:22",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1732:107:22"
+            },
+            "returnParameters": {
+              "id": 6694,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1854:0:22"
+            },
+            "scope": 6710,
+            "src": "1705:150:22",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 6702,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_certificateExist",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6698,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6697,
+                  "name": "certificateId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6702,
+                  "src": "1897:27:22",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 6696,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1897:6:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1887:43:22"
+            },
+            "returnParameters": {
+              "id": 6701,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6700,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6702,
+                  "src": "1977:4:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 6699,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1977:4:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1976:6:22"
+            },
+            "scope": 6710,
+            "src": "1861:122:22",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "private"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 6709,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_getCertificate",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6705,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6704,
+                  "name": "certificateId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6709,
+                  "src": "2023:27:22",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 6703,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2023:6:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2013:43:22"
+            },
+            "returnParameters": {
+              "id": 6708,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6707,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6709,
+                  "src": "2090:20:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_CertificateInterface_$6588",
+                    "typeString": "contract CertificateInterface"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 6706,
+                    "name": "CertificateInterface",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 6588,
+                    "src": "2090:20:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_CertificateInterface_$6588",
+                      "typeString": "contract CertificateInterface"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2089:22:22"
+            },
+            "scope": 6710,
+            "src": "1989:123:22",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "private"
+          }
+        ],
+        "scope": 6711,
+        "src": "135:1979:22"
+      }
+    ],
+    "src": "0:2115:22"
+  },
+  "legacyAST": {
+    "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/CertifiedEmailInterface.sol",
+    "exportedSymbols": {
+      "CertifiedEmailInterface": [
+        6710
+      ]
+    },
+    "id": 6711,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 6590,
+        "literals": [
+          "solidity",
+          "<",
+          "0.6",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:22"
+      },
+      {
+        "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/SignaturitUserInterface.sol",
+        "file": "./SignaturitUserInterface.sol",
+        "id": 6591,
+        "nodeType": "ImportDirective",
+        "scope": 6711,
+        "sourceUnit": 7252,
+        "src": "25:39:22",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/CertificateInterface.sol",
+        "file": "./CertificateInterface.sol",
+        "id": 6592,
+        "nodeType": "ImportDirective",
+        "scope": 6711,
+        "sourceUnit": 6589,
+        "src": "65:36:22",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/home/administrator/workspace/signaturit-solidity-contracts/contracts/interfaces/EventInterface.sol",
+        "file": "./EventInterface.sol",
+        "id": 6593,
+        "nodeType": "ImportDirective",
+        "scope": 6711,
+        "sourceUnit": 6892,
+        "src": "102:30:22",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 6710,
+        "linearizedBaseContracts": [
+          6710
+        ],
+        "name": "CertifiedEmailInterface",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 6595,
+            "name": "signaturit",
+            "nodeType": "VariableDeclaration",
+            "scope": 6710,
+            "src": "174:25:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 6594,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "174:7:22",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 6597,
+            "name": "deployer",
+            "nodeType": "VariableDeclaration",
+            "scope": 6710,
+            "src": "205:23:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 6596,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "205:7:22",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 6599,
+            "name": "owner",
+            "nodeType": "VariableDeclaration",
+            "scope": 6710,
+            "src": "234:20:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 6598,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "234:7:22",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 6601,
+            "name": "id",
+            "nodeType": "VariableDeclaration",
+            "scope": 6710,
+            "src": "261:16:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_storage",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 6600,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "261:6:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 6603,
+            "name": "subjectHash",
+            "nodeType": "VariableDeclaration",
+            "scope": 6710,
+            "src": "283:25:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_storage",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 6602,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "283:6:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 6605,
+            "name": "bodyHash",
+            "nodeType": "VariableDeclaration",
+            "scope": 6710,
+            "src": "314:22:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_storage",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 6604,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "314:6:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 6607,
+            "name": "deliveryType",
+            "nodeType": "VariableDeclaration",
+            "scope": 6710,
+            "src": "342:26:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_storage",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 6606,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "342:6:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 6610,
+            "name": "certificatesId",
+            "nodeType": "VariableDeclaration",
+            "scope": 6710,
+            "src": "375:30:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
+              "typeString": "string[]"
+            },
+            "typeName": {
+              "baseType": {
+                "id": 6608,
+                "name": "string",
+                "nodeType": "ElementaryTypeName",
+                "src": "375:6:22",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                }
+              },
+              "id": 6609,
+              "length": null,
+              "nodeType": "ArrayTypeName",
+              "src": "375:8:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_string_storage_$dyn_storage_ptr",
+                "typeString": "string[]"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 6612,
+            "name": "createdAt",
+            "nodeType": "VariableDeclaration",
+            "scope": 6710,
+            "src": "412:21:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 6611,
+              "name": "uint",
+              "nodeType": "ElementaryTypeName",
+              "src": "412:4:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 6614,
+            "name": "userSmartContract",
+            "nodeType": "VariableDeclaration",
+            "scope": 6710,
+            "src": "440:48:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_contract$_SignaturitUserInterface_$7251",
+              "typeString": "contract SignaturitUserInterface"
+            },
+            "typeName": {
+              "contractScope": null,
+              "id": 6613,
+              "name": "SignaturitUserInterface",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 7251,
+              "src": "440:23:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_SignaturitUserInterface_$7251",
+                "typeString": "contract SignaturitUserInterface"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 6618,
+            "name": "certificates",
+            "nodeType": "VariableDeclaration",
+            "scope": 6710,
+            "src": "495:60:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_string_memory_$_t_contract$_CertificateInterface_$6588_$",
+              "typeString": "mapping(string => contract CertificateInterface)"
+            },
+            "typeName": {
+              "id": 6617,
+              "keyType": {
+                "id": 6615,
+                "name": "string",
+                "nodeType": "ElementaryTypeName",
+                "src": "503:6:22",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "495:39:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_string_memory_$_t_contract$_CertificateInterface_$6588_$",
+                "typeString": "mapping(string => contract CertificateInterface)"
+              },
+              "valueType": {
+                "contractScope": null,
+                "id": 6616,
+                "name": "CertificateInterface",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 6588,
+                "src": "513:20:22",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_contract$_CertificateInterface_$6588",
+                  "typeString": "contract CertificateInterface"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "private"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 6621,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "notifyCreation",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6619,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "585:2:22"
+            },
+            "returnParameters": {
+              "id": 6620,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "602:0:22"
+            },
+            "scope": 6710,
+            "src": "562:41:22",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 6630,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "createCertificate",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6628,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6623,
+                  "name": "certificateId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6630,
+                  "src": "645:27:22",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 6622,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "645:6:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 6625,
+                  "name": "certificateCreatedAt",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6630,
+                  "src": "682:25:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 6624,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "682:4:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 6627,
+                  "name": "certificateOwner",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6630,
+                  "src": "717:24:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 6626,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "717:7:22",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "635:112:22"
+            },
+            "returnParameters": {
+              "id": 6629,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "762:0:22"
+            },
+            "scope": 6710,
+            "src": "609:154:22",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 6643,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "createEvent",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6641,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6632,
+                  "name": "certificateId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6643,
+                  "src": "799:27:22",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 6631,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "799:6:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 6634,
+                  "name": "eventId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6643,
+                  "src": "836:21:22",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 6633,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "836:6:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 6636,
+                  "name": "eventType",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6643,
+                  "src": "867:23:22",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 6635,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "867:6:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 6638,
+                  "name": "eventUserAgent",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6643,
+                  "src": "900:28:22",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 6637,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "900:6:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 6640,
+                  "name": "eventCreatedAt",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6643,
+                  "src": "938:19:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 6639,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "938:4:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "789:174:22"
+            },
+            "returnParameters": {
+              "id": 6642,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "978:0:22"
+            },
+            "scope": 6710,
+            "src": "769:210:22",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 6658,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "createFile",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6656,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6645,
+                  "name": "certificateId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6658,
+                  "src": "1014:27:22",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 6644,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1014:6:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 6647,
+                  "name": "fileHash",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6658,
+                  "src": "1051:22:22",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 6646,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1051:6:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 6649,
+                  "name": "fileId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6658,
+                  "src": "1083:20:22",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 6648,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1083:6:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 6651,
+                  "name": "fileName",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6658,
+                  "src": "1113:22:22",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 6650,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1113:6:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 6653,
+                  "name": "fileCreatedAt",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6658,
+                  "src": "1145:18:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 6652,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1145:4:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 6655,
+                  "name": "fileSize",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6658,
+                  "src": "1173:13:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 6654,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1173:4:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1004:188:22"
+            },
+            "returnParameters": {
+              "id": 6657,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1207:0:22"
+            },
+            "scope": 6710,
+            "src": "985:223:22",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 6665,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getCertificate",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6661,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6660,
+                  "name": "certificateId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6665,
+                  "src": "1247:27:22",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 6659,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1247:6:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1237:43:22"
+            },
+            "returnParameters": {
+              "id": 6664,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6663,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6665,
+                  "src": "1326:7:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 6662,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1326:7:22",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1325:9:22"
+            },
+            "scope": 6710,
+            "src": "1214:121:22",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 6674,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getEvent",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6670,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6667,
+                  "name": "certificateId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6674,
+                  "src": "1368:27:22",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 6666,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1368:6:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 6669,
+                  "name": "eventId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6674,
+                  "src": "1405:21:22",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 6668,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1405:6:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1358:78:22"
+            },
+            "returnParameters": {
+              "id": 6673,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6672,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6674,
+                  "src": "1482:7:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 6671,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1482:7:22",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1481:9:22"
+            },
+            "scope": 6710,
+            "src": "1341:150:22",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 6681,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getFile",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6677,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6676,
+                  "name": "certificateId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6681,
+                  "src": "1523:27:22",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 6675,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1523:6:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1513:43:22"
+            },
+            "returnParameters": {
+              "id": 6680,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6679,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6681,
+                  "src": "1602:7:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 6678,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1602:7:22",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1601:9:22"
+            },
+            "scope": 6710,
+            "src": "1497:114:22",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 6686,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getCertificatesSize",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6682,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1645:2:22"
+            },
+            "returnParameters": {
+              "id": 6685,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6684,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6686,
+                  "src": "1693:4:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 6683,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1693:4:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1692:6:22"
+            },
+            "scope": 6710,
+            "src": "1617:82:22",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 6695,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "notifyEntityEvent",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6693,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6688,
+                  "name": "notifiersKey",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6695,
+                  "src": "1742:26:22",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 6687,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1742:6:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 6690,
+                  "name": "createdEvent",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6695,
+                  "src": "1778:26:22",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 6689,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1778:6:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 6692,
+                  "name": "adrToNotify",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6695,
+                  "src": "1814:19:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 6691,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1814:7:22",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1732:107:22"
+            },
+            "returnParameters": {
+              "id": 6694,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1854:0:22"
+            },
+            "scope": 6710,
+            "src": "1705:150:22",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 6702,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_certificateExist",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6698,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6697,
+                  "name": "certificateId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6702,
+                  "src": "1897:27:22",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 6696,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1897:6:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1887:43:22"
+            },
+            "returnParameters": {
+              "id": 6701,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6700,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6702,
+                  "src": "1977:4:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 6699,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1977:4:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1976:6:22"
+            },
+            "scope": 6710,
+            "src": "1861:122:22",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "private"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 6709,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_getCertificate",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6705,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6704,
+                  "name": "certificateId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6709,
+                  "src": "2023:27:22",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 6703,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2023:6:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2013:43:22"
+            },
+            "returnParameters": {
+              "id": 6708,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6707,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6709,
+                  "src": "2090:20:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_CertificateInterface_$6588",
+                    "typeString": "contract CertificateInterface"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 6706,
+                    "name": "CertificateInterface",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 6588,
+                    "src": "2090:20:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_CertificateInterface_$6588",
+                      "typeString": "contract CertificateInterface"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2089:22:22"
+            },
+            "scope": 6710,
+            "src": "1989:123:22",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "private"
+          }
+        ],
+        "scope": 6711,
+        "src": "135:1979:22"
+      }
+    ],
+    "src": "0:2115:22"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "2.0.3",
+  "updatedAt": "2020-01-15T10:55:50.247Z"
+}
