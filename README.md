@@ -275,6 +275,7 @@ The parent from where it derives is defined as constructor parameter.
 
 | Parameter | Type | Hashed ? |
 | ------------- | ------------- | ------------- |
+| parent | address | no |
 | id | string | yes |
 | evenType | string | no |
 | userAgent | string | no |
