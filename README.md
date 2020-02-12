@@ -100,6 +100,15 @@ One of this is deployed for each user and with our SDK you can subscribe to the 
 | signaturit | address | no |
 | userContract | address | no |
 
+#### _AuditTrails.sol_
+
+This smart contract is intended to build evidences (AuditTrail) of each signature request. It is a unique smart contract for all the users and all the signature requests they create. Everytime a new user is created the subscribe function must be called in order for the contract to be able to track all the signature requests. It has no public parameters but just a function to get an audit from a documentId and an user or to get an event related to it.
+
+| Parameter | Type | Hashed ? |
+| ------------- | ------------- | ------------- |
+| N/A | N/A | N/A |
+
+
 #### _CertifiedFileChecker.sol_
 
 This smart contract is an aggregator of all the certified files uploaded to the Signaturit's platform of all the users connected to blockchain and it is intended to save the hash of the file and to serve a webpage to check document integrity and originality once created.
