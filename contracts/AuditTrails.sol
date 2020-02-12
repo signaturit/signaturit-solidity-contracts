@@ -18,13 +18,10 @@ contract AuditTrails {
     string constant private FILE_NOTIFIERS_KEY = "file-notifiers";
     string constant private EVENT_NOTIFIERS_KEY = "event-notifiers";
     string constant private DOCUMENT_NOTIFIERS_KEY = "document-notifiers";
-    string constant private SIGNATURE_NOTIFIERS_KEY = "signature-notifiers";
 
     string constant private FILE_CREATED_EVENT = "file.contract.created";
     string constant private EVENT_CREATED_EVENT = "event.contract.created";
-    string constant private TIMELOG_ADDED_EVENT = "timelog.added";
     string constant private DOCUMENT_CREATED_EVENT = "document.contract.created";
-    string constant private SIGNATURE_CREATED_EVENT = "signature.contract.created";
 
     string constant private DOCUMENT_SIGNED_EVENT = "document.contract.signed";
     string constant private DOCUMENT_DECLINED_EVENT = "document.contract.declined";
@@ -41,8 +38,8 @@ contract AuditTrails {
         uint terminatedAt;
     }
 
-    mapping(address => mapping(string => AuditTrail)) requesterAuditTrails;
-    mapping(address => mapping(address => bool)) admittedNotifiers;
+    mapping(address => mapping(string => AuditTrail)) private requesterAuditTrails;
+    mapping(address => mapping(address => bool)) private admittedNotifiers;
 
     constructor() public {}
 
@@ -103,20 +100,20 @@ contract AuditTrails {
         string memory eventType,
         string memory userAgent,
         uint createdAt
-    ) {
-        AuditTrail memory tmpAudit = _getAudit(requesterPubKey, documentHashedId);
+    )  {
+            AuditTrail memory tmpAudit = _getAudit(requesterPubKey, documentHashedId);
 
-        require(tmpAudit.events.length > index, "The index exceeds the number of events");
+            require(tmpAudit.events.length > index, "The index exceeds the number of events");
 
-        EventInterface tmpEvent = EventInterface(tmpAudit.events[index]);
+            EventInterface tmpEvent = EventInterface(tmpAudit.events[index]);
 
-        return(
-            tmpEvent.id(),
-            tmpEvent.eventType(),
-            tmpEvent.userAgent(),
-            tmpEvent.createdAt()
-        );
-    }
+            return(
+                tmpEvent.id(),
+                tmpEvent.eventType(),
+                tmpEvent.userAgent(),
+                tmpEvent.createdAt()
+            );
+        }
 
     function notify (
         string memory eventType,
@@ -163,9 +160,23 @@ contract AuditTrails {
             address owner = signature.owner();
             string memory documentId = document.id();
 
-            require(_checkExistence(owner, documentId), "The audit for this document doesn't exists");
+            if (!_checkExistence(owner, documentId)) {
+                address[] memory eventsInAudit;
 
-            requesterAuditTrails[owner][documentId].fileAddress = addr;
+                AuditTrail memory audit = AuditTrail(
+                    address(signature),
+                    owner,
+                    document.signer(),
+                    addr,
+                    eventsInAudit,
+                    0
+                );
+
+                requesterAuditTrails[owner][documentId] = audit;
+            } else {
+                requesterAuditTrails[owner][documentId].fileAddress = addr;
+
+            }
 
         } else if (bytes32event == Utils.keccak(EVENT_CREATED_EVENT)) {
             EventInterface documentEvent = EventInterface(addr);
@@ -177,19 +188,33 @@ contract AuditTrails {
             address owner = signature.owner();
             string memory documentId = document.id();
 
-            require(_checkExistence(owner, documentId), "The audit for this document doesn't exists");
+            if (!_checkExistence(owner, documentId)) {
+                address[] memory eventsInAudit;
+
+                AuditTrail memory audit = AuditTrail(
+                    address(signature),
+                    owner,
+                    document.signer(),
+                    address(0),
+                    eventsInAudit,
+                    0
+                );
+
+                requesterAuditTrails[owner][documentId] = audit;
+            }
+
+            requesterAuditTrails[owner][documentId].events.push(addr);
 
             bytes32 documentEventType = Utils.keccak(documentEvent.eventType());
 
-            if(
+            if (
                 documentEventType == Utils.keccak(DOCUMENT_SIGNED_EVENT) ||
                 documentEventType == Utils.keccak(DOCUMENT_DECLINED_EVENT) ||
                 documentEventType == Utils.keccak(DOCUMENT_CANCELED_EVENT)
             ) {
+                requesterAuditTrails[owner][documentId].signerAddress = document.signer();
                 requesterAuditTrails[owner][documentId].terminatedAt = documentEvent.createdAt();
             }
-
-            requesterAuditTrails[signature.owner()][document.id()].events.push(addr);
         }
     }
 
@@ -200,8 +225,8 @@ contract AuditTrails {
     }
 
     function _checkExistence(address owner, string memory documentId) internal view returns(bool){
-        if(requesterAuditTrails[owner][documentId].signatureAddress != address(0)) return true;
-        else return false;
+        if (requesterAuditTrails[owner][documentId].signatureAddress != address(0)) return true;
+        return false;
     }
 
     function _checkValidCaller(address userSmartContract) internal view {
@@ -218,14 +243,14 @@ contract AuditTrails {
 
         SignaturitUserInterface userContract = SignaturitUserInterface(userSmartContract);
 
-        if (admittedNotifiers[userContract.ownerAddress()][msg.sender]) {
+        if (admittedNotifiers[userContract.ownerAddress()][tx.origin]) {
             result = true;
 
         } else {
             do {
                 checkedAddress = userContract.getAddressArrayAttribute(VALIDATED_NOTIFIERS_KEY, notificationIndex);
 
-                if (checkedAddress == msg.sender) {
+                if (checkedAddress == tx.origin) {
                     result = true;
 
                     checkedAddress = address(0);
