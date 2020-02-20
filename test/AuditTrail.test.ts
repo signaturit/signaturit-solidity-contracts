@@ -13,6 +13,7 @@ contract('AuditTrails', async (accounts) => {
     const requesterAddress  = accounts[1];
     const signerAddress     = accounts[2];
     const invalidAddress    = accounts[3];
+    const addedNotifier     = accounts[4];
 
     const DOCUMENT_NOTIFIERS_KEY = "document-notifiers";
 
@@ -66,6 +67,41 @@ contract('AuditTrails', async (accounts) => {
     it("Check if it's correctly subsribed to the user's smart contract", async () => {
         const readAddressFromDocument = await userContract.getAddressArrayAttribute(DOCUMENT_NOTIFIERS_KEY, 0);
         assert.equal(readAddressFromDocument, auditTrailsContract.address);
+    });
+
+    it("Try to subscribe from not rootAddress, expect exception", async () => {
+        try {
+            await auditTrailsContract.subscribe(userContract.address, {from: invalidAddress});
+
+            assert.fail("It should have thrown")
+        } catch(error) {
+            assert.include(
+                error.message,
+                "Only an admitted root address can call this function"
+            )
+        }
+    });
+
+    it("Try to subscribe from rootAddress", async () => {
+        const tx = await auditTrailsContract.subscribe(userContract.address, {from: signaturitAddress});
+        assert.equal(true, tx.receipt.status);
+    });
+
+    it("Try to addNotifier from not admitted notifier, expect exception", async () => {
+        try {
+            await auditTrailsContract.setNotifier(requesterAddress, addedNotifier, {from: invalidAddress});
+        } catch(error) {
+            assert.include(
+                error.message,
+                "Only an admitted notifier can call this function"
+            )
+        }
+    });
+
+    it("Try to addNotifier from rootAddress", async () => {
+        const tx = await auditTrailsContract.setNotifier(requesterAddress, addedNotifier, {from: signaturitAddress});
+
+        assert.equal(true, tx.receipt.status);
     });
 
     it("Create a document on signature and expect this to create an audit trail", async () => {
@@ -126,10 +162,8 @@ contract('AuditTrails', async (accounts) => {
             }
         );
 
-        const documentAddress = await signatureContract.getDocument(documentId);
-
         try {
-            const readAudit = await auditTrailsContract.getAudit(
+            await auditTrailsContract.getAudit(
                 documentId,
                 {
                     from: signaturitAddress
