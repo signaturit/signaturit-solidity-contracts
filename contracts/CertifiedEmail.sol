@@ -9,19 +9,12 @@ import "./interfaces/SignaturitUserInterface.sol";
 import "./interfaces/CertificateInterface.sol";
 import "./interfaces/EventInterface.sol";
 import "./interfaces/FileInterface.sol";
+
 import "./libraries/Utils.sol";
+import "./libraries/UsingConstants.sol";
 
 
-contract CertifiedEmail is CertifiedEmailInterface {
-    string constant private CERTIFIED_EMAIL_CREATED_EVENT = "certified_email.contract.created";
-    string constant private CERTIFICATE_CREATED_EVENT = "certificate.contract.created";
-    string constant private FILE_CREATED_EVENT = "file.contract.created";
-    string constant private EVENT_CREATED_EVENT = "event.contract.created";
-
-    string constant private CERTIFIED_EMAIL_NOTIFIERS_KEY = "certified-email-notifiers";
-    string constant private CERTIFICATE_NOTIFIERS_KEY = "certificate-notifiers";
-    string constant private FILE_NOTIFIERS_KEY = "file-notifiers";
-    string constant private EVENT_NOTIFIERS_KEY = "event-notifiers";
+contract CertifiedEmail is CertifiedEmailInterface, UsingConstants {
 
     address public signaturit;
     address public deployer;
@@ -76,7 +69,7 @@ contract CertifiedEmail is CertifiedEmailInterface {
         public
         signaturitOnly
     {
-        notifyEntityEvent(CERTIFIED_EMAIL_NOTIFIERS_KEY, CERTIFIED_EMAIL_CREATED_EVENT, address(this));
+        notifyEntityEvent(CERTIFIED_EMAIL_NOTIFIERS_KEY, uint(enumEvents.CERTIFIED_EMAIL_CREATED_EVENT), address(this));
     }
 
     function createCertificate(
@@ -93,7 +86,7 @@ contract CertifiedEmail is CertifiedEmailInterface {
 
         certificatesId.push(certificateId);
 
-        notifyEntityEvent(CERTIFICATE_NOTIFIERS_KEY, CERTIFICATE_CREATED_EVENT, address(certificate));
+        notifyEntityEvent(CERTIFICATE_NOTIFIERS_KEY, uint(enumEvents.CERTIFICATE_CREATED_EVENT), address(certificate));
     }
 
     function createEvent(
@@ -122,7 +115,7 @@ contract CertifiedEmail is CertifiedEmailInterface {
             "Error while retrieving event from certificate"
         );
 
-        notifyEntityEvent(EVENT_NOTIFIERS_KEY, EVENT_CREATED_EVENT, address(certifiedEmailEvent));
+        notifyEntityEvent(EVENT_NOTIFIERS_KEY, uint(enumEvents.EVENT_CREATED_EVENT), address(certifiedEmailEvent));
     }
 
     function createFile(
@@ -153,7 +146,7 @@ contract CertifiedEmail is CertifiedEmailInterface {
             "Error while retrieving file from certificate"
         );
 
-        notifyEntityEvent(FILE_NOTIFIERS_KEY, FILE_CREATED_EVENT, address(certifiedEmailFile));
+        notifyEntityEvent(FILE_NOTIFIERS_KEY, uint(enumEvents.FILE_CREATED_EVENT), address(certifiedEmailFile));
     }
 
     function getCertificate (
@@ -226,7 +219,7 @@ contract CertifiedEmail is CertifiedEmailInterface {
 
     function notifyEntityEvent (
         string memory notifiersKey,
-        string memory createdEvent,
+        uint createdEvent,
         address adrToNotify
     )
         public
@@ -242,7 +235,7 @@ contract CertifiedEmail is CertifiedEmailInterface {
             if (contractToNofify != address(0)) {
                 contractToNofify.call(
                     abi.encodeWithSignature(
-                        "notify(string,address)",
+                        "notify(uint256,address)",
                         createdEvent,
                         adrToNotify
                     )

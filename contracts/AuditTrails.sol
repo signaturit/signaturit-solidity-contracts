@@ -5,37 +5,17 @@ Gas to deploy: 2.561.586
 */
 
 import "./libraries/Utils.sol";
+import "./libraries/UsingConstants.sol";
 
 import "./interfaces/FileInterface.sol";
-import "./interfaces/EventInterface.sol";
-import "./interfaces/EventInterface.sol";
 import "./interfaces/DocumentInterface.sol";
 import "./interfaces/SignatureInterface.sol";
 import "./interfaces/SignaturitUserInterface.sol";
 
-contract AuditTrails {
-
-    string constant private FILE_NOTIFIERS_KEY = "file-notifiers";
-    string constant private EVENT_NOTIFIERS_KEY = "event-notifiers";
-    string constant private DOCUMENT_NOTIFIERS_KEY = "document-notifiers";
-
-    string constant private FILE_CREATED_EVENT = "file.contract.created";
-    string constant private EVENT_CREATED_EVENT = "event.contract.created";
-    string constant private DOCUMENT_CREATED_EVENT = "document.contract.created";
-
-    string constant private DOCUMENT_SIGNED_EVENT = "document.contract.signed";
-    string constant private DOCUMENT_DECLINED_EVENT = "document.contract.declined";
-    string constant private DOCUMENT_CANCELED_EVENT = "document.contract.canceled";
-
-    string constant private VALIDATED_NOTIFIERS_KEY = "validated-notifiers";
+contract AuditTrails is UsingConstants {
 
     struct AuditTrail {
         address signatureAddress;
-        address requesterAddress;
-        address signerAddress;
-        address fileAddress;
-        address[] events;
-        uint terminatedAt;
     }
 
     mapping(address => mapping(string => AuditTrail)) private requesterAuditTrails;
@@ -52,13 +32,10 @@ contract AuditTrails {
 
         admittedNotifiers[tmpUser.ownerAddress()][msg.sender] = true;
 
-        tmpUser.setAddressArrayAttribute(FILE_NOTIFIERS_KEY, address(this));
-        tmpUser.setAddressArrayAttribute(EVENT_NOTIFIERS_KEY, address(this));
         tmpUser.setAddressArrayAttribute(DOCUMENT_NOTIFIERS_KEY, address(this));
     }
 
     function getAudit(
-        address requesterPubKey,
         string memory documentHashedId
     )
         public
@@ -73,24 +50,27 @@ contract AuditTrails {
             uint terminatedAt
         )
     {
-        AuditTrail memory tmpAudit = _getAudit(requesterPubKey, documentHashedId);
+        AuditTrail memory tmpAudit = _getAudit(msg.sender, documentHashedId);
 
         SignatureInterface signature = SignatureInterface(tmpAudit.signatureAddress);
+
+        DocumentInterface document = DocumentInterface(signature.getDocument(documentHashedId));
+
+        address fileAdr = signature.getFile(documentHashedId);
 
         return (
             tmpAudit.signatureAddress,
             signature.getDocument(documentHashedId),
-            tmpAudit.requesterAddress,
-            tmpAudit.signerAddress,
-            tmpAudit.fileAddress,
-            tmpAudit.events.length,
-            tmpAudit.terminatedAt
+            signature.owner(),
+            document.signer(),
+            address(fileAdr),
+            document.getEventsSize(),
+            document.signedAt()
         );
     }
 
     function getEventInAudit(
         uint index,
-        address requesterPubKey,
         string memory documentHashedId
     )
         public
@@ -101,14 +81,20 @@ contract AuditTrails {
         string memory userAgent,
         uint createdAt
     )  {
-            AuditTrail memory tmpAudit = _getAudit(requesterPubKey, documentHashedId);
+            AuditTrail memory tmpAudit = _getAudit(msg.sender, documentHashedId);
 
-            require(tmpAudit.events.length > index, "The index exceeds the number of events");
+            SignatureInterface signature = SignatureInterface(tmpAudit.signatureAddress);
 
-            EventInterface tmpEvent = EventInterface(tmpAudit.events[index]);
+            DocumentInterface document = DocumentInterface(signature.getDocument(documentHashedId));
+
+            require(document.getEventsSize() > index, "The index exceeds the number of events");
+
+            string memory eventId = document.eventsId(index);
+
+            EventInterface tmpEvent = EventInterface(document.getEvent(eventId));
 
             return(
-                tmpEvent.id(),
+                eventId,
                 tmpEvent.eventType(),
                 tmpEvent.userAgent(),
                 tmpEvent.createdAt()
@@ -116,14 +102,12 @@ contract AuditTrails {
         }
 
     function notify (
-        string memory eventType,
+        uint receivedEventType,
         address addr
     )
         public
     {
-        bytes32 bytes32event = Utils.keccak(eventType);
-
-        if (bytes32event == Utils.keccak(DOCUMENT_CREATED_EVENT)) {
+        if (receivedEventType == uint(enumEvents.DOCUMENT_CREATED_EVENT)) {
             DocumentInterface document = DocumentInterface(addr);
             SignatureInterface signature = SignatureInterface(document.signature());
 
@@ -137,84 +121,12 @@ contract AuditTrails {
                 "The audit for this document already exists"
             );
 
-            address[] memory eventsInAudit;
-
             AuditTrail memory audit = AuditTrail(
-                address(signature),
-                signature.owner(),
-                document.signer(),
-                address(0),
-                eventsInAudit,
-                0
+                address(signature)
             );
 
-            requesterAuditTrails[signature.owner()][document.id()] = audit;
+            requesterAuditTrails[owner][documentId] = audit;
 
-        } else if (bytes32event == Utils.keccak(FILE_CREATED_EVENT)) {
-            FileInterface file = FileInterface(addr);
-            DocumentInterface document = DocumentInterface(file.parent());
-            SignatureInterface signature = SignatureInterface(document.signature());
-
-            _checkValidCaller(address(signature.userContract()));
-
-            address owner = signature.owner();
-            string memory documentId = document.id();
-
-            if (!_checkExistence(owner, documentId)) {
-                address[] memory eventsInAudit;
-
-                AuditTrail memory audit = AuditTrail(
-                    address(signature),
-                    owner,
-                    document.signer(),
-                    addr,
-                    eventsInAudit,
-                    0
-                );
-
-                requesterAuditTrails[owner][documentId] = audit;
-            } else {
-                requesterAuditTrails[owner][documentId].fileAddress = addr;
-
-            }
-
-        } else if (bytes32event == Utils.keccak(EVENT_CREATED_EVENT)) {
-            EventInterface documentEvent = EventInterface(addr);
-            DocumentInterface document = DocumentInterface(documentEvent.parent());
-            SignatureInterface signature = SignatureInterface(document.signature());
-
-            _checkValidCaller(address(signature.userContract()));
-
-            address owner = signature.owner();
-            string memory documentId = document.id();
-
-            if (!_checkExistence(owner, documentId)) {
-                address[] memory eventsInAudit;
-
-                AuditTrail memory audit = AuditTrail(
-                    address(signature),
-                    owner,
-                    document.signer(),
-                    address(0),
-                    eventsInAudit,
-                    0
-                );
-
-                requesterAuditTrails[owner][documentId] = audit;
-            }
-
-            requesterAuditTrails[owner][documentId].events.push(addr);
-
-            bytes32 documentEventType = Utils.keccak(documentEvent.eventType());
-
-            if (
-                documentEventType == Utils.keccak(DOCUMENT_SIGNED_EVENT) ||
-                documentEventType == Utils.keccak(DOCUMENT_DECLINED_EVENT) ||
-                documentEventType == Utils.keccak(DOCUMENT_CANCELED_EVENT)
-            ) {
-                requesterAuditTrails[owner][documentId].signerAddress = document.signer();
-                requesterAuditTrails[owner][documentId].terminatedAt = documentEvent.createdAt();
-            }
         }
     }
 

@@ -10,12 +10,31 @@ contract('CertifiedEmailAggregator', async (accounts) => {
     const invalidAccount = accounts[2];
     const deployerAddress = accounts[3];
 
+    const nullAddress = '0x0000000000000000000000000000000000000000';
+
     const certifiedEmailId = v4();
     const secondCertifiedEmailId = v4();
     const certifiedEmailSubjectHash = 'certifiedEmailSubjectHash';
     const certifiedEmailDeliveryType = 'certifiedEmailDeliveryType';
     const certifiedEmailBodyHash = 'certifiedEmailBodyHash';
     const certifiedEmailCreatedAt = Date.now();
+
+    const enumEvents = {
+        FILE_CREATED_EVENT: 0,
+        CERTIFIED_FILE_CREATED_EVENT: 1,
+        EVENT_CREATED_EVENT: 2,
+        DOCUMENT_CREATED_EVENT: 3,
+        DOCUMENT_SIGNED_EVENT: 4,
+        DOCUMENT_DECLINED_EVENT: 5,
+        DOCUMENT_CANCELED_EVENT: 6,
+        CERTIFICATE_CREATED_EVENT: 7,
+        SIGNATURE_CREATED_EVENT: 8,
+        CERTIFIED_EMAIL_CREATED_EVENT: 9,
+        TIMELOGGER_CLAUSE_CREATED: 10,
+        TIMELOG_ADDED_EVENT: 11,
+        PAYMENT_CLAUSE_CREATED: 12,
+        PAYMENT_CHECK_ADDED_EVENT: 13
+    };
 
     let certifiedEmailAggregatorContract;
     let userContract;
@@ -94,7 +113,7 @@ contract('CertifiedEmailAggregator', async (accounts) => {
         );
 
         await certifiedEmailAggregatorContract.notify(
-            'certified_email.contract.created',
+            enumEvents.CERTIFIED_EMAIL_CREATED_EVENT,
             certifiedEmailContract.address
         );
 
@@ -118,7 +137,7 @@ contract('CertifiedEmailAggregator', async (accounts) => {
         
         try {
             const tx = await certifiedEmailAggregatorContract.notify(
-                'certified_email.contract.created',
+                enumEvents.CERTIFIED_EMAIL_CREATED_EVENT,
                 certifiedEmailContract.address,
                 {
                     from: invalidAccount
@@ -157,7 +176,14 @@ contract('CertifiedEmailAggregator', async (accounts) => {
         assert.equal(certifiedEmailByIndex.more, false);
     });
 
-    it("Create signature from invalid user and try to notify", async () => {
+    it("Access to not existing certifiedEmail", async () => {
+        const certifiedEmailByIndex = await certifiedEmailAggregatorContract.getCertifiedEmail(0);
+
+        assert.equal(certifiedEmailByIndex.addr, nullAddress);
+        assert.equal(certifiedEmailByIndex.more, false);
+    });
+
+    it("Create certifiedEmail from invalid user and try to notify", async () => {
         const certifiedEmailContract = await ArtifactCertifiedEmail.new(
             certifiedEmailId,
             certifiedEmailSubjectHash,
@@ -170,7 +196,7 @@ contract('CertifiedEmailAggregator', async (accounts) => {
         );
 
         try {
-            await certifiedEmailContract.notifyEntityEvent("certified-email-notifiers", "certified_email.contract.created", certifiedEmailContract.address);
+            await certifiedEmailContract.notifyEntityEvent("certified-email-notifiers", enumEvents.CERTIFIED_EMAIL_CREATED_EVENT, certifiedEmailContract.address);
         } catch(error) {
             assert.include(
                 error.message,

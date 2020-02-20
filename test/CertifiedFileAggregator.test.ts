@@ -19,6 +19,24 @@ contract('CertifiedFileAggregator', async (accounts) => {
     const certifiedFileSize = 1223414;
     const certifiedFile2Size = 9932414;
 
+    const nullAddress = '0x0000000000000000000000000000000000000000';
+
+    const enumEvents = {
+        FILE_CREATED_EVENT: 0,
+        CERTIFIED_FILE_CREATED_EVENT: 1,
+        EVENT_CREATED_EVENT: 2,
+        DOCUMENT_CREATED_EVENT: 3,
+        DOCUMENT_SIGNED_EVENT: 4,
+        DOCUMENT_DECLINED_EVENT: 5,
+        DOCUMENT_CANCELED_EVENT: 6,
+        CERTIFICATE_CREATED_EVENT: 7,
+        SIGNATURE_CREATED_EVENT: 8,
+        CERTIFIED_EMAIL_CREATED_EVENT: 9,
+        TIMELOGGER_CLAUSE_CREATED: 10,
+        TIMELOG_ADDED_EVENT: 11,
+        PAYMENT_CLAUSE_CREATED: 12,
+        PAYMENT_CHECK_ADDED_EVENT: 13
+    };
 
     let certifiedFileAggregatorContract;
     let userContract;
@@ -93,7 +111,7 @@ contract('CertifiedFileAggregator', async (accounts) => {
         );
 
         await certifiedFileAggregatorContract.notify(
-            'certified_file.contract.created',
+            enumEvents.CERTIFIED_FILE_CREATED_EVENT,
             certifiedFileContract.address
         );
 
@@ -115,7 +133,7 @@ contract('CertifiedFileAggregator', async (accounts) => {
 
         try {
             await certifiedFileAggregatorContract.notify(
-                'certified_file.contract.created',
+                enumEvents.CERTIFIED_FILE_CREATED_EVENT,
                 certifiedFileContract.address,
                 {
                     from: invalidAccount
@@ -150,6 +168,14 @@ contract('CertifiedFileAggregator', async (accounts) => {
         assert.equal(certifiedFileByIndex.addr, certifiedFileContract.address);
         assert.equal(certifiedFileByIndex.more, false);
     });
+
+    it("Access to not existing certifiedFile", async () => {
+        const certifiedFileByIndex = await certifiedFileAggregatorContract.getCertifiedFile(0);
+
+        assert.equal(certifiedFileByIndex.addr, nullAddress);
+        assert.equal(certifiedFileByIndex.more, false);
+    });
+
 
     it("Create certified file from invalid user and try to notify", async () => {
         const certifiedFileContract = await ArtifactCertifiedFile.new(

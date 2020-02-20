@@ -12,19 +12,10 @@ import "./interfaces/FileInterface.sol";
 import "./interfaces/EventInterface.sol";
 import "./interfaces/SignaturitUserInterface.sol";
 import "./libraries/Utils.sol";
+import "./libraries/UsingConstants.sol";
 
 
-contract Signature is SignatureInterface, NotifierInterface {
-    string constant private SIGNATURE_CREATED_EVENT = "signature.contract.created";
-    string constant private DOCUMENT_CREATED_EVENT = "document.contract.created";
-
-    string constant private SIGNATURE_NOTIFIERS_KEY = "signature-notifiers";
-    string constant private DOCUMENT_NOTIFIERS_KEY = "document-notifiers";
-
-    string constant private PAYMENT_CLAUSE_CREATED = "payment_clause.created";
-    string constant private TIMELOGGER_CLAUSE_CREATED = "timelogger_clause.created";
-    string constant private PAYMENT_CLAUSE_KEY = "payment";
-    string constant private TIMELOGGER_CLAUSE_KEY = "timelogger";
+contract Signature is SignatureInterface, NotifierInterface, UsingConstants {
 
     address public signaturit;
     address public deployer;
@@ -78,21 +69,21 @@ contract Signature is SignatureInterface, NotifierInterface {
     }
 
     function notify(
-        string memory attribute,
+        uint attribute,
         address adr
     )
         public
         signaturitOnly
     {
-        if (Utils.keccak(attribute) == Utils.keccak(PAYMENT_CLAUSE_CREATED)) clauses[PAYMENT_CLAUSE_KEY] = adr;
-        else if (Utils.keccak(attribute) == Utils.keccak(TIMELOGGER_CLAUSE_CREATED)) clauses[TIMELOGGER_CLAUSE_KEY] = adr;
+        if (attribute == uint(enumEvents.PAYMENT_CLAUSE_CREATED)) clauses[PAYMENT_CLAUSE_KEY] = adr;
+        else if (attribute == uint(enumEvents.TIMELOGGER_CLAUSE_CREATED)) clauses[TIMELOGGER_CLAUSE_KEY] = adr;
     }
 
     function notifyCreation()
         public
         signaturitOnly
     {
-        _notifyEntityEvent(SIGNATURE_NOTIFIERS_KEY, SIGNATURE_CREATED_EVENT, address(this));
+        _notifyEntityEvent(SIGNATURE_NOTIFIERS_KEY, uint(enumEvents.SIGNATURE_CREATED_EVENT), address(this));
     }
 
     function createDocument(
@@ -109,7 +100,7 @@ contract Signature is SignatureInterface, NotifierInterface {
 
         documentsId.push(documentId);
 
-        _notifyEntityEvent(DOCUMENT_NOTIFIERS_KEY, DOCUMENT_CREATED_EVENT, address(document));
+        _notifyEntityEvent(DOCUMENT_NOTIFIERS_KEY, uint(enumEvents.DOCUMENT_CREATED_EVENT), address(document));
     }
 
     function setDocumentOwner (
@@ -270,7 +261,7 @@ contract Signature is SignatureInterface, NotifierInterface {
 
     function _notifyEntityEvent (
         string memory notifiersKey,
-        string memory createdEvent,
+        uint createdEvent,
         address adrToNotify
     )
         private
@@ -285,7 +276,7 @@ contract Signature is SignatureInterface, NotifierInterface {
             if (contractToNofify != address(0)) {
                 contractToNofify.call(
                     abi.encodeWithSignature(
-                        "notify(string,address)",
+                        "notify(uint256,address)",
                         createdEvent,
                         adrToNotify
                     )

@@ -7,13 +7,11 @@ Gas to deploy: 747.382
 import "./interfaces/CertifiedFileInterface.sol";
 import "./interfaces/SignaturitUserInterface.sol";
 
+import "./libraries/UsingConstants.sol";
 
-contract CertifiedFile is CertifiedFileInterface {
+contract CertifiedFile is CertifiedFileInterface, UsingConstants {
     address public signaturit;
     address public owner;
-
-    string constant private CREATED_EVENT = "certified_file.contract.created";
-    string constant private NOTIFIERS_KEY = "certified-file-notifiers";
 
     string public id;
     string public hash;
@@ -61,14 +59,14 @@ contract CertifiedFile is CertifiedFileInterface {
         uint notificationIndex = 0;
 
         do {
-            contractToNofify = userContract.getAddressArrayAttribute(NOTIFIERS_KEY, notificationIndex);
+            contractToNofify = userContract.getAddressArrayAttribute(CERTIFIED_FILE_NOTIFIERS_KEY, notificationIndex);
             ++notificationIndex;
 
             if (contractToNofify != address(0)) {
                 contractToNofify.call(
                     abi.encodeWithSignature(
-                        "notify(string,address)",
-                        CREATED_EVENT,
+                        "notify(uint256,address)",
+                        enumEvents.CERTIFIED_FILE_CREATED_EVENT,
                         address(this)
                     )
                 );

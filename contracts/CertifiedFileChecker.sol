@@ -7,12 +7,11 @@ Gas to deploy: 731.348
 import "./interfaces/CertifiedFileInterface.sol";
 import "./interfaces/CertifiedFileCheckerInterface.sol";
 import "./libraries/Utils.sol";
+import "./libraries/UsingConstants.sol";
 
 
-contract CertifiedFileChecker is CertifiedFileCheckerInterface {
+contract CertifiedFileChecker is CertifiedFileCheckerInterface, UsingConstants {
     address public signaturit;
-
-    string constant private CERTIFIED_FILE_CREATED_EVENT = "certified_file.contract.created";
 
     struct CertifiedFilesWithHash {
         bool exist;
@@ -78,12 +77,11 @@ contract CertifiedFileChecker is CertifiedFileCheckerInterface {
     }
 
     function notify(
-        string memory eventType,
+        uint receivedEventType,
         address certifiedFileAddress
     ) public signaturitOnly {
-        bytes32 bytes32eventType = Utils.keccak(eventType);
 
-        if (Utils.keccak(CERTIFIED_FILE_CREATED_EVENT) == bytes32eventType) {
+        if (uint(enumEvents.CERTIFIED_FILE_CREATED_EVENT) == receivedEventType) {
             CertifiedFileInterface cerfiedFile = CertifiedFileInterface(certifiedFileAddress);
             bytes32 hashConverted = Utils.keccak(cerfiedFile.hash());
 

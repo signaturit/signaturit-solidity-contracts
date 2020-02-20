@@ -19,8 +19,8 @@ contract('TimeLogger', async (accounts) => {
     const ownerAddress   = accounts[4];
 
     const clauseType = "timelogger";
-    const externalSource = "external";
-    const soliditySource = "solidity";
+    const externalSource = "External";
+    const soliditySource = "Solidity";
 
     const workerId = v4();
     const contractId = v4();

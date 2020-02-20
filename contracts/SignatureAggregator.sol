@@ -10,11 +10,9 @@ import "./Signature.sol";
 
 contract SignatureAggregator is
     NotifierInterface,
-    BaseAggregator
+    BaseAggregator,
+    UsingConstants
 {
-
-    string constant private SIGNATURE_CREATED_EVENT = "signature.contract.created";
-
     mapping (bytes32 => Signature) private signatures;
     
     bytes32[] private signatureIds;
@@ -50,11 +48,12 @@ contract SignatureAggregator is
         returns (address addr, bool more)
     {
         bool _more = index + 1 < signatureIds.length;
-        bytes32 signatureId = signatureIds[index];
-
-        if (address(signatures[signatureId]) != address(0)) {
+        if (
+            index < signatureIds.length &&
+            address(signatures[signatureIds[index]]) != address(0)
+        ) {
             return (
-                address(signatures[signatureId]),
+                address(signatures[signatureIds[index]]),
                 _more
             );
         }
@@ -74,15 +73,13 @@ contract SignatureAggregator is
     }
 
     function notify(
-        string memory eventType,
+        uint receivedEventType,
         address addr
     )
         public
         signaturitOnly
     {
-        bytes32 bytes32eventType = Utils.keccak(eventType);
-
-        if (Utils.keccak(SIGNATURE_CREATED_EVENT) == bytes32eventType) {
+        if (uint(enumEvents.SIGNATURE_CREATED_EVENT) == receivedEventType) {
             Signature signature = Signature(addr);
 
             bytes32 bytes32id = Utils.keccak(signature.id());

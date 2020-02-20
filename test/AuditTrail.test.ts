@@ -14,8 +14,6 @@ contract('AuditTrails', async (accounts) => {
     const signerAddress     = accounts[2];
     const invalidAddress    = accounts[3];
 
-    const FILE_NOTIFIERS_KEY = "file-notifiers";
-    const EVENT_NOTIFIERS_KEY = "event-notifiers";
     const DOCUMENT_NOTIFIERS_KEY = "document-notifiers";
 
     const nullAddress = '0x0000000000000000000000000000000000000000';
@@ -66,12 +64,7 @@ contract('AuditTrails', async (accounts) => {
     });
 
     it("Check if it's correctly subsribed to the user's smart contract", async () => {
-        const readAddressFromFile = await userContract.getAddressArrayAttribute(FILE_NOTIFIERS_KEY, 0);
-        const readAddressFromEvent = await userContract.getAddressArrayAttribute(EVENT_NOTIFIERS_KEY, 0);
         const readAddressFromDocument = await userContract.getAddressArrayAttribute(DOCUMENT_NOTIFIERS_KEY, 0);
-
-        assert.equal(readAddressFromFile, auditTrailsContract.address);
-        assert.equal(readAddressFromEvent, auditTrailsContract.address);
         assert.equal(readAddressFromDocument, auditTrailsContract.address);
     });
 
@@ -99,7 +92,12 @@ contract('AuditTrails', async (accounts) => {
 
         const documentAddress = await signatureContract.getDocument(documentId);
 
-        const readAudit = await auditTrailsContract.getAudit(requesterAddress, documentId);
+        const readAudit = await auditTrailsContract.getAudit(
+            documentId,
+            {
+                from: requesterAddress
+            }
+        );
 
         assert.equal(signatureContract.address, readAudit.signatureAddr);
         assert.equal(documentAddress, readAudit.documentAddr);
@@ -131,7 +129,12 @@ contract('AuditTrails', async (accounts) => {
         const documentAddress = await signatureContract.getDocument(documentId);
 
         try {
-            const readAudit = await auditTrailsContract.getAudit(signaturitAddress, documentId);
+            const readAudit = await auditTrailsContract.getAudit(
+                documentId,
+                {
+                    from: signaturitAddress
+                }
+            );
         }catch(error) {
             assert.include(
                 error.message,
@@ -181,46 +184,12 @@ contract('AuditTrails', async (accounts) => {
         const documentAddress = await signatureContract.getDocument(documentId);
         const fileAddress = await signatureContract.getFile(documentId);
 
-        const readAudit = await auditTrailsContract.getAudit(requesterAddress, documentId);
-
-        assert.equal(signatureContract.address, readAudit.signatureAddr);
-        assert.equal(documentAddress, readAudit.documentAddr);
-        assert.equal(requesterAddress, readAudit.requesterAddr);
-        assert.equal(fileAddress, readAudit.fileAddr);
-    });
-
-    it("Create a file on signature and expect this to create a document and a related audit trail", async () => {
-        const documentId = v4();
-        const createdAt = Date.now();
-        const fileId = v4();
-        const fileName = 'name';
-        const fileHash = 'hash';
-        const fileSize = 100;
-
-        await signatureContract.createFile(
+        const readAudit = await auditTrailsContract.getAudit(
             documentId,
-            fileId,
-            fileName,
-            fileHash,
-            createdAt,
-            fileSize,
             {
-                from: signaturitAddress
+                from: requesterAddress
             }
         );
-
-        await signatureContract.setDocumentOwner(
-            documentId,
-            signerAddress,
-            {
-                from: signaturitAddress
-            }
-        );
-
-        const documentAddress = await signatureContract.getDocument(documentId);
-        const fileAddress = await signatureContract.getFile(documentId);
-
-        const readAudit = await auditTrailsContract.getAudit(requesterAddress, documentId);
 
         assert.equal(signatureContract.address, readAudit.signatureAddr);
         assert.equal(documentAddress, readAudit.documentAddr);
@@ -279,15 +248,28 @@ contract('AuditTrails', async (accounts) => {
         const readEventCreatedAt = await eventContract.createdAt();
         const readEventParent = await eventContract.parent();
 
-        const readAudit = await auditTrailsContract.getAudit(requesterAddress, documentId);
+        const documentSignedAt = await documentContract.signedAt();
 
-        const readEventInAudit = await auditTrailsContract.getEventInAudit(0, requesterAddress, documentId);
+        const readAudit = await auditTrailsContract.getAudit(
+            documentId,
+            {
+                from: requesterAddress
+            }
+        );
+
+        const readEventInAudit = await auditTrailsContract.getEventInAudit(
+            0, 
+            documentId,
+            {
+                from: requesterAddress
+            }
+        );
 
         assert.equal(signatureContract.address, readAudit.signatureAddr);
         assert.equal(documentAddress, readAudit.documentAddr);
         assert.equal(requesterAddress, readAudit.requesterAddr);
         assert.equal(readSignerAddress, readAudit.signerAddr);
-        assert.equal(createdAt, readAudit.terminatedAt);
+        assert.equal(documentSignedAt.toNumber(), readAudit.terminatedAt);
         assert.equal(1, readAudit.eventsLength);
         assert.equal(eventId, readEventId);
         assert.equal(readEventId, readEventInAudit.id);
@@ -298,64 +280,5 @@ contract('AuditTrails', async (accounts) => {
         assert.equal(readEventCreatedAt, createdAt);
         assert.equal(readEventCreatedAt.toNumber(), readEventInAudit.createdAt.toNumber());
         assert.equal(readEventParent, documentAddress);
-    });
-
-
-    it("Create an event on signature and expect this to create first a document and then an audit trail, also retrieve the event from AuditTrails contract", async () => {
-        const documentId = v4();
-        const createdAt = Date.now();
-        const eventId = v4();
-        const eventType = 'document.contract.signed';
-        const eventUserAgent = 'userAgent';
-
-        await signatureContract.createEvent(
-            documentId,
-            eventId,
-            eventType,
-            eventUserAgent,
-            createdAt,
-            {
-                from: signaturitAddress
-            }
-        );
-
-        await signatureContract.setDocumentOwner(
-            documentId,
-            signerAddress,
-            {
-                from: signaturitAddress
-            }
-        );
-
-        const documentAddress = await signatureContract.getDocument(documentId);
-
-        const eventAddress = await signatureContract.getEvent(documentId, eventId);
-
-        const eventContract = await ArtifactEvent.at(eventAddress);
-
-        const readEventId = await eventContract.id();
-        const readEventType = await eventContract.eventType();
-        const readEventUserAgent = await eventContract.userAgent();
-        const readEventCreatedAt = await eventContract.createdAt();
-        const readEventParent = await eventContract.parent();
-
-        const readAudit = await auditTrailsContract.getAudit(requesterAddress, documentId);
-
-        const readEventInAudit = await auditTrailsContract.getEventInAudit(0, requesterAddress, documentId);
-
-        assert.equal(signatureContract.address, readAudit.signatureAddr);
-        assert.equal(documentAddress, readAudit.documentAddr);
-        assert.equal(requesterAddress, readAudit.requesterAddr);
-        assert.equal(1, readAudit.eventsLength);
-        assert.equal(eventId, readEventId);
-        assert.equal(readEventId, readEventInAudit.id);
-        assert.equal(eventType, readEventType);
-        assert.equal(readEventType, readEventInAudit.eventType);
-        assert.equal(eventUserAgent, readEventUserAgent);
-        assert.equal(readEventUserAgent, readEventInAudit.userAgent);
-        assert.equal(readEventCreatedAt, createdAt);
-        assert.equal(readEventCreatedAt.toNumber(), readEventInAudit.createdAt.toNumber());
-        assert.equal(readEventParent, documentAddress);
-
     });
 })
