@@ -24,16 +24,13 @@ contract('CertifiedEmailAggregator', async (accounts) => {
         CERTIFIED_FILE_CREATED_EVENT: 1,
         EVENT_CREATED_EVENT: 2,
         DOCUMENT_CREATED_EVENT: 3,
-        DOCUMENT_SIGNED_EVENT: 4,
-        DOCUMENT_DECLINED_EVENT: 5,
-        DOCUMENT_CANCELED_EVENT: 6,
-        CERTIFICATE_CREATED_EVENT: 7,
-        SIGNATURE_CREATED_EVENT: 8,
-        CERTIFIED_EMAIL_CREATED_EVENT: 9,
-        TIMELOGGER_CLAUSE_CREATED: 10,
-        TIMELOG_ADDED_EVENT: 11,
-        PAYMENT_CLAUSE_CREATED: 12,
-        PAYMENT_CHECK_ADDED_EVENT: 13
+        CERTIFICATE_CREATED_EVENT: 4,
+        SIGNATURE_CREATED_EVENT: 5,
+        CERTIFIED_EMAIL_CREATED_EVENT: 6,
+        TIMELOGGER_CLAUSE_CREATED: 7,
+        TIMELOG_ADDED_EVENT: 8,
+        PAYMENT_CLAUSE_CREATED: 9,
+        PAYMENT_CHECK_ADDED_EVENT: 10
     };
 
     let certifiedEmailAggregatorContract;
@@ -181,28 +178,6 @@ contract('CertifiedEmailAggregator', async (accounts) => {
 
         assert.equal(certifiedEmailByIndex.addr, nullAddress);
         assert.equal(certifiedEmailByIndex.more, false);
-    });
-
-    it("Create certifiedEmail from invalid user and try to notify", async () => {
-        const certifiedEmailContract = await ArtifactCertifiedEmail.new(
-            certifiedEmailId,
-            certifiedEmailSubjectHash,
-            certifiedEmailBodyHash,
-            certifiedEmailDeliveryType,
-            certifiedEmailCreatedAt,
-            deployerAddress,
-            ownerAddress,
-            userContract.address
-        );
-
-        try {
-            await certifiedEmailContract.notifyEntityEvent("certified-email-notifiers", enumEvents.CERTIFIED_EMAIL_CREATED_EVENT, certifiedEmailContract.address);
-        } catch(error) {
-            assert.include(
-                error.message,
-                "Only Signaturit account can perform this action"
-            )
-        }
     });
 
     it("Create two certifiedEmail on user with certifiedEmail aggregator", async () => {

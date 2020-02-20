@@ -19,6 +19,11 @@ contract Document is DocumentInterface, UsingConstants {
     string constant private ID_DOCUMENT_DECLINED = "id_document_declined";
     string constant private ID_DOCUMENT_CANCELED = "id_document_canceled";
 
+    string constant private DOCUMENT_SIGNED_EVENT = "document_signed";
+    string constant private DOCUMENT_DECLINED_EVENT = "document_declined";
+    string constant private DOCUMENT_CANCELED_EVENT = "document_canceled";
+    string constant private SIGNED_FILE_HASH_EVENT = "file_signed_hash";
+
     address public signature;
     address public signer;
     address public deployer;
@@ -117,7 +122,7 @@ contract Document is DocumentInterface, UsingConstants {
             
         createEvent(
             ID_DOCUMENT_SIGNED,
-            "document-signed",
+            DOCUMENT_SIGNED_EVENT,
             SOLIDITY_SOURCE,
             block.timestamp
         );
@@ -140,7 +145,7 @@ contract Document is DocumentInterface, UsingConstants {
 
         createEvent(
             ID_DOCUMENT_DECLINED,
-            "document-declined",
+            DOCUMENT_DECLINED_EVENT,
             SOLIDITY_SOURCE,
             block.timestamp
         );
@@ -163,7 +168,7 @@ contract Document is DocumentInterface, UsingConstants {
 
         createEvent(
             ID_DOCUMENT_CANCELED,
-            "document-canceled",
+            DOCUMENT_CANCELED_EVENT,
             SOLIDITY_SOURCE,
             block.timestamp
         );
@@ -213,7 +218,7 @@ contract Document is DocumentInterface, UsingConstants {
 
         createEvent(
             ID_FILE_SIGNED_HASH,
-            "file-signed-hash",
+            SIGNED_FILE_HASH_EVENT,
             SOLIDITY_SOURCE,
             block.timestamp
         );
