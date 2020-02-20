@@ -1,7 +1,7 @@
 pragma solidity <0.6.0;
 
 /*
-Gas to deploy: 381.267
+Gas to deploy: 422.365
 */
 
 import "./interfaces/EventInterface.sol";

@@ -1,12 +1,10 @@
 pragma solidity <0.6.0;
 
 /*
-Gas to deploy: 2.707.646
+Gas to deploy: 2.383.619
 */
 
 import "./interfaces/CertifiedEmailInterface.sol";
-import "./interfaces/FileInterface.sol";
-import "./interfaces/EventInterface.sol";
 
 import "./libraries/Utils.sol";
 import "./libraries/UsingConstants.sol";

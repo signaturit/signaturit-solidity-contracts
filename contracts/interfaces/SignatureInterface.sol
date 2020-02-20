@@ -55,6 +55,12 @@ contract SignatureInterface {
     )
         public;
 
+    function signDocument (
+        string memory documentId,
+        uint signedAt
+    )
+        public;
+
     function createFile(
         string memory documentId,
         string memory fileId,

@@ -158,6 +158,20 @@ contract('Document', async (accounts) => {
         assert.isTrue(readDocumentSigned);
     });
 
+    it("Sign a document from Signaturit", async () => {
+        await signatureContract.signDocument(
+            documentId,
+            signedAt,
+            {
+                from: signaturitAddress
+            }
+        );
+
+        const readDocumentSigned = await documentContract.signed();
+
+        assert.isTrue(readDocumentSigned);
+    });
+
     it("Cancel a document", async () => {
         await signatureContract.cancelDocument(
             documentId,

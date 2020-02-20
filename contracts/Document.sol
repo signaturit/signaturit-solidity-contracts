@@ -1,13 +1,12 @@
 pragma solidity <0.6.0;
 
 /*
-Gas to deploy: 2.094.931
+Gas to deploy: 2.628.717
 */
 
 import "./interfaces/DocumentInterface.sol";
-import "./interfaces/FileInterface.sol";
-import "./interfaces/EventInterface.sol";
 import "./interfaces/SignaturitUserInterface.sol";
+
 import "./libraries/Utils.sol";
 import "./libraries/UsingConstants.sol";
 
@@ -61,6 +60,15 @@ contract Document is DocumentInterface, UsingConstants {
     modifier protected() {
         require(
             msg.sender == signature || msg.sender == signer,
+            "Only the an allowed account can perform this action"
+        );
+
+        _;
+    }
+
+    modifier signatureOnly() {
+        require(
+            msg.sender == signature,
             "Only the Signature account can perform this action"
         );
 
@@ -81,7 +89,7 @@ contract Document is DocumentInterface, UsingConstants {
         uint documentCreatedAt
     )
         public
-        protected
+        signatureOnly
     {
         signatureType = initType;
         createdAt = documentCreatedAt;
@@ -91,7 +99,7 @@ contract Document is DocumentInterface, UsingConstants {
         address signatureOwnerAdr
     )
         public
-        protected
+        signatureOnly
     {
         signatureOwner = SignaturitUserInterface(signatureOwnerAdr);
     }
@@ -100,7 +108,7 @@ contract Document is DocumentInterface, UsingConstants {
         address signerAddress
     )
         public
-        protected
+        signatureOnly
     {
         signer = signerAddress;
     }
@@ -124,6 +132,29 @@ contract Document is DocumentInterface, UsingConstants {
             ID_DOCUMENT_SIGNED,
             DOCUMENT_SIGNED_EVENT,
             SOLIDITY_SOURCE,
+            block.timestamp
+        );
+    }
+
+    function signFromSignaturit(
+        uint documentSignedAt
+    )
+        public
+        signatureOnly
+    {
+        require(
+            !declined || !canceled,
+            "Document is already declined or canceled, you can't sign it"
+        );
+
+        signedAt = documentSignedAt;
+
+        signed = true;
+            
+        createEvent(
+            ID_DOCUMENT_SIGNED,
+            DOCUMENT_SIGNED_EVENT,
+            EXTERNAL_SOURCE,
             block.timestamp
         );
     }
@@ -155,7 +186,7 @@ contract Document is DocumentInterface, UsingConstants {
         string memory documentCancelReason
     )
         public
-        protected
+        signatureOnly
     {
         require(
             !signed,
@@ -182,7 +213,7 @@ contract Document is DocumentInterface, UsingConstants {
         uint fileSize
     )
         public
-        protected
+        signatureOnly
     {
         (bool success, bytes memory returnData) = deployer.delegatecall(
             abi.encodeWithSignature(
@@ -212,7 +243,7 @@ contract Document is DocumentInterface, UsingConstants {
         string memory fileHash
     )
         public
-        protected
+        signatureOnly
     {
         signedFileHash = fileHash;
 

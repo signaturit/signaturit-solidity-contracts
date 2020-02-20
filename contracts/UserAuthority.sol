@@ -3,7 +3,7 @@ pragma solidity <0.6.0;
 import "./libraries/Utils.sol";
 
 /*
-Gas to deploy: 880.108
+Gas to deploy: 907.423
 */
 
 contract UserAuthority {

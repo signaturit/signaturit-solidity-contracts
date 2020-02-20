@@ -1,11 +1,10 @@
 pragma solidity <0.6.0;
 
 /*
-Gas to deploy: 747.382
+Gas to deploy: 706.475
 */
 
 import "./interfaces/CertifiedFileInterface.sol";
-import "./interfaces/SignaturitUserInterface.sol";
 
 import "./libraries/UsingConstants.sol";
 

@@ -1,12 +1,11 @@
 pragma solidity <0.6.0;
 
 /*
-Gas to deploy: 784.355
+Gas to deploy: 745.108
 */
 
-import "./interfaces/NotifierInterface.sol";
-import "./BaseAggregator.sol";
 import "./Signature.sol";
+import "./BaseAggregator.sol";
 
 contract SignatureAggregator is
     NotifierInterface,
