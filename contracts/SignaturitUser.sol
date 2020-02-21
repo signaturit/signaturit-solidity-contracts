@@ -4,7 +4,7 @@ import "./interfaces/SignaturitUserInterface.sol";
 import "./libraries/Utils.sol";
 
 /*
-Gas to deploy: 2.896.394
+Gas to deploy: 2.895.986
 */
 
 contract SignaturitUser is SignaturitUserInterface {
@@ -20,6 +20,8 @@ contract SignaturitUser is SignaturitUserInterface {
     mapping (bytes32 => bool) private boolAttr;
     mapping (bytes32 => bool[]) private boolArrayAttr;
 
+    mapping(bytes32 => mapping(address => bool)) private mappingAddressBool;
+
     constructor (
         address _ownerAddress
     ) public {
@@ -34,6 +36,32 @@ contract SignaturitUser is SignaturitUserInterface {
         );
 
         _;
+    }
+
+    function setMappingAddressBool(
+        string memory key,
+        address adr,
+        bool value
+    )
+        public
+        protected
+    {
+        bytes32 bytes32key = Utils.keccak(key);
+
+        mappingAddressBool[bytes32key][adr] = value;
+    }
+
+    function getMappingAddressBool(
+        string memory key,
+        address adr
+    )
+        public
+        view
+        returns(bool)
+    {
+        bytes32 bytes32key = Utils.keccak(key);
+
+        return mappingAddressBool[bytes32key][adr];
     }
 
     function setStringAttribute (
