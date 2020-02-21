@@ -119,8 +119,9 @@ contract Document is DocumentInterface, UsingConstants {
         public
         signerOnly
     {
+
         require(
-            !declined || !canceled,
+            !declined && !canceled,
             "Document is already declined or canceled, you can't sign it"
         );
 
@@ -143,7 +144,7 @@ contract Document is DocumentInterface, UsingConstants {
         signatureOnly
     {
         require(
-            !declined || !canceled,
+            !declined && !canceled,
             "Document is already declined or canceled, you can't sign it"
         );
 

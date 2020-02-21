@@ -259,10 +259,11 @@ contract('Document', async (accounts) => {
                 }
             );
 
+            assert.fail("It should have thrown");
         } catch (error) {
             assert.include(
-                'Returned error: VM Exception while processing transaction: revert',
                 error.message,
+                'Document is already declined or canceled'
             )
         }
     });
@@ -311,10 +312,11 @@ contract('Document', async (accounts) => {
                 }
             );
 
+            assert.fail("It should have thrown");
         } catch (error) {
             assert.include(
-                'Returned error: VM Exception while processing transaction: revert',
-                error.message
+                error.message,
+                'Document is already declined or canceled'
             )
         }
     });
