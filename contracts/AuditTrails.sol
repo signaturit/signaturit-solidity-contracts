@@ -34,7 +34,7 @@ contract AuditTrails is UsingConstants {
 
     modifier onlyRoot() {
         require(
-            rootAddresses[msg.sender] == true,
+            rootAddresses[msg.sender],
             "Only an admitted root address can call this function"
         );
 
