@@ -11,23 +11,21 @@ import "./interfaces/SignatureInterface.sol";
 
 contract AuditTrails is UsingConstants {
 
-    mapping(address => bool) rootAddresses;
     
     struct AuditTrail {
         address signatureAddress;
     }
 
     mapping(address => mapping(string => AuditTrail)) private requesterAuditTrails;
-    mapping(address => mapping(address => bool)) private admittedNotifiers;
+    mapping(address => bool) private rootAddresses;
 
     constructor() public {
         rootAddresses[msg.sender] = true;
     }
 
-    modifier onlyNotifier(address requesterAddress) {
+    modifier onlyNotifier(address requesterSmartContract) {
         require(
-            rootAddresses[msg.sender] == true ||
-            admittedNotifiers[requesterAddress][msg.sender] == true,
+            _validAddress(requesterSmartContract),
             "Only an admitted notifier can call this function"
         );
 
@@ -44,16 +42,18 @@ contract AuditTrails is UsingConstants {
     }
 
     function subscribe(
-        address requesterSmartContract
+        address requesterSmartContract,
+        address signaturitUserManager
     )
         public
         onlyRoot
     {
         SignaturitUserInterface tmpUser = SignaturitUserInterface(requesterSmartContract);
 
-        admittedNotifiers[tmpUser.ownerAddress()][msg.sender] = true;
-
         tmpUser.setAddressArrayAttribute(DOCUMENT_NOTIFIERS_KEY, address(this));
+
+        tmpUser.setMappingAddressBool(VALIDATED_NOTIFIERS_KEY, msg.sender, true);
+        tmpUser.setMappingAddressBool(VALIDATED_NOTIFIERS_KEY, signaturitUserManager, true);
     }
 
     function addRoot(
@@ -66,13 +66,15 @@ contract AuditTrails is UsingConstants {
     }
 
     function setNotifier(
-        address requesterAddress,
+        address requesterSmartContract,
         address notifier
     )
         public
-        onlyNotifier(requesterAddress)
+        onlyNotifier(requesterSmartContract)
     {
-        admittedNotifiers[requesterAddress][notifier] = true;
+        SignaturitUserInterface tmpUser = SignaturitUserInterface(requesterSmartContract);
+
+        tmpUser.setMappingAddressBool(VALIDATED_NOTIFIERS_KEY, notifier, true);
     }
 
     function getAudit(
@@ -188,15 +190,10 @@ contract AuditTrails is UsingConstants {
         );
     }
 
-    function _validAddress(address userSmartContract) internal view returns(bool){
-        bool result = false;
+    function _validAddress(address userSmartContract) internal view returns(bool) {
 
         SignaturitUserInterface userContract = SignaturitUserInterface(userSmartContract);
 
-        if (admittedNotifiers[userContract.ownerAddress()][tx.origin]) {
-            result = true;
-        }
-
-        return result;
+        return userContract.getMappingAddressBool(VALIDATED_NOTIFIERS_KEY, tx.origin);
     }
 }
