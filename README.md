@@ -104,7 +104,7 @@ One of this is deployed for each user and with our SDK you can subscribe to the 
 
 This smart contract is intended to build evidences (AuditTrail) of each signature request. It is a unique smart contract for all the users and all the signature requests they create. The contract is deployed before every other contracts and everytime a new user is created the `subscribe` function must be called in order for the contract to be able to track all the signature requests. It has no public parameters but just a function to get an audit from a `documentId` and an user or to get an event related to it.
 
-The `subscribe` function is restricted to be called by a `rootAddress` (at deploy time only the `msg.sender` of the deploy). `rootAddresses` can be added with the `addRoot` function. Inside the `subscribe` function bot the `msg.sender` and the `signaturitUserManager` are set as valid notifiers for this user. If in any case one of the valid notifiers account is lost, the remaining ones can call the `setNotifier` function to set someone else as valid notifier.
+The `subscribe` function is restricted to be called by a `rootAddress` (at deploy time only the `msg.sender` of the deploy). `rootAddresses` can be added with the `addRoot` function. Inside the `subscribe` function both the `msg.sender` and the `signaturitUserManager` are set as valid notifiers for this user. If in any case one of the valid notifiers account is lost, the remaining ones can call the `setNotifier` function to set someone else as valid notifier.
 
 | Parameter | Type | Hashed ? |
 | ------------- | ------------- | ------------- |
