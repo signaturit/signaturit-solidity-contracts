@@ -80,25 +80,12 @@ contract UserEvents is NotifierInterface, UsingConstants {
     }
 
     function validAddress() internal view returns(bool){
-        address checkedAddress;
-        uint notificationIndex = 0;
         bool result = false;
 
-        if (tx.origin == signaturit) {
+        if (tx.origin == signaturit ||
+            userContract.getMappingAddressBool(VALIDATED_NOTIFIERS_KEY, tx.origin)
+        ) {
             result = true;
-
-        } else {
-            do {
-                checkedAddress = userContract.getAddressArrayAttribute(VALIDATED_NOTIFIERS_KEY, notificationIndex);
-
-                if (checkedAddress == tx.origin) {
-                    result = true;
-
-                    checkedAddress = address(0);
-                }
-
-                ++notificationIndex;
-            } while (checkedAddress != address(0));
         }
 
         return result;

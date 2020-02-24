@@ -17,11 +17,8 @@ contract AuditTrails is UsingConstants {
     }
 
     mapping(address => mapping(string => AuditTrail)) private requesterAuditTrails;
-    mapping(address => bool) private rootAddresses;
 
-    constructor() public {
-        rootAddresses[msg.sender] = true;
-    }
+    constructor() public {}
 
     modifier onlyNotifier(address requesterSmartContract) {
         require(
@@ -32,37 +29,16 @@ contract AuditTrails is UsingConstants {
         _;
     }
 
-    modifier onlyRoot() {
-        require(
-            rootAddresses[msg.sender],
-            "Only an admitted root address can call this function"
-        );
-
-        _;
-    }
-
     function subscribe(
         address requesterSmartContract,
         address signaturitUserManager
     )
         public
-        onlyRoot
+        onlyNotifier(requesterSmartContract)
     {
         SignaturitUserInterface tmpUser = SignaturitUserInterface(requesterSmartContract);
 
         tmpUser.setAddressArrayAttribute(DOCUMENT_NOTIFIERS_KEY, address(this));
-
-        tmpUser.setMappingAddressBool(VALIDATED_NOTIFIERS_KEY, msg.sender, true);
-        tmpUser.setMappingAddressBool(VALIDATED_NOTIFIERS_KEY, signaturitUserManager, true);
-    }
-
-    function addRoot(
-        address newRoot
-    )
-        public
-        onlyRoot
-    {
-        rootAddresses[newRoot] = true;
     }
 
     function setNotifier(
