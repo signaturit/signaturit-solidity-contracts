@@ -30,8 +30,7 @@ contract AuditTrails is UsingConstants {
     }
 
     function subscribe(
-        address requesterSmartContract,
-        address signaturitUserManager
+        address requesterSmartContract
     )
         public
         onlyNotifier(requesterSmartContract)
