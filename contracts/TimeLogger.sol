@@ -66,8 +66,8 @@ contract TimeLogger is UsingConstants, Clause(
         ownerContract = SignaturitUserInterface(ownerContractAddress);
         signatureContract = NotifierInterface(signatureContractAddress);
 
-        userContract.setAddressArrayAttribute(VALIDATED_NOTIFIERS_KEY, userContract.ownerAddress());
-        userContract.setAddressArrayAttribute(VALIDATED_NOTIFIERS_KEY, ownerContract.ownerAddress());
+        userContract.setMappingAddressBool(VALIDATED_NOTIFIERS_KEY, userContract.ownerAddress(), true);
+        userContract.setMappingAddressBool(VALIDATED_NOTIFIERS_KEY, ownerContract.ownerAddress(), true);
 
         _notifySignature(uint(enumEvents.TIMELOGGER_CLAUSE_CREATED));
     }

@@ -2,12 +2,13 @@ pragma solidity <0.6.0;
 
 import "./interfaces/SignaturitUserInterface.sol";
 import "./libraries/Utils.sol";
+import "./libraries/UsingConstants.sol";
 
 /*
 Gas to deploy: 2.895.986
 */
 
-contract SignaturitUser is SignaturitUserInterface {
+contract SignaturitUser is SignaturitUserInterface, UsingConstants {
     address public rootAddress;
     address public ownerAddress;
 
@@ -27,11 +28,13 @@ contract SignaturitUser is SignaturitUserInterface {
     ) public {
         rootAddress = msg.sender;
         ownerAddress = _ownerAddress;
+        setMappingAddressBool(VALIDATED_NOTIFIERS_KEY, rootAddress, true);
+        setMappingAddressBool(VALIDATED_NOTIFIERS_KEY, ownerAddress, true);
     }
 
     modifier protected() {
         require(
-            tx.origin == rootAddress,
+            tx.origin == rootAddress || getMappingAddressBool(VALIDATED_NOTIFIERS_KEY, tx.origin),
             "Only the owner can perform this action"
         );
 

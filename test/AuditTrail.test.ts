@@ -71,7 +71,7 @@ contract('AuditTrails', async (accounts) => {
         assert.equal(readAddressFromDocument, auditTrailsContract.address);
     });
 
-    it("Try to subscribe from not rootAddress, expect exception", async () => {
+    it("Try to subscribe from not valid notifier, expect exception", async () => {
         try {
             await auditTrailsContract.subscribe(userContract.address, requesterManager, {from: invalidAddress});
 
@@ -79,17 +79,17 @@ contract('AuditTrails', async (accounts) => {
         } catch(error) {
             assert.include(
                 error.message,
-                "Only an admitted root address can call this function"
+                "Only an admitted notifier can call this function"
             )
         }
     });
 
-    it("Try to subscribe from rootAddress", async () => {
+    it("Try to subscribe from valid notifier", async () => {
         const tx = await auditTrailsContract.subscribe(userContract.address, requesterManager, {from: signaturitAddress});
         assert.equal(true, tx.receipt.status);
     });
 
-    it("Try to addNotifier from not admitted notifier, expect exception", async () => {
+    it("Try to addNotifier from not valid notifier, expect exception", async () => {
         try {
             await auditTrailsContract.setNotifier(userContract.address, addedNotifier, {from: invalidAddress});
         } catch(error) {
@@ -100,27 +100,10 @@ contract('AuditTrails', async (accounts) => {
         }
     });
 
-    it("Try to addNotifier from rootAddress", async () => {
+    it("Try to addNotifier from valid notifier", async () => {
         const tx = await auditTrailsContract.setNotifier(userContract.address, addedNotifier, {from: signaturitAddress});
 
         assert.equal(true, tx.receipt.status);
-    });
-
-    it("Try to addRoot from rootAddress", async () => {
-        const tx = await auditTrailsContract.addRoot(addedRoot, {from: signaturitAddress});
-
-        assert.equal(true, tx.receipt.status);
-    });
-
-    it("Try to addRoot from non root", async () => {
-        try {
-            await auditTrailsContract.addRoot(addedRoot, {from: invalidAddress});
-        } catch(error) {
-            assert.include(
-                error.message,
-                "Only an admitted root address can call this function"
-            )
-        }
     });
 
     it("Create a document on signature and expect this to create an audit trail", async () => {
