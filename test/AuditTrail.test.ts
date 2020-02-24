@@ -42,7 +42,7 @@ contract('AuditTrails', async (accounts) => {
 
         auditTrailsContract = await ArtifactAuditTrails.new({from: signaturitAddress});
 
-        await auditTrailsContract.subscribe(userContract.address, requesterManager, {from: signaturitAddress});
+        await auditTrailsContract.subscribe(userContract.address, {from: signaturitAddress});
 
         signatureContract = await ArtifactSignature.new(
             signatureId,
@@ -73,7 +73,7 @@ contract('AuditTrails', async (accounts) => {
 
     it("Try to subscribe from not valid notifier, expect exception", async () => {
         try {
-            await auditTrailsContract.subscribe(userContract.address, requesterManager, {from: invalidAddress});
+            await auditTrailsContract.subscribe(userContract.address, {from: invalidAddress});
 
             assert.fail("It should have thrown")
         } catch(error) {
@@ -85,7 +85,7 @@ contract('AuditTrails', async (accounts) => {
     });
 
     it("Try to subscribe from valid notifier", async () => {
-        const tx = await auditTrailsContract.subscribe(userContract.address, requesterManager, {from: signaturitAddress});
+        const tx = await auditTrailsContract.subscribe(userContract.address, {from: signaturitAddress});
         assert.equal(true, tx.receipt.status);
     });
 
