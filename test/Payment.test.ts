@@ -1,6 +1,3 @@
-var truffleAssert = require('truffle-assertions');
-var truffleEvent  = require('truffle-events');
-
 contract('Payment', async (accounts) => {
     const ArtifactUser      = artifacts.require('SignaturitUser');
     const ArtifactPayment   = artifacts.require('Payment');
@@ -107,8 +104,10 @@ contract('Payment', async (accounts) => {
         );
 
         const readReceiverId = await paymentContract.receiversArray(0);
+        const receiversCount = await paymentContract.getReceiversSize();
 
         assert.equal(readReceiverId, receiverId);
+        assert.equal(receiversCount.toNumber(), 1);
     });
 
     it('Add two receivers, call getters and check correctness', async () => {

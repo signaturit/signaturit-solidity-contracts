@@ -51,7 +51,7 @@ contract DocumentInterface {
 
     function notifyEntityEvent(
         string memory notifiersKey,
-        string memory createdEvent,
+        uint createdEvent,
         address adrToNotify
     )
         internal;

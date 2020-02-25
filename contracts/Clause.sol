@@ -3,7 +3,6 @@ pragma solidity <0.6.0;
 import "./interfaces/SignaturitUserInterface.sol";
 import "./interfaces/NotifierInterface.sol";
 
-
 contract Clause {
     string public notifiersKey;
 
@@ -24,7 +23,7 @@ contract Clause {
         notifiersKey = notifiers;
     }
 
-    function _notifySignature(string memory creationEvent)
+    function _notifySignature(uint creationEvent)
         internal
     {
         signatureContract.notify(
@@ -33,7 +32,7 @@ contract Clause {
         );
     }
 
-    function _notify(string memory eventType)
+    function _notify(uint eventType)
         internal
     {
         address contractToNofify;
@@ -46,7 +45,7 @@ contract Clause {
             if (contractToNofify != address(0)) {
                 contractToNofify.call(
                     abi.encodeWithSignature(
-                        "notify(string,address)",
+                        "notify(uint256,address)",
                         eventType,
                         address(this)
                     )

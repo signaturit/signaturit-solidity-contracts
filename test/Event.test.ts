@@ -33,8 +33,10 @@ contract('Event', async (accounts) => {
         const readEventType = await eventContract.eventType();
         const readUserAgent = await eventContract.userAgent();
         const readEventDate = await eventContract.createdAt();
+        const readEventParent = await eventContract.parent();
 
         assert.equal(readEventId, eventId);
+        assert.equal(readEventParent, signaturitAddress);
         assert.equal(readEventType, eventType);
         assert.equal(readUserAgent, userAgent);
         assert.equal(readEventDate, createdAt);

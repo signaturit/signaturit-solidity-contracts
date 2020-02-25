@@ -20,6 +20,20 @@ contract('CertifiedFileChecker', async (accounts) => {
     const fileSize = 123;
     const fileDate = Date.now();
 
+    const enumEvents = {
+        FILE_CREATED_EVENT: 0,
+        CERTIFIED_FILE_CREATED_EVENT: 1,
+        EVENT_CREATED_EVENT: 2,
+        DOCUMENT_CREATED_EVENT: 3,
+        CERTIFICATE_CREATED_EVENT: 4,
+        SIGNATURE_CREATED_EVENT: 5,
+        CERTIFIED_EMAIL_CREATED_EVENT: 6,
+        TIMELOGGER_CLAUSE_CREATED: 7,
+        TIMELOG_ADDED_EVENT: 8,
+        PAYMENT_CLAUSE_CREATED: 9,
+        PAYMENT_CHECK_ADDED_EVENT: 10
+    };
+
     beforeEach(async () => {
         userContract = await ArtifactUser.new(
             ownerAddress,
@@ -53,7 +67,7 @@ contract('CertifiedFileChecker', async (accounts) => {
 
     it('Add file to the certified file checker', async () => {
         await certifiedFileChecker.notify(
-            "certified_file.contract.created",
+            enumEvents.CERTIFIED_FILE_CREATED_EVENT,
             fileContract.address, {
             from: signaturitAddress
         });
@@ -62,7 +76,7 @@ contract('CertifiedFileChecker', async (accounts) => {
     it('Try to add a certified file from other account than signaturit', async () => {
         try {
             await certifiedFileChecker.notify(
-                "certified_file.contract.created",
+                enumEvents.CERTIFIED_FILE_CREATED_EVENT,
                 fileContract.address, {
                 from: ownerAddress
             });
@@ -76,7 +90,7 @@ contract('CertifiedFileChecker', async (accounts) => {
 
     it('Retrieve data from the certified file checker of existent file', async () => {
         await certifiedFileChecker.notify(
-            "certified_file.contract.created",
+            enumEvents.CERTIFIED_FILE_CREATED_EVENT,
             fileContract.address, {
             from: signaturitAddress
         });
@@ -93,7 +107,7 @@ contract('CertifiedFileChecker', async (accounts) => {
 
     it('Access to non defined index', async () => {
         await certifiedFileChecker.notify(
-            "certified_file.contract.created",
+            enumEvents.CERTIFIED_FILE_CREATED_EVENT,
             fileContract.address, {
             from: signaturitAddress
         });
@@ -110,7 +124,7 @@ contract('CertifiedFileChecker', async (accounts) => {
 
     it('Access to non created certified file', async () => {
         await certifiedFileChecker.notify(
-            "certified_file.contract.created",
+            enumEvents.CERTIFIED_FILE_CREATED_EVENT,
             fileContract.address, {
             from: signaturitAddress
         });
@@ -132,7 +146,7 @@ contract('CertifiedFileChecker', async (accounts) => {
         const secondFileDate = Date.now();
 
         await certifiedFileChecker.notify(
-            "certified_file.contract.created",
+            enumEvents.CERTIFIED_FILE_CREATED_EVENT,
             fileContract.address, {
             from: signaturitAddress
         });
@@ -150,7 +164,7 @@ contract('CertifiedFileChecker', async (accounts) => {
         );
 
         await certifiedFileChecker.notify(
-            "certified_file.contract.created",
+            enumEvents.CERTIFIED_FILE_CREATED_EVENT,
             fileContract2.address, {
             from: signaturitAddress
         });

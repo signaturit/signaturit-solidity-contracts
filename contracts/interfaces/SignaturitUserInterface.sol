@@ -4,14 +4,29 @@ contract SignaturitUserInterface {
     address public rootAddress;
     address public ownerAddress;
 
-    mapping (bytes32 => string) public stringAttr;
+    mapping (bytes32 => string) private stringAttr;
     mapping (bytes32 => string[]) private stringArrayAttr;
-    mapping (bytes32 => int) public numberAttr;
-    mapping (bytes32 => int[]) public numberArrayAttr;
-    mapping (bytes32 => address) public addressAttr;
-    mapping (bytes32 => address[]) public addressArrayAttr;
-    mapping (bytes32 => bool) public boolAttr;
-    mapping (bytes32 => bool[]) public boolArrayAttr;
+    mapping (bytes32 => int) private numberAttr;
+    mapping (bytes32 => int[]) private numberArrayAttr;
+    mapping (bytes32 => address) private addressAttr;
+    mapping (bytes32 => address[]) private addressArrayAttr;
+    mapping (bytes32 => bool) private boolAttr;
+    mapping (bytes32 => bool[]) private boolArrayAttr;
+
+    mapping(bytes32 => mapping(address => bool)) private mappingAddressBool;
+
+    function setMappingAddressBool(
+        string memory key,
+        address adr,
+        bool value
+    )
+        public;
+
+    function getMappingAddressBool(
+        string memory key,
+        address adr
+    )
+        public view returns(bool);
 
     function setStringAttribute (
         string memory key,

@@ -4,7 +4,7 @@ pragma solidity <0.6.0;
 contract NotifierInterface {
 
 function notify(
-        string memory attribute,
+        uint attribute,
         address adr
     )
         public;

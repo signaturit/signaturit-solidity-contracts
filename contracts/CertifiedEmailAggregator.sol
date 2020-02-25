@@ -4,16 +4,18 @@ pragma solidity <0.6.0;
 Gas to deploy: 785.507
 */
 
+import "./libraries/UsingConstants.sol";
+
 import "./interfaces/NotifierInterface.sol";
+
 import "./BaseAggregator.sol";
 import "./CertifiedEmail.sol";
 
 contract CertifiedEmailAggregator is
     NotifierInterface,
-    BaseAggregator
+    BaseAggregator,
+    UsingConstants
 {
-    string constant private CERTIFIED_EMAIL_CREATED_EVENT = "certified_email.contract.created";
-
     mapping (bytes32 => CertifiedEmail) private certifiedEmails;
     
     bytes32[] private certifiedEmailIds;
@@ -49,11 +51,12 @@ contract CertifiedEmailAggregator is
         returns (address addr, bool more)
     {
         bool _more = index + 1 < certifiedEmailIds.length;
-        bytes32 certifiedEmailId = certifiedEmailIds[index];
-
-        if (address(certifiedEmails[certifiedEmailId]) != address(0)) {
+        if (
+            index < certifiedEmailIds.length &&
+            address(certifiedEmails[certifiedEmailIds[index]]) != address(0)
+        ) {
             return (
-                address(certifiedEmails[certifiedEmailId]),
+                address(certifiedEmails[certifiedEmailIds[index]]),
                 _more
             );
         }
@@ -73,15 +76,13 @@ contract CertifiedEmailAggregator is
     }
 
     function notify(
-        string memory eventType,
+        uint receivedEventType,
         address addr
     )
         public
         signaturitOnly
     {
-        bytes32 bytes32eventType = Utils.keccak(eventType);
-
-        if (Utils.keccak(CERTIFIED_EMAIL_CREATED_EVENT) == bytes32eventType) {
+        if (uint(enumEvents.CERTIFIED_EMAIL_CREATED_EVENT) == receivedEventType) {
             CertifiedEmail certifiedEmail = CertifiedEmail(addr);
 
             bytes32 bytes32id = Utils.keccak(certifiedEmail.id());

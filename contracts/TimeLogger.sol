@@ -5,22 +5,12 @@ Gas to deploy: 2.623.165
 */
 
 import "./Clause.sol";
+import "./libraries/UsingConstants.sol";
 
-
-contract TimeLogger is Clause(
-    "timelogger-clause-notifiers"
+contract TimeLogger is UsingConstants, Clause(
+    UsingConstants.TIMELOGGER_NOTIFIERS_KEY
 )
 {
-    uint constant public SECONDS_PER_DAY = 86400;
-
-    string constant public SOLIDITY_SOURCE = "solidity";
-    string constant public EXTERNAL_SOURCE = "external";
-
-    string constant public CLAUSE_EVENT_TYPE = "timelog.added";
-    string constant public CREATION_EVENT_TYPE = "timelogger_clause.created";
-
-    string constant public VALIDATED_NOTIFIERS_KEY = "validated-notifiers";
-
     struct TimeLog {
         uint timeStart;
         uint timeEnd;
@@ -76,10 +66,10 @@ contract TimeLogger is Clause(
         ownerContract = SignaturitUserInterface(ownerContractAddress);
         signatureContract = NotifierInterface(signatureContractAddress);
 
-        userContract.setAddressArrayAttribute(VALIDATED_NOTIFIERS_KEY, userContract.ownerAddress());
-        userContract.setAddressArrayAttribute(VALIDATED_NOTIFIERS_KEY, ownerContract.ownerAddress());
+        userContract.setMappingAddressBool(VALIDATED_NOTIFIERS_KEY, userContract.ownerAddress(), true);
+        userContract.setMappingAddressBool(VALIDATED_NOTIFIERS_KEY, ownerContract.ownerAddress(), true);
 
-        _notifySignature(CREATION_EVENT_TYPE);
+        _notifySignature(uint(enumEvents.TIMELOGGER_CLAUSE_CREATED));
     }
 
     modifier onlyManager() {
@@ -267,7 +257,7 @@ contract TimeLogger is Clause(
 
         lastOpenDay = today;
 
-        _notify(CLAUSE_EVENT_TYPE);
+        _notify(uint(enumEvents.TIMELOG_ADDED_EVENT));
     }
 
     function _createLog(

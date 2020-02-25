@@ -8,6 +8,8 @@ import "./interfaces/EventInterface.sol";
 
 
 contract Event is EventInterface {
+    address public parent;
+
     string public id;
     string public evenType;
     string public userAgent;
@@ -22,6 +24,8 @@ contract Event is EventInterface {
     )
         public
     {
+        parent = msg.sender;
+        
         id = eventId;
         eventType = initType;
         userAgent = eventUserAgent;

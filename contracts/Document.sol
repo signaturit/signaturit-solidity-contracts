@@ -9,25 +9,20 @@ import "./interfaces/FileInterface.sol";
 import "./interfaces/EventInterface.sol";
 import "./interfaces/SignaturitUserInterface.sol";
 import "./libraries/Utils.sol";
+import "./libraries/UsingConstants.sol";
 
 
-contract Document is DocumentInterface {
-    string constant private FILE_CREATED_EVENT = "file.contract.created";
-    string constant private EVENT_CREATED_EVENT = "event.contract.created";
+contract Document is DocumentInterface, UsingConstants {
 
     string constant private ID_DOCUMENT_SIGNED = "id_document_signed";
     string constant private ID_FILE_SIGNED_HASH = "id_file_signed_hash";
     string constant private ID_DOCUMENT_DECLINED = "id_document_declined";
     string constant private ID_DOCUMENT_CANCELED = "id_document_canceled";
 
-    string constant private DOCUMENT_SIGNED_EVENT = "document.contract.signed";
-    string constant private FILE_SIGNED_HASH_EVENT = "file.signed_hash.created";
-    string constant private DOCUMENT_DECLINED_EVENT = "document.contract.declined";
-    string constant private DOCUMENT_CANCELED_EVENT = "document.contract.canceled";
-
-    string constant private DOCUMENT_NOTIFIERS_KEY = "document-notifiers";
-    string constant private FILE_NOTIFIERS_KEY = "file-notifiers";
-    string constant private EVENT_NOTIFIERS_KEY = "event-notifiers";
+    string constant private DOCUMENT_SIGNED_EVENT = "document_signed";
+    string constant private DOCUMENT_DECLINED_EVENT = "document_declined";
+    string constant private DOCUMENT_CANCELED_EVENT = "document_canceled";
+    string constant private SIGNED_FILE_HASH_EVENT = "file_signed_hash";
 
     address public signature;
     address public signer;
@@ -128,7 +123,7 @@ contract Document is DocumentInterface {
         createEvent(
             ID_DOCUMENT_SIGNED,
             DOCUMENT_SIGNED_EVENT,
-            "solidity",
+            SOLIDITY_SOURCE,
             block.timestamp
         );
     }
@@ -151,7 +146,7 @@ contract Document is DocumentInterface {
         createEvent(
             ID_DOCUMENT_DECLINED,
             DOCUMENT_DECLINED_EVENT,
-            "Solidity",
+            SOLIDITY_SOURCE,
             block.timestamp
         );
     }
@@ -174,7 +169,7 @@ contract Document is DocumentInterface {
         createEvent(
             ID_DOCUMENT_CANCELED,
             DOCUMENT_CANCELED_EVENT,
-            "solidity",
+            SOLIDITY_SOURCE,
             block.timestamp
         );
     }
@@ -210,7 +205,7 @@ contract Document is DocumentInterface {
                 fileSize
         );
 
-        notifyEntityEvent(FILE_NOTIFIERS_KEY, FILE_CREATED_EVENT, address(file));
+        notifyEntityEvent(FILE_NOTIFIERS_KEY, uint(enumEvents.FILE_CREATED_EVENT), address(file));
     }
 
     function setFileHash(
@@ -223,8 +218,8 @@ contract Document is DocumentInterface {
 
         createEvent(
             ID_FILE_SIGNED_HASH,
-            FILE_SIGNED_HASH_EVENT,
-            "solidity",
+            SIGNED_FILE_HASH_EVENT,
+            SOLIDITY_SOURCE,
             block.timestamp
         );
     }
@@ -257,12 +252,12 @@ contract Document is DocumentInterface {
 
         eventsId.push(eventId);
 
-        notifyEntityEvent(EVENT_NOTIFIERS_KEY, EVENT_CREATED_EVENT, address(events[eventId]));
+        notifyEntityEvent(EVENT_NOTIFIERS_KEY, uint(enumEvents.EVENT_CREATED_EVENT), address(events[eventId]));
     }
 
     function notifyEntityEvent (
         string memory notifiersKey,
-        string memory createdEvent,
+        uint createdEvent,
         address adrToNotify
     )
         internal
@@ -277,7 +272,7 @@ contract Document is DocumentInterface {
             if (contractToNofify != address(0)) {
                 contractToNofify.call(
                     abi.encodeWithSignature(
-                        "notify(string,address)",
+                        "notify(uint256,address)",
                         createdEvent,
                         adrToNotify
                     )

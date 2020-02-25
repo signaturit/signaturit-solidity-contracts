@@ -22,7 +22,7 @@ contract SignatureInterface {
     SignaturitUserInterface public userContract;
 
     function notify(
-        string memory attribute,
+        uint attribute,
         address adr
     )
         public;
@@ -117,7 +117,7 @@ contract SignatureInterface {
 
     function _notifyEntityEvent (
         string memory notifiersKey,
-        string memory createdEvent,
+        uint createdEvent,
         address adrToNotify
     )
         private;

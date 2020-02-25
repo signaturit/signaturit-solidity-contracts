@@ -2,38 +2,69 @@ pragma solidity <0.6.0;
 
 import "./interfaces/SignaturitUserInterface.sol";
 import "./libraries/Utils.sol";
+import "./libraries/UsingConstants.sol";
 
 /*
-Gas to deploy: 2.896.394
+Gas to deploy: 2.895.986
 */
 
-contract SignaturitUser is SignaturitUserInterface {
+contract SignaturitUser is SignaturitUserInterface, UsingConstants {
     address public rootAddress;
     address public ownerAddress;
 
-    mapping (bytes32 => string) public stringAttr;
+    mapping (bytes32 => string) private stringAttr;
     mapping (bytes32 => string[]) private stringArrayAttr;
-    mapping (bytes32 => int) public numberAttr;
-    mapping (bytes32 => int[]) public numberArrayAttr;
-    mapping (bytes32 => address) public addressAttr;
-    mapping (bytes32 => address[]) public addressArrayAttr;
-    mapping (bytes32 => bool) public boolAttr;
-    mapping (bytes32 => bool[]) public boolArrayAttr;
+    mapping (bytes32 => int) private numberAttr;
+    mapping (bytes32 => int[]) private numberArrayAttr;
+    mapping (bytes32 => address) private addressAttr;
+    mapping (bytes32 => address[]) private addressArrayAttr;
+    mapping (bytes32 => bool) private boolAttr;
+    mapping (bytes32 => bool[]) private boolArrayAttr;
+
+    mapping(bytes32 => mapping(address => bool)) private mappingAddressBool;
 
     constructor (
         address _ownerAddress
     ) public {
         rootAddress = msg.sender;
         ownerAddress = _ownerAddress;
+        setMappingAddressBool(VALIDATED_NOTIFIERS_KEY, rootAddress, true);
+        setMappingAddressBool(VALIDATED_NOTIFIERS_KEY, ownerAddress, true);
     }
 
     modifier protected() {
         require(
-            tx.origin == rootAddress,
+            tx.origin == rootAddress || getMappingAddressBool(VALIDATED_NOTIFIERS_KEY, tx.origin),
             "Only the owner can perform this action"
         );
 
         _;
+    }
+
+    function setMappingAddressBool(
+        string memory key,
+        address adr,
+        bool value
+    )
+        public
+        protected
+    {
+        bytes32 bytes32key = Utils.keccak(key);
+
+        mappingAddressBool[bytes32key][adr] = value;
+    }
+
+    function getMappingAddressBool(
+        string memory key,
+        address adr
+    )
+        public
+        view
+        returns(bool)
+    {
+        bytes32 bytes32key = Utils.keccak(key);
+
+        return mappingAddressBool[bytes32key][adr];
     }
 
     function setStringAttribute (

@@ -13,13 +13,13 @@ private build(pipeline) {
 }
 
 private deploy(pipeline) {
-  sh "npm install && npm run test && npm run compile-contracts && npm run coverage";
+  sh "npm install && npm run compile-contracts";
 
   pipeline.slack("good")
 }
 
 private test(pipeline) {
-    return true
+    sh "npm install && npm run lint && npm run coverage"
 }
 
 private translations(pipeline) {

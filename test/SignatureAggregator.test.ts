@@ -10,12 +10,28 @@ contract('SignatureAggregator', async (accounts) => {
     const invalidAccount = accounts[2];
     const deployerAddress = accounts[3];
 
+    const nullAddress = '0x0000000000000000000000000000000000000000';
+
     const signatureId = v4();
     const signatureSecondId = v4();
     const signatureCreatedAt = Date.now();
 
     let signatureAggregatorContract;
     let userContract;
+
+    const enumEvents = {
+        FILE_CREATED_EVENT: 0,
+        CERTIFIED_FILE_CREATED_EVENT: 1,
+        EVENT_CREATED_EVENT: 2,
+        DOCUMENT_CREATED_EVENT: 3,
+        CERTIFICATE_CREATED_EVENT: 4,
+        SIGNATURE_CREATED_EVENT: 5,
+        CERTIFIED_EMAIL_CREATED_EVENT: 6,
+        TIMELOGGER_CLAUSE_CREATED: 7,
+        TIMELOG_ADDED_EVENT: 8,
+        PAYMENT_CLAUSE_CREATED: 9,
+        PAYMENT_CHECK_ADDED_EVENT: 10
+    };
 
     beforeEach(async() => {
         userContract = await ArtifactUser.new(
@@ -85,7 +101,7 @@ contract('SignatureAggregator', async (accounts) => {
         );
 
         await signatureAggregatorContract.notify(
-            'signature.contract.created',
+            enumEvents.SIGNATURE_CREATED_EVENT,
             signatureContract.address
         );
 
@@ -106,7 +122,7 @@ contract('SignatureAggregator', async (accounts) => {
 
         try {
             await signatureAggregatorContract.notify(
-                'signature.contract.created',
+                enumEvents.SIGNATURE_CREATED_EVENT,
                 signatureContract.address,
                 {
                     from: invalidAccount
@@ -138,6 +154,13 @@ contract('SignatureAggregator', async (accounts) => {
         assert.equal(storedSignatures.toNumber(), 1);
         assert.equal(signatureByIdAddress, signatureContract.address);
         assert.equal(signatureByIndex.addr, signatureContract.address);
+        assert.equal(signatureByIndex.more, false);
+    });
+
+    it("Access to not existing signature", async () => {
+        const signatureByIndex = await signatureAggregatorContract.getSignature(0);
+
+        assert.equal(signatureByIndex.addr, nullAddress);
         assert.equal(signatureByIndex.more, false);
     });
 

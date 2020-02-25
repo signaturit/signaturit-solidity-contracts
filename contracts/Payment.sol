@@ -12,15 +12,13 @@ OVER_PAID      = 3;
 PARTIALLY_PAID = 4;
 */
 
+import "./libraries/UsingConstants.sol";
 import "./Clause.sol";
 
-
-contract Payment is Clause(
-    "payment-clause-notifiers"
+contract Payment is UsingConstants, Clause(
+    UsingConstants.PAYMENT_CHECKS_NOTIFIERS_KEY
 )
 {
-    string constant public CLAUSE_EVENT_TYPE = "payment_check.added";
-    string constant public CREATION_EVENT_TYPE = "payment_clause.created";
 
     struct PaymentCheck {
         string id;
@@ -96,7 +94,7 @@ contract Payment is Clause(
         period = paymentPeriod;
         signatureId = signature;
 
-        _notifySignature(CREATION_EVENT_TYPE);
+        _notifySignature(uint(enumEvents.PAYMENT_CLAUSE_CREATED));
     }
 
     function setReceiver(
@@ -152,7 +150,7 @@ contract Payment is Clause(
 
         newReference.checks.push(paymentCheckId);
 
-        _notify(CLAUSE_EVENT_TYPE);
+        _notify(uint(enumEvents.PAYMENT_CHECK_ADDED_EVENT));
     }
 
     function getReceiversSize()

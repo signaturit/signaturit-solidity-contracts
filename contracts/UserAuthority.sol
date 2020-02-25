@@ -6,11 +6,12 @@ import "./libraries/Utils.sol";
 Gas to deploy: 880.108
 */
 
-
 contract UserAuthority {
-    string constant private MANAGERS_KEY = "admitted-managers";
-
     address public rootAddress;
+
+    uint8 constant private USER_ROLE = 0;
+    uint8 constant private ADMIN_ROLE = 1;
+    uint8 constant private ROOT_ROLE = 2;
 
     struct User {
         address contractAddress;
@@ -28,12 +29,12 @@ contract UserAuthority {
 
         address[] memory tmpAddresses;
 
-        users[rootAddress] = User(address(0), 2, 5, true, tmpAddresses);
+        users[rootAddress] = User(address(0), ROOT_ROLE, 5, true, tmpAddresses);
     }
 
     modifier allowedAdminCreation() {
         require(
-            users[msg.sender].role >= 1,
+            users[msg.sender].role >= ADMIN_ROLE,
             "The account can't perform this action"
         );
 
@@ -42,7 +43,7 @@ contract UserAuthority {
 
     modifier allowedUserCreation() {
         require(
-            users[msg.sender].role > 0,
+            users[msg.sender].role > USER_ROLE,
             "The account can't perform this action"
         );
 
@@ -51,7 +52,7 @@ contract UserAuthority {
 
     modifier allowedEdit(address userAdr) {
         require(
-            users[msg.sender].role > 0 &&
+            users[msg.sender].role > USER_ROLE &&
             isUserManager(userAdr, msg.sender),
             "Unauthorized action"
         );
@@ -67,7 +68,7 @@ contract UserAuthority {
     {
         address[] memory tmpAddresses;
 
-        users[adminAdr] = User(address(0), 1, 3, true, tmpAddresses);
+        users[adminAdr] = User(address(0), ADMIN_ROLE, 3, true, tmpAddresses);
 
         users[adminAdr].managers[msg.sender] = true;
 
@@ -82,7 +83,7 @@ contract UserAuthority {
     {
         address[] memory tmpAddresses;
 
-        users[userAdr] = User(address(0), 0, 3, true, tmpAddresses);
+        users[userAdr] = User(address(0), USER_ROLE, 3, true, tmpAddresses);
 
         users[userAdr].managers[msg.sender] = true;
 
