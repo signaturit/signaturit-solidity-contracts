@@ -406,4 +406,34 @@ contract('UserAuthority', async (accounts) => {
 
         assert.equal(user.validity, true);
     });
+
+    it("Create AdminAndUser from root account, expect to pass", async () => {
+        await userAuthorityContract.createAdminAndUser(adminAddress, userAddress, {from: rootAddress});
+
+        const userAdmin = await userAuthorityContract.getUser(adminAddress);
+        const user = await userAuthorityContract.getUser(userAddress);
+        const isRootAdminManager = await userAuthorityContract.isUserManager(adminAddress, rootAddress);
+        const isAdminUserManager = await userAuthorityContract.isUserManager(userAddress, adminAddress);
+        const managedRootUser = await userAuthorityContract.getManagedUser(rootAddress, 0);
+        const managedAdminUser = await userAuthorityContract.getManagedUser(adminAddress, 0);
+
+        assert.equal(userAdmin.role.toNumber(), UserRole.admin);
+        assert.equal(user.role.toNumber(), UserRole.user);
+        assert.ok(isRootAdminManager);
+        assert.ok(isAdminUserManager);
+
+        assert.equal(managedRootUser.adr, adminAddress);
+        assert.equal(managedAdminUser.adr, userAddress);
+
+    });
+
+    it("Create AdminAndUser from non root account, expect exception", async () => {
+        try {
+            await userAuthorityContract.createAdminAndUser(adminAddress, userAddress, {from: adminAddress});
+
+            assert.fail("It should have thrown")
+        } catch(error) {
+            assert.include(error.message, "The account can't perform this action");
+        }
+    });
 })

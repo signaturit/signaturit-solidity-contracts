@@ -90,6 +90,28 @@ contract UserAuthority {
         users[msg.sender].managedUsers.push(userAdr);
     }
 
+    function createAdminAndUser(
+        address adminAdr,
+        address userAdr
+    )
+        public
+        allowedAdminCreation
+    {
+        address[] memory tmpAddresses;
+
+        users[adminAdr] = User(address(0), ADMIN_ROLE, 3, true, tmpAddresses);
+
+        users[userAdr] = User(address(0), USER_ROLE, 3, true, tmpAddresses);
+
+        users[adminAdr].managers[msg.sender] = true;
+
+        users[userAdr].managers[adminAdr] = true;
+
+        users[msg.sender].managedUsers.push(adminAdr);
+
+        users[adminAdr].managedUsers.push(userAdr);
+    }
+
     function setUserContract(
         address userAdr,
         address contractAddress
