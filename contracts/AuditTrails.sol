@@ -40,18 +40,6 @@ contract AuditTrails is UsingConstants {
         tmpUser.setAddressArrayAttribute(DOCUMENT_NOTIFIERS_KEY, address(this));
     }
 
-    function setNotifier(
-        address requesterSmartContract,
-        address notifier
-    )
-        public
-        onlyNotifier(requesterSmartContract)
-    {
-        SignaturitUserInterface tmpUser = SignaturitUserInterface(requesterSmartContract);
-
-        tmpUser.setMappingAddressBool(VALIDATED_NOTIFIERS_KEY, notifier, true);
-    }
-
     function getAudit(
         string memory documentHashedId
     )
