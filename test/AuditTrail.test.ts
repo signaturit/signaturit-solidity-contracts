@@ -89,23 +89,6 @@ contract('AuditTrails', async (accounts) => {
         assert.equal(true, tx.receipt.status);
     });
 
-    it("Try to addNotifier from not valid notifier, expect exception", async () => {
-        try {
-            await auditTrailsContract.setNotifier(userContract.address, addedNotifier, {from: invalidAddress});
-        } catch(error) {
-            assert.include(
-                error.message,
-                "Only an admitted notifier can call this function"
-            )
-        }
-    });
-
-    it("Try to addNotifier from valid notifier", async () => {
-        const tx = await auditTrailsContract.setNotifier(userContract.address, addedNotifier, {from: signaturitAddress});
-
-        assert.equal(true, tx.receipt.status);
-    });
-
     it("Create a document on signature and expect this to create an audit trail", async () => {
         const documentId = v4();
         const signatureType = 'advanced'
