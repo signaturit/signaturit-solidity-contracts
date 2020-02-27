@@ -1,3 +1,4 @@
+
 contract('Document', async (accounts) => {
     const ArtifactUser = artifacts.require('SignaturitUser');
     const ArtifactFile      = artifacts.require('File');
@@ -317,6 +318,20 @@ contract('Document', async (accounts) => {
             assert.include(
                 error.message,
                 'Document is already declined or canceled'
+            )
+        }
+    });
+
+
+    it("Try to sign from signaturit from not signature account", async () => {
+        try {
+            await documentContract.signFromSignaturit(signedAt, {from: invalidAddress});
+
+            assert.fail("It should have thrown");
+        } catch (error) {
+            assert.include(
+                error.message,
+                "Only the Signature account can perform this action"
             )
         }
     });

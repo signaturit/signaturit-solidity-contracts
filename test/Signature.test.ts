@@ -156,6 +156,70 @@ contract('Signature', async (accounts) => {
         assert.equal(readDocumentsSize, 1);
     });
 
+    it('Create new document and sign it from signaturit user manager', async () => {
+        await signatureContract.createDocument(
+            documentId,
+            signatureType,
+            createdAt,
+            {
+                from: signaturitAddress
+            }
+        );
+        
+        await signatureContract.signDocument(
+            documentId,
+            signedAt,
+            {
+                from: signaturitAddress
+            }
+        );
+
+        const documentAddress = await signatureContract.getDocument(documentId);
+            
+        const documentContract = await ArtifactDocument.at(documentAddress);
+
+        const readIfSigned = await documentContract.signed();
+
+        assert.equal(true, readIfSigned)
+    });
+
+    it('Create new document and sign it from not signaturit user manager', async () => {
+        await signatureContract.createDocument(
+            documentId,
+            signatureType,
+            createdAt,
+            {
+                from: signaturitAddress
+            }
+        );
+        
+
+        try {
+            await signatureContract.signDocument(
+                documentId,
+                signedAt,
+                {
+                    from: invalidAddress
+                }
+            );
+        } catch(error) {
+            assert.include(
+                error.message,
+                'Only Signaturit account can perform this action.',
+            );
+        }
+
+
+        const documentAddress = await signatureContract.getDocument(documentId);
+            
+        const documentContract = await ArtifactDocument.at(documentAddress);
+
+        const readIfSigned = await documentContract.signed();
+
+        assert.equal(false, readIfSigned)
+    });
+
+
     it('Retrieve certificate from index', async () => {
         const transaction = await signatureContract.createDocument(
             documentId,
