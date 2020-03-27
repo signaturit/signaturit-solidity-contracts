@@ -1,4 +1,4 @@
-![alt text](https://logo.signaturit.com/_.blue/314x110 "Signaturit")
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=signaturit_signaturit-solidity-contracts&metric=alert_status)](https://sonarcloud.io/dashboard?id=signaturit_signaturit-solidity-contracts)
 
 # Blockchain smart contracts
 
