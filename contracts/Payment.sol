@@ -1,7 +1,7 @@
 pragma solidity <0.6.0;
 
 /*
-Gas to deploy: 3.536.741
+Gas to deploy: 3.423.740
 
 PaymentCheck status legend:
 

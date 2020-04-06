@@ -2,7 +2,6 @@ pragma solidity <0.6.0;
 
 import "./interfaces/SignaturitUserInterface.sol";
 
-
 contract BaseAggregator {
     SignaturitUserInterface public userContract;
 

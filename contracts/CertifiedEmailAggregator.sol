@@ -1,7 +1,7 @@
 pragma solidity <0.6.0;
 
 /*
-Gas to deploy: 785.507
+Gas to deploy: 745.876
 */
 
 import "./libraries/UsingConstants.sol";

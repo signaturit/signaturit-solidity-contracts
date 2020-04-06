@@ -1,19 +1,28 @@
 contract('Certificate', async (accounts) => {
     const ArtifactCertificate   = artifacts.require('Certificate');
+    const ArtifactUser = artifacts.require('SignaturitUser');
+    const ArtifactCertifiedEmail = artifacts.require('CertifiedEmail');
     const ArtifactFile          = artifacts.require('File');
     const ArtifactEvent         = artifacts.require('Event');
     const ArtifactCertifiedEmailDeployer = artifacts.require('CertifiedEmailDeployer');
 
     const v4 = require("uuid").v4;
 
-    const certifiedEmailAddress = accounts[0];
+    const signaturitAddress = accounts[0];
     const ownerAddress      = accounts[1];
     const invalidAddress    = accounts[2];
 
     const nullAddress = '0x0000000000000000000000000000000000000000';
 
     let certificateContract;
+    let userContract;
     let certifiedEmailDeployer;
+    let certifiedEmailContract;
+
+    const certifiedEmailId = v4();
+    const certifiedEmailSubjectHash = 'subject hash';
+    const certifiedEmailBodyHash = 'body hash';
+    const certifiedEmailDeliveryType = 'delivery type';
 
     const certificateId = v4();
     const createdAt = Date.now();
@@ -30,64 +39,61 @@ contract('Certificate', async (accounts) => {
     beforeEach(async () => {
         certifiedEmailDeployer = await ArtifactCertifiedEmailDeployer.new();
 
-        certificateContract = await ArtifactCertificate.new(
-            certificateId,
-            certifiedEmailDeployer.address,
+        userContract = await ArtifactUser.new(
+            ownerAddress,
             {
-                from: certifiedEmailAddress
+                from: signaturitAddress
+            }
+        );
+
+        certifiedEmailContract = await ArtifactCertifiedEmail.new(
+            certifiedEmailId,
+            certifiedEmailSubjectHash,
+            certifiedEmailBodyHash,
+            certifiedEmailDeliveryType,
+            Date.now(),
+            certifiedEmailDeployer.address,
+            ownerAddress,
+            userContract.address,
+            {
+                from: signaturitAddress
+            }
+        );
+
+        await certifiedEmailContract.notifyCreation(
+            {
+                from: signaturitAddress
+            }
+        );
+
+        await certifiedEmailContract.createCertificate(
+            certificateId,
+            Date.now(),
+            ownerAddress,
+            {
+                from: signaturitAddress
             }
         )
+
+        const certificateAddress = await certifiedEmailContract.getCertificate(certificateId);
+
+        certificateContract = await ArtifactCertificate.at(certificateAddress);
     });
 
     it('Check if it deploy correctly', async () => {
         assert.ok(certificateContract.address);
     });
 
-    it('Init the contracts as CertifiedEmail account, expect to pass', async () => {
-        await certificateContract.init(
-            ownerAddress,
-            createdAt,
-            {
-                from: certifiedEmailAddress
-            }
-        );
-
-        const readCreatedAt = await certificateContract.createdAt();
-        const readOwnerAddress = await certificateContract.owner();
-        const readCertificateId = await certificateContract.id();
-
-        assert.equal(createdAt, readCreatedAt);
-        assert.equal(ownerAddress, readOwnerAddress);
-        assert.equal(certificateId, readCertificateId);
-    });
-
-    it('Init the contracts as not CertifiedEmail account, expect to exception', async () => {
-        
-        try {
-            await certificateContract.init(
-                ownerAddress,
-                createdAt,
-                {
-                    from: invalidAddress
-                }
-            );    
-        } catch(error) {
-            assert.include(
-                error.message,
-                "Only CertifiedEmail account can perform this action"
-            )
-        }
-    });
-
     it('Create an instance of file', async() => {
-        await certificateContract.createFile(
+        await certifiedEmailContract.createFile(
+            certificateId,
             fileHash,
             fileId,
             fileName,
             createdAt,
             fileSize,
             {
-                from: certifiedEmailAddress
+                from: signaturitAddress
             }
         );
 
@@ -105,7 +111,8 @@ contract('Certificate', async (accounts) => {
 
     it('Create an instance of file from other account than the CertifiedEmail contract', async() => {
         try {
-            await certificateContract.createFile(
+            await certifiedEmailContract.createFile(
+                certificateId,
                 fileHash,
                 fileId,
                 fileName,
@@ -120,29 +127,31 @@ contract('Certificate', async (accounts) => {
         } catch (error) {
             assert.include(
                 error.message,
-                'Only CertifiedEmail account can perform this action.'
+                "Only Signaturit account can perform this action"
             );
         }
     });
 
     it('Add new event to the certificate', async() => {
-        await certificateContract.createEvent(
+        await certifiedEmailContract.createEvent(
+            certificateId,
             eventId,
             eventType,
             userAgent,
             createdAt,
             {
-                from: certifiedEmailAddress
+                from: signaturitAddress
             }
         );
 
         assert.ok('Event created successfully');
     });
 
-    it('Add new event  as not CertifiedEmail account, expect to exception', async () => {
+    it('Add new event  as not Signaturit account, expect to exception', async () => {
         
         try {
-            await certificateContract.createEvent(
+            await certifiedEmailContract.createEvent(
+                certificateId,
                 eventId,
                 eventType,
                 userAgent,
@@ -154,30 +163,32 @@ contract('Certificate', async (accounts) => {
         } catch(error) {
             assert.include(
                 error.message,
-                "Only CertifiedEmail account can perform this action"
+                "Only Signaturit account can perform this action"
             )
         }
     });
 
     it('Create duplicated event', async() => {
         try {
-            await certificateContract.createEvent(
+            await certifiedEmailContract.createEvent(
+                certificateId,
                 eventId,
                 eventType,
                 userAgent,
                 createdAt,
                 {
-                    from: certifiedEmailAddress
+                    from: signaturitAddress
                 }
             );
 
-            await certificateContract.createEvent(
+            await certifiedEmailContract.createEvent(
+                certificateId,
                 eventId,
                 eventType,
                 userAgent,
                 createdAt,
                 {
-                    from: certifiedEmailAddress
+                    from: signaturitAddress
                 }
             );
 
@@ -200,13 +211,14 @@ contract('Certificate', async (accounts) => {
     });
 
     it('Retrieve event data', async() => {
-        await certificateContract.createEvent(
+        await certifiedEmailContract.createEvent(
+            certificateId,
             eventId,
             eventType,
             userAgent,
             createdAt,
             {
-                from: certifiedEmailAddress
+                from: signaturitAddress
             }
         );
 

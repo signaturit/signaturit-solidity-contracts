@@ -25,6 +25,11 @@ contract CertificateInterface {
     )
         public;
 
+    function setCertifiedEmailOwner(
+        address certifiedEmailOwnerAdr
+    )
+        public;
+
     function createFile(
         string memory fileHash,
         string memory fileId,
@@ -33,6 +38,13 @@ contract CertificateInterface {
         uint fileSize
     )
         public;
+
+    function notifyEntityEvent(
+        string memory notifiersKey,
+        uint createdEvent,
+        address adrToNotify
+    )
+        internal;
 
     function createEvent(
         string memory eventId,

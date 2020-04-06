@@ -2,8 +2,6 @@ pragma solidity <0.6.0;
 
 import "./SignaturitUserInterface.sol";
 import "./CertificateInterface.sol";
-import "./EventInterface.sol";
-
 
 contract CertifiedEmailInterface {
     address public signaturit;
@@ -79,12 +77,12 @@ contract CertifiedEmailInterface {
         view
         returns (uint);
 
-    function notifyEntityEvent (
+    function _notifyEntityEvent (
         string memory notifiersKey,
         uint createdEvent,
         address adrToNotify
     )
-        public;
+        private;
 
     function _certificateExist(
         string memory certificateId

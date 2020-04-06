@@ -1,14 +1,13 @@
 pragma solidity <0.6.0;
 
 /*
-Gas to deploy: 785.379
+Gas to deploy: 745.812
 */
 
 import "./interfaces/NotifierInterface.sol";
 import "./BaseAggregator.sol";
 import "./CertifiedFile.sol";
 import "./libraries/Utils.sol";
-import "./libraries/UsingConstants.sol";
 
 contract CertifiedFileAggregator is
     NotifierInterface,

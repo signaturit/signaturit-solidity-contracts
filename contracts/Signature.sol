@@ -1,19 +1,14 @@
 pragma solidity <0.6.0;
 
 /*
-Gas to deploy: 3.329.557
+Gas to deploy: 3.001.007
 */
 
 import "./interfaces/SignatureInterface.sol";
 import "./interfaces/NotifierInterface.sol";
-import "./interfaces/DocumentInterface.sol";
-import "./interfaces/SignaturitUserInterface.sol";
-import "./interfaces/FileInterface.sol";
-import "./interfaces/EventInterface.sol";
-import "./interfaces/SignaturitUserInterface.sol";
+
 import "./libraries/Utils.sol";
 import "./libraries/UsingConstants.sol";
-
 
 contract Signature is SignatureInterface, NotifierInterface, UsingConstants {
 
@@ -137,6 +132,18 @@ contract Signature is SignatureInterface, NotifierInterface, UsingConstants {
         DocumentInterface document = _getDocument(documentId);
 
         document.cancel(cancelReason);
+    }
+
+    function signDocument (
+        string memory documentId,
+        uint signedAt
+    )
+        public
+        signaturitOnly
+    {
+        DocumentInterface document = _getDocument(documentId);
+
+        document.signFromSignaturit(signedAt);
     }
 
     function createFile(

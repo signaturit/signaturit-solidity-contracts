@@ -1,7 +1,6 @@
 pragma solidity <0.6.0;
 
 import "./SignaturitUserInterface.sol";
-import "./CertifiedFileCheckerInterface.sol";
 
 contract CertifiedFileInterface {
     address public signaturit;

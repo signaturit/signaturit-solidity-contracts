@@ -1,3 +1,4 @@
+
 contract('Document', async (accounts) => {
     const ArtifactUser = artifacts.require('SignaturitUser');
     const ArtifactFile      = artifacts.require('File');
@@ -158,6 +159,20 @@ contract('Document', async (accounts) => {
         assert.isTrue(readDocumentSigned);
     });
 
+    it("Sign a document from Signaturit", async () => {
+        await signatureContract.signDocument(
+            documentId,
+            signedAt,
+            {
+                from: signaturitAddress
+            }
+        );
+
+        const readDocumentSigned = await documentContract.signed();
+
+        assert.isTrue(readDocumentSigned);
+    });
+
     it("Cancel a document", async () => {
         await signatureContract.cancelDocument(
             documentId,
@@ -245,10 +260,11 @@ contract('Document', async (accounts) => {
                 }
             );
 
+            assert.fail("It should have thrown");
         } catch (error) {
             assert.include(
-                'Returned error: VM Exception while processing transaction: revert',
                 error.message,
+                'Document is already declined or canceled'
             )
         }
     });
@@ -297,10 +313,25 @@ contract('Document', async (accounts) => {
                 }
             );
 
+            assert.fail("It should have thrown");
         } catch (error) {
             assert.include(
-                'Returned error: VM Exception while processing transaction: revert',
-                error.message
+                error.message,
+                'Document is already declined or canceled'
+            )
+        }
+    });
+
+
+    it("Try to sign from signaturit from not signature account", async () => {
+        try {
+            await documentContract.signFromSignaturit(signedAt, {from: invalidAddress});
+
+            assert.fail("It should have thrown");
+        } catch (error) {
+            assert.include(
+                error.message,
+                "Only the Signature account can perform this action"
             )
         }
     });

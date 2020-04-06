@@ -11,9 +11,9 @@ contract('UserAuthority', async (accounts) => {
     let userAuthorityContract;
 
     const UserRole = {
-        root: 2,
-        admin: 1,
-        user: 0
+        root: 3,
+        admin: 2,
+        user: 1
     };
 
     beforeEach(async () => {
@@ -36,8 +36,7 @@ contract('UserAuthority', async (accounts) => {
         const isManager = await userAuthorityContract.isUserManager(adminAddress, rootAddress);
         const managedUser = await userAuthorityContract.getManagedUser(rootAddress, 0);
 
-
-        assert.equal(user.role.toNumber(), UserRole.admin);
+        assert.equal(user.outputRole.toNumber(), UserRole.admin);
         assert.ok(isManager);
         assert.equal(managedUser.adr, adminAddress);
     });
@@ -56,7 +55,7 @@ contract('UserAuthority', async (accounts) => {
         const isManager = await userAuthorityContract.isUserManager(secondAdminAddress, adminAddress);
         const managedUser = await userAuthorityContract.getManagedUser(adminAddress, 0);
 
-        assert.equal(user.role.toNumber(), UserRole.admin);
+        assert.equal(user.outputRole.toNumber(), UserRole.admin);
         assert.ok(isManager);
         assert.equal(managedUser.adr, secondAdminAddress);
     });
@@ -176,7 +175,7 @@ contract('UserAuthority', async (accounts) => {
 
         const user = await userAuthorityContract.getUser(userAddress);
 
-        assert.equal(user.role.toNumber(), UserRole.admin);
+        assert.equal(user.outputRole.toNumber(), UserRole.admin);
     });
 
     it("Set user role as admin from another manager, expect exception", async () => {
@@ -200,7 +199,7 @@ contract('UserAuthority', async (accounts) => {
 
         const user = await userAuthorityContract.getUser(userAddress);
 
-        assert.equal(user.role.toNumber(), UserRole.user);
+        assert.equal(user.outputRole.toNumber(), UserRole.user);
     });
 
     it("Set user role as admin from user, expect exception", async () => {
@@ -222,7 +221,7 @@ contract('UserAuthority', async (accounts) => {
         
         const user = await userAuthorityContract.getUser(userAddress);
 
-        assert.equal(user.role.toNumber(), UserRole.user);
+        assert.equal(user.outputRole.toNumber(), UserRole.user);
     });
 
     it("Set user role as root from manager, expect exception", async () => {
@@ -244,7 +243,7 @@ contract('UserAuthority', async (accounts) => {
 
         const user = await userAuthorityContract.getUser(userAddress);
 
-        assert.equal(user.role.toNumber(), UserRole.user);
+        assert.equal(user.outputRole.toNumber(), UserRole.user);
     });
 
     it("Set user reputation as admin from manager, expect to pass", async () => {
@@ -254,7 +253,7 @@ contract('UserAuthority', async (accounts) => {
 
         const userBefore = await userAuthorityContract.getUser(userAddress);
 
-        assert.equal(userBefore.reputation.toNumber(), 3);
+        assert.equal(userBefore.outputReputation.toNumber(), 3);
 
         await userAuthorityContract.setReputation(
             userAddress,
@@ -266,7 +265,7 @@ contract('UserAuthority', async (accounts) => {
 
         const userAfter = await userAuthorityContract.getUser(userAddress);
 
-        assert.equal(userAfter.reputation.toNumber(), 1);
+        assert.equal(userAfter.outputReputation.toNumber(), 1);
     });
 
     it("Set user reputation as admin from another manager, expect exception", async () => {
@@ -290,7 +289,7 @@ contract('UserAuthority', async (accounts) => {
 
         const user = await userAuthorityContract.getUser(userAddress);
 
-        assert.equal(user.reputation.toNumber(), 3);
+        assert.equal(user.outputReputation.toNumber(), 3);
     });
 
     it("Set user reputation as admin from admin reduced to user, expect exception", async () => {
@@ -314,7 +313,7 @@ contract('UserAuthority', async (accounts) => {
 
         const user = await userAuthorityContract.getUser(userAddress);
 
-        assert.equal(user.reputation.toNumber(), 3);
+        assert.equal(user.outputReputation.toNumber(), 3);
     });
 
     it("Set user reputation as admin from user, expect exception", async () => {
@@ -336,7 +335,7 @@ contract('UserAuthority', async (accounts) => {
 
         const user = await userAuthorityContract.getUser(userAddress);
 
-        assert.equal(user.reputation.toNumber(), 3);
+        assert.equal(user.outputReputation.toNumber(), 3);
     });
 
     it("Set user validity as admin from manager, expect to pass", async () => {
@@ -346,7 +345,7 @@ contract('UserAuthority', async (accounts) => {
 
         const userBefore = await userAuthorityContract.getUser(userAddress);
 
-        assert.equal(userBefore.reputation.toNumber(), 3);
+        assert.equal(userBefore.outputReputation.toNumber(), 3);
 
         await userAuthorityContract.setValidity(
             userAddress,
@@ -405,5 +404,35 @@ contract('UserAuthority', async (accounts) => {
         const user = await userAuthorityContract.getUser(userAddress);
 
         assert.equal(user.validity, true);
+    });
+
+    it("Create AdminAndUser from root account, expect to pass", async () => {
+        await userAuthorityContract.createAdminAndUser(adminAddress, userAddress, {from: rootAddress});
+
+        const userAdmin = await userAuthorityContract.getUser(adminAddress);
+        const user = await userAuthorityContract.getUser(userAddress);
+        const isRootAdminManager = await userAuthorityContract.isUserManager(adminAddress, rootAddress);
+        const isAdminUserManager = await userAuthorityContract.isUserManager(userAddress, adminAddress);
+        const managedRootUser = await userAuthorityContract.getManagedUser(rootAddress, 0);
+        const managedAdminUser = await userAuthorityContract.getManagedUser(adminAddress, 0);
+
+        assert.equal(userAdmin.outputRole.toNumber(), UserRole.admin);
+        assert.equal(user.outputRole.toNumber(), UserRole.user);
+        assert.ok(isRootAdminManager);
+        assert.ok(isAdminUserManager);
+
+        assert.equal(managedRootUser.adr, adminAddress);
+        assert.equal(managedAdminUser.adr, userAddress);
+
+    });
+
+    it("Create AdminAndUser from non root account, expect exception", async () => {
+        try {
+            await userAuthorityContract.createAdminAndUser(adminAddress, userAddress, {from: adminAddress});
+
+            assert.fail("It should have thrown")
+        } catch(error) {
+            assert.include(error.message, "The account can't perform this action");
+        }
     });
 })

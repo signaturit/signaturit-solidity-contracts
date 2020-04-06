@@ -1,18 +1,13 @@
 pragma solidity <0.6.0;
 
 /*
-Gas to deploy: 2.707.646
+Gas to deploy: 2.383.619
 */
 
 import "./interfaces/CertifiedEmailInterface.sol";
-import "./interfaces/SignaturitUserInterface.sol";
-import "./interfaces/CertificateInterface.sol";
-import "./interfaces/EventInterface.sol";
-import "./interfaces/FileInterface.sol";
 
 import "./libraries/Utils.sol";
 import "./libraries/UsingConstants.sol";
-
 
 contract CertifiedEmail is CertifiedEmailInterface, UsingConstants {
 
@@ -69,7 +64,7 @@ contract CertifiedEmail is CertifiedEmailInterface, UsingConstants {
         public
         signaturitOnly
     {
-        notifyEntityEvent(CERTIFIED_EMAIL_NOTIFIERS_KEY, uint(enumEvents.CERTIFIED_EMAIL_CREATED_EVENT), address(this));
+        _notifyEntityEvent(CERTIFIED_EMAIL_NOTIFIERS_KEY, uint(enumEvents.CERTIFIED_EMAIL_CREATED_EVENT), address(this));
     }
 
     function createCertificate(
@@ -86,7 +81,7 @@ contract CertifiedEmail is CertifiedEmailInterface, UsingConstants {
 
         certificatesId.push(certificateId);
 
-        notifyEntityEvent(CERTIFICATE_NOTIFIERS_KEY, uint(enumEvents.CERTIFICATE_CREATED_EVENT), address(certificate));
+        _notifyEntityEvent(CERTIFICATE_NOTIFIERS_KEY, uint(enumEvents.CERTIFICATE_CREATED_EVENT), address(certificate));
     }
 
     function createEvent(
@@ -107,15 +102,6 @@ contract CertifiedEmail is CertifiedEmailInterface, UsingConstants {
             eventUserAgent,
             eventCreatedAt
         );
-
-        EventInterface certifiedEmailEvent = EventInterface(certificate.getEvent(eventId));
-
-        require(
-            address(certifiedEmailEvent) != address(0),
-            "Error while retrieving event from certificate"
-        );
-
-        notifyEntityEvent(EVENT_NOTIFIERS_KEY, uint(enumEvents.EVENT_CREATED_EVENT), address(certifiedEmailEvent));
     }
 
     function createFile(
@@ -138,15 +124,6 @@ contract CertifiedEmail is CertifiedEmailInterface, UsingConstants {
             fileCreatedAt,
             fileSize
         );
-
-        FileInterface certifiedEmailFile = certificate.file();
-
-        require(
-            address(certifiedEmailFile) != address(0),
-            "Error while retrieving file from certificate"
-        );
-
-        notifyEntityEvent(FILE_NOTIFIERS_KEY, uint(enumEvents.FILE_CREATED_EVENT), address(certifiedEmailFile));
     }
 
     function getCertificate (
@@ -217,13 +194,12 @@ contract CertifiedEmail is CertifiedEmailInterface, UsingConstants {
         return certificatesId.length;
     }
 
-    function notifyEntityEvent (
+    function _notifyEntityEvent (
         string memory notifiersKey,
         uint createdEvent,
         address adrToNotify
     )
-        public
-        signaturitOnly
+        private
     {
         address contractToNofify;
         uint notificationIndex = 0;
@@ -283,6 +259,8 @@ contract CertifiedEmail is CertifiedEmailInterface, UsingConstants {
         certificates[certificateId] = CertificateInterface(
             Utils._bytesToAddress(returnData)
         );
+
+        certificates[certificateId].setCertifiedEmailOwner(address(userContract));
 
         return certificates[certificateId];
     }

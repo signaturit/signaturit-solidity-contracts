@@ -1,7 +1,7 @@
 pragma solidity <0.6.0;
 
 /*
-Gas to deploy: 2.623.165
+Gas to deploy: 2.461.125
 */
 
 import "./Clause.sol";

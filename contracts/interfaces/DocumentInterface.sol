@@ -49,6 +49,11 @@ contract DocumentInterface {
     )
         public;
 
+    function signFromSignaturit(
+        uint documentSignedAt
+    )
+        public;
+
     function notifyEntityEvent(
         string memory notifiersKey,
         uint createdEvent,
